@@ -21,6 +21,7 @@ export class Slide {
 
     this.title = stringOrDefault(config.title);
     this.description = stringOrDefault(config.description);
+    console.log(config.actions);
     this.actions = arrayOrDefault(config.actions).map(SlideAction.create);
   }
 
