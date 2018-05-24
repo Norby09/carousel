@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.bl-carousel--slide-title,
+.bl-carousel--slide-description,
+.bl-carousel--slide-background-image {
+  @include base-input;
+
+  display: block;
+  width: 100%;
+}
+
+.bl-carousel--slide-background-label {
+  display: block;
+}

@@ -1,0 +1,24 @@
+<form class="bl-carousel--slide" data-id="{{slide.id}}" (submit)="onSubmit($event)">
+  <input class="bl-carousel--slide-title" [(ngModel)]="slide.title" name="title"
+         placeholder="{{ 'insertTitle' | i18nSelect: i18n }}" />
+  <textarea class="bl-carousel--slide-description" [(ngModel)]="slide.description" name="description"
+            placeholder="{{ 'insertDescription' | i18nSelect: i18n }}"></textarea>
+  
+  <div class="bl-carousel--slide-background">
+    <label class="bl-carousel--slide-background-label">{{ 'backgroundSettings' | i18nSelect: i18n }}</label>
+    <input class="bl-carousel--slide-background-color" [(ngModel)]="slide.backgroundColor" name="backgroundColor"
+           title="{{ 'insertBackgroundColor' | i18nSelect: i18n }}" type="color" />
+    <input class="bl-carousel--slide-background-image" [(ngModel)]="slide.backgroundImage" name="backgroundImage"
+           placeholder="{{ 'insertBackgroundImage' | i18nSelect: i18n }}" type="url" />
+  </div>
+  
+  <ol class="bl-carousel--slide-actions">
+    <li *ngFor="let action of slide.actions" class="bl-carousel--slide-action">
+      <bl-carousel-slide-action [action]="action"></bl-carousel-slide-action>
+    </li>
+  </ol>
+  
+  <button type="button" class="bl-carousel-editor--action-add" (click)="slide.addAction()">{{ 'addAction' | i18nSelect: i18n }}</button>
+  
+  <button type="submit" class="bl-carousel-editor--submit">{{ (saved ? 'updateSlide' : 'addSlide') | i18nSelect: i18n }}</button>
+</form>

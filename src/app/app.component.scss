@@ -1,0 +1,8 @@
+@import 'mixins';
+
+.bl-carousel--input-import {
+  @include base-input;
+
+  display: block;
+  width: 100%;
+}

@@ -1,0 +1,16 @@
+<bl-carousel-slide #editor (save)="saveSlide(editor.slide)"></bl-carousel-slide>
+<ul class="bl-carousel--slide-list">
+  <li *ngFor="let slide of slides" class="bl-carousel--slide-list-item">
+    <div class="bl-carousel--slide-list-item-title">{{slide.title}}</div>
+    <div class="bl-carousel--slide-list-item-description">{{slide.description}}</div>
+    <button class="bl-carousel--slide-list-item--edit" (click)="editor.edit(slide)">{{ 'edit' | i18nSelect: i18n }}</button>
+  </li>
+</ul>
+
+<textarea #importInput class="bl-carousel--input-import"></textarea>
+<button class="bl-carousel--btn-import" (click)="import(importInput.value)">{{ 'import' | i18nSelect: i18n }}</button>
+<button class="bl-carousel--btn-export" (click)="importInput.value = export()">{{ 'export' | i18nSelect: i18n }}</button>
+
+<div >
+
+</div>

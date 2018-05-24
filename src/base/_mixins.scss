@@ -1,0 +1,20 @@
+@import 'colors';
+
+@mixin base-control {
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  box-sizing: border-box;
+
+  color: $text-color;
+
+  margin: 4px auto;
+  padding: 8px 4px;
+}
+
+@mixin base-input {
+  @include base-control;
+}
+
+@mixin base-button {
+  @include base-control;
+}

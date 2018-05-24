@@ -1,0 +1,5 @@
+@import 'mixins';
+
+.bl-carousel--btn {
+  @include base-button;
+}
