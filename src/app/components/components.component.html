@@ -1,0 +1,18 @@
+
+<!--<div class="title-component">-->
+  <!--<input class="title-component-css-class" placeholder="Enter the css class..." name="titleCssClass" />-->
+  <!--<input class="title-component-style" placeholder="Enter style" name="titleStyle" />-->
+  <!--<input class="title-component-style" placeholder="Enter text" name="titleText" />-->
+<!--</div>-->
+<!--<div class="description-component">-->
+  <!--<input class="description-component-css-class" placeholder="Enter the css class..." name="descriptionCssClass" />-->
+  <!--<input class="description-component-style" placeholder="Enter the style..." name="descriptionStyle" />-->
+  <!--<input class="description-component-text" placeholder="Enter text" name="descriptionText" />-->
+<!--</div>-->
+{{debugger}}
+<button (click)="comp.addLink()">Add Link</button>
+<div class="generatedLinks">
+  <li *ngFor="let link of comp.links">
+    <bl-carousel-link></bl-carousel-link>
+  </li>
+</div>

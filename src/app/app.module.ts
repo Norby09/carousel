@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { SlideComponent } from './slide/slide.component';
 import { SlideActionComponent } from './slide-action/slide-action.component';
 import { CarouselElementComponent } from './carousel-element/carousel-element.component';
+import { ComponentsComponent } from './components/components.component';
+import { LinkComponent } from './link/link.component';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { CarouselElementComponent } from './carousel-element/carousel-element.co
     AppComponent,
     SlideComponent,
     SlideActionComponent,
-    CarouselElementComponent
+    CarouselElementComponent,
+    ComponentsComponent,
+    LinkComponent
   ],
   imports: [
     BrowserModule,

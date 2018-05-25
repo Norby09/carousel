@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { I18nSelectPipe } from '@angular/common';
 import { Slide } from 'data/slide';
-
+import { Comp } from 'data/comp';
 @Component({
   selector: 'bl-carousel-configurator',
   templateUrl: './app.component.html',
@@ -15,7 +15,7 @@ export class AppComponent {
   };
 
   slides: Array<Slide> = [];
-
+  comp: Comp;
   saveSlide(slide: Slide): void {
     if (!~this.slides.indexOf(slide)) {
       this.addSlide(slide);
@@ -54,6 +54,12 @@ export class AppComponent {
       default:
         console.warn(`Unknown export format '${format}'`);
         return this.toString();
+    }
+  }
+  exportItems(format: string = 'json'): string {
+    switch ((format || '').toLowerCase()) {
+      case 'json':
+        return JSON.stringify({ components: this.comp});
     }
   }
 }

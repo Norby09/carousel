@@ -1,9 +1,9 @@
 import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
-import {Component} from './component';
+import {Comp} from './comp';
 export class Items {
   backgroundColor: String;
   backgroundUrl: String;
   name: String;
   type: String;
-  components: Component;
+  components: Comp;
 }

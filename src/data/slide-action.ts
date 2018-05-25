@@ -14,6 +14,7 @@ export class SlideAction {
 
   constructor(config?: any) {
     config = objectOrDefault(config) || {};
+    debugger;
     this.text = stringOrDefault(config.text);
     this.url = stringOrDefault(config.url);
   }

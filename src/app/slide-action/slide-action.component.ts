@@ -16,7 +16,6 @@ export class SlideActionComponent implements OnInit {
   };
 
   constructor() { }
-
   ngOnInit() { }
 
   reset() {

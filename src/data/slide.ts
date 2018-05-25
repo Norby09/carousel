@@ -2,6 +2,7 @@ import { SlideAction } from 'data/slide-action';
 import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
 
 export class Slide {
+  id: String;
   title: String;
   description: String;
   backgroundColor: String;
@@ -23,6 +24,7 @@ export class Slide {
     this.description = stringOrDefault(config.description);
     console.log(config.actions);
     this.actions = arrayOrDefault(config.actions).map(SlideAction.create);
+    debugger;
   }
 
   addAction() {
