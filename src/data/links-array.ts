@@ -13,7 +13,6 @@ export class LinksArray {
     return new LinksArray(config);
   }
   constructor(config?: any) {
-    debugger;
     config = objectOrDefault(config) || {};
     this.cssClass = stringOrDefault(config.cssClass);
     this.style = stringOrDefault(config.style);

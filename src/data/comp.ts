@@ -6,7 +6,6 @@ export class Comp {
   title: Title;
   description: Description;
   links: Array<LinksArray>;
-  debugger;
   static create(config: any): Comp {
     if (!config) {
       return new Comp();
@@ -15,6 +14,15 @@ export class Comp {
   }
   addLink() {
     this.links.push(new LinksArray());
+  }
+  saveLink(link: LinksArray): void {
+    if (!~this.links.indexOf(link)) {
+      this.adLink(link);
+    }
+  }
+  adLink(link: LinksArray): void {
+    this.links.push(link);
+    console.log(this.links);
   }
   constructor(config?: any) {
     config = objectOrDefault(config) || {};

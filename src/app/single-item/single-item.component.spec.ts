@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CarouselElementComponent } from './carousel-element.component';
+import { SingleItemComponent } from './single-item.component';
 
-describe('CarouselElementComponent', () => {
-  let component: CarouselElementComponent;
-  let fixture: ComponentFixture<CarouselElementComponent>;
+describe('SingleItemComponent', () => {
+  let component: SingleItemComponent;
+  let fixture: ComponentFixture<SingleItemComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarouselElementComponent ]
+      declarations: [ SingleItemComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CarouselElementComponent);
+    fixture = TestBed.createComponent(SingleItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

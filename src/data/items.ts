@@ -5,5 +5,7 @@ export class Items {
   backgroundUrl: String;
   name: String;
   type: String;
+  id: number;
   components: Comp;
 }
+

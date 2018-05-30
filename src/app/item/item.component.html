@@ -1,0 +1,8 @@
+<button (click)="addItem()">Add Item</button>
+<div *ngFor="let item of items">
+  <bl-carousel-single-item [itm]="item"></bl-carousel-single-item>
+  <bl-carousel-components [comp]="item.components"></bl-carousel-components>
+</div>
+<button (click)="inp.value=exportItems()">Export</button>
+<button (click)="importItems(inp.value)">Import</button>
+<textarea #inp class="result"></textarea>

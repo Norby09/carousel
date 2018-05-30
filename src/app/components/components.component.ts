@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {LinksArray} from '../../data/links-array';
 import {Comp} from '../../data/comp';
+import {Slide} from '../../data/slide';
 
 @Component({
   selector: 'bl-carousel-components',
@@ -9,7 +10,7 @@ import {Comp} from '../../data/comp';
 })
 export class ComponentsComponent implements OnInit {
   @Input() comp: Comp = null;
-  debugger;
+  @Output() sav: EventEmitter<Comp> = new EventEmitter();
   constructor() { }
   ngOnInit() {
     if (!this.comp) {
@@ -18,5 +19,20 @@ export class ComponentsComponent implements OnInit {
   }
   resetLink() {
     this.comp = new Comp();
+  }
+  onSubmitItems(event: Event) {
+    event.preventDefault();
+
+    this.sav.emit(this.comp);
+    // this.resetLink();
+  }
+  saveLink(link: LinksArray): void {
+    if (!~this.comp.links.indexOf(link)) {
+      this.adLink(link);
+    }
+  }
+  adLink(link: LinksArray): void {
+    this.comp.links.push(link);
+    console.log(this.comp.links);
   }
 }
