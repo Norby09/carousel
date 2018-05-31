@@ -7,5 +7,9 @@ export class Items {
   type: String;
   id: number;
   components: Comp;
+  constructor(config?: any) {
+    this.components = new Comp();
+  }
 }
+
 

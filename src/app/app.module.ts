@@ -10,6 +10,11 @@ import { ItemComponent } from './item/item.component';
 import { ComponentsComponent } from './components/components.component';
 import { LinkComponent } from './link/link.component';
 import { SingleItemComponent } from './single-item/single-item.component';
+import { TitleComponent } from './title/title.component';
+import { DescriptionComponent } from './description/description.component';
+import { SlideshowComponent } from './slideshow/slideshow.component';
+import { TypesComponent } from './types/types.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -22,6 +27,11 @@ import { SingleItemComponent } from './single-item/single-item.component';
     ComponentsComponent,
     LinkComponent,
     SingleItemComponent,
+    TitleComponent,
+    DescriptionComponent,
+    SlideshowComponent,
+    TypesComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

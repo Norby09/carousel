@@ -1,11 +1,10 @@
 <form (submit)="onSubmitItems($event)">
-<button (click)="comp.addLink()">Add Link</button>
-
 <div class="generatedLinks">
+  <bl-carousel-title [comp]="comp"></bl-carousel-title>
+  <bl-carousel-description [comp]="comp"></bl-carousel-description>
+  <button (click)="comp.addLink()">Add Link</button>
   <li *ngFor="let link of comp.links">
-    <span>{{link | json}}</span>
     <bl-carousel-link [link]="link"></bl-carousel-link>
-    <button (click)="comp.saveLink(link)">Save Link</button>
   </li>
 </div>
 </form>

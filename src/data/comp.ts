@@ -14,6 +14,7 @@ export class Comp {
   }
   addLink() {
     this.links.push(new LinksArray());
+    console.log(this.links);
   }
   saveLink(link: LinksArray): void {
     if (!~this.links.indexOf(link)) {

@@ -3,7 +3,9 @@ import { Comp } from 'data/comp';
 import { LinksArray } from 'data/links-array';
 import {Slide} from '../../data/slide';
 import {Items} from '../../data/items';
-
+import {Slideshow} from '../../data/slideshow';
+import {Type} from '../../data/type';
+import {Setting} from '../../data/setting';
 @Component({
   selector: 'bl-carousel-carousel-element',
   templateUrl: './item.component.html',
@@ -11,16 +13,18 @@ import {Items} from '../../data/items';
 })
 export class ItemComponent implements OnInit {
   slides: Array<Slide> = [];
-  comp: Comp = null;
   links: Array<LinksArray> = [];
   link: LinksArray;
   items: Array<Items> = [];
-  itm: Items = null;
+  slideshow: Slideshow = null;
+  type: Type = null;
+  setting: Setting = null;
   constructor() { }
 
   ngOnInit() {
-    this.comp = new Comp();
-    this.itm = new Items();
+    this.slideshow = Slideshow.create();
+    this.type = Type.create();
+    this.setting = Setting.create();
   }
   addSlide(slide: Slide): void {
     this.slides.push(slide);
@@ -37,16 +41,14 @@ export class ItemComponent implements OnInit {
   addItem() {
     this.items.push(new Items());
   }
-  pushObject(item: Items): void {
+  /*pushObject(item: Items): void {
     this.items.push(item);
-  }
+  }*/
   exportItems(format: string = 'json'): string {
     switch ((format || '').toLowerCase()) {
       case 'json':
-          this.itm.components = this.comp;
           console.log(this.items);
-          this.pushObject(this.itm);
-          return JSON.stringify({items: this.items});
+          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting});
       default:
         console.warn(`Unknown export format'${format}'`);
         return this.toString();
@@ -55,11 +57,9 @@ export class ItemComponent implements OnInit {
   importItems(config: string, format: string = 'json'): boolean {
     switch (format.toLowerCase()) {
       case 'json':
-        this.comp = JSON.parse(config).comp;
         return true;
       default:
         return false;
     }
   }
-
 }
