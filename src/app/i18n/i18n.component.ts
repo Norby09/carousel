@@ -9,10 +9,9 @@ export type bindLanguageName = () => void;
 })
 export class I18nComponent implements OnInit {
   @Input() element: I18nElement;
-  @Input() i18n: I18nElement;
   @Input() addNewLanguage: addLanguageFunc;
   @Input() bindLanguageAndAddToMainObject: bindLanguageName;
-  arrayOfI18n: Array<I18nElement> = [];
+  @Input() arrayOfI18n: Array<I18nElement> = [];
   constructor() {}
   ngOnInit() {
   }

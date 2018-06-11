@@ -25,24 +25,29 @@ export class ItemComponent implements OnInit {
   element: I18nElement = null;
   itemId = 0;
   arrayOfI18n: Array<I18nElement> = [];
-  i19n: Object;
-  constructor() { }
-  addNewLanguage() {
-    this.element = I18nElement.create();
-    this.arrayOfI18n.push(this.element);
-  }
-  bindLanguageAndAddToMainObject() {
-    this.i18n = new Object();
-    for (let i = 0; i < this.arrayOfI18n.length; i++) {
-      const name = this.arrayOfI18n[i].languageName;
-      this.i19n["\"" + name +"\""] = { "\"@title\"" : this.arrayOfI18n[i].title, "\"@description\"" : this.arrayOfI18n[i].description}
-      console.log(this.i18n);
-    }
+  i18n: Object;
+  // bindedElement = this.bindLanguageAndAddToMainObject.bind(this);
+  constructor() {
   }
   ngOnInit() {
     this.slideshow = Slideshow.create();
     this.type = Type.create();
     this.setting = Setting.create();
+    this.i18n = Object.create(null);
+  }
+  addNewLanguage() {
+    this.element = I18nElement.create();
+    this.arrayOfI18n.push(this.element);
+    console.log(this.element);
+  }
+  bindLanguageAndAddToMainObject: any = () => {
+    console.log(this);
+    for (let i = 0; i < this.arrayOfI18n.length; i++) {
+      const name = this.arrayOfI18n[i].languageName;
+      this.i18n[name] = I18nElement.create();
+      this.i18n[name] = { '@title' : this.arrayOfI18n[i].title, '@description' : this.arrayOfI18n[i].description};
+      console.log(this.i18n);
+    }
   }
   addSlide(slide: Slide): void {
     this.slides.push(slide);
@@ -68,7 +73,7 @@ export class ItemComponent implements OnInit {
       case 'json':
           console.log(this.items);
           console.log(this.i18n);
-          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting, i18n: this.i19n});
+          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting, patruzeci: this.i18n});
       default:
         console.warn(`Unknown export format'${format}'`);
         return this.toString();
