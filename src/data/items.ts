@@ -7,8 +7,11 @@ export class Items {
   type: String;
   id: number;
   components: Comp;
+
   constructor(config?: any) {
+    console.log('Config : ', Object.values(config));
     this.components = new Comp();
+    this.id = config.id;
   }
 }
 

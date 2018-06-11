@@ -9,6 +9,7 @@ import {Items} from '../../data/items';
 })
 export class SingleItemComponent implements OnInit {
   @Input() itm: Items = null;
+
   constructor() { }
 
   ngOnInit() {

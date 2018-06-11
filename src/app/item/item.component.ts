@@ -19,6 +19,9 @@ export class ItemComponent implements OnInit {
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Setting = null;
+
+  itemId = 0;
+
   constructor() { }
 
   ngOnInit() {
@@ -39,7 +42,8 @@ export class ItemComponent implements OnInit {
     console.log(this.links);
   }
   addItem() {
-    this.items.push(new Items());
+    ++this.itemId;
+    this.items.push(new Items({id : this.itemId}));
   }
   /*pushObject(item: Items): void {
     this.items.push(item);
