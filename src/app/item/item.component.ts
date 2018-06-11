@@ -6,6 +6,9 @@ import {Items} from '../../data/items';
 import {Slideshow} from '../../data/slideshow';
 import {Type} from '../../data/type';
 import {Setting} from '../../data/setting';
+import {I18nElement} from '../../data/i18nelement';
+import {stringOrDefault} from '../../utils/value-or-default';
+
 @Component({
   selector: 'bl-carousel-carousel-element',
   templateUrl: './item.component.html',
@@ -19,11 +22,23 @@ export class ItemComponent implements OnInit {
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Setting = null;
-
+  element: I18nElement = null;
   itemId = 0;
-
+  arrayOfI18n: Array<I18nElement> = [];
+  i19n: Object;
   constructor() { }
-
+  addNewLanguage() {
+    this.element = I18nElement.create();
+    this.arrayOfI18n.push(this.element);
+  }
+  bindLanguageAndAddToMainObject() {
+    this.i18n = new Object();
+    for (let i = 0; i < this.arrayOfI18n.length; i++) {
+      const name = this.arrayOfI18n[i].languageName;
+      this.i19n["\"" + name +"\""] = { "\"@title\"" : this.arrayOfI18n[i].title, "\"@description\"" : this.arrayOfI18n[i].description}
+      console.log(this.i18n);
+    }
+  }
   ngOnInit() {
     this.slideshow = Slideshow.create();
     this.type = Type.create();
@@ -52,7 +67,8 @@ export class ItemComponent implements OnInit {
     switch ((format || '').toLowerCase()) {
       case 'json':
           console.log(this.items);
-          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting});
+          console.log(this.i18n);
+          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting, i18n: this.i19n});
       default:
         console.warn(`Unknown export format'${format}'`);
         return this.toString();

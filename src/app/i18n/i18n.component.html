@@ -1,0 +1,10 @@
+
+<button type="button" class="btn btn-primary" (click)="addNewLanguage()">Add language</button>
+
+<div class="paddedDiv" *ngFor="let i18n of arrayOfI18n">
+  <input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />
+  <input type="text" class="form-control" [(ngModel)]="i18n.title" placeholder="Enter title" />
+  <input type="text" class="form-control" [(ngModel)]="i18n.description" placeholder="Enter description" />
+</div>
+<button type="button" class="btn btn-primary" (click)="bindLanguageAndAddToMainObject()">Bind</button>
+{{arrayOfI18n | json}}

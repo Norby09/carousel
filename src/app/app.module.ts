@@ -15,7 +15,7 @@ import { DescriptionComponent } from './description/description.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { TypesComponent } from './types/types.component';
 import { SettingsComponent } from './settings/settings.component';
-
+import { I18nComponent } from './i18n/i18n.component';
 
 
 @NgModule({
@@ -32,6 +32,7 @@ import { SettingsComponent } from './settings/settings.component';
     SlideshowComponent,
     TypesComponent,
     SettingsComponent,
+    I18nComponent,
   ],
   imports: [
     BrowserModule,

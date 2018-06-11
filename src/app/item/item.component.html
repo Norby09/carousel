@@ -1,6 +1,7 @@
 <bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
 <bl-carousel-types [type]="type"></bl-carousel-types>
 <bl-carousel-settings [setting]="setting"></bl-carousel-settings>
+<bl-carousel-i18n [element]="element" [i18n]="element" [addNewLanguage]="addNewLanguage" [bindLanguageAndAddToMainObject]="bindLanguageAndAddToMainObject"></bl-carousel-i18n>
 <button class="btn btn-info" (click)="addItem()">Add Item</button>
 <div *ngFor="let item of items">
   <bl-carousel-single-item [itm]="item"></bl-carousel-single-item>
