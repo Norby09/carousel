@@ -10,6 +10,14 @@ function arrayOrDefault(value: any, defaultValue: any[] = []): any[] {
   return Array.isArray(value) ? value : defaultValue;
 }
 
+function booleanOrDefault(value: any, defaultValue: boolean = false): boolean {
+  return (typeof value === 'boolean') ? value : defaultValue;
+}
+
+function numberOrDefault(value: any, defaultValue: number = 0): number {
+  return (typeof value === 'number') ? value : defaultValue;
+}
+
 export {
-  stringOrDefault, objectOrDefault, arrayOrDefault
+  stringOrDefault, objectOrDefault, arrayOrDefault, booleanOrDefault, numberOrDefault
 };

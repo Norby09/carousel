@@ -1,9 +1,9 @@
 <div class="jumbotron">
+  <input type="number" class="form-control" [(ngModel)]="itm.id" placeholder="Enter id" readonly/>
 <input type="text" [(ngModel)]="itm.backgroundUrl" class="form-control" placeholder="Enter backgroundUrl"/>
 <input type="color" class="form-control" [(ngModel)]="itm.backgroundColor" />
-<input type="number" class="form-control" [(ngModel)]="itm.id" placeholder="Enter id" />
 <input type="text" class="form-control" [(ngModel)]="itm.name" placeholder="Enter name" />
-<input type="text" class="form-control" [(ngModel)]="itm.type" placeholder="Enter type" />
+<input type="number" class="form-control" [(ngModel)]="itm.type" placeholder="Enter type" />
 </div>
 <div class="jumbotron">
 <bl-carousel-components [comp]="itm.components"></bl-carousel-components>

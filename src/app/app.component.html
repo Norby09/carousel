@@ -1,19 +1,4 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <div class="container">
-  <bl-carousel-slide #editor (save)="saveSlide(editor.slide)"></bl-carousel-slide>
-  <ul class="bl-carousel--slide-list">
-    <li *ngFor="let slide of slides" class="bl-carousel--slide-list-item">
-      <div class="bl-carousel--slide-list-item-title">{{slide.title}}</div>
-      <div class="bl-carousel--slide-list-item-description">{{slide.description}}</div>
-      <button class="bl-carousel--slide-list-item--edit" (click)="editor.edit(slide)">{{ 'edit' | i18nSelect: i18n }}</button>
-    </li>
-  </ul>
-
-  <textarea #importInput class="bl-carousel--input-import"></textarea>
-  <button class="bl-carousel--btn-import" (click)="import(importInput.value)">{{ 'import' | i18nSelect: i18n }}</button>
-  <button class="bl-carousel--btn-export" (click)="importInput.value = export()">{{ 'export' | i18nSelect: i18n }}</button>
-  <hr />
-
 
   <bl-carousel-carousel-element></bl-carousel-carousel-element>
   <!--<bl-carousel-components [comp]="comp"></bl-carousel-components>-->
