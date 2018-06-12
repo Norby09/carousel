@@ -22,10 +22,17 @@ export class ItemComponent implements OnInit {
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Setting = null;
+
   element: I18nElement = null;
-  itemId = 0;
   arrayOfI18n: Array<I18nElement> = [];
   i18n: Object;
+
+  itemId = 0;
+
+  openSlideShowBox = false;
+  openTypesBox = false;
+  openSettingsBox = false;
+
   // bindedElement = this.bindLanguageAndAddToMainObject.bind(this);
   constructor() {
   }
@@ -73,7 +80,7 @@ export class ItemComponent implements OnInit {
       case 'json':
           console.log(this.items);
           console.log(this.i18n);
-          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting, patruzeci: this.i18n});
+          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting, i18n: this.i18n});
       default:
         console.warn(`Unknown export format'${format}'`);
         return this.toString();
@@ -86,5 +93,17 @@ export class ItemComponent implements OnInit {
       default:
         return false;
     }
+  }
+
+  showSlideShow(){
+    this.openSlideShowBox = !this.openSlideShowBox;
+  }
+
+  showTypes(){
+    this.openTypesBox = !this.openTypesBox;
+  }
+
+  showSettings() {
+    this.openSettingsBox = !this.openSettingsBox;
   }
 }

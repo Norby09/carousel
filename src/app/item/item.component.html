@@ -1,11 +1,30 @@
-<bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
-<bl-carousel-types [type]="type"></bl-carousel-types>
-<bl-carousel-settings [setting]="setting"></bl-carousel-settings>
-<bl-carousel-i18n [element]="element" [addNewLanguage]="addNewLanguage" [bindLanguageAndAddToMainObject]="bindLanguageAndAddToMainObject" [arrayOfI18n]="arrayOfI18n"></bl-carousel-i18n>
-<button class="btn btn-info" (click)="addItem()">Add Item</button>
-<div *ngFor="let item of items">
-  <bl-carousel-single-item [itm]="item"></bl-carousel-single-item>
+<div>
+  <button class="btn btn-primary" (click)="showSlideShow()"> Add slide show </button>
+  <div *ngIf="openSlideShowBox">
+    <bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
+  </div>
+
+  <button class="btn btn-primary" (click)="showTypes()"> Add types </button>
+  <div *ngIf="openTypesBox">
+    <bl-carousel-types [type]="type"></bl-carousel-types>
+  </div>
+
+  <button class="btn btn-primary" (click)="showSettings()"> Add settings </button>
+  <div *ngIf="openSettingsBox">
+    <bl-carousel-settings [setting]="setting"></bl-carousel-settings>
+  </div>
+
+  <bl-carousel-i18n [element]="element" [addNewLanguage]="addNewLanguage" [bindLanguageAndAddToMainObject]="bindLanguageAndAddToMainObject" [arrayOfI18n]="arrayOfI18n"></bl-carousel-i18n>
+
+  <button class="btn btn-primary" (click)="addItem()">Add Item</button>
+  <div *ngFor="let item of items">
+    <bl-carousel-single-item [itm]="item"></bl-carousel-single-item>
+  </div>
+
+
+  <button class="btn btn-success pull-right" style="display:inline-block" (click)="inp.value=exportItems()">Export</button>
+  <button class="btn btn-info pull-right" style="display:inline-block" (click)="importItems(inp.value)">Import</button>
 </div>
-<button class="btn btn-success" (click)="inp.value=exportItems()">Export</button>
-<button class="btn btn-primary" (click)="importItems(inp.value)">Import</button>
-<textarea #inp class="result"></textarea>
+<!--<div class="container">-->
+  <textarea #inp class="result" placeholder="Result JSON"></textarea>
+<!--</div>-->

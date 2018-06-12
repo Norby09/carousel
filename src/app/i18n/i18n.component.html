@@ -1,10 +1,15 @@
 
-<button type="button" class="btn btn-primary" (click)="addNewLanguage()">Add language</button>
-
-<div class="paddedDiv" *ngFor="let i18n of arrayOfI18n">
-  <input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />
-  <input type="text" class="form-control" [(ngModel)]="i18n.title" placeholder="Enter title" />
-  <input type="text" class="form-control" [(ngModel)]="i18n.description" placeholder="Enter description" />
+<button type="button" class="btn btn-primary" (click)="addNewLanguage();showBindButton()">Add language</button>
+<div *ngIf="showButton">
+  <div class="jumbotron">
+    <legend>Languages</legend>
+    <div *ngFor="let i18n of arrayOfI18n">
+      <input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />
+      <input type="text" class="form-control" [(ngModel)]="i18n.title" placeholder="Enter title" />
+      <input type="text" class="form-control" [(ngModel)]="i18n.description" placeholder="Enter description" />
+      <hr/>
+    </div>
+    <button type="button" class="btn btn-primary btn-sm" (click)="bindLanguageAndAddToMainObject()">Bind</button>
+  </div>
 </div>
-<button type="button" class="btn btn-primary" (click)="bindLanguageAndAddToMainObject()">Bind</button>
-{{arrayOfI18n | json}}
+<!--{{arrayOfI18n | json}}-->

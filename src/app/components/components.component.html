@@ -1,11 +1,13 @@
 <form (submit)="onSubmitItems($event)">
-<div class="generatedLinks">
-  <bl-carousel-title [comp]="comp"></bl-carousel-title>
-  <bl-carousel-description [comp]="comp"></bl-carousel-description>
-  <button (click)="comp.addLink()">Add Link</button>
-  <li *ngFor="let link of comp.links">
-    <bl-carousel-link [link]="link"></bl-carousel-link>
-  </li>
-</div>
+  <div class="generatedLinks">
+    <hr />
+      <bl-carousel-title [comp]="comp"></bl-carousel-title>
+    <hr />
+      <bl-carousel-description [comp]="comp"></bl-carousel-description>
+      <button class="btn btn-info btn-sm" style="margin-top: 10px"(click)="comp.addLink()">Add Link</button>
+      <li *ngFor="let link of comp.links">
+        <bl-carousel-link [link]="link"></bl-carousel-link>
+      </li>
+  </div>
 </form>
 

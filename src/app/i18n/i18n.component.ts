@@ -12,7 +12,14 @@ export class I18nComponent implements OnInit {
   @Input() addNewLanguage: addLanguageFunc;
   @Input() bindLanguageAndAddToMainObject: bindLanguageName;
   @Input() arrayOfI18n: Array<I18nElement> = [];
+
+  showButton = false;
+
   constructor() {}
   ngOnInit() {
+  }
+
+  showBindButton() {
+    this.showButton  = true;
   }
 }
