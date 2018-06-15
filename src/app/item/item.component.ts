@@ -12,7 +12,7 @@ import {stringOrDefault} from '../../utils/value-or-default';
 @Component({
   selector: 'bl-carousel-carousel-element',
   templateUrl: './item.component.html',
-  styleUrls: ['./item.component.scss']
+  styleUrls: ['./item.component.scss', '../app.component.scss']
 })
 export class ItemComponent implements OnInit {
   slides: Array<Slide> = [];
@@ -28,14 +28,14 @@ export class ItemComponent implements OnInit {
   i18n: Object;
 
   itemId = 0;
-
-  openSlideShowBox = false;
-  openTypesBox = false;
-  openSettingsBox = false;
+  languageId = 0;
 
   // bindedElement = this.bindLanguageAndAddToMainObject.bind(this);
   constructor() {
+    this.addNewLanguage();
+    this.addItem();
   }
+
   ngOnInit() {
     this.slideshow = Slideshow.create();
     this.type = Type.create();
@@ -43,17 +43,18 @@ export class ItemComponent implements OnInit {
     this.i18n = Object.create(null);
   }
   addNewLanguage() {
+    this.languageId++;
     this.element = I18nElement.create();
     this.arrayOfI18n.push(this.element);
     console.log(this.element);
   }
   bindLanguageAndAddToMainObject: any = () => {
-    console.log(this);
+    //console.log(this);
     for (let i = 0; i < this.arrayOfI18n.length; i++) {
       const name = this.arrayOfI18n[i].languageName;
       this.i18n[name] = I18nElement.create();
       this.i18n[name] = { '@title' : this.arrayOfI18n[i].title, '@description' : this.arrayOfI18n[i].description};
-      console.log(this.i18n);
+      //console.log(this.i18n);
     }
   }
   addSlide(slide: Slide): void {
@@ -66,7 +67,7 @@ export class ItemComponent implements OnInit {
   }
   adLink(link: LinksArray): void {
     this.links.push(link);
-    console.log(this.links);
+    console.log('Link  : ', this.links);
   }
   addItem() {
     ++this.itemId;
@@ -93,17 +94,5 @@ export class ItemComponent implements OnInit {
       default:
         return false;
     }
-  }
-
-  showSlideShow(){
-    this.openSlideShowBox = !this.openSlideShowBox;
-  }
-
-  showTypes(){
-    this.openTypesBox = !this.openTypesBox;
-  }
-
-  showSettings() {
-    this.openSettingsBox = !this.openSettingsBox;
   }
 }

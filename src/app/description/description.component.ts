@@ -4,7 +4,7 @@ import {Comp} from '../../data/comp';
 @Component({
   selector: 'bl-carousel-description',
   templateUrl: './description.component.html',
-  styleUrls: ['./description.component.scss']
+  styleUrls: ['./description.component.scss', '../app.component.scss']
 })
 export class DescriptionComponent implements OnInit {
   description: Description = null;

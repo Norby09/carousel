@@ -5,7 +5,7 @@ export type bindLanguageName = () => void;
 @Component({
   selector: 'bl-carousel-i18n',
   templateUrl: './i18n.component.html',
-  styleUrls: ['./i18n.component.scss']
+  styleUrls: ['./i18n.component.scss', '../app.component.scss']
 })
 export class I18nComponent implements OnInit {
   @Input() element: I18nElement;

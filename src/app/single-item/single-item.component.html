@@ -1,10 +1,39 @@
-<div class="jumbotron">
-  <legend>Item</legend>
-  <input type="number" class="form-control" [(ngModel)]="itm.id" placeholder="Enter id" readonly/>
-  <input type="text" [(ngModel)]="itm.backgroundUrl" class="form-control" placeholder="Enter backgroundUrl"/>
-  <input type="color" class="form-control" [(ngModel)]="itm.backgroundColor" />
-  <input type="text" class="form-control" [(ngModel)]="itm.name" placeholder="Enter name" />
-  <input type="number" class="form-control" [(ngModel)]="itm.type" placeholder="Enter type" />
-<!--<div class="jumbotron">-->
+<div class="item-container">
+
+  <div class="row">
+
+    <div class="col-lg-6">
+
+      <div class="row">
+        <div class="col-lg-12">
+            <h4 style="font-weight: bold"> Item id </h4>
+            <input type="number" class="form-control" [(ngModel)]="itm.id" readonly/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+        <label> Background url </label>
+        <input type="text" [(ngModel)]="itm.backgroundUrl" class="form-control" placeholder="Enter backgroundUrl"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <label> Background color </label>
+      <input type="color" class="form-control" style="width : 120px; height : 120px" [(ngModel)]="itm.backgroundColor" />
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-6">
+      <label> Name </label>
+      <input type="text" class="form-control" [(ngModel)]="itm.name" placeholder="Enter name" />
+    </div>
+    <div class="col-lg-6">
+      <label> Type </label>
+      <input type="number" class="form-control" [(ngModel)]="itm.type" placeholder="Enter type" />
+    </div>
+  </div>
   <bl-carousel-components [comp]="itm.components"></bl-carousel-components>
 </div>

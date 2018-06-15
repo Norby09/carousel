@@ -1,7 +1,20 @@
-<fieldset>
-  <legend>Description</legend>
-  <input type="text" class="result" placeholder="Enter css class" [(ngModel)]="description.cssClass" />
-  <input type="text" class="result" placeholder="Enter style" [(ngModel)]="description.style" />
-  <input type="text" class="result" placeholder="Enter text" [(ngModel)]="description.text" />
-  <button class="btn btn-primary btn-sm"(click)="addToComponentsDescription(comp)">Bind</button>
-</fieldset>
+<div class="td-container">
+  <hr />
+  <h4> Description </h4>
+  <hr />
+  <div class="row">
+    <div class="col-lg-4">
+      <label> Css class : </label>
+      <input type="text" class="form-control" placeholder="Enter css class" [(ngModel)]="description.cssClass" />
+    </div>
+    <div class="col-lg-4">
+      <label> Style : </label>
+      <input type="text" class="form-control" placeholder="Enter style" [(ngModel)]="description.style" />
+    </div>
+    <div class="col-lg-4">
+      <label> Text : </label>
+      <input type="text" class="form-control" placeholder="Enter text" [(ngModel)]="description.text" >
+    </div>
+  </div>
+    <button class="btn btn-primary btn-save btn-sm pull-right" style="margin-top: 10px" (click)="addToComponentsDescription(comp)"> Save </button>
+</div>

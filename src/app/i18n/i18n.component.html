@@ -1,15 +1,25 @@
-
-<button type="button" class="btn btn-primary" (click)="addNewLanguage();showBindButton()">Add language</button>
-<div *ngIf="showButton">
-  <div class="jumbotron">
-    <legend>Languages</legend>
-    <div *ngFor="let i18n of arrayOfI18n">
-      <input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />
-      <input type="text" class="form-control" [(ngModel)]="i18n.title" placeholder="Enter title" />
-      <input type="text" class="form-control" [(ngModel)]="i18n.description" placeholder="Enter description" />
+<div class="container inner-container">
+  <h3> Languages </h3>
+  <hr />
+  <div *ngFor="let i18n of arrayOfI18n">
+    <div class="row">
+      <div class="col-lg-4">
+        <label> Language {{arrayOfI18n.indexOf(i18n) + 1}} : </label>
+        <input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />
+      </div>
+      <div class="col-lg-4">
+        <label> Enter title : </label>
+        <input type="text" class="form-control" [(ngModel)]="i18n.title" placeholder="Enter title" />
+      </div>
+      <div class="col-lg-4">
+        <label> Enter description : </label>
+        <input type="text" class="form-control" [(ngModel)]="i18n.description" placeholder="Enter description" />
+      </div>
       <hr/>
     </div>
-    <button type="button" class="btn btn-primary btn-sm" (click)="bindLanguageAndAddToMainObject()">Bind</button>
   </div>
+  <button type="button" class="btn btn-primary btn-save pull-right" style="margin: 10px 0 0 10px" (click)="bindLanguageAndAddToMainObject()"> Save </button>
+  <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin-top: 10px" (click)="addNewLanguage();showBindButton()">Add new language</button>
 </div>
 <!--{{arrayOfI18n | json}}-->
+
