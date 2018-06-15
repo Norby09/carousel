@@ -1,7 +1,19 @@
-<div class="jumbotron">
-  <legend>Settings</legend>
-  <input type="text" class="form-control" [(ngModel)]="setting.defaultTemplateUrl" placeholder="Enter default template url..." />
-  <input type="text" class="form-control" [(ngModel)]="setting.templateStyle" placeholder="Enter template style..." />
-  <input type="text" class="form-control" [(ngModel)]="setting.animation" placeholder="Enter the animation..." />
+<div class="container inner-container">
+  <h3>Settings</h3>
+  <hr />
+  <div class="row">
+    <div class="col-lg-4">
+      <label> Enter default template url: </label>
+      <input type="text" class="form-control" [(ngModel)]="setting.defaultTemplateUrl" placeholder="Enter default template url..." />
+    </div>
+    <div class="col-lg-4">
+      <label> Enter template style: </label>
+      <input type="text" class="form-control" [(ngModel)]="setting.templateStyle" placeholder="Enter template style..." />
+    </div>
+    <div class="col-lg-4">
+      <label> Enter animation: </label>
+      <input type="text" class="form-control" [(ngModel)]="setting.animation" placeholder="Enter the animation..." />
+    </div>
+  </div>
 </div>
 

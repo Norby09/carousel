@@ -1,5 +1,29 @@
-<input type="text" [(ngModel)]="link.cssClass" class="link-component-css-class format" placeholder="Enter css class.." />
-<input type="text" [(ngModel)]="link.style" class="link-component-style format" placeholder="Enter the style..." />
-<input type="text" [(ngModel)]="link.text" class="link-component-text format" placeholder="Enter the text..." />
-<input type="text" [(ngModel)]="link.tooltip" class="link-component-tooltip format" placeholder="Enter the tooltip..." />
-<input type="text" [(ngModel)]="link.url" class="link-component-url format" placeholder="Enter the url..." />
+<div class="link-container">
+  <hr/>
+  <div class = "row">
+    <div class="col-lg-6">
+      <label>Css class : </label>
+      <input type="text" [(ngModel)]="link.cssClass" class="form-control" placeholder="Enter css class.." />
+    </div>
+    <div class="col-lg-6">
+      <label> Style : </label>
+      <input type="text" [(ngModel)]="link.style" class="form-control" placeholder="Enter the style..." />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <label> Text : </label>
+      <input type="text" [(ngModel)]="link.text" class="form-control" placeholder="Enter the text..." />
+    </div>
+    <div class="col-lg-6">
+      <label> Tooltip : </label>
+      <input type="text" [(ngModel)]="link.tooltip" class="form-control" placeholder="Enter the tooltip..." />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <label> Url : </label>
+      <input type="text" [(ngModel)]="link.url" class="form-control" placeholder="Enter the url..." />
+    </div>
+  </div>
+</div>

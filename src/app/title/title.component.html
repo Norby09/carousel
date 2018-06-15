@@ -1,7 +1,20 @@
-<fieldset>
-  <legend>Title</legend>
-  <input type="text" class="result" placeholder="Enter css class" [(ngModel)]="title.cssClass" />
-  <input type="text" class="result" placeholder="Enter style" [(ngModel)]="title.style" />
-  <input type="text" class="result" placeholder="Enter text" [(ngModel)]="title.text" />
-  <button class="btn btn-primary btn-sm" (click)="addToComponents(comp)">Bind</button>
-</fieldset>
+<div class="td-container">
+  <hr />
+  <h4>Title</h4>
+  <hr />
+  <div class="row">
+    <div class="col-lg-4">
+      <label> Css class : </label>
+      <input type="text" class="form-control" placeholder="Enter css class" [(ngModel)]="title.cssClass" />
+    </div>
+    <div class="col-lg-4">
+      <label> Style : </label>
+      <input type="text" class="form-control" placeholder="Enter style" [(ngModel)]="title.style" />
+    </div>
+    <div class="col-lg-4">
+      <label> Text : </label>
+      <input type="text" class="form-control" placeholder="Enter text" [(ngModel)]="title.text" />
+    </div>
+  </div>
+  <button class="btn btn-primary btn-sm btn-save pull-right" style="margin-top: 10px" (click)="addToComponents(comp)"> Save </button>
+</div>

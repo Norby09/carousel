@@ -2,29 +2,28 @@ import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {LinksArray} from '../../data/links-array';
 import {Comp} from '../../data/comp';
 import {Slide} from '../../data/slide';
+import {ArrayLikeObservable} from 'rxjs/observable/ArrayLikeObservable';
 
 @Component({
   selector: 'bl-carousel-components',
   templateUrl: './components.component.html',
-  styleUrls: ['./components.component.scss']
+  styleUrls: ['./components.component.scss', '../app.component.scss']
 })
 export class ComponentsComponent implements OnInit {
   @Input() comp: Comp = null;
   @Output() sav: EventEmitter<Comp> = new EventEmitter();
-  constructor() { }
+
+  constructor() {}
+
   ngOnInit() {
     if (!this.comp) {
-      this.resetLink();
+      this.comp = new Comp();
     }
-  }
-  resetLink() {
-    this.comp = new Comp();
+    this.adLink(new LinksArray());
   }
   onSubmitItems(event: Event) {
     event.preventDefault();
-
     this.sav.emit(this.comp);
-    // this.resetLink();
   }
   saveLink(link: LinksArray): void {
     if (!~this.comp.links.indexOf(link)) {
@@ -33,6 +32,5 @@ export class ComponentsComponent implements OnInit {
   }
   adLink(link: LinksArray): void {
     this.comp.links.push(link);
-    console.log(this.comp.links);
   }
 }

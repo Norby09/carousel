@@ -4,9 +4,155 @@
   @include base-input;
 
   display: block;
-  width: 100%;
+  width: 90%;
 }
 
-.btn{
-  display: inline-block;
+label {
+  font-weight : normal !important;
+  font-size: 16px !important;
+  margin: 10px 0 10px 2px;
 }
+
+h3{
+  margin : 5px 0 0 0;
+  text-align: center;
+}
+
+h4{
+  margin : 15px 0 15px 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+hr {
+  background-color : darkgray;
+  height: 1px; border: 0;
+}
+
+.container {
+  margin-top: 2px;
+}
+
+.btn {
+  border-radius: 10px;
+  outline: none;
+}
+
+.btn-save {
+  font-size: 14px;
+  color: darkgreen;
+  background-color: lightgreen;
+  border: none;
+  margin: 10px 0px 0px 10px;
+  border-radius: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-save:hover {
+  background-color: #2EE59D;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+.btn-add-new {
+  font-size: 14px;
+  color: darkblue;
+  background-color: cornflowerblue	;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-add-new:hover {
+  background-color: steelblue;
+  box-shadow: 0px 15px 20px cornflowerblue;
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.inner-container {
+  margin: 20px 0 10px 0;
+  border-style: solid;
+  border-color: silver;
+  border-radius: 8px;
+  padding: 10px 20px 20px 20px;
+  background-color : silver;
+  box-shadow: 5px 5px 15px #888888;
+}
+
+.td-container {
+  margin: 10px 30px 50px 10px;
+}
+
+.link-container {
+  padding: 10px 20px 20px 20px;
+}
+
+.item-container::before{
+  margin : 0 0 0 0;
+}
+
+.item-container{
+  border : 1px solid silver;
+  margin : 70px 10px 50px 10px;
+}
+
+
+input.ng-dirty {
+  -moz-box-shadow:     0 0 5px green;
+  -webkit-box-shadow:  0 0 5px green;
+  box-shadow:          0 0 5px green;
+
+}
+
+select.ng-dirty {
+  -moz-box-shadow:     0 0 5px green;
+  -webkit-box-shadow:  0 0 5px green;
+  box-shadow:          0 0 5px green;
+  border : green;
+}
+
+#export {
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+#export:hover {
+  background-color: lightseagreen;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+#import {
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+#import:hover {
+  background-color: teal;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+

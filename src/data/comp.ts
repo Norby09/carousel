@@ -6,6 +6,7 @@ export class Comp {
   title: Title;
   description: Description;
   links: Array<LinksArray>;
+
   static create(config: any): Comp {
     if (!config) {
       return new Comp();
@@ -14,7 +15,7 @@ export class Comp {
   }
   addLink() {
     this.links.push(new LinksArray());
-    console.log(this.links);
+    console.log('Links is component : ', this.links);
   }
   saveLink(link: LinksArray): void {
     if (!~this.links.indexOf(link)) {

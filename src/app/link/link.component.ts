@@ -4,7 +4,7 @@ import {LinksArray} from '../../data/links-array';
 @Component({
   selector: 'bl-carousel-link',
   templateUrl: './link.component.html',
-  styleUrls: ['./link.component.scss']
+  styleUrls: ['./link.component.scss', '../app.component.scss']
 })
 export class LinkComponent implements OnInit {
   @Input() link: LinksArray = null;

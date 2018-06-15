@@ -1,7 +1,20 @@
-<div class="jumbotron">
-  <legend>Types</legend>
-  <input type="text" class="form-control" [(ngModel)]="type.standard" placeholder="Enter standard..." />
-  <input type="text" class="form-control" [(ngModel)]="type.custom" placeholder="Enter custom..." />
-  <input type="text" class="form-control" [(ngModel)]="type.customTemplate" placeholder="Enter custom template..." />
+<div class="container inner-container">
+  <h3> Types </h3>
+  <hr/>
+  <div class="row">
+    <div class="col-lg-4">
+        <label> Enter standard : </label>
+        <input type="text" class="form-control" [(ngModel)]="type.standard" placeholder="Enter standard..." />
+    </div>
+    <div class="col-lg-4">
+        <label> Enter custom : </label>
+        <input type="text" class="form-control" [(ngModel)]="type.custom" placeholder="Enter custom..." />
+    </div>
+    <div class="col-lg-4">
+        <label> Enter custom template : </label>
+        <input type="text" class="form-control" [(ngModel)]="type.customTemplate" placeholder="Enter custom template..." />
+    </div>
+  </div>
 </div>
+
 

@@ -1,30 +1,26 @@
-<div>
-  <button class="btn btn-primary" (click)="showSlideShow()"> Add slide show </button>
-  <div *ngIf="openSlideShowBox">
-    <bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
-  </div>
+<div class="container">
+  <bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
 
-  <button class="btn btn-primary" (click)="showTypes()"> Add types </button>
-  <div *ngIf="openTypesBox">
-    <bl-carousel-types [type]="type"></bl-carousel-types>
-  </div>
+  <bl-carousel-types [type]="type"></bl-carousel-types>
 
-  <button class="btn btn-primary" (click)="showSettings()"> Add settings </button>
-  <div *ngIf="openSettingsBox">
-    <bl-carousel-settings [setting]="setting"></bl-carousel-settings>
-  </div>
+  <bl-carousel-settings [setting]="setting"></bl-carousel-settings>
 
   <bl-carousel-i18n [element]="element" [addNewLanguage]="addNewLanguage" [bindLanguageAndAddToMainObject]="bindLanguageAndAddToMainObject" [arrayOfI18n]="arrayOfI18n"></bl-carousel-i18n>
 
-  <button class="btn btn-primary" (click)="addItem()">Add Item</button>
-  <div *ngFor="let item of items">
-    <bl-carousel-single-item [itm]="item"></bl-carousel-single-item>
+  <div class="container inner-container">
+    <h3> Items </h3>
+    <hr />
+    <div *ngFor="let item of items">
+      <bl-carousel-single-item [itm]="item"></bl-carousel-single-item>
+    </div>
+    <button class="btn btn-primary btn-add-new pull-right"  style="margin-top : 10px" (click)="addItem()">Add new item</button>
   </div>
-
-
-  <button class="btn btn-success pull-right" style="display:inline-block" (click)="inp.value=exportItems()">Export</button>
-  <button class="btn btn-info pull-right" style="display:inline-block" (click)="importItems(inp.value)">Import</button>
 </div>
-<!--<div class="container">-->
-  <textarea #inp class="result" placeholder="Result JSON"></textarea>
-<!--</div>-->
+
+<div class="container">
+  <div class="container inner-container">
+    <button id="export" class="btn btn-primary pull-left" style="display:inline-block" style="margin: 0 10px 10px 0" (click)="inp.value=exportItems()">Export</button>
+    <button id="import" class="btn btn-primary pull-left" style="display:inline-block" (click)="importItems(inp.value)">Import</button>
+    <textarea #inp class="result" placeholder="Result JSON"></textarea>
+  </div>
+</div>

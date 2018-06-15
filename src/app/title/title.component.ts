@@ -4,7 +4,7 @@ import {Comp} from '../../data/comp';
 @Component({
   selector: 'bl-carousel-title',
   templateUrl: './title.component.html',
-  styleUrls: ['./title.component.scss']
+  styleUrls: ['./title.component.scss', '../app.component.scss']
 })
 export class TitleComponent implements OnInit {
   title: Title = null;
