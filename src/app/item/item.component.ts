@@ -22,7 +22,6 @@ export class ItemComponent implements OnInit {
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Setting = null;
-
   element: I18nElement = null;
   arrayOfI18n: Array<I18nElement> = [];
   i18n: Object;
@@ -52,11 +51,12 @@ export class ItemComponent implements OnInit {
     // console.log(this);
     for (let i = 0; i < this.arrayOfI18n.length; i++) {
       const name = this.arrayOfI18n[i].languageName;
-      this.i18n[name] = I18nElement.create();
-      this.i18n[name] = { '@title' : this.arrayOfI18n[i].title, '@description' : this.arrayOfI18n[i].description};
-      //console.log(this.i18n);
+      this.i18n[name] = {};
+      this.i18n[name][this.arrayOfI18n[i].title] = this.arrayOfI18n[i].description;
+      console.log(this.i18n);
     }
   }
+
   addSlide(slide: Slide): void {
     this.slides.push(slide);
   }
