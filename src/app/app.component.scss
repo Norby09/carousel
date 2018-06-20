@@ -74,7 +74,7 @@ hr {
   background-color: steelblue;
   box-shadow: 0px 15px 20px cornflowerblue;
   color: #fff;
-  transform: translateY(-7px);
+  transform: translateY(-4px);
 }
 
 .inner-container {
@@ -111,7 +111,12 @@ input.ng-dirty {
   box-shadow:          0 0 5px green;
 
 }
+input.ng-dirty.ng-invalid {
+  -moz-box-shadow:     0 0 5px red;
+  -webkit-box-shadow:  0 0 5px red;
+  box-shadow:          0 0 5px red;
 
+}
 select.ng-dirty {
   -moz-box-shadow:     0 0 5px green;
   -webkit-box-shadow:  0 0 5px green;
@@ -134,7 +139,7 @@ select.ng-dirty {
   background-color: lightseagreen;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
-  transform: translateY(-7px);
+  transform: translateY(-4px);
 }
 
 #import {
@@ -152,7 +157,7 @@ select.ng-dirty {
   background-color: teal;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
-  transform: translateY(-7px);
+  transform: translateY(-4px);
 }
 
 

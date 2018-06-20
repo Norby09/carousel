@@ -49,7 +49,7 @@ export class ItemComponent implements OnInit {
     console.log(this.element);
   }
   bindLanguageAndAddToMainObject: any = () => {
-    //console.log(this);
+    // console.log(this);
     for (let i = 0; i < this.arrayOfI18n.length; i++) {
       const name = this.arrayOfI18n[i].languageName;
       this.i18n[name] = I18nElement.create();

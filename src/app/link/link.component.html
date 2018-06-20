@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-lg-12">
       <label> Url : </label>
-      <input type="text" [(ngModel)]="link.url" class="form-control" placeholder="Enter the url..." />
+      <input type="url" [(ngModel)]="link.url" pattern="^(https|http)://.*" class="form-control" placeholder="Enter the url..." />
     </div>
   </div>
 </div>

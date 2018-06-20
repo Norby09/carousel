@@ -1,7 +1,7 @@
 import {numberOrDefault, booleanOrDefault} from 'utils/value-or-default';
 
 export class Slideshow {
-  autoplay: boolean;
+  autoplay: number;
   interval = 100;
   restart = 100;
 
@@ -12,7 +12,7 @@ export class Slideshow {
     return new Slideshow(config);
   }
   constructor(config: any) {
-    this.autoplay = booleanOrDefault(config.autoplay);
+    this.autoplay = numberOrDefault(config.autoplay);
     // this.interval = numberOrDefault(config.interval);
     // this.restart = numberOrDefault(config.restart);
 
