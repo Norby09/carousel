@@ -8,6 +8,7 @@ import {Type} from '../../data/type';
 import {Setting} from '../../data/setting';
 import {I18nElement} from '../../data/i18nelement';
 import {stringOrDefault} from '../../utils/value-or-default';
+import {bindLanguageName} from '../i18n/i18n.component';
 
 @Component({
   selector: 'bl-carousel-carousel-element',
@@ -56,7 +57,10 @@ export class ItemComponent implements OnInit {
       console.log(this.i18n);
     }
   }
+  addResource = (): any => {
+    const name = this.arrayOfI18n[length - 1].languageName;
 
+}
   addSlide(slide: Slide): void {
     this.slides.push(slide);
   }
