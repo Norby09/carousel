@@ -28,10 +28,9 @@ export class ItemComponent implements OnInit {
   arrayOfI18n: Array<I18nElement> = [];
   // i18n: Map<String, Array<ResourceSample>;
   i18n: Object;
-
   itemId = 0;
   languageId = 0;
-
+  titles;
   LANGUAGES = [ 'cz', 'cs', 'de', 'en', 'es', 'fr', 'hu', 'it', 'jp', 'ja', 'ko', 'nl', 'pl', 'bg', 'pt', 'pt', 'ru', 'tr', 'cn', 'tw'];
 
   constructor() {
@@ -100,7 +99,14 @@ export class ItemComponent implements OnInit {
   importItems(config: string, format: string = 'json'): boolean {
     switch (format.toLowerCase()) {
       case 'json':
-        return true;
+        this.items = JSON.parse(config).items;
+        this.slideshow = JSON.parse(config).slideshow;
+        this.type = JSON.parse(config).type;
+        this.setting = JSON.parse(config).setting;
+        this.i18n = JSON.parse(config).i18n;
+        this.titles = JSON.parse(config).items.components;
+        console.log(this.titles);
+        break;
       default:
         return false;
     }

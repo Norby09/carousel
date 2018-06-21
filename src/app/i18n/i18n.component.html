@@ -6,6 +6,7 @@
 
       <div class="col-lg-2">
         <label> Language {{arrayOfI18n.indexOf(i18n) + 1}} : </label>
+        <!--<input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />-->
         <select class="form-control" [(ngModel)]="i18n.languageName">
           <option *ngFor="let lang of languages" [value]="lang"> {{lang}} </option>
         </select>

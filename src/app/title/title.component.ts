@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import {Title} from '../../data/title';
 import {Comp} from '../../data/comp';
 @Component({
