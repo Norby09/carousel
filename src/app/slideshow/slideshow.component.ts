@@ -11,7 +11,6 @@ export class SlideshowComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("child");
   }
 
 }

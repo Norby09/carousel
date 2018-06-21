@@ -7,9 +7,9 @@ import {Setting} from '../../data/setting';
 })
 export class SettingsComponent implements OnInit {
   @Input() setting: Setting = null;
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

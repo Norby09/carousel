@@ -9,7 +9,6 @@ export class Items {
   components: Comp;
 
   constructor(config?: any) {
-    console.log('Config : ', Object.values(config));
     this.components = new Comp();
     this.id = config.id;
   }

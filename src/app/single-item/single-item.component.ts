@@ -10,9 +10,10 @@ import {Items} from '../../data/items';
 export class SingleItemComponent implements OnInit {
   @Input() itm: Items = null;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    console.log('Single item : ', this.itm);
   }
+
+  ngOnInit() {}
 
 }

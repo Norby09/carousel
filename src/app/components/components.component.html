@@ -1,7 +1,7 @@
 <div >
   <form (submit)="onSubmitItems($event)">
-      <bl-carousel-title [comp]="comp"></bl-carousel-title>
-      <bl-carousel-description [comp]="comp"></bl-carousel-description>
+      <bl-carousel-title [title]="comp.title"></bl-carousel-title>
+      <bl-carousel-description [description]="comp.description"></bl-carousel-description>
       <hr/>
       <h4 style="margin: 0 0 0 20px"> Links </h4>
       <div *ngFor="let link of comp.links">

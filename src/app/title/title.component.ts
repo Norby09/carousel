@@ -7,14 +7,10 @@ import {Comp} from '../../data/comp';
   styleUrls: ['./title.component.scss', '../app.component.scss']
 })
 export class TitleComponent implements OnInit {
-  title: Title = null;
-  @Input() comp: Comp = null;
+  @Input() title: Title = null;
+
   constructor() { }
 
-  ngOnInit() {
-    this.title = new Title();
-  }
-  addToComponents(comp: Comp): void {
-    comp.title = this.title;
-  }
+  ngOnInit() {}
+
 }

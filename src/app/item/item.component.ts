@@ -26,11 +26,11 @@ export class ItemComponent implements OnInit {
   setting: Setting = null;
   element: I18nElement = null;
   arrayOfI18n: Array<I18nElement> = [];
-  // i18n: Map<String, Array<ResourceSample>;
   i18n: Object;
+
   itemId = 0;
   languageId = 0;
-  titles;
+
   LANGUAGES = [ 'cz', 'cs', 'de', 'en', 'es', 'fr', 'hu', 'it', 'jp', 'ja', 'ko', 'nl', 'pl', 'bg', 'pt', 'pt', 'ru', 'tr', 'cn', 'tw'];
 
   constructor() {
@@ -47,10 +47,7 @@ export class ItemComponent implements OnInit {
   addNewLanguage() {
     this.languageId++;
     this.element = I18nElement.create({ languageName : '', resources : new Array<ResourceSample>(new ResourceSample({resourceName : '', resourceValue : ''}))});
-
-    console.log(this.element.resources);
     this.arrayOfI18n.push(this.element);
-    console.log(this.element);
   }
   addNewResource = (i18n: I18nElement): any => {
     i18n.resources.push( new ResourceSample( { resourceName : '', resourceValue : ''} ));
@@ -63,7 +60,6 @@ export class ItemComponent implements OnInit {
       for (let j = 0 ; j < this.arrayOfI18n[i].resources.length ; j++) {
         this.i18n[name][stringOrDefault(this.arrayOfI18n[i].resources[j].resourceName)] = this.arrayOfI18n[i].resources[j].resourceValue;
       }
-      console.log(this.i18n);
     }
   }
   addSlide(slide: Slide): void {
@@ -88,8 +84,6 @@ export class ItemComponent implements OnInit {
   exportItems(format: string = 'json'): string {
     switch ((format || '').toLowerCase()) {
       case 'json':
-          console.log(this.items);
-          console.log(this.i18n);
           return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting, i18n: this.i18n});
       default:
         console.warn(`Unknown export format'${format}'`);
@@ -101,11 +95,16 @@ export class ItemComponent implements OnInit {
       case 'json':
         this.items = JSON.parse(config).items;
         this.slideshow = JSON.parse(config).slideshow;
-        this.type = JSON.parse(config).type;
-        this.setting = JSON.parse(config).setting;
+        this.type = JSON.parse(config).types;
+        this.setting = JSON.parse(config).settings;
         this.i18n = JSON.parse(config).i18n;
-        this.titles = JSON.parse(config).items.components;
-        console.log(this.titles);
+
+        console.log('Items : ', this.items);
+        console.log('Slideshow : ', this.slideshow);
+        console.log('Type : ', this.type);
+        console.log('Setting : ', this.setting);
+        console.log('i18n : ', this.i18n);
+
         break;
       default:
         return false;

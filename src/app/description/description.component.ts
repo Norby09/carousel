@@ -7,14 +7,9 @@ import {Comp} from '../../data/comp';
   styleUrls: ['./description.component.scss', '../app.component.scss']
 })
 export class DescriptionComponent implements OnInit {
-  description: Description = null;
-  @Input() comp: Comp = null;
-  constructor() { }
+  @Input() description: Description = null;
+  constructor(){}
 
-  ngOnInit() {
-    this.description = new Description();
-  }
-  addToComponentsDescription(comp: Comp) {
-    comp.description = this.description;
-  }
+  ngOnInit() {}
+
 }
