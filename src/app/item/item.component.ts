@@ -65,6 +65,7 @@ export class ItemComponent implements OnInit {
       this.i18n[name] = {};
       for (let j = 0 ; j < this.arrayOfI18n[i].resources.length ; j++) {
         // Object.assign(this.i18n[name], { this.arrayOfI18n[i].resources[j].resourceName : this.arrayOfI18n[i].resources[j].resourceValue });
+      this.i18n[name][stringOrDefault(this.arrayOfI18n[i].resources[j].resourceName)] = this.arrayOfI18n[i].resources[j].resourceValue;
       }
       console.log(this.i18n);
     }
