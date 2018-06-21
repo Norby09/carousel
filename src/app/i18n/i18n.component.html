@@ -2,30 +2,33 @@
   <h3> Languages </h3>
   <hr />
   <div *ngFor="let i18n of arrayOfI18n">
-    <div class="row">
-      <div class="col-lg-4">
+    <div class="row" style="margin-top: 50px">
+
+      <div class="col-lg-2">
         <label> Language {{arrayOfI18n.indexOf(i18n) + 1}} : </label>
-        <!--<input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />-->
         <select class="form-control" [(ngModel)]="i18n.languageName">
           <option *ngFor="let lang of languages" [value]="lang"> {{lang}} </option>
         </select>
       </div>
-      <div class="col-lg-8" *ngFor="let element of i18n.resources">
-        <div class="col-lg-6">
-          <label> Enter title : </label>
-          <input type="text" class="form-control" [(ngModel)]="element.resourceName" placeholder="Enter title" />
-        </div>
-        <div class="col-lg-6">
-          <label> Enter description : </label>
-          <input type="text" class="form-control" [(ngModel)]="element.resourceValue" placeholder="Enter description" />
+
+      <div class="col-lg-10" >
+        <div class="row" *ngFor="let element of i18n.resources">
+          <div class="col-lg-6">
+            <label> Enter title : </label>
+            <input type="text" class="form-control" [(ngModel)]="element.resourceName" placeholder="Enter title" />
+          </div>
+          <div class="col-lg-6">
+            <label> Enter description : </label>
+            <input type="text" class="form-control" [(ngModel)]="element.resourceValue" placeholder="Enter description" />
+          </div>
         </div>
       </div>
       <hr/>
     </div>
-    <button type="button" class="btn btn-primary btn-add-new pull-right" (click)="addNewResource(i18n)">Add new resource</button>
+    <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewResource(i18n)">Add new resource</button>
   </div>
+  <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewLanguage();showBindButton()">Add new language</button>
   <button type="button" class="btn btn-primary btn-save pull-right" style="margin: 10px 0 0 10px" (click)="bindLanguageAndAddToMainObject()"> Save </button>
-  <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin-top: 10px" (click)="addNewLanguage();showBindButton()">Add new language</button>
 </div>
 <!--{{arrayOfI18n | json}}-->
 
