@@ -6,7 +6,6 @@
 
       <div class="col-lg-2">
         <label> Language {{arrayOfI18n.indexOf(i18n) + 1}} : </label>
-        <!--<input type="text" class="form-control" [(ngModel)]="i18n.languageName" placeholder="Enter language" />-->
         <select class="form-control" [(ngModel)]="i18n.languageName">
           <option *ngFor="let lang of languages" [value]="lang"> {{lang}} </option>
         </select>
@@ -28,8 +27,8 @@
     </div>
     <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewResource(i18n)">Add new resource</button>
   </div>
-  <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewLanguage();showBindButton()">Add new language</button>
-  <button type="button" class="btn btn-primary btn-save pull-right" style="margin: 10px 0 0 10px" (click)="bindLanguageAndAddToMainObject()"> Save </button>
+  <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewLanguage()">Add new language</button>
+  <!--<button type="button" class="btn btn-primary btn-save pull-right" style="margin: 10px 0 0 10px" (click)="bindLanguageAndAddToMainObject()"> Save </button>-->
 </div>
 <!--{{arrayOfI18n | json}}-->
 

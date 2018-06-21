@@ -52,16 +52,16 @@ export class ItemComponent implements OnInit {
   addNewResource = (i18n: I18nElement): any => {
     i18n.resources.push( new ResourceSample( { resourceName : '', resourceValue : ''} ));
   }
-  bindLanguageAndAddToMainObject: any = () => {
+  //bindLanguageAndAddToMainObject: any = () => {
 
-    for (let i = 0; i < this.arrayOfI18n.length; i++) {
-      const name = this.arrayOfI18n[i].languageName;
-      this.i18n[name] = {};
-      for (let j = 0 ; j < this.arrayOfI18n[i].resources.length ; j++) {
-        this.i18n[name][stringOrDefault(this.arrayOfI18n[i].resources[j].resourceName)] = this.arrayOfI18n[i].resources[j].resourceValue;
-      }
-    }
-  }
+    // for (let i = 0; i < this.arrayOfI18n.length; i++) {
+    //   const name = this.arrayOfI18n[i].languageName;
+    //   this.i18n[name] = {};
+    //   for (let j = 0 ; j < this.arrayOfI18n[i].resources.length ; j++) {
+    //     this.i18n[name][stringOrDefault(this.arrayOfI18n[i].resources[j].resourceName)] = this.arrayOfI18n[i].resources[j].resourceValue;
+    //   }
+    // }
+  //}
   addSlide(slide: Slide): void {
     this.slides.push(slide);
   }
@@ -82,9 +82,18 @@ export class ItemComponent implements OnInit {
     this.items.push(item);
   }*/
   exportItems(format: string = 'json'): string {
+
+    for (let i = 0; i < this.arrayOfI18n.length; i++) {
+      const name = this.arrayOfI18n[i].languageName;
+      this.i18n[name] = {};
+      for (let j = 0 ; j < this.arrayOfI18n[i].resources.length ; j++) {
+        this.i18n[name][stringOrDefault(this.arrayOfI18n[i].resources[j].resourceName)] = this.arrayOfI18n[i].resources[j].resourceValue;
+      }
+    }
+
     switch ((format || '').toLowerCase()) {
       case 'json':
-          return JSON.stringify({items: this.items, slideshow: this.slideshow, type: this.type, settings: this.setting, i18n: this.i18n});
+          return JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.i18n});
       default:
         console.warn(`Unknown export format'${format}'`);
         return this.toString();
@@ -104,6 +113,16 @@ export class ItemComponent implements OnInit {
         console.log('Type : ', this.type);
         console.log('Setting : ', this.setting);
         console.log('i18n : ', this.i18n);
+
+        for( const language in this.i18n) {
+            // console.log(this.i18n[key]);
+            this.arrayOfI18n[language] = I18nElement.create({languageName: language});
+
+            for( const resourceName in this.i18n[language]) {
+              this.arrayOfI18n[language].resources.push( new ResourceSample({'resourceName' : resourceName, 'resourceValue' : this.i18n[language][resourceName] }));
+            }
+        }
+        console.log(this.arrayOfI18n);
 
         break;
       default:

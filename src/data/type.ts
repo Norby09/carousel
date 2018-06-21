@@ -12,7 +12,7 @@ export class Type {
   }
   constructor(config: any) {
     this.standard = stringOrDefault(config.standard);
-    this.custom = stringOrDefault(config.standard);
+    this.custom = stringOrDefault(config.custom);
     this.customTemplate = stringOrDefault(config.customTemplate);
   }
 }

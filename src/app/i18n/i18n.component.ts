@@ -9,20 +9,16 @@ export type bindLanguageName = () => void;
   styleUrls: ['./i18n.component.scss', '../app.component.scss']
 })
 export class I18nComponent implements OnInit {
-  @Input() element: I18nElement;
   @Input() addNewLanguage: addLanguageFunc;
   @Input() addNewResource: addResourceFunc;
-  @Input() bindLanguageAndAddToMainObject: bindLanguageName;
+  // @Input() bindLanguageAndAddToMainObject: bindLanguageName;
   @Input() arrayOfI18n: Array<I18nElement> = [];
   @Input() languages: Array<any>;
 
-  showButton = false;
-
-  constructor() {}
-  ngOnInit() {
+  constructor() {
+    console.log('Array : ', this.arrayOfI18n);
   }
 
-  showBindButton() {
-    this.showButton  = true;
-  }
+  ngOnInit() {}
+
 }

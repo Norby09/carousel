@@ -1,11 +1,9 @@
 <div class="container">
 
   <bl-carousel-i18n
-    [element]="element"
     [languages]="LANGUAGES"
     [addNewLanguage]="addNewLanguage"
     [addNewResource]="addNewResource"
-    [bindLanguageAndAddToMainObject]="bindLanguageAndAddToMainObject"
     [arrayOfI18n]="arrayOfI18n"></bl-carousel-i18n>
 
   <bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
@@ -29,6 +27,6 @@
   <div class="container inner-container">
     <button id="export" class="btn btn-primary pull-left" style="display:inline-block" style="margin: 0 10px 10px 0" (click)="inp.value=exportItems()">Export</button>
     <button id="import" class="btn btn-primary pull-left" style="display:inline-block" (click)="importItems(inp.value)">Import</button>
-    <textarea #inp class="result" placeholder="Result JSON"></textarea>
+    <textarea #inp class="result" placeholder="Result JSON"> </textarea>
   </div>
 </div>
