@@ -1,6 +1,12 @@
 <div class="container">
 
-  <bl-carousel-i18n [element]="element" [addNewLanguage]="addNewLanguage" [bindLanguageAndAddToMainObject]="bindLanguageAndAddToMainObject" [arrayOfI18n]="arrayOfI18n"></bl-carousel-i18n>
+  <bl-carousel-i18n
+    [element]="element"
+    [languages]="LANGUAGES"
+    [addNewLanguage]="addNewLanguage"
+    [addNewResource]="addNewResource"
+    [bindLanguageAndAddToMainObject]="bindLanguageAndAddToMainObject"
+    [arrayOfI18n]="arrayOfI18n"></bl-carousel-i18n>
 
   <bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
 

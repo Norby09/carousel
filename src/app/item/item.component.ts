@@ -9,6 +9,7 @@ import {Setting} from '../../data/setting';
 import {I18nElement} from '../../data/i18nelement';
 import {stringOrDefault} from '../../utils/value-or-default';
 import {bindLanguageName} from '../i18n/i18n.component';
+import {ResourceSample} from '../../data/resourceSample';
 
 @Component({
   selector: 'bl-carousel-carousel-element',
@@ -25,10 +26,13 @@ export class ItemComponent implements OnInit {
   setting: Setting = null;
   element: I18nElement = null;
   arrayOfI18n: Array<I18nElement> = [];
+  // i18n: Map<String, Array<ResourceSample>;
   i18n: Object;
 
   itemId = 0;
   languageId = 0;
+
+  LANGUAGES = [ 'en', 'fr', 'it', 'ro'];
 
   // bindedElement = this.bindLanguageAndAddToMainObject.bind(this);
   constructor() {
@@ -44,23 +48,27 @@ export class ItemComponent implements OnInit {
   }
   addNewLanguage() {
     this.languageId++;
-    this.element = I18nElement.create();
+    this.element = I18nElement.create({ languageName : '', resources : new Array<ResourceSample>(new ResourceSample({resourceName : '', resourceValue : ''}))});
+
+    console.log(this.element.resources);
     this.arrayOfI18n.push(this.element);
     console.log(this.element);
+  }
+  addNewResource = (i18n: I18nElement): any => {
+    i18n.resources.push( new ResourceSample( { resourceName : '', resourceValue : ''} ));
   }
   bindLanguageAndAddToMainObject: any = () => {
     // console.log(this);
     for (let i = 0; i < this.arrayOfI18n.length; i++) {
       const name = this.arrayOfI18n[i].languageName;
+      // console.log(this.arrayOfI18n[i]);
       this.i18n[name] = {};
-      this.i18n[name][this.arrayOfI18n[i].title] = this.arrayOfI18n[i].description;
+      for (let j = 0 ; j < this.arrayOfI18n[i].resources.length ; j++) {
+        // Object.assign(this.i18n[name], { this.arrayOfI18n[i].resources[j].resourceName : this.arrayOfI18n[i].resources[j].resourceValue });
+      }
       console.log(this.i18n);
     }
   }
-  addResource = (): any => {
-    const name = this.arrayOfI18n[length - 1].languageName;
-
-}
   addSlide(slide: Slide): void {
     this.slides.push(slide);
   }

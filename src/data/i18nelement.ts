@@ -1,9 +1,12 @@
 import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
+import {ResourceSample} from './resourceSample';
 
 export class I18nElement {
-  title: string;
+  // title: string;
   languageName: string;
-  description: string;
+  resources: Array<ResourceSample>;
+
+  // description: string;
   static create(config?: any): I18nElement {
     if (!config) {
       return new I18nElement();
@@ -12,8 +15,9 @@ export class I18nElement {
   }
   constructor(config?: any) {
     config = objectOrDefault(config) || {};
-    this.languageName = stringOrDefault(config.languageName)
-    this.title = stringOrDefault(config.title);
-    this.description = stringOrDefault(config.description);
+    this.languageName = stringOrDefault(config.languageName);
+    this.resources = arrayOrDefault(config.resources);
+    // this.title = stringOrDefault(config.title);
+    // this.description = stringOrDefault(config.description);
   }
 }
