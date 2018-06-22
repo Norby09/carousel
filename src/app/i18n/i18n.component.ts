@@ -11,8 +11,8 @@ export type bindLanguageName = () => void;
 export class I18nComponent implements OnInit {
   @Input() addNewLanguage: addLanguageFunc;
   @Input() addNewResource: addResourceFunc;
-  @Input() languages: Array<Language> = [];
-  @Input() selectableLanguages: Array<any>;
+  @Input() languages: Language[] = [];
+  @Input() selectableLanguages: any[];
 
   constructor() {}
 

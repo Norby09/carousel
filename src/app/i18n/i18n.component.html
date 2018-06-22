@@ -6,7 +6,7 @@
 
       <div class="col-lg-2">
         <label> Language {{languages.indexOf(i18n) + 1}} : </label>
-        <select class="form-control" [(ngModel)]="i18n.languageName">
+        <select class="form-control" [(ngModel)]="i18n.name">
           <option *ngFor="let lang of selectableLanguages" [value]="lang"> {{lang}} </option>
         </select>
       </div>
@@ -15,11 +15,11 @@
         <div class="row" *ngFor="let element of i18n.resources">
           <div class="col-lg-6">
             <label> Enter resource name : </label>
-            <input type="text" class="form-control" [(ngModel)]="element.resourceName" placeholder="Enter resource name" />
+            <input type="text" class="form-control" [(ngModel)]="element.name" placeholder="Enter resource name" />
           </div>
           <div class="col-lg-6">
             <label> Enter resource description : </label>
-            <input type="text" class="form-control" [(ngModel)]="element.resourceValue" placeholder="Enter resource description" />
+            <input type="text" class="form-control" [(ngModel)]="element.value" placeholder="Enter resource description" />
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import { stringOrDefault} from '../utils/value-or-default';
 
 export class Resource {
-  resourceName: String;
-  resourceValue: String;
+  name: String;
+  value: String;
 
   static create(config?: any): Resource {
     if (!config) {
@@ -11,7 +11,7 @@ export class Resource {
     return new Resource(config);
   }
   constructor(config?: any) {
-    this.resourceName = stringOrDefault(config.resourceName);
-    this.resourceValue = stringOrDefault(config.resourceValue);
+    this.name = stringOrDefault(config.name);
+    this.value = stringOrDefault(config.value);
   }
 }

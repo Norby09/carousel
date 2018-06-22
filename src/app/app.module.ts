@@ -2,10 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { ItemComponent } from './item/item.component';
+import { ItemListComponent } from './itemList/itemList.component';
 import { ComponentsComponent } from './components/components.component';
 import { LinkComponent } from './link/link.component';
-import { SingleItemComponent } from './single-item/single-item.component';
+import { ItemComponent } from './item/item.component';
 import { TitleComponent } from './title/title.component';
 import { DescriptionComponent } from './description/description.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
@@ -17,10 +17,10 @@ import { I18nComponent } from './i18n/i18n.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ItemComponent,
+    ItemListComponent,
     ComponentsComponent,
     LinkComponent,
-    SingleItemComponent,
+    ItemComponent,
     TitleComponent,
     DescriptionComponent,
     SlideshowComponent,

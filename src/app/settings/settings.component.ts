@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Setting} from '../../data/setting';
+import {Settings} from '../../data/settings';
 @Component({
   selector: 'bl-carousel-settings',
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss', '../app.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  @Input() setting: Setting = null;
+  @Input() setting: Settings = null;
 
   constructor() { }
 

@@ -1,6 +1,6 @@
 import {Comp} from './comp';
 
-export class Items {
+export class Item {
   backgroundColor: String;
   backgroundUrl: String;
   name: String;

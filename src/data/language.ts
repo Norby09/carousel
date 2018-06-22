@@ -2,7 +2,7 @@ import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or
 import {Resource} from './resource';
 
 export class Language {
-  languageName: string;
+  name: string;
   resources: Resource[];
 
   static create(config?: any): Language {
@@ -13,7 +13,7 @@ export class Language {
   }
   constructor(config?: any) {
     config = objectOrDefault(config) || {};
-    this.languageName = stringOrDefault(config.languageName);
+    this.name = stringOrDefault(config.name);
     this.resources = arrayOrDefault(config.resources);
   }
 }

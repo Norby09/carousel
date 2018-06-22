@@ -6,7 +6,7 @@ import {Description} from './description';
 export class Comp {
   title: Title;
   description: Description;
-  links: Array<Link>;
+  links: Link[];
 
   static create(config: any): Comp {
     if (!config) {
