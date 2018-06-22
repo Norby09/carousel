@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {I18nElement} from '../../data/i18nelement';
+import { Language } from '../../data/language';
 export type addLanguageFunc = () => void;
 export type addResourceFunc = () => void;
 export type bindLanguageName = () => void;
@@ -11,13 +11,10 @@ export type bindLanguageName = () => void;
 export class I18nComponent implements OnInit {
   @Input() addNewLanguage: addLanguageFunc;
   @Input() addNewResource: addResourceFunc;
-  // @Input() bindLanguageAndAddToMainObject: bindLanguageName;
-  @Input() arrayOfI18n: Array<I18nElement> = [];
-  @Input() languages: Array<any>;
+  @Input() languages: Array<Language> = [];
+  @Input() selectableLanguages: Array<any>;
 
-  constructor() {
-    console.log('Array : ', this.arrayOfI18n);
-  }
+  constructor() {}
 
   ngOnInit() {}
 

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { I18nSelectPipe } from '@angular/common';
 import { Slide } from 'data/slide';
-import { Comp } from 'data/comp';
-import { LinksArray } from 'data/links-array';
 
 @Component({
   selector: 'bl-carousel-configurator',

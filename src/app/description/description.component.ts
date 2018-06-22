@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Description} from '../../data/description';
-import {Comp} from '../../data/comp';
+
 @Component({
   selector: 'bl-carousel-description',
   templateUrl: './description.component.html',

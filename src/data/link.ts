@@ -1,16 +1,16 @@
-import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
+import { stringOrDefault, objectOrDefault } from 'utils/value-or-default';
 
-export class LinksArray {
+export class Link {
   cssClass: String;
   style: String;
   text: String;
   tooltip: String;
   url: String;
-  static create(config: any): LinksArray {
+  static create(config: any): Link {
     if (!config) {
-      return new LinksArray();
+      return new Link();
     }
-    return new LinksArray(config);
+    return new Link(config);
   }
   constructor(config?: any) {
     config = objectOrDefault(config) || {};

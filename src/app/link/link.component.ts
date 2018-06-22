@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import {LinksArray} from '../../data/links-array';
+import {Component, OnInit, Input} from '@angular/core';
+import {Link} from '../../data/link';
 
 @Component({
   selector: 'bl-carousel-link',
@@ -7,7 +7,7 @@ import {LinksArray} from '../../data/links-array';
   styleUrls: ['./link.component.scss', '../app.component.scss']
 })
 export class LinkComponent implements OnInit {
-  @Input() link: LinksArray = null;
+  @Input() link: Link = null;
   constructor() { }
 
   ngOnInit() {

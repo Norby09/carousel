@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Comp} from '../../data/comp';
 import {Items} from '../../data/items';
 
 @Component({

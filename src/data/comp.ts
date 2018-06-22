@@ -1,11 +1,12 @@
 import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
 import {Title} from './title';
-import {LinksArray} from './links-array';
+import {Link} from './link';
 import {Description} from './description';
+
 export class Comp {
   title: Title;
   description: Description;
-  links: Array<LinksArray>;
+  links: Array<Link>;
 
   static create(config: any): Comp {
     if (!config) {
@@ -14,21 +15,16 @@ export class Comp {
     return new Comp(config);
   }
   addLink() {
-    this.links.push(new LinksArray());
-    console.log('Links is component : ', this.links);
+    this.links.push(new Link());
   }
-  saveLink(link: LinksArray): void {
+  saveLink(link: Link): void {
     if (!~this.links.indexOf(link)) {
-      this.adLink(link);
+      this.links.push(link);
     }
-  }
-  adLink(link: LinksArray): void {
-    this.links.push(link);
-    console.log(this.links);
   }
   constructor(config?: any) {
     config = objectOrDefault(config) || {};
-    this.links = arrayOrDefault(config.links).map(LinksArray.create);
+    this.links = arrayOrDefault(config.links).map(Link.create);
     this.description = Description.create(stringOrDefault(config.description));
     this.title = Title.create(stringOrDefault(config.description));
   }

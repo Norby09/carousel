@@ -1,13 +1,13 @@
 <div class="container inner-container">
   <h3> Languages </h3>
   <hr />
-  <div *ngFor="let i18n of arrayOfI18n">
+  <div *ngFor="let i18n of languages">
     <div class="row" style="margin-top: 50px">
 
       <div class="col-lg-2">
-        <label> Language {{arrayOfI18n.indexOf(i18n) + 1}} : </label>
+        <label> Language {{languages.indexOf(i18n) + 1}} : </label>
         <select class="form-control" [(ngModel)]="i18n.languageName">
-          <option *ngFor="let lang of languages" [value]="lang"> {{lang}} </option>
+          <option *ngFor="let lang of selectableLanguages" [value]="lang"> {{lang}} </option>
         </select>
       </div>
 

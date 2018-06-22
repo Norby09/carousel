@@ -1,8 +1,6 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import {LinksArray} from '../../data/links-array';
+import {Link} from '../../data/link';
 import {Comp} from '../../data/comp';
-import {Slide} from '../../data/slide';
-import {ArrayLikeObservable} from 'rxjs/observable/ArrayLikeObservable';
 
 @Component({
   selector: 'bl-carousel-components',
@@ -19,18 +17,16 @@ export class ComponentsComponent implements OnInit {
     if (!this.comp) {
       this.comp = new Comp();
     }
-    this.adLink(new LinksArray());
+    this.comp.links.push(new Link());
   }
   onSubmitItems(event: Event) {
     event.preventDefault();
     this.sav.emit(this.comp);
   }
-  saveLink(link: LinksArray): void {
+  saveLink(link: Link): void {
     if (!~this.comp.links.indexOf(link)) {
-      this.adLink(link);
+      this.comp.links.push(link);
     }
   }
-  adLink(link: LinksArray): void {
-    this.comp.links.push(link);
-  }
+  
 }
