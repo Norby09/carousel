@@ -2,19 +2,22 @@
   <h3 class="hr">SlideShow</h3>
   <div class="row">
       <div class="col-md-4">
-        <label> Autoplay </label>
-        <select  class="form-control" [(ngModel)]="slideshow.autoplay" >
-          <option value="0" ng-selected="slideshow.autoplay == 0"> false </option>
-          <option value="1" > true </option>
-        </select>
+        <label class="col-lg-12">Autoplay :
+          <select  class="form-control" [(ngModel)]="slideshow.autoplay" >
+            <option value="0" ng-selected="slideshow.autoplay == 0"> false </option>
+            <option value="1" > true </option>
+          </select>
+        </label>
       </div>
       <div class="col-md-4">
-        <label for="interval" class="form-check-label">Interval</label>
-        <input id="interval" type="number" step="100" min="0" class="form-control "[(ngModel)]="slideshow.interval" />
+        <label class="col-lg-12">Interval :
+          <input type="number" step="100" min="0" class="form-control "[(ngModel)]="slideshow.interval" />
+        </label>
       </div>
       <div class="col-md-4">
-        <label for="restart" class="form-check-label">Restart</label>
-        <input id="restart" type="number" step="100" min="0" class="form-control " [(ngModel)]="slideshow.restart" />
+        <label class="col-lg-12">Restart :
+          <input type="number" step="100" min="0" class="form-control " [(ngModel)]="slideshow.restart" />
+        </label>
       </div>
   </div>
 </div>

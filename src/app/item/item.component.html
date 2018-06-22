@@ -12,27 +12,30 @@
       </div>
       <div class="row">
         <div class="col-lg-12">
-        <label> Background url </label>
-        <input type="text" [(ngModel)]="itm.backgroundUrl" class="form-control" placeholder="Enter backgroundUrl"/>
+        <label class="col-lg-12"> Background Url :
+          <input type="text" [(ngModel)]="itm.backgroundUrl" class="form-control" placeholder="Enter backgroundUrl"/>
+        </label>
         </div>
       </div>
     </div>
 
     <div class="col-lg-6">
       <label> Background color </label>
-      <input type="color" class="form-control" class="size" [(ngModel)]="itm.backgroundColor" />
+      <input type="color" class="form-control size" [(ngModel)]="itm.backgroundColor" />
     </div>
   </div>
 
 
   <div class="row">
     <div class="col-lg-6">
-      <label> Name </label>
-      <input type="text" class="form-control" [(ngModel)]="itm.name" placeholder="Enter name" />
+      <label class="col-lg-12"> Name :
+        <input type="text" class="form-control" [(ngModel)]="itm.name" placeholder="Enter Name" />
+      </label>
     </div>
     <div class="col-lg-6">
-      <label> Type </label>
-      <input type="number" class="form-control" [(ngModel)]="itm.type" placeholder="Enter type" />
+      <label class="col-lg-12"> Type :
+        <input type="number" class="form-control" [(ngModel)]="itm.type" placeholder="Enter Type" />
+      </label>
     </div>
   </div>
   <bl-carousel-components [comp]="itm.components"></bl-carousel-components>

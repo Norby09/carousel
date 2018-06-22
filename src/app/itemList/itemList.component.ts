@@ -64,7 +64,7 @@ export class ItemListComponent implements OnInit {
     this.items.push(new Item({id : this.itemId}));
   }
 
-  exportItems(format: string = 'json'): string {
+  export(format: string = 'json'): string {
 
     for (let i = 0; i < this.languages.length; i++) {
 
@@ -87,7 +87,7 @@ export class ItemListComponent implements OnInit {
     }
   }
 
-  importItems(config: string, format: string = 'json'): boolean {
+  import(config: string, format: string = 'json'): boolean {
     switch (format.toLowerCase()) {
       case 'json':
 
