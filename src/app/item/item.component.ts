@@ -7,7 +7,7 @@ import { Setting } from '../../data/setting';
 import { Language } from '../../data/language';
 import { Resource } from '../../data/resource';
 import { stringOrDefault } from '../../utils/value-or-default';
-
+import { LanguagesService} from '../languages.service';
 @Component({
   selector: 'bl-carousel-carousel-element',
   templateUrl: './item.component.html',
@@ -26,9 +26,9 @@ export class ItemComponent implements OnInit {
 
   itemId = 0;
 
-  selectableLanguages = [ 'cz', 'cs', 'de', 'en', 'es', 'fr', 'hu', 'it', 'jp', 'ja', 'ko', 'nl', 'pl', 'bg', 'pt', 'ru', 'tr', 'cn', 'tw'];  
+  selectableLanguages = []; 
 
-  constructor() {
+  constructor(private _languageService: LanguagesService) {
     this.addNewLanguage();
     this.addItem();
   }
@@ -38,6 +38,7 @@ export class ItemComponent implements OnInit {
     this.type = Type.create();
     this.setting = Setting.create();
     this.languageObj = Object.create(null);
+    this.selectableLanguages = this._languageService.getLanguages();
   }
 
   addNewLanguage() {
