@@ -104,27 +104,21 @@ hr {
   margin : 70px 10px 50px 10px;
 }
 
+$greenColor : 0 0 5px green;
+$redColor: 0 0 5px red;
 
 input.ng-dirty {
-  -moz-box-shadow:     0 0 5px green;
-  -webkit-box-shadow:  0 0 5px green;
-  box-shadow:          0 0 5px green;
-
+  box-shadow: $greenColor;
 }
 input.ng-dirty.ng-invalid {
-  -moz-box-shadow:     0 0 5px red;
-  -webkit-box-shadow:  0 0 5px red;
-  box-shadow:          0 0 5px red;
-
+  box-shadow: $redColor;
 }
 select.ng-dirty {
-  -moz-box-shadow:     0 0 5px green;
-  -webkit-box-shadow:  0 0 5px green;
-  box-shadow:          0 0 5px green;
+  box-shadow: $greenColor;
   border : green;
 }
 
-#export {
+.exportAndImport {
   color: #000;
   background-color: #fff;
   border: none;
@@ -135,26 +129,8 @@ select.ng-dirty {
   outline: none;
 }
 
-#export:hover {
+.exportAndImport:hover {
   background-color: lightseagreen;
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-  color: #fff;
-  transform: translateY(-4px);
-}
-
-#import {
-  color: #000;
-  background-color: #fff;
-  border: none;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease 0s;
-  cursor: pointer;
-  outline: none;
-}
-
-#import:hover {
-  background-color: teal;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
   color: #fff;
   transform: translateY(-4px);

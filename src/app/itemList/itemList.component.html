@@ -24,8 +24,8 @@
 
 <div class="container">
   <div class="container inner-container">
-    <button id="export" class="btn btn-primary pull-left" style="display:inline-block; margin: 0 10px 10px 0" (click)="inp.value=export()">Export</button>
-    <button id="import" class="btn btn-primary pull-left" style="display:inline-block" (click)="import(inp.value)">Import</button>
+    <button class="btn btn-primary pull-left exportAndImport ib rbMargin"  (click)="inp.value=export()">Export</button>
+    <button class="btn btn-primary pull-left ib exportAndImport" (click)="import(inp.value)">Import</button>
     <textarea #inp class="result" placeholder="Result JSON"> </textarea>
   </div>
 </div>
