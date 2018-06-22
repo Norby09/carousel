@@ -1,18 +1,15 @@
-import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
+import { stringOrDefault, objectOrDefault, arrayOrDefault,numberOrDefault } from 'utils/value-or-default';
 
 export class Type {
-  standard: String;
-  custom: String;
-  customTemplate: String;
+  standard: number = 1;
+  custom: number = 2;
+  customTemplate: number = 3;
   static create(config?: any) {
     if (!config) {
       return new Type({});
     }
     return new Type(config);
   }
-  constructor(config: any) {
-    this.standard = stringOrDefault(config.standard);
-    this.custom = stringOrDefault(config.custom);
-    this.customTemplate = stringOrDefault(config.customTemplate);
+  constructor(config?: any) {
   }
 }

@@ -61,7 +61,7 @@ hr {
 .btn-add-new {
   font-size: 14px;
   color: darkblue;
-  background-color: cornflowerblue	;
+  background-color: cornflowerblue;
   border: none;
   border-radius: 5px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -95,11 +95,11 @@ hr {
   padding: 10px 20px 20px 20px;
 }
 
-.item-container::before{
+.item-container::before {
   margin : 0 0 0 0;
 }
 
-.item-container{
+.item-container {
   border : 1px solid silver;
   margin : 70px 10px 50px 10px;
 }
@@ -148,7 +148,7 @@ select.ng-dirty {
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
   cursor: pointer;
   outline: none;
 }
