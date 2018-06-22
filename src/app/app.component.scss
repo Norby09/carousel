@@ -108,6 +108,7 @@ $greenColor : 0 0 5px green;
 $redColor: 0 0 5px red;
 
 input.ng-dirty {
+<<<<<<< HEAD
   box-shadow: $greenColor;
 }
 input.ng-dirty.ng-invalid {
@@ -115,6 +116,17 @@ input.ng-dirty.ng-invalid {
 }
 select.ng-dirty {
   box-shadow: $greenColor;
+=======
+  box-shadow:          0 0 5px green;
+
+}
+input.ng-dirty.ng-invalid {
+  box-shadow:          0 0 5px red;
+
+}
+select.ng-dirty {
+  box-shadow:          0 0 5px green;
+>>>>>>> c3a1fbcd736351150daff9f701b9a0ad471625e1
   border : green;
 }
 
