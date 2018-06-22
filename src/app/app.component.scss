@@ -106,20 +106,14 @@ hr {
 
 
 input.ng-dirty {
-  -moz-box-shadow:     0 0 5px green;
-  -webkit-box-shadow:  0 0 5px green;
   box-shadow:          0 0 5px green;
 
 }
 input.ng-dirty.ng-invalid {
-  -moz-box-shadow:     0 0 5px red;
-  -webkit-box-shadow:  0 0 5px red;
   box-shadow:          0 0 5px red;
 
 }
 select.ng-dirty {
-  -moz-box-shadow:     0 0 5px green;
-  -webkit-box-shadow:  0 0 5px green;
   box-shadow:          0 0 5px green;
   border : green;
 }
