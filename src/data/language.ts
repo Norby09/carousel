@@ -3,7 +3,7 @@ import {Resource} from './resource';
 
 export class Language {
   languageName: string;
-  resources: Array<Resource>;
+  resources: Resource[];
 
   static create(config?: any): Language {
     if (!config) {

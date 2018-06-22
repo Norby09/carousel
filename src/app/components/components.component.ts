@@ -9,7 +9,7 @@ import {Comp} from '../../data/comp';
 })
 export class ComponentsComponent implements OnInit {
   @Input() comp: Comp = null;
-  @Output() sav: EventEmitter<Comp> = new EventEmitter();
+  @Output() save: EventEmitter<Comp> = new EventEmitter();
 
   constructor() {}
 
@@ -21,7 +21,7 @@ export class ComponentsComponent implements OnInit {
   }
   onSubmitItems(event: Event) {
     event.preventDefault();
-    this.sav.emit(this.comp);
+    this.save.emit(this.comp);
   }
   saveLink(link: Link): void {
     if (!~this.comp.links.indexOf(link)) {

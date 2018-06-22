@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Link } from 'data/link';
-import { Slide } from '../../data/slide';
 import { Items } from '../../data/items';
 import { Slideshow } from '../../data/slideshow';
 import { Type } from '../../data/type';
@@ -14,8 +13,8 @@ import { stringOrDefault } from '../../utils/value-or-default';
   templateUrl: './item.component.html',
   styleUrls: ['./item.component.scss', '../app.component.scss']
 })
+
 export class ItemComponent implements OnInit {
-  slides: Array<Slide> = [];
   links: Array<Link> = [];
   link: Link;
   items: Array<Items> = [];
@@ -27,7 +26,7 @@ export class ItemComponent implements OnInit {
 
   itemId = 0;
 
-  selectableLanguages = [ 'cz', 'cs', 'de', 'en', 'es', 'fr', 'hu', 'it', 'jp', 'ja', 'ko', 'nl', 'pl', 'bg', 'pt', 'pt', 'ru', 'tr', 'cn', 'tw'];
+  selectableLanguages = [ 'cz', 'cs', 'de', 'en', 'es', 'fr', 'hu', 'it', 'jp', 'ja', 'ko', 'nl', 'pl', 'bg', 'pt', 'ru', 'tr', 'cn', 'tw'];  
 
   constructor() {
     this.addNewLanguage();
@@ -48,10 +47,6 @@ export class ItemComponent implements OnInit {
 
   addNewResource = (language: Language): any => {
     language.resources.push( new Resource( { resourceName : '', resourceValue : ''} ));
-  }
-
-  addSlide(slide: Slide): void {
-    this.slides.push(slide);
   }
 
   saveLink(link: Link): void {

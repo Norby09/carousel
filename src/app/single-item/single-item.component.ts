@@ -10,7 +10,6 @@ export class SingleItemComponent implements OnInit {
   @Input() itm: Items = null;
 
   constructor() {
-    console.log('Single item : ', this.itm);
   }
 
   ngOnInit() {}
