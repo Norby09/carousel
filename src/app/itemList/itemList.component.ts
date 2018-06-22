@@ -7,7 +7,7 @@ import { Settings } from '../../data/settings';
 import { Language } from '../../data/language';
 import { Resource } from '../../data/resource';
 import { stringOrDefault } from '../../utils/value-or-default';
-
+import {LanguagesService} from '../languages.service';
 @Component({
   selector: 'bl-carousel-carousel-item-list',
   templateUrl: './itemList.component.html',
@@ -21,16 +21,17 @@ export class ItemListComponent implements OnInit {
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Settings = null;
-  languages: Language[] = [];
+  languages : Language[] = [];
   languageObj: Object;
 
   itemId = 0;
 
-  // selectableLanguages = [ 'cz', 'cs', 'de', 'en', 'es', 'fr', 'hu', 'it', 'jp', 'ja', 'ko', 'nl', 'pl', 'bg', 'pt', 'ru', 'tr', 'cn', 'tw'];  
+   selectableLanguages;  
 
-  constructor() {
+  constructor(private _languageService: LanguagesService) {
     this.addNewLanguage();
     this.addItem();
+    this.selectableLanguages = _languageService.getLanguages();
   }
 
   ngOnInit() {
