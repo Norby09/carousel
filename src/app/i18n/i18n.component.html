@@ -14,12 +14,12 @@
       <div class="col-lg-10" >
         <div class="row" *ngFor="let element of i18n.resources">
           <div class="col-lg-6">
-            <label> Enter title : </label>
-            <input type="text" class="form-control" [(ngModel)]="element.resourceName" placeholder="Enter title" />
+            <label> Enter resource name : </label>
+            <input type="text" class="form-control" [(ngModel)]="element.resourceName" placeholder="Enter resource name" />
           </div>
           <div class="col-lg-6">
-            <label> Enter description : </label>
-            <input type="text" class="form-control" [(ngModel)]="element.resourceValue" placeholder="Enter description" />
+            <label> Enter resource description : </label>
+            <input type="text" class="form-control" [(ngModel)]="element.resourceValue" placeholder="Enter resource description" />
           </div>
         </div>
       </div>
@@ -28,7 +28,5 @@
     <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewResource(i18n)">Add new resource</button>
   </div>
   <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewLanguage()">Add new language</button>
-  <!--<button type="button" class="btn btn-primary btn-save pull-right" style="margin: 10px 0 0 10px" (click)="bindLanguageAndAddToMainObject()"> Save </button>-->
 </div>
-<!--{{arrayOfI18n | json}}-->
 
