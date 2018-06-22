@@ -1,13 +1,13 @@
 <div >
   <form (submit)="onSubmitItems($event)">
       <bl-carousel-title [title]="comp.title"></bl-carousel-title>
-      <bl-carousel-description [description]="comp.description"></bl-carousel-description>
-      <hr />
-      <h4 style="margin: 0 0 0 20px"> Links </h4>
+      <bl-carousel-description [description]="comp.description" class="hr"></bl-carousel-description>
+      
+      <h4> Links </h4>
       <div *ngFor="let link of comp.links">
         <bl-carousel-link [link]="link"></bl-carousel-link>
       </div>
-      <button class="btn btn-primary btn-sm btn-add-new pull-left" style="margin: 10px 10px 30px 10px" (click)="comp.addLink()">Add new link</button>
+      <button class="btn btn-primary btn-sm btn-add-new pull-left positioned" (click)="comp.addLink()">Add new link</button>
   </form>
 </div>
 

@@ -1,8 +1,7 @@
 <div class="container inner-container">
-  <h3> Languages </h3>
-  <hr />
+  <h3 class="hr"> Languages </h3>
   <div *ngFor="let i18n of languages">
-    <div class="row" style="margin-top: 50px">
+    <div class="row hr">
 
       <div class="col-lg-2">
         <label> Language {{languages.indexOf(i18n) + 1}} : </label>
@@ -11,7 +10,7 @@
         </select>
       </div>
 
-      <div class="col-lg-10" >
+      <div class="col-lg-10 " >
         <div class="row" *ngFor="let element of i18n.resources">
           <div class="col-lg-6">
             <label> Enter resource name : </label>
@@ -23,10 +22,9 @@
           </div>
         </div>
       </div>
-      <hr/>
     </div>
-    <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewResource(i18n)">Add new resource</button>
+    <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="addNewResource(i18n)">Add new resource</button>
   </div>
-  <button type="button" class="btn btn-primary btn-add-new pull-right" style="margin: 10px 0 0 10px" (click)="addNewLanguage()">Add new language</button>
+  <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="addNewLanguage()">Add new language</button>
 </div>
 
