@@ -7,6 +7,7 @@ import { Settings } from '../../data/settings';
 import { Language } from '../../data/language';
 import { Resource } from '../../data/resource';
 import { stringOrDefault } from '../../utils/value-or-default';
+import { LanguagesService } from '../languages.service';
 
 @Component({
   selector: 'bl-carousel-carousel-item-list',
@@ -24,9 +25,10 @@ export class ItemListComponent implements OnInit {
   languages : Language[] = [];
   languageObj: Object;
 
-  constructor() {
+  constructor(public languageService : LanguagesService) {
     this.languages.push( Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))}) );
     this.items.push(new Item({id : 1}));
+    this.languageService.myMethod(this.languages);
   }
 
   ngOnInit() {
