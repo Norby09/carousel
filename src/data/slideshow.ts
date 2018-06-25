@@ -13,9 +13,5 @@ export class Slideshow {
   }
   constructor(config: any) {
     this.autoplay = numberOrDefault(config.autoplay);
-    // this.interval = numberOrDefault(config.interval);
-    // this.restart = numberOrDefault(config.restart);
-
-    //by default 100, configurable value for number input
   }
 }

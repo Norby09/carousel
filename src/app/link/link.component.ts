@@ -8,6 +8,8 @@ import {Link} from '../../data/link';
 })
 export class LinkComponent implements OnInit {
   @Input() link: Link = null;
+  @Input() links : Link[];
+  
   constructor() { }
 
   ngOnInit() {

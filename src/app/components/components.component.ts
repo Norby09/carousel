@@ -9,6 +9,7 @@ import {Comp} from '../../data/comp';
 })
 export class ComponentsComponent implements OnInit {
   @Input() comp: Comp = null;
+  @Input() links: Link[];
   @Output() save: EventEmitter<Comp> = new EventEmitter();
 
   constructor() {}
@@ -19,14 +20,10 @@ export class ComponentsComponent implements OnInit {
     }
     this.comp.links.push(new Link());
   }
+
   onSubmitItems(event: Event) {
     event.preventDefault();
     this.save.emit(this.comp);
-  }
-  saveLink(link: Link): void {
-    if (!~this.comp.links.indexOf(link)) {
-      this.comp.links.push(link);
-    }
   }
   
 }

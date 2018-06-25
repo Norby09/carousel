@@ -7,9 +7,11 @@ import {Type} from '../../data/type';
 })
 export class TypesComponent implements OnInit {
   @Input() type: Type = null;
+  
   constructor() { }
 
   ngOnInit() {
+    this.type = Type.create();
   }
 
 }

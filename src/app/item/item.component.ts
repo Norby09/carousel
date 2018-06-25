@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Item} from '../../data/item';
+import { Link } from 'data/link';
 
 @Component({
   selector: 'bl-carousel-item',
@@ -8,10 +9,19 @@ import {Item} from '../../data/item';
 })
 export class ItemComponent implements OnInit {
   @Input() itm: Item = null;
+  @Input() items : Item[];
+  @Input() links : Link[];
+
+  itemId = 1; 
 
   constructor() {
   }
 
   ngOnInit() {}
+
+  addItem() {
+    ++this.itemId;
+    this.items.push(new Item({id : this.itemId}));
+  }
 
 }

@@ -7,10 +7,11 @@ import {Slideshow} from '../../data/slideshow';
 })
 export class SlideshowComponent implements OnInit {
   @Input() slideshow: Slideshow = null;
-  constructor() {
-  }
+  
+  constructor() {}
 
   ngOnInit() {
+    this.slideshow = Slideshow.create();
   }
 
 }

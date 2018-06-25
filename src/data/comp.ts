@@ -14,10 +14,12 @@ export class Comp {
     }
     return new Comp(config);
   }
-  addLink() {
+
+  addLink = () => {
     this.links.push(new Link());
   }
-  saveLink(link: Link): void {
+
+  saveLink = (link: Link): void => {
     if (!~this.links.indexOf(link)) {
       this.links.push(link);
     }

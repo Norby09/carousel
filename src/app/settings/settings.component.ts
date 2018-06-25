@@ -11,5 +11,6 @@ export class SettingsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.setting = Settings.create();
   }
 }

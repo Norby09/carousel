@@ -7,7 +7,7 @@ import { Settings } from '../../data/settings';
 import { Language } from '../../data/language';
 import { Resource } from '../../data/resource';
 import { stringOrDefault } from '../../utils/value-or-default';
-import {LanguagesService} from '../languages.service';
+
 @Component({
   selector: 'bl-carousel-carousel-item-list',
   templateUrl: './itemList.component.html',
@@ -24,45 +24,13 @@ export class ItemListComponent implements OnInit {
   languages : Language[] = [];
   languageObj: Object;
 
-  itemId = 0;
-
-   selectableLanguages;  
-
-  constructor(private _languageService: LanguagesService) {
-    this.addNewLanguage();
-    this.addItem();
-    this.selectableLanguages = _languageService.getLanguages();
+  constructor() {
+    this.languages.push( Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))}) );
+    this.items.push(new Item({id : 1}));
   }
 
   ngOnInit() {
-    this.slideshow = Slideshow.create();
-    this.type = Type.create();
-    this.setting = Settings.create();
     this.languageObj = Object.create(null);
-  }
-
-  addNewLanguage() {
-    const element = Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))});
-    this.languages.push(element);
-  }
-
-  addNewResource = (language: Language): any => {
-    language.resources.push( new Resource( { name : '', value : ''} ));
-  }
-
-  saveLink(link: Link): void {
-    if (!~this.links.indexOf(link)) {
-      this.addLink(link);
-    }
-  }
-
-  addLink(link: Link): void {
-    this.links.push(link);
-  }
-
-  addItem() {
-    ++this.itemId;
-    this.items.push(new Item({id : this.itemId}));
   }
 
   export(format: string = 'json'): string {
