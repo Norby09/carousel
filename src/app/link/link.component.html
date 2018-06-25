@@ -13,13 +13,11 @@
   </div>
   <div class="row">
     <div class="col-lg-6" (click)="loadResource()">
-      <!-- <label class="col-lg-12"> Text :
-          <input type="text" [(ngModel)]="link.text" class="form-control" placeholder="Enter Text..." />
-      </label> -->
-      <label>Text: </label>
-      <select class="form-control" [(ngModel)]="link.text">
-        <option *ngFor="let resource of resources" value="resource" >{{resource}}</option>
+      <label class="col-lg-12"> Text :
+        <select class="form-control" [(ngModel)]="link.text">
+          <option *ngFor="let resource of resources" [value]="resource">{{resource}}</option>
         </select>
+      </label>
     </div>
     <div class="col-lg-6">
       <label class="col-lg-12"> Tooltip :

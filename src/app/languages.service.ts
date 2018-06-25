@@ -16,20 +16,12 @@ export class LanguagesService {
   }
 
   myMethod(data) {
-      console.log(data); // I have data! Let's return it so subscribers can use it!
-      // we can do stuff with data if we want
       this.myMethodSubject.next(data);
       this.languages = data;
   }
-
-  // flattenResources = (accumulator, num) =>{
-  //   for(let i=0 ; i <= this.languages; i++) {
-  //   const flattenedResources = this.languages.resources
-  //   }
-  // }
   getResources() {
     const resources = this.languages.map( l => l.resources.map ( r => r.name ));
-    var mergedResources = [].concat.apply([],resources);
+    const mergedResources = [].concat.apply([],resources);
     return mergedResources;
   }
 

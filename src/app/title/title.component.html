@@ -13,8 +13,8 @@
     </div>
     <div class="col-lg-4" (click)="loadResources()">
         <label class="col-lg-12"> Text :
-        <select class="form-control" > 
-          <option *ngFor="let resource of resources" value="resource">{{resource}}</option>
+        <select class="form-control" [(ngModel)]="title.text"> 
+          <option *ngFor="let resource of resources" [value]="resource">{{resource}}</option>
         </select>
         </label>
     </div>
