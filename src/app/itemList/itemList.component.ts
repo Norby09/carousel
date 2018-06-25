@@ -29,6 +29,7 @@ export class ItemListComponent implements OnInit {
     this.languages.push( Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))}) );
     this.items.push(new Item({id : 1}));
     this.languageService.myMethod(this.languages);
+  
   }
 
   ngOnInit() {
