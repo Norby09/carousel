@@ -15,7 +15,7 @@ export class LinkComponent implements OnInit {
 
   ngOnInit() {
   }
-  loadResource = () => {
+  loadResources(){
     this.resources = this.languageService.getResources();
   }
 }

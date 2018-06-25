@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-6" (click)="loadResource()">
+    <div class="col-lg-6" (mouseenter)="loadResources()">
       <label class="col-lg-12"> Text :
         <select class="form-control" [(ngModel)]="link.text">
           <option *ngFor="let resource of resources" [value]="resource">{{resource}}</option>
