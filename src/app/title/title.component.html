@@ -11,10 +11,12 @@
         <input type="text" class="form-control" placeholder="Enter Style" [(ngModel)]="title.style" />
        </label>
     </div>
-    <div class="col-lg-4">
-      <label class="col-lg-12"> Text :
-        <input type="text" class="form-control" placeholder="Enter Text" [(ngModel)]="title.text" />
-       </label>
+    <div class="col-lg-4" (click)="loadResources()">
+        <label class="col-lg-12"> Text :
+        <select class="form-control" > 
+          <option *ngFor="let resource of resources" value="resource">{{resource}}</option>
+        </select>
+        </label>
     </div>
   </div>
 </div>

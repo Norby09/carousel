@@ -33,6 +33,9 @@ export class ItemListComponent implements OnInit {
 
   ngOnInit() {
     this.languageObj = Object.create(null);
+    this.slideshow = Slideshow.create();
+    this.type = Type.create();
+    this.setting = Settings.create();
   }
 
   export(format: string = 'json'): string {

@@ -1,5 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {Link} from '../../data/link';
+import {LanguagesService} from '../languages.service'
 
 @Component({
   selector: 'bl-carousel-link',
@@ -9,10 +10,12 @@ import {Link} from '../../data/link';
 export class LinkComponent implements OnInit {
   @Input() link: Link = null;
   @Input() links : Link[];
-  
-  constructor() { }
+  resources;
+  constructor(private languageService: LanguagesService) { }
 
   ngOnInit() {
   }
-
+  loadResource = () => {
+    this.resources = this.languageService.getResources();
+  }
 }

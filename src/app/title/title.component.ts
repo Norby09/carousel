@@ -10,12 +10,15 @@ import { LanguagesService } from '../languages.service';
 export class TitleComponent implements OnInit {
   @Input() title: Title = null;
 
-  resources : String[];
+  resources;
 
   constructor(private languageService : LanguagesService) { 
-    this.resources = this.languageService.getResources();
   }
 
   ngOnInit() {}
+
+  loadResources() {
+    this.resources = this.languageService.getResources();
+  }
 
 }

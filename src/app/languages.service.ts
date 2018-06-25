@@ -22,9 +22,15 @@ export class LanguagesService {
       this.languages = data;
   }
 
+  // flattenResources = (accumulator, num) =>{
+  //   for(let i=0 ; i <= this.languages; i++) {
+  //   const flattenedResources = this.languages.resources
+  //   }
+  // }
   getResources() {
-    this.languages.map( l => l.resources.map ( r => console.log(r.name) ) );
-    return null;
+    const resources = this.languages.map( l => l.resources.map ( r => r.name ));
+    var mergedResources = [].concat.apply([],resources);
+    return mergedResources;
   }
 
   getLanguages() {

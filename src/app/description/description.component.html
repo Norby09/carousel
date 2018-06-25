@@ -7,8 +7,15 @@
     <div class="col-lg-4">
       <label class="col-lg-12"> Style : <input type="text" class="form-control" placeholder="Enter Style" [(ngModel)]="description.style" /> </label>
     </div> 
-    <div class="col-lg-4">
+    <!-- <div class="col-lg-4">
       <label class="col-lg-12"> Text : <input type="text" class="form-control" placeholder="Enter Text" [(ngModel)]="description.text" /></label>   
-    </div> 
+    </div>  -->
+    <div class="col-lg-4" (click)="loadResources()">
+        <label class="col-lg-12"> Text : </label>
+        <select class="form-control" > 
+          <option *ngFor="let resource of resources" value="resource">{{resource}}</option>
+        </select>
+        
+    </div>
   </div>
 </div>
