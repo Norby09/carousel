@@ -1,4 +1,4 @@
-import { stringOrDefault, objectOrDefault, arrayOrDefault,numberOrDefault } from 'utils/value-or-default';
+import { stringOrDefault, objectOrDefault, arrayOrDefault, numberOrDefault } from 'utils/value-or-default';
 
 export class Type {
   standard: number = 1;

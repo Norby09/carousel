@@ -11,7 +11,12 @@ export class Slideshow {
     }
     return new Slideshow(config);
   }
-  constructor(config: any) {
+  constructor(config?: any) {
     this.autoplay = numberOrDefault(config.autoplay);
+    if (config.interval && config.restart) {
+      this.interval = numberOrDefault(config.interval);
+      this.restart = numberOrDefault(config.restart);
+    }
+
   }
 }

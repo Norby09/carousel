@@ -22,4 +22,10 @@ describe('LinkComponent', () => {
   // it('should create', () => {
   //   expect(component).toBeTruthy();
   // });
+
+  // asta nu merge
+  // it('Link component test for load resources', () => {
+  //   component.loadResources();
+  //   expect(component.resources.length).toBeGreaterThan(0);
+  // });
 });
