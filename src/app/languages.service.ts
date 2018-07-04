@@ -19,8 +19,9 @@ export class LanguagesService {
       this.myMethodSubject.next(data);
       this.languages = data;
   }
+  
   getResources() {
-    const resources = this.languages.map( l => l.resources.map ( r => r.name ));
+    const resources = this.languages.map( l => l.resources.map ( r => r.name )); 
     const mergedResources = [].concat.apply([],resources);
     return mergedResources;
   }

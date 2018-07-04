@@ -16,8 +16,6 @@ import { LanguagesService } from '../languages.service';
 })
 
 export class ItemListComponent implements OnInit {
-  links: Link[] = [];
-  link: Link;
   items: Item[] = [];
   slideshow: Slideshow = null;
   type: Type = null;
@@ -29,7 +27,6 @@ export class ItemListComponent implements OnInit {
     this.languages.push( Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))}) );
     this.items.push(new Item({id : 1}));
     this.languageService.myMethod(this.languages);
-  
   }
 
   ngOnInit() {
@@ -40,9 +37,9 @@ export class ItemListComponent implements OnInit {
   }
 
   export(format: string = 'json'): string {
-
+    console.log('EXPORT 1');
     for (let i = 0; i < this.languages.length; i++) {
-
+      console.log('EXPORT 2');
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};
 
@@ -52,7 +49,7 @@ export class ItemListComponent implements OnInit {
         language[ stringOrDefault( resource.name) ] = resource.value;
       }
     }
-
+    
     switch ((format || '').toLowerCase()) {
       case 'json':
           return JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
@@ -85,6 +82,7 @@ export class ItemListComponent implements OnInit {
             }
             this.languages.push(element);
         }
+        this.languageService.myMethod(this.languages);
         break;
       default:
         return false;

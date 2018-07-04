@@ -10,7 +10,6 @@ import { Link } from 'data/link';
 export class ItemComponent implements OnInit {
   @Input() itm: Item = null;
   @Input() items : Item[];
-  @Input() links : Link[];
 
   itemId = 1; 
 

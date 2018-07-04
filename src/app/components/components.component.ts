@@ -9,7 +9,6 @@ import {Comp} from '../../data/comp';
 })
 export class ComponentsComponent implements OnInit {
   @Input() comp: Comp = null;
-  @Input() links: Link[];
   @Output() save: EventEmitter<Comp> = new EventEmitter();
 
   constructor() {}
@@ -17,8 +16,9 @@ export class ComponentsComponent implements OnInit {
   ngOnInit() {
     if (!this.comp) {
       this.comp = new Comp();
+    } else if ( !this.comp.links ) {
+      this.comp.links.push(new Link());
     }
-    this.comp.links.push(new Link());
   }
 
   onSubmitItems(event: Event) {
