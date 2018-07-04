@@ -92,7 +92,109 @@ describe('ItemListComponent', () => {
   });
 
   describe('Import test', () => {
-
+    it('should return false on unknown format', () => {
+      expect(component.import('', 'text')).toEqual(false);
+    });
+    it('should return true on valid input', () => {
+      expect(component.import('{\n' +
+        ' "types": {\n' +
+        '  "standard": 1,\n' +
+        '  "custom": 2,\n' +
+        '  "customTemplate": 3\n' +
+        ' },\n' +
+        ' "settings": {\n' +
+        '  "templateStyle": ".bl--login-carousel-slide-background{background-position:bottom center;}.bl--login-carousel-slide-content{top:70px;}.bl--mkt-itb-title{padding:260px 50px 0 50px;text-transform:none;font-size:40px;line-height:48px;margin-bottom:10px;font-weight:bold;}.bl--mkt-itb-description{color:#BABABA;margin-bottom:42px;line-height:24px;font-size:20px;font-weight:300;padding:0 50px 0 50px;}.bl--mkt-itb-button{font-size:14px;color:#fff;font-weight:bold;line-height:18px;padding:12px 20px;background:#117CBF;border:none;}.bl--mkt-itb-button:hover{color: #fff; background: #00A7EA;} @media all and (min-width: 481px) and (max-width: 768px) { .bl--mkt-itb-title { padding-top: 0; } }"\n' +
+        ' },\n' +
+        ' "items": [{\n' +
+        '  "backgroundColor": "#000",\n' +
+        '  "backgroundUrl": "https://static1.blackline.com/fcs-fe-resources/carousel/Intercompany_banner_2089x1468.jpg",\n' +
+        '  "components": {\n' +
+        '   "title": {\n' +
+        '    "cssClass": "bl--mkt-itb-title",\n' +
+        '    "text": "@title1",\n' +
+        '    "type": 1\n' +
+        '   },\n' +
+        '   "description": {\n' +
+        '    "cssClass": "bl--mkt-itb-description",\n' +
+        '    "text": "@description1",\n' +
+        '    "type": 2\n' +
+        '   },\n' +
+        '   "links": [{\n' +
+        '    "cssClass": "bl--mkt-itb-button",\n' +
+        '    "text": "@registerNow1",\n' +
+        '    "url": "https://www.blackline.com/resources/webinars/may-product-release-webinar-increase-visibility-control-and-accuracy",\n' +
+        '    "type": 3\n' +
+        '   }]\n' +
+        '  },\n' +
+        '  "id": 1,\n' +
+        '  "type": 1\n' +
+        ' }, {\n' +
+        '  "backgroundColor": "#000",\n' +
+        '  "backgroundUrl": "https://static1.blackline.com/fcs-fe-resources/carousel/BestPracticeSummit_banner_2089x1468.jpg",\n' +
+        '  "components": {\n' +
+        '   "title": {\n' +
+        '    "cssClass": "bl--mkt-itb-title",\n' +
+        '    "text": "@title2",\n' +
+        '    "type": 1\n' +
+        '   },\n' +
+        '   "description": {\n' +
+        '    "cssClass": "bl--mkt-itb-description",\n' +
+        '    "text": "@description2",\n' +
+        '    "type": 2\n' +
+        '   },\n' +
+        '   "links": [{\n' +
+        '    "cssClass": "bl--mkt-itb-button",\n' +
+        '    "text": "@attend1",\n' +
+        '    "url": "https://pages.blackline.com/best-practice-summits.html",\n' +
+        '    "type": 3\n' +
+        '   }]\n' +
+        '  },\n' +
+        '  "id": 2,\n' +
+        '  "type": 1\n' +
+        ' }, {\n' +
+        '  "backgroundColor": "#000",\n' +
+        '  "backgroundUrl": "https://static1.blackline.com/fcs-fe-resources/carousel/BlackLineUStore.jpg",\n' +
+        '  "components": {\n' +
+        '   "title": {\n' +
+        '    "cssClass": "bl--mkt-itb-title",\n' +
+        '    "text": "@title3",\n' +
+        '    "type": 1\n' +
+        '   },\n' +
+        '   "description": {\n' +
+        '    "cssClass": "bl--mkt-itb-description",\n' +
+        '    "text": "@description3",\n' +
+        '    "type": 2\n' +
+        '   },\n' +
+        '   "links": [{\n' +
+        '    "cssClass": "bl--mkt-itb-button",\n' +
+        '    "text": "@reserveSeat",\n' +
+        '    "url": "https://www.blackline.com/services/training",\n' +
+        '    "type": 3\n' +
+        '   }]\n' +
+        '  },\n' +
+        '  "id": 3,\n' +
+        '  "type": 1\n' +
+        ' }],\n' +
+        ' "slideshow": {\n' +
+        '  "autoPlay": true,\n' +
+        '  "interval": 5000,\n' +
+        '  "restart": 2000\n' +
+        ' },\n' +
+        ' "i18n": {\n' +
+        '  "en": {\n' +
+        '   "@title1": "May Product Release: See What’s New",\n' +
+        '   "@description1": "May 15, 2018 – 12:00 PM ET/9:00 AM PT",\n' +
+        '   "@registerNow1": "REGISTER NOW",\n' +
+        '   "@title2": "BlackLine\'\'s Best Practices Summit is Coming to a City Near You",\n' +
+        '   "@description2": "Metrics Matter: Turning Numbers into Knowledge",\n' +
+        '   "@attend1": "ATTEND A SUMMIT",\n' +
+        '   "@title3": "BlackLine U Store Now Open for Business",\n' +
+        '   "@description3": "Access CPE annual e-learning passes and seats to live BlackLine U classes",\n' +
+        '   "@reserveSeat": "RESERVE A SEAT"\n' +
+        '  }\n' +
+        ' }\n' +
+        '}')).toEqual(true);
+    });
 
   });
 
