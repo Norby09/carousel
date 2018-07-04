@@ -34,18 +34,18 @@ describe('ItemListComponent', () => {
       imports: [ FormsModule ],
       providers: [ LanguagesService ],
       declarations: [ ItemListComponent,
-                      SettingsComponent,
-                      TypesComponent,
-                      SlideshowComponent,
-                      I18nComponent,
-                      ItemComponent,
-                      ComponentsComponent,
-                      TitleComponent,
-                      LinkComponent,
-                      DescriptionComponent
-                   ]
+        SettingsComponent,
+        TypesComponent,
+        SlideshowComponent,
+        I18nComponent,
+        ItemComponent,
+        ComponentsComponent,
+        TitleComponent,
+        LinkComponent,
+        DescriptionComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -56,44 +56,44 @@ describe('ItemListComponent', () => {
 
   describe('Export test', () => {
 
-      it('should export default data in json format', () => {
+    it('should export default data in json format', () => {
 
-        expect(component.export())
-          .toEqual(JSON.stringify({"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
-      });
+      expect(component.export())
+        .toEqual(JSON.stringify({"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
+    });
 
-      it('should export given data in json format', () => {
+    it('should export given data in json format', () => {
 
-        component.items[0].components.description = Description.create({cssClass: "form-control" , style: "inline" , text: "@description1" });
-        component.items[0].components.title = Title.create( {cssClass: "form-group", style: "inline-block", text: "@title1"});
-        component.items[0].components.links.push(Link.create({ cssClass: "pull-right", style: "block", text: "@link1", tooltip: " ", url: " "}));
-        
-        component.slideshow = new Slideshow({});
-        component.type = new Type({});
-        component.setting = new Settings({});
-        
-        component.languages.push( Language.create({ name  : '', resources : new Array<Resource>( new Resource({name : '', value : ''}))}) );
+      component.items[0].components.description = Description.create({cssClass: "form-control" , style: "inline" , text: "@description1" });
+      component.items[0].components.title = Title.create( {cssClass: "form-group", style: "inline-block", text: "@title1"});
+      component.items[0].components.links.push(Link.create({ cssClass: "pull-right", style: "block", text: "@link1", tooltip: " ", url: " "}));
 
-        expect(component.export())
-          .toEqual(JSON.stringify({"items":[{"components":{"links":[{ "cssClass": "pull-right", "style": "block", "text": "@link1", "tooltip": " ", "url": " " }],"description":{"cssClass":"form-control","style":"inline","text":"@description1"},"title":{"cssClass":"form-group","style":"inline-block","text":"@title1"}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
-      });
+      component.slideshow = new Slideshow({});
+      component.type = new Type({});
+      component.setting = new Settings({});
 
-      it('should export default data in json format', () => {
+      component.languages.push( Language.create({ name  : '', resources : new Array<Resource>( new Resource({name : '', value : ''}))}) );
 
-        expect(component.export())
-          .toEqual(JSON.stringify({"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
-      });
+      expect(component.export())
+        .toEqual(JSON.stringify({"items":[{"components":{"links":[{ "cssClass": "pull-right", "style": "block", "text": "@link1", "tooltip": " ", "url": " " }],"description":{"cssClass":"form-control","style":"inline","text":"@description1"},"title":{"cssClass":"form-group","style":"inline-block","text":"@title1"}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
+    });
 
-      it('should return an error message', () => {
+    it('should export default data in json format', () => {
 
-        expect(component.export("text"))
-          .toEqual("Unknown export format text");
-      });
+      expect(component.export())
+        .toEqual(JSON.stringify({"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
+    });
+
+    it('should return an error message', () => {
+
+      expect(component.export("text"))
+        .toEqual("Unknown export format text");
+    });
   });
 
   describe('Import test', () => {
 
-   
+
   });
 
 });
