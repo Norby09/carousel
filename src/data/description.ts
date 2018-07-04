@@ -4,7 +4,7 @@ export class Description {
   cssClass: String;
   style: String;
   text: String;
-  static create(config: any): Description {
+  static create(config?: any): Description {
     if (!config) {
       return new Description();
     }
