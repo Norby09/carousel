@@ -37,9 +37,8 @@ export class ItemListComponent implements OnInit {
   }
 
   export(format: string = 'json'): string {
-    console.log('EXPORT 1');
+    
     for (let i = 0; i < this.languages.length; i++) {
-      console.log('EXPORT 2');
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};
 
@@ -55,7 +54,7 @@ export class ItemListComponent implements OnInit {
           return JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
       default:
         console.warn(`Unknown export format'${format}'`);
-        return this.toString();
+        return `Unknown export format ${format}`;
     }
   }
 
