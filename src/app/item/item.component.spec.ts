@@ -1,6 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ItemComponent } from './item.component';
+import { FormsModule } from '@angular/forms';
+import { ComponentsComponent } from '../components/components.component';
+import { TitleComponent } from '../title/title.component';
+import { DescriptionComponent } from '../description/description.component';
+import { LinkComponent } from '../link/link.component';
+import { LanguagesService } from '../languages.service';
+import { Item } from '../../data/item';
 
 describe('ItemComponent', () => {
   let component: ItemComponent;
@@ -8,7 +15,9 @@ describe('ItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ItemComponent ]
+      imports: [ FormsModule ],
+      providers: [ LanguagesService ],
+      declarations: [ ItemComponent, ComponentsComponent, TitleComponent, DescriptionComponent, LinkComponent ]
     })
     .compileComponents();
   }));
@@ -19,7 +28,5 @@ describe('ItemComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  
 });

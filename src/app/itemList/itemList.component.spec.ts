@@ -62,6 +62,7 @@ describe('ItemListComponent', () => {
 
     it('should export given data in json format', () => {
 
+      
       component.items[0].components.description = Description.create({cssClass: "form-control" , style: "inline" , text: "@description1" });
       component.items[0].components.title = Title.create( {cssClass: "form-group", style: "inline-block", text: "@title1"});
       component.items[0].components.links.push(Link.create({ cssClass: "pull-right", style: "block", text: "@link1", tooltip: " ", url: " "}));
@@ -76,12 +77,6 @@ describe('ItemListComponent', () => {
         .toEqual(JSON.stringify({"items":[{"components":{"links":[{ "cssClass": "pull-right", "style": "block", "text": "@link1", "tooltip": " ", "url": " " }],"description":{"cssClass":"form-control","style":"inline","text":"@description1"},"title":{"cssClass":"form-group","style":"inline-block","text":"@title1"}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
     });
 
-    it('should export default data in json format', () => {
-
-      expect(component.export())
-        .toEqual(JSON.stringify({"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
-    });
-
     it('should return an error message', () => {
 
       expect(component.export("text"))
@@ -90,17 +85,18 @@ describe('ItemListComponent', () => {
   });
 
   describe('Import test', () => {
+
     it('should return false on unknown format', () => {
       expect(component.import('', 'text')).toEqual(false);
     });
-    // it('should return true on valid input', () => {
-    //   expect(component.import('{"types": {
-    //     "standard": 1,
-    //     "custom": 2,
-    //     "customTemplate": 3
-    //   },}')).toEqual(true);
-    // });
 
+    it('should parse the input json', () => {
+      component.import('{"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"","templateStyle":"","animation":"slide"},"i18n":{"":{"":""}}}');
+
+      expect(component.slideshow).toEqual({interval: 100, restart: 100, autoplay: 0});
+      expect(component.type).toEqual({standard:1, custom:2, customTemplate:3});
+      expect(component.setting).toEqual({ defaultTemplateUrl: "", templateStyle: "", animation: "slide" });
+    });
   });
 
 });

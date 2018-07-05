@@ -24,12 +24,18 @@ describe('LanguagesService', () => {
   }));
 
   it('should return all the resources', inject([LanguagesService], (service: LanguagesService) => {
-        var languages = [];
-        languages.push( Language.create({ name  : 'en', resources : new Array<Resource>( new Resource({name : '@title1', value : 'This is title1'}), new Resource({name : '@description1', value : 'This is description1'}))}) );
-        languages.push( Language.create({ name  : 'fr', resources : new Array<Resource>( new Resource({name : '@title2', value : 'This is title2'}), new Resource({name : '@description2', value : 'This is description2'}))}) );
+        const languages = [];
+        const resource1 = new Resource({name : '@title1', value : 'This is title1'});
+        const resource2 = new Resource({name : '@description1', value : 'This is description1'});
+        const resource3 = new Resource({name : '@title2', value : 'This is title2'});
+        const resource4 = new Resource({name : '@description2', value : 'This is description2'});
+
+        languages.push( Language.create({ name  : 'en', resources : new Array<Resource>(resource1, resource2 )}) );
+        languages.push( Language.create({ name  : 'fr', resources : new Array<Resource>(resource3, resource4 )}) );
+
         service.languages = languages;
         expect(service.getResources())
-            .toEqual([ '@title1', '@description1', '@title2', '@description2']);
+            .toEqual([ resource1.name, resource2.name, resource3.name, resource4.name]);
   }));
 
 });

@@ -62,7 +62,6 @@ export class ItemListComponent implements OnInit {
     switch (format.toLowerCase()) {
       case 'json':
         let json;
-        console.log(config);
         try {
           JSON.parse(config);
         } catch (e) {
