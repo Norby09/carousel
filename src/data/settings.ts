@@ -1,8 +1,8 @@
 import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
 
 export class Settings {
-  defaultTemplateUrl: String = "https://www.blackline.com/path/to/default-template.html";
-  templateStyle: String = ".custom-class { font-size: 24px; color: #2e7ac1; }";
+  defaultTemplateUrl: String;
+  templateStyle: String;
   animation: String = "slide" ;
 
   static create(config?: any) {
@@ -11,5 +11,8 @@ export class Settings {
     }
     return new Settings(config);
   }
-  constructor(config?: any) {}
+  constructor(config?: any) {
+    this.defaultTemplateUrl  =stringOrDefault(config.defaultTemplateUrl);
+    this.templateStyle = stringOrDefault(config.templateStyle);
+  }
 }

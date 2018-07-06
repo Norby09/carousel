@@ -57,7 +57,7 @@ describe('ItemListComponent', () => {
     it('should export default data in json format', () => {
 
       expect(component.export())
-        .toEqual(JSON.stringify({"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
+        .toEqual(JSON.stringify({"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"animation":"slide","defaultTemplateUrl":"","templateStyle":""},"i18n":{"":{"":""}}}));
     });
 
     it('should export given data in json format', () => {
@@ -74,7 +74,7 @@ describe('ItemListComponent', () => {
       component.languages.push( Language.create({ name  : '', resources : new Array<Resource>( new Resource({name : '', value : ''}))}) );
 
       expect(component.export())
-        .toEqual(JSON.stringify({"items":[{"components":{"links":[{ "cssClass": "pull-right", "style": "block", "text": "@link1", "tooltip": " ", "url": " " }],"description":{"cssClass":"form-control","style":"inline","text":"@description1"},"title":{"cssClass":"form-group","style":"inline-block","text":"@title1"}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"https://www.blackline.com/path/to/default-template.html","templateStyle":".custom-class { font-size: 24px; color: #2e7ac1; }","animation":"slide"},"i18n":{"":{"":""}}}));
+        .toEqual(JSON.stringify({"items":[{"components":{"links":[{ "cssClass": "pull-right", "style": "block", "text": "@link1", "tooltip": " ", "url": " " }],"description":{"cssClass":"form-control","style":"inline","text":"@description1"},"title":{"cssClass":"form-group","style":"inline-block","text":"@title1"}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"animation":"slide","defaultTemplateUrl":"","templateStyle":""},"i18n":{"":{"":""}}}));
     });
 
     it('should return an error message', () => {

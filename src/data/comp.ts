@@ -8,7 +8,7 @@ export class Comp {
   description: Description;
   links: Link[];
 
-  static create(config: any): Comp {
+  static create(config?: any): Comp {
     if (!config) {
       return new Comp();
     }
@@ -27,8 +27,8 @@ export class Comp {
   constructor(config?: any) {
     config = objectOrDefault(config) || {};
     this.links = arrayOrDefault(config.links).map(Link.create);
-    this.description = Description.create(stringOrDefault(config.description));
-    this.title = Title.create(stringOrDefault(config.description));
+    this.description = Description.create(config.description);
+    this.title = Title.create(config.title);
   }
 
 }

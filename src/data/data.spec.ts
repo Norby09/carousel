@@ -1,9 +1,10 @@
 import { Title } from 'data/title';
 import { Link } from 'data/link';
-import {Slideshow} from './slideshow';
-import {Type} from './type';
-import {Settings} from './settings';
-import {Description} from './description';
+import { Slideshow } from './slideshow';
+import { Type } from './type';
+import { Settings } from './settings';
+import { Description } from './description';
+import { Comp } from './comp';
 
 describe('Title test' , () => {
 
@@ -78,9 +79,8 @@ describe('Settings test', () => {
   
   it('should create a predefined settings object', () => {
     let settings = Settings.create();
-    // astea trebuie scoase
-    expect(settings.defaultTemplateUrl).toEqual("https://www.blackline.com/path/to/default-template.html");
-    expect(settings.templateStyle).toEqual(".custom-class { font-size: 24px; color: #2e7ac1; }");
+    expect(settings.defaultTemplateUrl).toEqual("");
+    expect(settings.templateStyle).toEqual("");
     expect(settings.animation).toEqual("slide");
   });
 
@@ -104,5 +104,45 @@ describe('Description test', () => {
   });
 
 });
+
+describe('Component test', () => {
+
+  it('should create an empty component object', () => {
+    const component = Comp.create({});
+    expect(component.title).toEqual(Title.create({}));
+    expect(component.description).toEqual(Description.create({}));
+    expect(component.links).toEqual([]);
+  });
+
+  it('should create a component object with given values', () => {
+    const component = Comp.create({});
+    expect(component.title).toEqual(Title.create({}));
+    expect(component.description).toEqual(Description.create({}));
+    expect(component.links).toEqual([]);
+  });
+
+});
+
+describe('Component test', () => {
+
+  it('should create an empty component object', () => {
+    const component = Comp.create();
+    expect(component.title).toEqual(Title.create({}));
+    expect(component.description).toEqual(Description.create({}));
+    expect(component.links).toEqual([]);
+  });
+
+  it('should create a component object with given values', () => {
+    const title = Title.create({ cssClass : 'form-control', style : 'inline-block', text : 'Title 1'});
+    const description = Description.create({ cssClass : 'form-control', style : 'inline-block', text : 'Description 1'});
+
+    const component = Comp.create({title : title, description : description , links : []});
+    expect(component.title).toEqual(title);
+    expect(component.description).toEqual(description);
+    expect(component.links).toEqual([]);
+  });
+
+});
+
 
 
