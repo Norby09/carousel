@@ -2,6 +2,7 @@ import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {Link} from '../../data/link';
 import {Comp} from '../../data/comp';
 
+
 @Component({
   selector: 'bl-carousel-components',
   templateUrl: './components.component.html',
@@ -17,9 +18,7 @@ export class ComponentsComponent implements OnInit {
   ngOnInit() {
     if (!this.comp) {
       this.comp = new Comp();
-    } else if ( !this.comp.links ) {
-      this.comp.links.push(new Link());
-    }
+    } 
   }
 
   onSubmitItems(event: Event) {

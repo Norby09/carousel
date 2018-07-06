@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Description} from '../../data/description';
+import { Description } from '../../data/description';
 import { LanguagesService } from '../languages.service';
 
 @Component({
@@ -11,9 +11,7 @@ export class DescriptionComponent implements OnInit {
   @Input() description: Description = null;
   resources;
 
-  constructor(private languageService : LanguagesService){
-    
-  }
+  constructor(private languageService : LanguagesService){}
 
   ngOnInit() {}
 
