@@ -1,4 +1,4 @@
-import { stringOrDefault} from '../utils/value-or-default';
+import {objectOrDefault, stringOrDefault} from '../utils/value-or-default';
 
 export class Resource {
   name: String;
@@ -11,6 +11,7 @@ export class Resource {
     return new Resource(config);
   }
   constructor(config?: any) {
+    config = config ? objectOrDefault(config) : {};
     this.name = stringOrDefault(config.name);
     this.value = stringOrDefault(config.value);
   }

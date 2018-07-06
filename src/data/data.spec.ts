@@ -5,6 +5,8 @@ import { Type } from './type';
 import { Settings } from './settings';
 import { Description } from './description';
 import { Comp } from './comp';
+import {Resource} from './resource';
+
 
 describe('Title test' , () => {
 
@@ -47,14 +49,14 @@ describe('Link test' , () => {
 });
 
 describe('Slideshow test', () => {
-  
+
   it('should create an empty slideshow object', () => {
     let slideshow = Slideshow.create({});
     expect(slideshow.autoplay).toEqual(0);
     expect(slideshow.interval).toEqual(100);
     expect(slideshow.restart).toEqual(100);
   });
-  
+
   it('should create a slideshow object with values', () => {
     const config = {autoplay: 1000, interval: 200, restart: 200};
     let slideshows = Slideshow.create(config);
@@ -76,14 +78,19 @@ describe('Type test', () => {
 })
 
 describe('Settings test', () => {
-  
   it('should create a predefined settings object', () => {
-    let settings = Settings.create();
+    const settings = Settings.create();
     expect(settings.defaultTemplateUrl).toEqual("");
     expect(settings.templateStyle).toEqual("");
     expect(settings.animation).toEqual("slide");
   });
-
+  it('should create an settings object with given values', () => {
+    const config = {defaultTemplateUrl: "Default Template", templateStyle: "theStyle"};
+    const settings = Settings.create(config);
+    expect(settings.defaultTemplateUrl).toEqual(config.defaultTemplateUrl);
+    expect(settings.templateStyle).toEqual(config.templateStyle);
+    expect(settings.animation).toEqual("slide");
+  });
 });
 
 describe('Description test', () => {
@@ -104,6 +111,20 @@ describe('Description test', () => {
   });
 
 });
+describe('Resource test', () => {
+  it('should create an empty resource object', () => {
+    const resource = Resource.create();
+    expect(resource.name).toEqual("");
+    expect(resource.value).toEqual("");
+  });
+  it('should create a resource object with values', () => {
+    const config = {name: "description", value: "title"};
+    const resource = Resource.create(config);
+    expect(resource.name).toEqual(config.name);
+    expect(resource.value).toEqual(config.value);
+  });
+});
+
 
 describe('Component test', () => {
 

@@ -12,7 +12,8 @@ export class Settings {
     return new Settings(config);
   }
   constructor(config?: any) {
-    this.defaultTemplateUrl  =stringOrDefault(config.defaultTemplateUrl);
+    config = config ? objectOrDefault(config) : {};
+    this.defaultTemplateUrl = stringOrDefault(config.defaultTemplateUrl);
     this.templateStyle = stringOrDefault(config.templateStyle);
   }
 }
