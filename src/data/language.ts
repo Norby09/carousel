@@ -12,7 +12,7 @@ export class Language {
     return new Language(config);
   }
   constructor(config?: any) {
-    config = objectOrDefault(config) || {};
+    config = config ? objectOrDefault(config) : {};
     this.name = stringOrDefault(config.name);
     this.resources = arrayOrDefault(config.resources);
   }

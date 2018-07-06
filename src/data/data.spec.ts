@@ -5,8 +5,8 @@ import { Type } from './type';
 import { Settings } from './settings';
 import { Description } from './description';
 import { Comp } from './comp';
-import {Resource} from './resource';
-
+import { Language } from './language';
+import { Resource } from './resource';
 
 describe('Title test' , () => {
 
@@ -29,7 +29,7 @@ describe('Title test' , () => {
 describe('Link test' , () => {
 
     it('should create an empty link object', () => {
-        let link = Link.create({});
+        let link = Link.create();
         expect(link.cssClass).toEqual("");
         expect(link.style).toEqual("");
         expect(link.text).toEqual("");
@@ -75,7 +75,7 @@ describe('Type test', () => {
     expect(type.customTemplate).toEqual(3);
   });
 
-})
+});
 
 describe('Settings test', () => {
   it('should create a predefined settings object', () => {
@@ -126,28 +126,34 @@ describe('Resource test', () => {
 });
 
 
-describe('Component test', () => {
+describe('Language test', () => {
 
-  it('should create an empty component object', () => {
-    const component = Comp.create({});
-    expect(component.title).toEqual(Title.create({}));
-    expect(component.description).toEqual(Description.create({}));
-    expect(component.links).toEqual([]);
+  it('should create an empty language object', () => {
+    const language = Language.create();
+    expect(language.name).toEqual("");
+    expect(language.resources).toEqual([]);
   });
 
-  it('should create a component object with given values', () => {
-    const component = Comp.create({});
-    expect(component.title).toEqual(Title.create({}));
-    expect(component.description).toEqual(Description.create({}));
-    expect(component.links).toEqual([]);
-  });
+  it('should create a language object with given values', () => {
+    const config = { name : 'en', resources : [ new Resource({name: "description1", value: "This is description1"}), new Resource({name: "description2", value: "This is description2"})] };
+    const language = Language.create(config);
+    expect(language.name).toEqual(config.name);
+    expect(language.resources).toEqual(config.resources);
 
+  });
 });
 
 describe('Component test', () => {
 
   it('should create an empty component object', () => {
     const component = Comp.create();
+    expect(component.title).toEqual(Title.create({}));
+    expect(component.description).toEqual(Description.create({}));
+    expect(component.links).toEqual([]);
+  });
+
+  it('should create an empty component object in constructor', () => {
+    const component = new Comp();
     expect(component.title).toEqual(Title.create({}));
     expect(component.description).toEqual(Description.create({}));
     expect(component.links).toEqual([]);
@@ -163,7 +169,25 @@ describe('Component test', () => {
     expect(component.links).toEqual([]);
   });
 
+  it('should add an empty link to the component object', () => {
+    const component = Comp.create();
+    component.addLink();
+    expect(component.links.length).toEqual(1);
+  });
+
+  it('should save the new link', () => {
+    const component = Comp.create();
+    component.saveLink(Link.create({}));
+    expect(component.links.length).toEqual(1);
+  });
+
+  it('shouldn`t save the link if it already exists', () => {
+    const component = Comp.create();
+    const link = Link.create({ cssClass: "pull-right", style: "inline", text: "This is a random text", tooltip: " ", url: "https://pages.blackline.com/best-practice-summits.html"});
+    component.saveLink(link);
+    expect(component.links.length).toEqual(1);
+    component.saveLink(link);
+    expect(component.links.length).toEqual(1);
+  });
+
 });
-
-
-

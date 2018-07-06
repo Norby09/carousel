@@ -25,7 +25,7 @@ export class Comp {
     }
   }
   constructor(config?: any) {
-    config = objectOrDefault(config) || {};
+    config = config ? objectOrDefault(config) : {};
     this.links = arrayOrDefault(config.links).map(Link.create);
     this.description = Description.create(config.description);
     this.title = Title.create(config.title);

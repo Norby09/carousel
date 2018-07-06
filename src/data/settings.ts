@@ -7,7 +7,7 @@ export class Settings {
 
   static create(config?: any) {
     if (!config) {
-      return new Settings({});
+      return new Settings();
     }
     return new Settings(config);
   }
