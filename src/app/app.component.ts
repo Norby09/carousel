@@ -7,7 +7,5 @@ import { LanguagesService } from '../app/languages.service'
   providers: [LanguagesService],
 
 })
-export class AppComponent implements OnInit{
-  ngOnInit() {
-  }
+export class AppComponent {
 }

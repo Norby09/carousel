@@ -1,17 +1,17 @@
-function stringOrDefault(value: any, defaultValue: string = ''): string {
-  return (typeof value === 'string') ? value : defaultValue;
+function stringOrDefault(value: any ): string {
+  return (typeof value === 'string') ? value : '';
 }
 
-function objectOrDefault(value: any, defaultValue: object) {
-  return (typeof value === 'object') ? value : defaultValue;
+function objectOrDefault(value: any) : object {
+  return (typeof value === 'object') ? value : {};
 }
 
-function arrayOrDefault(value: any, defaultValue: any[] = []): any[] {
-  return Array.isArray(value) ? value : defaultValue;
+function arrayOrDefault(value: any): any[] {
+  return Array.isArray(value) ? value : [] ;
 }
 
-function numberOrDefault(value: any, defaultValue: number = 0): number {
-  return (typeof value === 'number') ? value : defaultValue;
+function numberOrDefault(value: any): number {
+  return (typeof value === 'number') ? value : 0;
 }
 
 export {

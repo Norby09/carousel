@@ -16,14 +16,9 @@ export class ComponentsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    if (!this.comp) {
-      this.comp = new Comp();
-    }
-  }
+  ngOnInit() {}
 
   onSubmitItems() {
-    // event.preventDefault();
     this.save.emit(this.comp);
   }
 }

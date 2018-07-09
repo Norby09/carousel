@@ -17,7 +17,6 @@ describe('ComponentsComponent', () => {
   let component: ComponentsComponent;
   let fixture: ComponentFixture<ComponentsComponent>;
   let componentDe;
-  let componentEl;
   let expectedComponent;
 
   beforeEach(async(() => {
@@ -35,20 +34,13 @@ describe('ComponentsComponent', () => {
     component = fixture.componentInstance;
 
     componentDe = fixture.debugElement.query(By.css('.component'));
-    componentEl = componentDe.nativeElement;
 
-    expectedComponent = { title: new Title(), description: new Description(), links : []  };
+    const title = Title.create({ cssClass : 'form-control', style : 'inline-block', text : 'Title 1'});
+    const description = Description.create({ cssClass : 'form-control', style : 'inline-block', text : 'Description 1'});
+
+    expectedComponent= new Comp({title : title, description : description, links : null });
     component.comp = expectedComponent;
-    //fixture.detectChanges()
   }));
-
-  beforeEach(() => {
-    // fixture = TestBed.createComponent(ComponentsComponent);
-    // component = fixture.componentInstance;
-
-    // componentDe = fixture.debugElement.query(By.css('.bl-carousel-components'));
-    // componentEl = componentDe.nativeElement;
-  });
 
   it('ngOnInit with empty component', () => {
     fixture.detectChanges();
@@ -81,19 +73,9 @@ describe('ComponentsComponent', () => {
     fixture.detectChanges();
     let selectedComponent: Comp = new Comp();
     component.save.subscribe(g => selectedComponent = g);
-    console.log(selectedComponent);
     component.onSubmitItems();
-    // componentDe.triggerEventHandler('click', null);
     expect(selectedComponent).toEqual(expectedComponent);
     done();
   });
 
 });
-// describe('test on emit', () => {
-//   it('should emit something', (done) => {
-//     this.component.save.subscribe(g => {
-//      expect(g).toEqual({}) ;
-//      done();
-//     });
-//   });
-// })
