@@ -13,6 +13,7 @@ export class ComponentsComponent implements OnInit {
   @Input() links: Link[] = null;
   @Output() save: EventEmitter<Comp> = new EventEmitter();
 
+
   constructor() {}
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class ComponentsComponent implements OnInit {
     }
   }
 
-  onSubmitItems(event: Event) {
+  onSubmitItems() {
     // event.preventDefault();
     this.save.emit(this.comp);
   }

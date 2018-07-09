@@ -82,8 +82,8 @@ describe('ComponentsComponent', () => {
     let selectedComponent: Comp = new Comp();
     component.save.subscribe(g => selectedComponent = g);
     console.log(selectedComponent);
-    component.onSubmitItems(selectedComponent);
-    componentDe.triggerEventHandler('click', null);
+    component.onSubmitItems();
+    // componentDe.triggerEventHandler('click', null);
     expect(selectedComponent).toEqual(expectedComponent);
     done();
   });
