@@ -19,11 +19,19 @@ export class Comp {
     this.links.push(new Link());
   }
 
+  removeLink(link : Link){
+    if(this.links.length > 1) {
+      const index = this.links.indexOf(link);
+      this.links.splice(index,1);
+    }
+  }
+
   saveLink(link: Link) {
     if (!~this.links.indexOf(link)) {
       this.links.push(link);
     }
   }
+
   constructor(config?: any) {
     config = config ? objectOrDefault(config) : {};
     this.links = arrayOrDefault(config.links).map(Link.create);

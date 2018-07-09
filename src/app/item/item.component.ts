@@ -22,8 +22,10 @@ export class ItemComponent implements OnInit {
   };
 
   removeItem(item : Item) {
-    const index = this.items.indexOf(item);
-    this.items.splice(index,1);
+    if(this.items.length > 1) {
+      const index = this.items.indexOf(item);
+      this.items.splice(index,1);
+    }
   }
 
 }

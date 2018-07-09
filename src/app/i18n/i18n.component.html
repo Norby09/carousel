@@ -13,21 +13,22 @@
 
       <div class="col-lg-10">
         <div class="row" *ngFor="let element of i18n.resources">
-          <div class="col-lg-6">
-            <label class="col-lg-12"> Resource Name :
-              <input type="text" class="form-control" [(ngModel)]="element.name" placeholder="Enter Resource Name" />
-            </label>
-          </div>
-          <div class="col-lg-6">
-            <label class="col-lg-12"> Resource Description :
-              <input type="text" class="form-control" [(ngModel)]="element.value" placeholder="Enter Resource Description" />
-            </label>
-            <button type="button" class="btn btn-primary fr" (click)="removeResource(element,i18n.resources)">Delete resource</button>
+            <div class="col-lg-6">
+              <label class="col-lg-12"> Resource Name :
+                <input type="text" class="form-control" [(ngModel)]="element.name" placeholder="Enter Resource Name" />
+              </label>
+            </div>
+            <div class="col-lg-6">
+              <label class="col-lg-12"> Resource Description :
+                <input type="text" class="form-control" [(ngModel)]="element.value" placeholder="Enter Resource Description" />
+              </label>
+            </div>  
+            <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="removeResource(element,i18n.resources)">Delete resource</button>
           </div>
         </div>
-      </div>
     </div>
     <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="addNewResource(i18n)">Add new resource</button>
+    <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="removeLanguage(i18n)">Remove language</button>
   </div>
   <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="addNewLanguage()">Add new language</button>
 </div>

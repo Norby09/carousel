@@ -6,6 +6,7 @@
       <h4> Links </h4>
       <div *ngFor="let link of comp.links">
         <bl-carousel-link [link]="link" [links]="links"></bl-carousel-link>
+        <button class="btn btn-primary btn-sm btn-add-new pull-left positioned component" (click)="comp.removeLink(link)">Remove link</button>
       </div>
       <button class="btn btn-primary btn-sm btn-add-new pull-left positioned component" (click)="comp.addLink()">Add new link</button>
   </form>
