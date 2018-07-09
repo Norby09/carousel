@@ -1,4 +1,4 @@
-import {numberOrDefault, booleanOrDefault} from 'utils/value-or-default';
+import {numberOrDefault} from 'utils/value-or-default';
 
 export class Slideshow {
   autoplay: number;

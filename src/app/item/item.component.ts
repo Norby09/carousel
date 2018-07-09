@@ -12,11 +12,9 @@ export class ItemComponent implements OnInit {
 
   itemId = 1;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   addItem() {
     ++this.itemId;

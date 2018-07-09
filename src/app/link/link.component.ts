@@ -7,14 +7,12 @@ import {LanguagesService} from '../languages.service';
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss', '../app.component.scss']
 })
-export class LinkComponent implements OnInit {
+export class LinkComponent{
   @Input() link: Link = null;
   @Input() links: Link[];
   resources;
   constructor(private languageService: LanguagesService) { }
 
-  ngOnInit() {
-  }
   loadResources() {
     this.resources = this.languageService.getResources();
   }

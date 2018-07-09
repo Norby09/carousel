@@ -90,6 +90,10 @@ describe('ItemListComponent', () => {
       expect(component.import('', 'text')).toEqual(false);
     });
 
+    it('should throw an error on invalid json', () => {
+      expect(component.import('"title":{"cssClass":"","style":"","text":""},"id":1')).toEqual(false);
+    });
+
     it('should parse the input json', () => {
       component.import('{"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"interval":100,"restart":100,"autoplay":0},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"defaultTemplateUrl":"","templateStyle":"","animation":"slide"},"i18n":{"":{"":""}}}');
 

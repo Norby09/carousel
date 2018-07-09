@@ -49,7 +49,7 @@ export class ItemListComponent implements OnInit {
       }
     }
 
-    switch ((format || '').toLowerCase()) {
+    switch ((format).toLowerCase()) {
       case 'json':
           return JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
       default:
@@ -68,9 +68,6 @@ export class ItemListComponent implements OnInit {
           return false;
         }
         json = JSON.parse(config);
-        // if (config) {
-        //   json = JSON.parse(config);
-        // }
 
         this.items = json.items;
         this.slideshow = json.slideshow;

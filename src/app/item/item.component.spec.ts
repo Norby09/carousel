@@ -25,8 +25,13 @@ describe('ItemComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ItemComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
-  
+  it('should add an item', () => {
+    component.items = [];
+    const length = component.items.length;
+    component.addItem();
+    expect(component.items.length).toEqual(length+1);
+  })
+
 });

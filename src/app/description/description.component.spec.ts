@@ -10,10 +10,10 @@ describe('DescriptionComponent', () => {
   let component: DescriptionComponent;
   let fixture: ComponentFixture<DescriptionComponent>;
 
-    const resource1 = new Resource({name : '@title1', value : 'This is title1'});
-    const resource2 = new Resource({name : '@description1', value : 'This is description1'});
-    const resource3 = new Resource({name : '@title2', value : 'This is title2'});
-    const resource4 = new Resource({name : '@description2', value : 'This is description2'});
+  const resource1 = new Resource({name : '@title1', value : 'This is title1'});
+  const resource2 = new Resource({name : '@description1', value : 'This is description1'});
+  const resource3 = new Resource({name : '@title2', value : 'This is title2'});
+  const resource4 = new Resource({name : '@description2', value : 'This is description2'});
 
   const languageService = 
   {
@@ -30,7 +30,7 @@ describe('DescriptionComponent', () => {
                     useValue : languageService
                   } 
                 ],
-      imports: [ FormsModule ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
@@ -43,5 +43,5 @@ describe('DescriptionComponent', () => {
   it('should return resources', () => {
     component.loadResources();
     expect(component.resources).toEqual([resource1.name, resource2.name,resource3.name,resource4.name]);
-  })
+  });
 });
