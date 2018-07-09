@@ -10,8 +10,8 @@ import { LanguagesService } from '../languages.service';
 export class DescriptionComponent implements OnInit {
   @Input() description: Description = null;
   resources;
-
-  constructor(private languageService : LanguagesService){}
+  constructor(private languageService: LanguagesService) {
+  }
 
   ngOnInit() {}
 

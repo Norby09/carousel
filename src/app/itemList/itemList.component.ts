@@ -20,7 +20,7 @@ export class ItemListComponent implements OnInit {
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Settings = null;
-  languages : Language[] = [];
+  languages: Language[] = [];
   languageObj: Object;
 
   constructor(public languageService : LanguagesService) {
@@ -77,11 +77,11 @@ export class ItemListComponent implements OnInit {
 
         this.languages = [];
 
-        for( const language in this.languageObj) {
+        for (const language in this.languageObj) {
             const element = Language.create({name : language});
             const resources = this.languageObj[language];
 
-            for( const resourceName in resources ) {
+            for (const resourceName in resources ) {
               element.resources.push(new Resource({name : resourceName, value : resources[resourceName] }));
             }
             this.languages.push(element);

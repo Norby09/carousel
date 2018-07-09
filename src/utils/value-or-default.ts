@@ -2,7 +2,7 @@ function stringOrDefault(value: any, defaultValue: string = ''): string {
   return (typeof value === 'string') ? value : defaultValue;
 }
 
-function objectOrDefault(value: any, defaultValue: object = {}): object {
+function objectOrDefault(value: any, defaultValue: object) {
   return (typeof value === 'object') ? value : defaultValue;
 }
 
