@@ -19,6 +19,11 @@ export class ItemComponent implements OnInit {
   addItem() {
     ++this.itemId;
     this.items.push(new Item({id : this.itemId}));
+  };
+
+  removeItem(item : Item) {
+    const index = this.items.indexOf(item);
+    this.items.splice(index,1);
   }
 
 }
