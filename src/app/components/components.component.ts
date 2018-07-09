@@ -18,11 +18,11 @@ export class ComponentsComponent implements OnInit {
   ngOnInit() {
     if (!this.comp) {
       this.comp = new Comp();
-    } 
+    }
   }
 
   onSubmitItems(event: Event) {
-    event.preventDefault();
+    // event.preventDefault();
     this.save.emit(this.comp);
   }
 }

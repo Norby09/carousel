@@ -28,7 +28,7 @@ describe('ComponentsComponent', () => {
                       LinkComponent],
       imports: [ FormsModule ],
       providers: [ LanguagesService ],
-      
+
     })
     .compileComponents();
     fixture = TestBed.createComponent(ComponentsComponent);
@@ -77,13 +77,23 @@ describe('ComponentsComponent', () => {
     expect(component.comp.links.length).toEqual(0);
   });
 
-  it('should raise selected event when clicked (triggerEventHandler)', () => {
+  it('should raise selected event when clicked (triggerEventHandler)', (done) => {
     fixture.detectChanges();
-    let selectedComponent : Comp;
-    component.save.subscribe((comp : Comp) => selectedComponent = comp);
+    let selectedComponent: Comp = new Comp();
+    component.save.subscribe(g => selectedComponent = g);
     console.log(selectedComponent);
+    component.onSubmitItems(selectedComponent);
     componentDe.triggerEventHandler('click', null);
-    expect(selectedComponent).toBe(expectedComponent);
+    expect(selectedComponent).toEqual(expectedComponent);
+    done();
   });
-  
+
 });
+// describe('test on emit', () => {
+//   it('should emit something', (done) => {
+//     this.component.save.subscribe(g => {
+//      expect(g).toEqual({}) ;
+//      done();
+//     });
+//   });
+// })
