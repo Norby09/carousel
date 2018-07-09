@@ -15,7 +15,7 @@ export class Comp {
     return new Comp(config);
   }
 
-  addLink(){
+  addLink() {
     this.links.push(new Link());
   }
 

@@ -14,14 +14,15 @@
       <div class="col-lg-10">
         <div class="row" *ngFor="let element of i18n.resources">
           <div class="col-lg-6">
-            <label class="col-lg-12"> Resource Name : 
+            <label class="col-lg-12"> Resource Name :
               <input type="text" class="form-control" [(ngModel)]="element.name" placeholder="Enter Resource Name" />
             </label>
           </div>
           <div class="col-lg-6">
-            <label class="col-lg-12"> Resource Description : 
+            <label class="col-lg-12"> Resource Description :
               <input type="text" class="form-control" [(ngModel)]="element.value" placeholder="Enter Resource Description" />
             </label>
+            <button type="button" class="btn btn-primary fr" (click)="removeResource(element,i18n.resources)">Delete resource</button>
           </div>
         </div>
       </div>

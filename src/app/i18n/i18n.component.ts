@@ -29,6 +29,10 @@ export class I18nComponent implements OnInit {
 
   addNewResource(language: Language) {
     language.resources.push( new Resource( { name : '', value : ''} ));
+    console.log(this.languages);
+  }
+  removeResource(element: Language, array) {
+    array.splice(array.findIndex(i => i === element), 1);
   }
 
 }
