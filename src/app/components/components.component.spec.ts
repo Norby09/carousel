@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { ComponentsComponent } from './components.component';
 import { TitleComponent } from '../title/title.component';
@@ -9,12 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { LanguagesService } from '../languages.service';
 
 import { Comp } from 'data/comp';
-import {Title} from 'data/title';
-import {Description} from 'data/description';
+import { Title } from 'data/title';
+import { Description } from 'data/description';
 
 describe('ComponentsComponent', () => {
   let component: ComponentsComponent;
   let fixture: ComponentFixture<ComponentsComponent>;
+  let componentDe;
+  let componentEl;
+  let expectedComponent;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -27,16 +31,28 @@ describe('ComponentsComponent', () => {
       
     })
     .compileComponents();
+    fixture = TestBed.createComponent(ComponentsComponent);
+    component = fixture.componentInstance;
+
+    componentDe = fixture.debugElement.query(By.css('.component'));
+    componentEl = componentDe.nativeElement;
+
+    expectedComponent = { title: new Title(), description: new Description(), links : []  };
+    component.comp = expectedComponent;
+    //fixture.detectChanges()
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ComponentsComponent);
-    component = fixture.componentInstance;
+    // fixture = TestBed.createComponent(ComponentsComponent);
+    // component = fixture.componentInstance;
+
+    // componentDe = fixture.debugElement.query(By.css('.bl-carousel-components'));
+    // componentEl = componentDe.nativeElement;
   });
 
   it('ngOnInit with empty component', () => {
     fixture.detectChanges();
-    expect(component.comp).toEqual(new Comp());
+    expect(component.comp).toEqual(expectedComponent);
   });
 
   it('ngOnInit with component with link', () => {
@@ -55,12 +71,19 @@ describe('ComponentsComponent', () => {
     const description = Description.create({ cssClass : 'form-control', style : 'inline-block', text : 'Description 1'});
 
     component.comp = new Comp({title : title, description : description, links : null });
-    //component.comp.links = null;
     fixture.detectChanges();
     expect(component.comp.title).toEqual(title);
     expect(component.comp.description).toEqual(description);
     expect(component.comp.links.length).toEqual(0);
   });
 
+  it('should raise selected event when clicked (triggerEventHandler)', () => {
+    fixture.detectChanges();
+    let selectedComponent : Comp;
+    component.save.subscribe((comp : Comp) => selectedComponent = comp);
+    console.log(selectedComponent);
+    componentDe.triggerEventHandler('click', null);
+    expect(selectedComponent).toBe(expectedComponent);
+  });
   
 });
