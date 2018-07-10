@@ -25,15 +25,15 @@
             </div>  
             <div class="col-lg-2">
               <label class="col-lg-12">
-                <button type="button" class="btn btn-primary btn-add-new pull-right margined" (click)="removeResource(element,i18n.resources)">Delete resource</button>
+                <button type="button" class="btn btn-primary btn-add-new pull-right marginTop buttonWidth" (click)="removeResource(element,i18n.resources)">Delete resource</button>
               </label>
             </div>
           </div>
         </div>
+      <button type="button" class="btn btn-primary btn-add-new pull-right marginLeftRight buttonWidth" (click)="addNewResource(i18n)">Add resource</button>
+      <button type="button" class="btn btn-primary btn-add-new marginLeftRight buttonWidth" (click)="removeLanguage(i18n)">Remove {{i18n.name}}</button>
     </div>
-    <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="addNewResource(i18n)">Add new resource</button>
-    <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="removeLanguage(i18n)">Remove language</button>
   </div>
-  <button type="button" class="btn btn-primary btn-add-new pull-right topRightMargin" (click)="addNewLanguage()">Add new language</button>
+  <button type="button" class="btn btn-primary btn-add-new topRightMargin" (click)="addNewLanguage()">Add new language</button>
 </div>
 
