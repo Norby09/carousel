@@ -141,6 +141,7 @@ describe('Language test', () => {
     expect(language.resources).toEqual(config.resources);
 
   });
+
 });
 
 describe('Component test', () => {
@@ -187,6 +188,26 @@ describe('Component test', () => {
     component.saveLink(link);
     expect(component.links.length).toEqual(1);
     component.saveLink(link);
+    expect(component.links.length).toEqual(1);
+  });
+
+  it('should remove a link if the array length is greater than 1', () => {
+    const component = Comp.create();
+    const link1 = Link.create({ cssClass: "pull-right", style: "block", text: "@link1", tooltip: " ", url: " "});
+    const link2 = Link.create({ cssClass: "pull-right", style: "block", text: "@link2", tooltip: " ", url: " "});
+    const link3 = Link.create({ cssClass: "pull-right", style: "block", text: "@link3", tooltip: " ", url: " "});
+    component.links.push(link1);
+    component.links.push(link2);
+    component.links.push(link3);
+    component.removeLink(link3);
+    expect(component.links).toEqual([link1,link2]);
+  });
+
+  it('shouldn`t remove a link if the array length is 1', () => {
+    const component = Comp.create();
+    const link1 = Link.create({ cssClass: "pull-right", style: "block", text: "@link1", tooltip: " ", url: " "});
+    component.links.push(link1);
+    component.removeLink(link1);
     expect(component.links.length).toEqual(1);
   });
 
