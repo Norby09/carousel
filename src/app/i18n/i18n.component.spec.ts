@@ -46,7 +46,7 @@ describe('I18nComponent', () => {
 
     component.languages[0] = new Language();
     component.languages[0].resources = [resource1, resource2, resource3, resource4];
-    component.removeResource(resource1, component.languages[0].resources)
+    component.removeResource(resource1, component.languages[0].resources);
     expect(component.languages[0].resources).toEqual( [ resource2, resource3, resource4]);
 
   })

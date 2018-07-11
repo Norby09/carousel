@@ -1,0 +1,8 @@
+<!-- Demo custom template - @todo- delete before merge -->
+<div class="{{$ctrl.context.cssns}}-slide-content">
+    <div class="{{$ctrl.context.cssns}}-slide-title">{{$ctrl.slide.data.standardTitle[0].text}}</div>
+    <div class="{{$ctrl.context.cssns}}-slide-description">{{$ctrl.slide.data.standardDescription[0].text}}</div>
+    <div ng-show="$ctrl.slide.data.standardLink.length" class="{{$ctrl.context.cssns}}-slide-buttons">
+        <a ng-repeat="(key, link) in $ctrl.slide.data.standardLink track by key" class="{{$ctrl.context.cssns}}-slide-button {{link.cssClass}}" title="{{link.tooltip}}" href="{{link.url}}">{{link.text}}</a>
+    </div>
+</div>
