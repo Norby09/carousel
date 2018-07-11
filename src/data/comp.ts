@@ -20,10 +20,8 @@ export class Comp {
   }
 
   removeLink(link : Link){
-    if(this.links.length > 1) {
-      const index = this.links.indexOf(link);
-      this.links.splice(index,1);
-    }
+    const index = this.links.indexOf(link);
+    this.links.splice(index,1);
   }
 
   saveLink(link: Link) {
