@@ -1,0 +1,45 @@
+<!--===== Custom style =====-->
+<style>{{$ctrl.settings.templateStyle}}</style>
+
+<!--===== Wrapper =====-->
+<div ng-if="$ctrl.items.length" class="{{$ctrl.cssns}} {{$ctrl.cssns + '-animation-' + $ctrl.animation}}">
+    <!--===== Loading =====-->
+    <div class="atlas--ui-blocking-overlay" ng-class="{'atlas--ui-blocking-overlay-is-visible' : $ctrl.carouselLoading}">
+        <div class="atlas--ui-loader"></div>
+    </div>
+
+    <!--===== Controls =====-->
+    <span
+        ng-if="$ctrl.showControls"
+        ng-click="$ctrl.showPrev(); $ctrl.stopAutoSliding()"
+        class="bl-icon-arrow-left {{$ctrl.cssns}}-slide-control {{$ctrl.cssns}}-slide-control-left">
+    </span>
+    <span
+        ng-if="$ctrl.showControls"
+        ng-click="$ctrl.showNext(); $ctrl.stopAutoSliding()"
+        class="bl-icon-arrow-right {{$ctrl.cssns}}-slide-control {{$ctrl.cssns}}-slide-control-right" >
+    </span>
+
+    <!--===== Bullets =====-->
+    <div ng-if="$ctrl.showControls" class="{{$ctrl.cssns}}-slide-bullets">
+        <span ng-repeat="(key, item) in $ctrl.items track by item.id"
+           ng-click="$ctrl.show(key); $ctrl.stopAutoSliding()"
+           ng-class="{'{{$ctrl.cssns}}-slide-bullet-active': key == $ctrl.state.current}"
+           class="{{$ctrl.cssns}}-slide-bullet">
+        </span>
+    </div>
+
+    <!--===== Slides =====-->
+    <div
+        class="{{$ctrl.cssns}}-slides"
+        ng-style="{transform: 'translate(' + (-100 * $ctrl.state.current) + '%, 0%)'}">
+        <!--===== Individual slide =====-->
+        <div
+            ng-repeat="(key, item) in $ctrl.items track by item.id"
+            ng-class="{'{{$ctrl.cssns}}-slide-active': key == $ctrl.state.current}"
+            class="{{$ctrl.cssns}}-slide"
+            ng-style = "{left: (100 * key) + '%'}">
+            <login-carousel-slide class="{{$ctrl.cssns}}-slide-component" slide="item" context="$ctrl"  config="$ctrl.data"></login-carousel-slide>
+        </div>
+    </div>
+</div>

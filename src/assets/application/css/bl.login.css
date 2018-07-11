@@ -1,0 +1,193 @@
+.bl--login {
+    position: absolute;
+    z-index: 1;
+    clear: both;
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #fff;
+    top: 0;
+}
+
+.bl--login-login::after {
+    display: block;
+    clear: both;
+}
+
+.bl--login-left {
+    display: block;
+    float: left;
+    width: calc(100% - 400px);
+    height: 100%;
+    background: no-repeat left center #111516;
+    background-size: cover;
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+    .bl--login-left {
+        float: right;
+        clear: left;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+}
+
+.bl--login-right {
+    text-align: center;
+    width: 400px;
+    display: block;
+    float: right;
+    height: 100%;
+    background-color: #fff;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+.bl--login-right .bl--login-logo {
+    margin: 58px auto 0 auto;
+    background: url("../../../Images/Images/PL/BlackLine/bkl-logo.png") center center no-repeat;
+    width: 100%;
+    height: 40px;
+    display: block;
+}
+
+@media all and (min-width: 769px) and (max-width: 1024px) {
+    .bl--login-right .bl--login-logo {
+        margin: 108px auto 30px auto;
+    }
+}
+
+@media all and (min-width: 321px) and (max-width: 480px) {
+    .bl--login-right .bl--login-logo {
+        margin: 15px auto 5px auto;
+    }
+}
+
+@media all and (min-width: 481px) and (max-width: 768px) {
+    .bl--login-left {
+        width: 100%;
+        height: 100vh;
+        float: none;
+        clear: both;
+    }
+    .bl--login-right {
+        width: 100%;
+        float: none;
+        height: auto;
+        clear: right;
+        padding-bottom: 30px;
+    }
+}
+
+@media all and (min-width: 321px) and (max-width: 480px) {
+    .bl--login-left {
+        display: none !important;
+    }
+    .bl--login-right {
+        margin: 0 auto;
+        float: none;
+        clear: both;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media all and (max-width: 320px) {
+    .bl--login-left {
+        display: none !important;
+    }
+    .bl--login-right {
+        margin: 0 auto;
+        float: none;
+        clear: both;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+.bl--login-input-field {
+    position: relative;
+}
+
+.bl--login-input-field-password {
+    margin-top: -1px;
+}
+
+.bl--login-input-field-invalid {
+    z-index: 1;
+}
+
+.bl--login-input-field .bl--login-validator {
+    position: absolute;
+    left: 0;
+}
+
+.bl--login-input-field .bl--login-label {
+    position: absolute;
+    line-height: 56px;
+    height: 56px;
+    font-family: "Arial", "Helvetica", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 0.6px;
+    transform: translate(0, -100%) scale(1, 1);
+    transition: transform 0.2s ease-in-out;
+    left: 40px;
+    color: #999;
+    margin-top: 2px;
+}
+
+.bl--login-input-field .bl--login-input {
+    margin: 0 20px;
+    height: 56px;
+    width: calc(100% - 40px);
+    display: block;
+    background: #fff;
+    border-radius: 0;
+    border: 1px solid #ddd;
+    font-family: "arial-pro-medium", "Arial", "Helvetica", sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.6px;
+    padding: 14px 20px 0 20px;
+    box-sizing: border-box;
+    box-shadow: none;
+    border-collapse: collapse;
+}
+
+.bl--login-input-field .bl--login-input:focus {
+    outline: none;
+    outline-offset: 0;
+}
+
+.bl--login-input-field .bl--login-input::-ms-clear {
+    display: none;
+}
+
+.bl--login-input-field .bl--login-input.bl--login-first {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.bl--login-input-field .bl--login-input.bl--login-last {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.bl--login-input-field .bl--login-input.bl--login-error, .bl--login-input-field .bl--login-input.ng-empty.ng-dirty {
+    border-color: #ed1c24;
+}
+
+.bl--login-input-field .bl--login-input:focus + .bl--login-label,
+.bl--login-input-field .bl--login-input.bl--login-active + .bl--login-label {
+    transform: translate(-15%, -130%) scale(0.6875, 0.6875);
+}
+
+.bl--login-input-field .bl--login-input:-webkit-autofill + .bl--login-label {
+    transform: translate(-15%, -130%) scale(0.6875, 0.6875);
+}
+
+.bl--login-form-submitted .bl--login-input.ng-invalid {
+    border-color: #ed1c24;
+}

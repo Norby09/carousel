@@ -1,0 +1,39 @@
+<div class="{{::$ctrl.context.cssns}}-slide-background"
+	ng-style="{backgroundImage: 'url(' + $ctrl.slide.backgroundUrl + ')', backgroundColor: $ctrl.slide.backgroundColor}">
+	<!--===== Standard slide content =====-->
+	<div ng-if="$ctrl.slide.type === $ctrl.context.types.standard" class="{{::$ctrl.context.cssns}}-slide-content">
+		<div class="{{::$ctrl.context.cssns}}-slide-title {{::$ctrl.slide.components.title.cssClass}}"
+			ng-attr-style="{{::$ctrl.slide.components.title.style}}">
+			{{::$ctrl.getResource($ctrl.slide.components.title.text)}}
+		</div>
+		<div class="{{::$ctrl.context.cssns}}-slide-description {{::$ctrl.slide.components.description.cssClass}}"
+			ng-attr-style="{{::$ctrl.slide.components.description.style}}">
+			{{::$ctrl.getResource($ctrl.slide.components.description.text)}}
+		</div>
+		<div ng-show="$ctrl.slide.components.links.length" class="{{::$ctrl.context.cssns}}-slide-buttons">
+			<a ng-repeat="(key, link) in $ctrl.slide.components.links track by key"
+				class="{{::$ctrl.context.cssns}}-slide-button {{::link.cssClass}}" ng-attr-style="{{::link.style}}"
+				title="{{::$ctrl.getResource(link.tooltip)}}" href="{{::link.url}}" target="_blank">
+				{{::$ctrl.getResource(link.text)}}
+			</a>
+		</div>
+	</div>
+
+	<!--===== Custom elements slide content =====-->
+	<div ng-if="$ctrl.slide.type === $ctrl.context.types.custom" class="{{::$ctrl.context.cssns}}-slide-content">
+		<div ng-repeat="(key, item) in $ctrl.slide.components.text track by key"
+			class="{{::$ctrl.context.cssns}}-slide-title {{::item.cssClass}}"
+			ng-attr-style="{{::item.style}}">
+			{{::$ctrl.getResource(item.text)}}
+		</div>
+		<a ng-repeat="(key, link) in $ctrl.slide.components.links track by key"
+			class="{{::$ctrl.context.cssns}}-slide-button {{::link.cssClass}}"
+			ng-attr-style="{{::link.style}}" title="{{::$ctrl.getResource(link.tooltip)}}"
+			href="{{::link.url}}" target="_blank">
+			{{::$ctrl.getResource(link.text)}}
+		</a>
+	</div>
+
+	<!--===== Custom template slide content =====-->
+	<div ng-if="$ctrl.slide.type === $ctrl.context.types.customTemplate" ng-include="$ctrl.slide.templateUrl"></div>
+</div>

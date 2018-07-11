@@ -35,4 +35,5 @@ import { I18nComponent } from './i18n/i18n.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}
