@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LanguagesService } from '../app/languages.service'
+import { LanguagesService } from '../app/languages.service';
+
 @Component({
   selector: 'bl-carousel-configurator',
   templateUrl: './app.component.html',
