@@ -7,11 +7,11 @@
 	'use strict';
 
 	angular
-		.module('bl.login')
+		.module('bl.login', ['ngRoute', 'ngSanitize', 'bl.globalization'])
 		.value('bl.login.carousel.config', {})
 		.value('bl.login.carousel.configUrl', '')
 		.component('loginCarousel', {
-			templateUrl: '/assets/global/modules/login/carousel/carousel.component.html',
+			templateUrl: './assets/application/carousel/carousel.component.html',
 			bindings: {
 				'animation': '@',
 				'cssns': '@',
