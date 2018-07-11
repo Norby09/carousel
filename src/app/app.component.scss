@@ -1,12 +1,5 @@
 @import 'mixins';
 
-.bl-carousel--input-import {
-  @include base-input;
-
-  display: block;
-  width: 90%;
-}
-
 label {
   font-weight : normal !important;
   font-size: 16px !important;
@@ -31,6 +24,8 @@ hr {
 
 .container {
   margin-top: 2px;
+  margin-left : 0px;
+  width : 700px;
 }
 
 .btn {
@@ -59,7 +54,6 @@ hr {
 }
 
 .btn-add-new {
-  font-size: 14px;
   color: darkblue;
   background-color: cornflowerblue;
   border: none;
@@ -143,5 +137,11 @@ select.ng-dirty {
 .aligned {
   margin-left: 22px;
 }
+
+.overwritePadding {
+  padding-right: 2px;
+  padding-left: 2px;
+}
+
 
 

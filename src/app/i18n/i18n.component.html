@@ -4,7 +4,8 @@
     <div class="row hr">
 
       <div class="col-lg-2">
-        <label class="col-lg-12"> Language {{languages.indexOf(i18n) + 1}} :
+        <label class="col-lg-12 overwritePadding"> 
+          Language
           <select class="form-control" [(ngModel)]="i18n.name">
             <option *ngFor="let lang of selectableLanguages" [value]="lang"> {{lang}} </option>
           </select>
@@ -13,24 +14,24 @@
 
       <div class="col-lg-10">
         <div class="row" *ngFor="let element of i18n.resources">
-            <div class="col-lg-5">
-              <label class="col-lg-12"> Resource Name :
+            <div class="col-lg-5 overwritePadding">
+              <label class="col-lg-12 overwritePadding"> Resource Name :
                 <input type="text" class="form-control" [(ngModel)]="element.name" placeholder="Enter Resource Name" />
               </label>
             </div>
-            <div class="col-lg-5">
-              <label class="col-lg-12"> Resource Description :
+            <div class="col-lg-5 overwritePadding">
+              <label class="col-lg-12 overwritePadding"> Resource Description :
                 <input type="text" class="form-control" [(ngModel)]="element.value" placeholder="Enter Resource Description" />
               </label>
             </div>  
-            <div class="col-lg-2">
-              <label class="col-lg-12">
-                <button type="button" class="btn btn-primary btn-add-new pull-right marginTop buttonWidth" (click)="removeResource(element,i18n.resources)">Delete resource</button>
+            <div class="col-lg-2 overwritePadding">
+              <label class="col-lg-12 overwritePadding">
+                <button type="button" class="btn btn-primary btn-add-new pull-right buttonWidth marginTop" (click)="removeResource(element,i18n.resources)">Delete res.</button>
               </label>
             </div>
           </div>
         </div>
-      <button type="button" class="btn btn-primary btn-add-new pull-right marginLeftRight buttonWidth" (click)="addNewResource(i18n)">Add resource</button>
+      <button type="button" class="btn btn-primary btn-add-new pull-right marginLeftRight buttonWidth" (click)="addNewResource(i18n)">Add res.</button>
       <button type="button" class="btn btn-primary btn-add-new marginLeftRight buttonWidth" (click)="removeLanguage(i18n)">Remove {{i18n.name}}</button>
     </div>
   </div>

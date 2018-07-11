@@ -2,17 +2,17 @@
   <h4 class="hr">Title</h4>
   <div class="row">
     <div class="col-lg-4">
-      <label class="col-lg-12"> Css class :
+      <label class="col-lg-12 overwritePadding"> Css class :
         <input type="text" class="form-control" placeholder="Enter Css class" [(ngModel)]="title.cssClass" />
        </label>
     </div>
     <div class="col-lg-4">
-      <label class="col-lg-12"> Style :
+      <label class="col-lg-12 overwritePadding"> Style :
         <input type="text" class="form-control" placeholder="Enter Style" [(ngModel)]="title.style" />
        </label>
     </div>
     <div class="col-lg-4">
-        <label class="col-lg-12" (mouseenter)="loadResources()"> Text :
+        <label class="col-lg-12 overwritePadding" (mouseenter)="loadResources()"> Text :
         <select class="form-control" [(ngModel)]="title.text"> 
           <option *ngFor="let resource of resources" [value]="resource">{{resource}}</option>
         </select>

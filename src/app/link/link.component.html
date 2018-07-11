@@ -1,33 +1,33 @@
 <div class="link-container hr">
   <div class = "row">
     <div class="col-lg-6">
-      <label class="col-lg-12">Css Class :
+      <label class="col-lg-12 overwritePadding">Css Class :
           <input type="text" [(ngModel)]="link.cssClass" class="form-control" placeholder="Enter Css class.." />
       </label>
     </div>
     <div class="col-lg-6">
-      <label class="col-lg-12"> Style :
+      <label class="col-lg-12 overwritePadding"> Style :
           <input type="text" [(ngModel)]="link.style" class="form-control" placeholder="Enter Style..." />
       </label>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-6" (mouseenter)="loadResources()">
-      <label class="col-lg-12"> Text :
+      <label class="col-lg-12 overwritePadding"> Text :
         <select class="form-control" [(ngModel)]="link.text">
           <option *ngFor="let resource of resources" [value]="resource">{{resource}}</option>
         </select>
       </label>
     </div>
     <div class="col-lg-6">
-      <label class="col-lg-12"> Tooltip :
+      <label class="col-lg-12 overwritePadding"> Tooltip :
           <input type="text" [(ngModel)]="link.tooltip" class="form-control" placeholder="Enter Tooltip..." />
       </label>
     </div>
   </div>
   <div class="row">
     <div class="col-lg-12">
-      <label class="col-lg-12"> Url :
+      <label class="col-lg-12 overwritePadding"> Url :
           <input type="url" [(ngModel)]="link.url" pattern="^(https|http)://.*" class="form-control" placeholder="Enter Url..." />
       </label>
     </div>
