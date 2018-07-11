@@ -203,12 +203,4 @@ describe('Component test', () => {
     expect(component.links).toEqual([link1,link2]);
   });
 
-  it('shouldn`t remove a link if the array length is 1', () => {
-    const component = Comp.create();
-    const link1 = Link.create({ cssClass: "pull-right", style: "block", text: "@link1", tooltip: " ", url: " "});
-    component.links.push(link1);
-    component.removeLink(link1);
-    expect(component.links.length).toEqual(1);
-  });
-
 });
