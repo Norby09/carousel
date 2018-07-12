@@ -30,6 +30,17 @@ app.post('/save', function(req, res) {
 
 });
 
+app.get('/read', function(req, res) {
+
+    fs.readFile("../src/carousel-preview.json", function(err, resp) {
+        if(err) {
+            return res.status(500).send('Could not read the file!');
+        }
+        res.send(resp);
+    });
+
+});
+
 app.listen(port, function () {
     console.log(`Api running on port ${port}`);
 });
