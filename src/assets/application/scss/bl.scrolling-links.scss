@@ -1,0 +1,102 @@
+/* tab-like header-level elements that scroll down the page */
+
+// assumes the class is on a <ul>
+.bl--scrolling-links {
+	@include clearfix;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	max-width: 100%;
+
+	//left floating horizontal
+	//list items that contain the clickable tabs
+	li {
+		float: left;
+		padding: 0;
+		margin: 0 31px 0 0;
+		whitespace: nowrap;
+
+		&:last-child {
+			margin-right: 0;
+
+			//if last child isn't ellipsis, refactor the following, it assumes the last <li> contains the ellipsis.
+			.bl--anchor-link {
+				font-size: 16px;
+				padding-top: 0;
+			}
+
+		}
+
+
+	}
+
+	//tab links themselves
+	.bl--anchor-link {
+		position: relative;
+		display: block;
+		height: 26px;
+		border-bottom: 3px solid transparent;
+		color: $grey-medium;
+		font-size: 10px;
+		text-transform: uppercase;
+		letter-spacing: 0.6px;
+
+		&:hover {
+			color: $blue-primary;
+		}
+
+		&.bl--is-selected {
+			border-color: $blue-primary;
+			color: $blue-primary;
+		}
+
+	}
+
+	//for vertical/sidebar mode
+	//possibly deprecated, this is a vertical orientation modifier for the tabs
+	&.bl--is-vertical {
+
+		li {
+			float: none;
+			margin-right: 0;
+			margin-bottom: 5px;
+
+			&:last-child {
+				margin-right: 0;
+
+				.bl--anchor-link {
+					font-size: 13px;
+					padding-top: 3px;
+				}
+
+			}
+
+		}
+
+		//link itself
+		.bl--anchor-link {
+			height: auto;
+			line-height: 23px;
+		}
+
+		//vertical selected link
+		.bl--is-selected {
+			border: none;
+
+			//the actual bar showing selected state underneath the link
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -16px;
+				width: 3px;
+				height: 100%;
+				background-color: $blue-primary;
+
+			}
+
+		}
+
+	}
+
+}

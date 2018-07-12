@@ -1,0 +1,109 @@
+//general sizing defaults
+$standard-border: 1px solid $grey-bright;
+$standard-font-size: 12px; //base size for <p>, <table>, <input>
+$super-sub-script-font-size: 14px; //ONLY use for subscript or superscript styling.  DO NOT USE FOR TEXT OR TITLES.
+$medium-font-size: 10px; //base size for <p>, <table>, <input>
+$micro-font-size: 8px;
+$standard-line-height: 16px;
+$standard-border-radius: 2px;
+$standard-focus-glow: 0 0 6px 1px $blue-bright;
+$standard-spacing: 10px; //spacing between buttons, ui elements
+$standard-spacing-small: 5px; //spacing between buttons, ui elements
+$standard-spacing-large: 15px; //spacing between buttons, ui elements
+$container-padding: 20px; //spacing around modules in body
+$container-padding-negative: -20px; //spacing around modules in body
+$container-padding-large: 30px; //spacing around modules in body
+$container-padding-small: 15px; //spacing around modules in body
+$container-padding-smallest: 10px; //tiny spacing
+$container-padding-tiny: 5px; //really tiny spacing
+$standard-margin: 20px; //this is the default spacing below <p>, <ul>, modules, etc...
+$standard-pmm-margin: 30px; //this is the default margin between components in recurrence/programs pages
+$half-standard-margin: 10px;
+$double-standard-margin: 40px;
+
+$small-font-size: 11px;
+$smaller-font-size: 10px;
+$normal-font-size: 12px;
+$input-font-size: 13px;
+$large-font-size: 14px;
+$xl-font-size: 16px;
+
+$standard-letter-spacing: 0.5px;
+
+// Global navigation
+$global-nav-height: 66px;
+
+/* min site width */
+$global-min-width: 1024px;
+
+//z-index bank.
+//don't use these directly any longer, try to use them to add a layer in the list below.  There should only be about 10 total when all necessary layers have been added.
+$zindex-1: 1;
+$zindex-5: 5;
+$zindex-10: 10;
+$zindex-20: 20;
+$zindex-30: 30;
+$zindex-40: 40;
+$zindex-50: 50;
+$zindex-75: 75;
+$zindex-100: 100;
+$zindex-200: 200;
+$zindex-500: 500;
+$zindex-panel-slider: 2000;
+$zindex-modal-level: 5000;
+$zindex-xl: 1000001;
+
+
+/* USE THESE z-index layers going forward, only use the bank above for these */
+//use for dropdowns, filter panels, etc...  The modal +1 makes sure if we use a dropdown in a modal, it shows properly
+
+//this is the lowest, use when you have 2 elements with no z-index or for those whose ancestors have no z-index.  used for general sibling layering.
+$zindex-lowest: $zindex-1;
+//dropdown layer, used for date picker dropdown, ui-select and standard dropdown options.  Layered under the modal.  Individual dropdown elements will have their z-index increased separately in a 'modal open context' to account for body append.
+$zindex-dropdown: $zindex-modal-level - 1;
+//use for modals 
+$zindex-modal: $zindex-modal-level;
+// Used for global menu. And added some room (the +5) for other zIndexes that might be used between the side panel and the navigation.
+// The range of zIndexes used in the main menu is $zindex-main-menu +/-1 at the moment.
+$zindex-main-menu: $zindex-panel-slider + 5;
+
+// TODO: Stop using custom z-indexes for PMM
+$zindex-pmm-modal-fade: 9999;
+$zindex-pmm-modal-overlay: 10000;
+$zindex-pmm-modal-component: 10001;
+$zindex-pmm-overlay: 99998;
+$zindex-pmm-component-box-overlayed: 99999;
+$zindex-pmm-modal-dropdown: 100000;
+
+
+/* box shadow */
+$standard-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+$modal-shadow: 0 20px 44px rgba(0, 0, 0, 0.1);
+$sidebar-shadow: 0 -10px 10px rgba(221, 221, 221, 1);
+//Use for buttons or other small elements that need tighter offsets
+$small-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.23);
+
+/* animation */
+$standard-transition-duration: 0.2s;
+$slow-transition-duration: 0.5s;
+$slowest-transition-duration: 1s;
+$standard-transition: all $standard-transition-duration ease;
+$fast-transition: all 0.1s ease;
+$fast-transform-transition: transform 0.1s ease; //turn all of these into mixins
+
+
+
+/* transforms */
+$transform-rotate-clock: rotate(180deg); // turn upside down clockwise (direction is important only when animating)
+$transform-rotate-counter: rotate(-180deg); // turn upside down counter clockwise (direction is important only when animating)
+
+$standard-transition-transform: transform 0.2s ease;
+
+$standard-sidebar-width: 340px;
+
+// Breakpoints for Responsive Design
+$width-desktop-min: 1024px;
+$height-desktop-min: 768px;
+
+$width-mobile-min: 480px;
+$height-mobile-min: 320px;

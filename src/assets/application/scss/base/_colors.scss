@@ -1,0 +1,75 @@
+/* AVAILABLE COLORS - ONLY USE THESE */
+//I tried several approaches to this, finally settled on a variant of this: https://davidwalsh.name/sass-color-variables-dont-suck
+//Reference these vars directly when embedding a color, and if you need a color that's not here, ask UX if they have added the color to their master file.  If there is indeed a new color added to the project, please check with mike.curts@blackline.com for inclusion into this file.
+
+$white: #fff;
+$black: #000;
+$red: #ed1c24;
+$red-light: #fcd2d3;
+$green: #7dbc57;
+$yellow: #f79b00;
+$yellow-light: #fdf2d5;
+
+
+
+//BLUES
+$blue-primary: #2e7ac1;
+$blue-dark: #005b7f;
+$blue-bright: #00bff0;
+$blue-light: #d3f1fc;
+$blue-extra-light: #f0fafe;
+$blue-shade: #a6c9e6;
+$blue-pale: #4ca2e8;
+
+//BLUE for CTA and anchors
+//hover for primary buttons ASK UX
+$blue-primary-hover: #2b65ae;
+//if a text link has blue primary text, this is its hover ASK UX 
+$blue-link-hover: #114e9f;
+
+//greys
+$grey-dark: #464646;
+$grey-medium: #999;
+$grey-bright: #ddd;
+$grey-light: #ccc;
+$grey-extra-light: #eee;
+$grey-ultra-light: #f8f8f8;
+
+
+//Purples!
+$purple-primary: #7e66A9;
+$purple-light: #f2eff6;
+
+
+/* 
+DO NOT USE THESE
+They are only here until the /pmm/ *.scss files are updated to use the proper colors
+*/
+
+ $primary-blue: #2e7ac1;
+ $disabled-button-grey: #b9b9b9;
+ $standard-disabled-button-bg-color: $disabled-button-grey;
+ $icon-grey: #c4c4c4;
+ $text-grey: #999;
+ $border-grey: #d8d8d8;
+ $standard-border-color: $border-grey;
+ $border-grey-hover: #c5c5c5;
+ $standard-border-hover-color: $border-grey-hover;
+ $contenteditable-focus-blue: #8dc4f8;
+ $input-focus-border-color: $contenteditable-focus-blue;
+ $page-title-bg-grey: #f8f8f8;
+ $focus-blue: #b2e5fc;
+ $link-hover-blue: #114e9f;
+ $page-bg-grey: #fbfcfc;
+ $sidebar-placeholder: #a5a5a5;
+ $sidebar-placeholder-focus: #c1c1c1;
+ $sidebar-bg-grey: #eff0f0;
+ $cta-hover-blue: #2b65ae;
+ $dropdown-filters-bg: #fdfdfd;
+ $standard-link-color: $primary-blue;
+ $standard-link-hover: $link-hover-blue;
+ $nav-bar-grey: #d1d1d1;
+ $grey-90: #e6e6e6;
+ $column-bg-sorted: #f2f3f3;
+
+ /* /DO NOT USE THESE  */

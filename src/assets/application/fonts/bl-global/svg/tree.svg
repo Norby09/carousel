@@ -1,0 +1,17 @@
+<svg id="Tree_Icon" data-name="Tree Icon" xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path class="cls-1" d="M176.765,41h146.47V187.429H176.765V41Z"/>
+  <path id="Rectangle_80_copy" data-name="Rectangle 80 copy" class="cls-1" d="M1,304.571H147.471V451H1V304.571Z"/>
+  <path id="Rectangle_80_copy_2" data-name="Rectangle 80 copy 2" class="cls-1" d="M176.765,304.571h146.47V451H176.765V304.571Z"/>
+  <path id="Rectangle_80_copy_3" data-name="Rectangle 80 copy 3" class="cls-1" d="M352.529,304.571H499V451H352.529V304.571Z"/>
+  <path class="cls-1" d="M235.353,158.143h29.3V333.857h-29.3V158.143Z"/>
+  <path id="Shape_228_copy_2" data-name="Shape 228 copy 2" class="cls-1" d="M59.587,216.714H88.882V392.428H59.587V216.714Z"/>
+  <path id="Shape_228_copy_3" data-name="Shape 228 copy 3" class="cls-1" d="M411.117,216.714h29.295V392.428H411.117V216.714Z"/>
+  <path id="Shape_228_copy" data-name="Shape 228 copy" class="cls-1" d="M59.587,246V216.714H440.412V246H59.587Z"/>
+</svg>

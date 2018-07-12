@@ -31,7 +31,6 @@
 	 * @private
 	 */
 	function LoginCarouselSlideController(i18n) {
-		debugger;
 		/**
 		 * Retrieves the proper translation for the resource specified by `id` in the current culture.
 		 * 	If no translation exists for the current culture, defaults to the base language.

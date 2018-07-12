@@ -1,0 +1,272 @@
+//view-specific vars
+$input-width-height: 11px;
+
+
+
+//used for two column form field layouts, namely an input with its associated button
+//input should fill available space not taken up by the button
+.bl--field-wrapper {
+	position: relative;
+	margin-top: $container-padding-smallest;
+	display: flex;
+
+	.bl--text-input,
+	.bl--editable-field  {
+		//typically inputs in labels have a top 10px padding, but we move that to the field wrapper in this case so we can handle all margins at once
+		margin-top: 0 !important;
+	}
+
+	//only the input
+	.bl--text-input {
+		flex: 1 1 auto;
+	}
+
+	//div that surrounds the fake (hidden) input type="text" and the actual upload button.  Inside this, you layer the actual upload control on the top and the visible button underneath.  Clicking the upload control makes it look like you're clicking the upload button.
+	.bl--upload-button-wrapper {
+		position: relative;
+		float: left;
+		margin-left: $container-padding-smallest;
+		flex: 0 0 auto;
+	}
+
+	//visually hidden upload input element.
+	//this SHOULD cover the button
+	.bl--upload-input-proxy {
+		position: absolute;
+		z-index: $zindex-lowest;
+		opacity: 0;
+		top: 0;
+		left: 0;
+		line-height: 32px; //match the button
+		width: 100%;
+		height: 100%;
+		font-size: 0;
+		cursor: pointer; //make it look like you're hovering only a button
+
+		//ugly, but we are covering up the upload button with the upload input, and we can't use pointer events to allow the hover to pass through, so we manually make it look like you're hovering the button when you're really hovering the hidden upload control
+		&:hover {
+
+			& + .bl--cta-button-small {
+				background-color: $blue-primary-hover;
+			}
+
+		}
+
+	}
+
+}
+
+/* Checkbox group */
+//used to allow 2 or more choices visually via buttons.  1 button = 1 state of x possible choices.  Typically includes a hidden checkbox to indicate none chosen
+.bl--checkbox-group {
+	@include clearfix;
+	display: inline-block;
+
+	.bl--checkbox-group-column {
+		float: left;
+		position: relative;
+		margin-right: $standard-spacing-small;
+		min-width: 20px;
+		min-height: 20px;
+
+		&:first-child {
+			min-width: 0;
+
+		}
+
+		&:first-child,
+		&:last-child {
+
+			margin-right: 0;
+		}
+
+	}
+
+}
+
+/* Errors */
+//This is a general-purpose error for all field/label combos.  Assumes there is an input inside a <label>
+//ALWAYS add the .bl--error class to the label or highest-level grouping parent for the input.  CSS handles the rest.
+.bl--error {
+	color: $red !important;
+
+	//if the error is on an input inside the label
+	.bl--text-input {
+		border-color: $red;
+
+		&:focus {
+			outline: none;
+			border-color: $blue-bright;
+
+			&:hover {
+				border-color: $blue-bright;
+			}
+
+		}
+	}
+
+	.bl-pmm--selectField-control .bl-pmm--selectField-control-input { // sass-lint:disable-line class-name-format
+		border-color: $red;
+	}
+
+	// Force red on the inner span for text labels
+	.bl--text-label-text {
+		color: $red;
+	}
+
+	//if the error is for a simulated input that's adjacent to the label (as will be the case with contenteditable elements)
+	& + .bl--content-editable-field {
+		//compensate for the contenteditable fake border, this puts the elements where they belong
+		position: relative;
+		top: 5px;
+		left: 10px;
+
+		.bl--inline-title-text {
+
+			//force the fake input to look like it has an error
+			&::before {
+				display: block;
+				border: 1px solid $red;
+				background-color: $white;
+			}
+
+			//hide the edit icon when there is an error
+			&::after {
+				display: none;
+			}
+
+		}
+
+	}
+}
+
+// Inline tooltip trigger, small circle with italic I inside.  Can be used wherever.
+.bl--inline-tooltip-trigger {
+	display: inline-block;
+	line-height: 1;
+	width: 10px;
+	height: 10px;
+	font-size: $smaller-font-size;
+	color: $grey-dark !important;
+	cursor: pointer;
+	vertical-align: top;
+}
+
+
+//DEPRECATED DO NOT USE  -- ICONS ARE NOW INCLUDED INSIDE THE INPUT'S FOOTPRINT
+/* various input-related elements */
+//icon in a block before the input, make sure to include the this top level element
+.bl--input-icon-wrap {
+	@include clearfix;
+	position: relative;
+	//reserve space for the absolute pos. icon, input just sits outside of this:
+	padding-left: 25px;
+
+	.bl--input-icon {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 25px;
+		height: 32px;
+		border-radius: $standard-border-radius 0 0 $standard-border-radius;
+		vertical-align: top;
+		border: $standard-border;
+		border-right: none;
+		color: $grey-light;
+		background-color: $white;
+
+		//modify the input
+		& + .bl--text-input {
+			vertical-align: top;
+			border: $standard-border;
+			border-left: none;
+			border-radius: 0 $standard-border-radius $standard-border-radius 0;
+		}
+
+		[class^="bl-icon"] {
+			position: absolute;
+			font-size: $standard-font-size;
+			top: 7px;
+			left: 10px;
+		}
+
+	}
+
+}
+
+
+/* For non-form elements that are editable, we have the contenteditable property for divs, <hx>, etc...  This will create input-like styling on hover of a non-input element */
+//this is the common formatting for the fake input element.  This will simulate an input around a non-input that can be edited.
+%fake-input {
+	content: '';
+	display: block;
+	width: calc(100% - -20px);
+	height: calc(100% - -16px);
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	border: 1px solid transparent;
+	z-index: -1;
+}
+
+
+/* Field/contenteditable status classes */
+//state to handle busy field
+
+//@todo: deprecate this because the element has been rebuilt
+.bl--field-is-busy {
+	position: relative;
+
+	//compensate for graphic and disable that space
+	padding-right: $container-padding-large;
+
+	//inputs and text areas are consistent, but this class can be added to any element with contenteditable="true".  these elements won't be inputs, so add the icon with a pseudo element
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: -1px;
+		right: 0;
+		width: 20px;
+		height: 20px;
+		background-image: url('../images/bl-global/bl--busy-spinner.gif');
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	//always position bottom right for text inputs.  it will visually align center on single-line text inputs and bottom right on textareas.  magic.
+	&.bl--text-input {
+		background-image: url('../images/bl-global/bl--busy-spinner.gif');
+		background-position: bottom 3px right 2px;
+		background-repeat: no-repeat;
+	}
+}
+
+//@todo: deprecate this because the element has been rebuilt
+.bl--field-is-saved {
+	position: relative;
+	@include iconAfter('checkmark');
+	//compensate for graphic and disable that space
+	padding-right: $container-padding-large;
+
+	&::after {
+		position: absolute;
+		right: 5px;
+		bottom: 1px;
+		width: 13px;
+		font-size: 14px;
+		color: $green;
+		line-height: 1;
+	}
+
+}
+
+/* replacement for contentEditable property on objects */
+//this handles taking a tag like <h2> and inserting an input inside that retains the formatting from the <h2> tag, and not from standard input styling.
+//@todo: this needs to be refactored, it's ugly and not up to spec
+
+.bl--error {
+	+ .bl--content-editable-field {
+		position: static;
+	}
+}

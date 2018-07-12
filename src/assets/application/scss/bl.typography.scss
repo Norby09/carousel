@@ -1,0 +1,141 @@
+//namespace tags to prevent collisions
+.prime-2016 {
+
+	b,
+	strong {
+		font-family: $font-bold;
+		font-weight: normal;
+	}
+
+
+
+	//only use <h1> - <h4> tags in a rich text editor or something.  Don't use these tags for title formatting.  Instead, use the .bl--header-1 - 4 classes below.  Since we have dynamic modules in some pages, we can't guarantee an <h2> would come within the scope of <h1>, there can be multiple <h1>-like elements etc...  Use the proxy classes below instead.
+	h1,
+	h2,
+	h3,
+	h4,
+	.bl--header-1,
+	.bl--header-2,
+	.bl--header-3,
+	.bl--header-4 {
+		color: $black;
+		margin: 0 0 $standard-margin 0;
+		font-family: $font-bold;
+		font-weight: 100; //let the font handle the bold
+		letter-spacing: 0.1px; //I know, I know
+		line-height: 1; //unitless, assumes no text wrapping.  Change if multiline
+	}
+
+
+	/* Standard H1 content title for pages */
+	h1,
+	.bl--header-1 {
+		font-size: 22px;
+		margin: 0 0 $standard-margin;
+	}
+
+	/* Section titles under h1, expand/collapse title, etc... */
+	h2,
+	.bl--header-2 {
+		font-size: 16px;
+	}
+
+	h3,
+	.bl--header-3 {
+		font-size: 14px;
+	}
+
+	h4,
+	.bl--header-4 {
+		font-size: 12px;
+	}
+
+	//ul, ol, p
+	.bl--list,
+	.bl--text-block {
+		margin: 0 0 $standard-margin;
+
+		/* 0 out last child bottom spacing */
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		li {
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+	}
+
+	hr {
+		border: none;
+		background-color: $grey-light;
+		height: 1px;
+		line-height: 1px;
+		margin: 0 0 $standard-margin;
+	}
+
+	a {
+		text-decoration: none;
+		color: $blue-primary;
+
+		// for anchor tags that don't have an 'href' attribute.
+		&:not([href]) {
+			cursor: pointer;
+		}
+
+		&:hover {
+			color: $blue-link-hover;
+		}
+
+		// a default-ish text link used in <p>
+		&.bl--text-link {
+			text-decoration: underline;
+		}
+
+		&.bl--text-link-disabled,
+		&.bl--text-link-disabled:hover {
+			color: $grey-medium;
+			cursor: default;
+			border-color: $grey-bright;
+			text-decoration: none;
+		}
+	}
+
+}
+
+p {
+	margin: 0 0 $standard-margin 0;
+}
+
+//Superscript tag
+sup {
+	vertical-align: top;
+}
+
+//Subscript tag
+sub {
+	vertical-align: bottom;
+}
+
+/* utility classes, don't use these unless you can only apply a font via a separate class */
+.font-arial-light {
+	font-family: $font-light;
+}
+
+.font-arial-medium {
+	font-family: $font-medium;
+}
+
+.font-arial-standard {
+	font-family: $font-standard;
+}
+
+.font-arial-bold {
+	font-family: $font-bold;
+}
+
+.font-console {
+	font-family: $font-console;
+}

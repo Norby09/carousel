@@ -1,0 +1,155 @@
+$avatarNamespace: "bl--avatar";
+$avatarBG: $grey-light;
+$avatarTextColor: $white;
+$avatar48HoverTextSize: $standard-font-size - 2;
+
+/* avatar setup*/
+$width-24: 24px;
+$width-48: 48px;
+$width-32: 32px;
+$width-64: 64px;
+
+@mixin avatar-black-overlay($size, $left-offset) {
+	&::before {
+		content: " ";
+		background-color: $black;
+		opacity: 0.6;
+		display: block;
+
+		@include vertical-align;
+
+		position: absolute;
+		width: $size;
+		height: $size;
+		border-radius: 50%;
+		z-index: -1;
+		left: $left-offset;
+	}
+}
+
+.#{$avatarNamespace} {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: block;
+	text-align: center;
+	font-family: $font-standard;
+
+	.#{$avatarNamespace}-24 {
+		width: $width-24;
+		height: $width-24;
+	}
+
+	.#{$avatarNamespace}-48 {
+		width: $width-48;
+		height: $width-48;
+	}
+
+	.#{$avatarNamespace}-32 {
+		width: $width-32;
+		height: $width-32;
+	}
+
+	.#{$avatarNamespace}-64 {
+		width: $width-64;
+		height: $width-64;
+	}
+
+	// setup for images
+	img {
+		vertical-align: middle;
+		border-radius: 50%;
+		opacity: 0.8;
+	}
+
+	.#{$avatarNamespace}-hover {
+		@include vertical-align;
+
+		color: $white;
+		width: 100%;
+		position: absolute;
+		text-transform: uppercase;
+		font-size: $standard-font-size;
+		display: none;
+	}
+
+	// setup for text
+	span:not(.#{$avatarNamespace}-hover) {
+		position: relative;
+		vertical-align: middle;
+		visibility: visible;
+		display: inline-block;
+		overflow: hidden;
+		text-align: center;
+		color: $avatarTextColor;
+
+		&::before {
+			display: block;
+			content: ' ';
+			height: 100%;
+			width: 100%;
+			border-radius: 50%;
+			background-color: $avatarBG;
+			position: absolute;
+			top: 0;
+			visibility: visible;
+			z-index: -1;
+		}
+
+		&.#{$avatarNamespace}-24 {
+			line-height: $width-24;
+		}
+
+		&.#{$avatarNamespace}-48 {
+			line-height: $width-48;
+		}
+
+		&.#{$avatarNamespace}-32 {
+			line-height: $width-32;
+		}
+
+		&.#{$avatarNamespace}-64 {
+			font-size: $width-24;
+			line-height: $width-64;
+		}
+	}
+
+	&:hover {
+		position: relative;
+
+		img {
+			opacity: 1;
+		}
+
+		.#{$avatarNamespace}-48 + .#{$avatarNamespace}-hover {
+			font-size: $avatar48HoverTextSize;
+			display: block;
+
+			@include avatar-black-overlay($width-48, 16px);
+		}
+
+		.#{$avatarNamespace}-64 + .#{$avatarNamespace}-hover {
+			display: block;
+
+			@include avatar-black-overlay($width-64, 7px);
+		}
+
+		span:not(.#{$avatarNamespace}-hover).#{$avatarNamespace}-48 {
+			font-size: $avatar48HoverTextSize;
+			visibility: hidden;
+		}
+
+		span:not(.#{$avatarNamespace}-hover).#{$avatarNamespace}-64 {
+			visibility: hidden;
+		}
+
+		span:not(.#{$avatarNamespace}-nohover).#{$avatarNamespace}-48 {
+			font-size: $avatar48HoverTextSize;
+			visibility: visible;
+		}
+
+		span:not(.#{$avatarNamespace}-nohover).#{$avatarNamespace}-64 {
+			visibility: visible;
+		}
+	}
+}

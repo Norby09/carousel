@@ -1,0 +1,202 @@
+/* pill-shaped elements used for counts, filter lists, etc...*/
+
+//defaults for pill
+%pill-common {
+	display: inline-block;
+	line-height: 1;
+	vertical-align: top;
+	font-family: $font-standard;
+	text-align: center;
+	border-radius: 12px;
+	height: 22px;
+}
+
+/* used inside titles, can inline itself to text, for use with counts */
+.bl--pill-inline {
+	@extend %pill-common;
+	background-color: $grey-extra-light;
+	margin-left: 5px;
+	font-size: 11px;
+	padding: 0 10px;
+	color: $black;
+	height: 16px;
+	line-height: 16px;
+
+	&.bl--is-selected {
+		background-color: $green;
+		color: $white;
+	}
+
+}
+
+
+/* Pill list, inline wrapping list of pills.  Can be used with filters or tags */
+.bl--pill-list {
+	@include clearfix;
+	//compensate for the last row's bottom margin
+	margin-bottom: $container-padding - 5;
+
+	.bl--pill {
+		//top padding to compensate for the pseudo element that makes the background being above top: 0 of the pill list, also separates wrapping rows
+		margin: 0 5px 5px 0;
+		float: left;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+}
+
+.bl--pill {
+	@extend %pill-common;
+	@include truncateText;
+	font-size: 12px;
+	padding: 0 $standard-spacing-large;
+	max-width: 150px;
+	position: relative;
+	line-height: 22px;
+	font-family: $font-bold;
+
+
+	//common styles for status pills, not sure the use of these
+	&.bl--status-left,
+	&.bl--status-right {
+
+		&::before {
+			content: '';
+			display: block;
+			width: 12px;
+			height: 12px;
+			border-radius: 100%;
+			position: absolute;
+			top: 4px;
+		}
+
+		//if there is a status pill floated right it needs to be first in markup to allow a pill-less layout to go full width
+		.bl--sidebar-section & {
+			float: right;
+			position: relative;
+			top: -4px;
+
+			//if the sidebar title and a pill both coexist, restrict the width of the title element
+			& + .bl--sidebar-title {
+				display: inline-block;
+				max-width: 65%;
+			}
+		}
+
+
+	}
+
+	//filters have a toggle state
+	&.bl--filter {
+		cursor: pointer;
+		border: $standard-border;
+		background-color: $white;
+
+		&:hover {
+			border-color: $grey-extra-light;
+		}
+
+		&.bl--filter-active {
+			background-color: $grey-extra-light;
+			color: $black;
+		}
+
+	}
+
+	//sidebar elements(exclusively?), shown in wrapping list
+	&.bl--tag {
+		background-color: $grey-extra-light;
+
+		&.bl--tag-edit-rights {
+			background-color: $blue-light;
+			color: $blue-dark;
+
+			&.bl--pill-is-disabled {
+				background-color: $grey-light;
+				cursor: default;
+
+				&:hover {
+					padding: 0 15px;
+					
+					.bl--remove-tag-button {
+						display: none;
+					}
+				}
+			}
+
+			&:hover {
+				padding: 0 22px 0 8px;
+
+				.bl--remove-tag-button {
+					display: inline-block;
+				}
+			}
+
+			.bl--remove-tag-button {
+				@include iconAfter('close-x');
+
+				position: absolute;
+				top: 4px;
+				right: 5px;
+				width: 13px;
+				height: 13px;
+				color: $white;
+				background-color: $blue-dark;
+				line-height: 13px;
+				font-size: 7px;
+				border-radius: 50%;
+				display: none;
+				cursor: pointer;
+			}
+		}
+	}
+
+	&.bl--pill-show-more-button {
+		color: $blue-primary;
+		font-size: $large-font-size;
+		cursor: pointer;
+		padding: 1px 2px;
+
+		@include iconAfter('ellipsis');
+	}
+
+	&.bl--pill-show-less-button {
+		color: $blue-primary;
+		font-size: $smaller-font-size;
+		cursor: pointer;
+		padding: 1px 2px;
+	}
+
+	//has a blue circle to the left, not sure what color/position represent
+	&.bl--status-left {
+		padding-left: 28px;
+		border: $standard-border;
+
+		&::before {
+			background-color: $blue-primary;
+			left: 4px;
+		}
+	}
+
+	//has a grey circle to the right, not sure what color/position represent
+	&.bl--status-right {
+		padding-right: 28px;
+		border: $standard-border;
+
+		&::before {
+			background-color: $grey-medium;
+			right: 4px;
+		}
+	}
+
+}
+
+

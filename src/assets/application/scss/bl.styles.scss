@@ -1,0 +1,76 @@
+/* === BLACKLINE GLOBAL CSS STYLES === */
+
+/* This file serves as a manifest to load all global formatting partials sequentially.  All files are imported to this file and can be minified if needed.  Add global partials to this list as they are added.  Typically you will append to this list unless the partial has code that is foundational.  Note: this manifest does not include /module/ specific code, those will be delivered on demand. */
+
+
+/* Import base mixins, vars etc... */
+//This is no longer needed per-partial.  This provides variable support for all subsequent partial imports.  
+@import 'base';
+
+//basic typography and page setup
+@import "bl.global.scss";
+//specifics for fonts, titles and text-based tags
+@import "bl.typography.scss";
+//auto-generated icons contained in our font
+@import "bl.icons.scss";
+//scaffolding for 1,2,3 column layouts
+@import "bl.layouts.scss";
+//sidebar and its sections plus content overrides
+@import "bl.sidebar.scss";
+//General form scaffolding for columns and other interior form helpers
+@import "bl.form-elements.scss";
+//Inputs, textareas, radios, etc... specifically
+@import "bl.form-inputs.scss";
+//DEPRECATED GENERATION OF FORM LAYOUTS.  DO NOT USE, USE bl.inline-edit.scss @TODO remove when teams have ported over
+@import "bl.form-layouts.scss";
+//Scaffolding for static and dynamic form layouts
+@import "bl.form-layouts-v2.scss";
+//buttons?
+@import "bl.buttons.scss";
+//component-level containers that are often several to a page
+@import "bl.containers.scss";
+//pill-shaped indicators/buttons
+@import "bl.pills.scss";
+//pill-shaped indicators/buttons
+@import "bl.tags.scss";
+//user avatar variants used everywhere
+@import "bl.avatar.scss";
+//Progress bars
+@import "bl.progress-bars.scss";
+
+//DEPRECATED GENERATION OF GLOBAL HEADERS. DO NOT USE, USE bl.header-containers.scss
+//@todo: remove this file
+@import "bl.content-headers.scss";
+
+//Page-level and section-level headers
+@import "bl.header-containers.scss";
+
+
+//tab-like element that scrolls down the page. DO NOT USE, USE bl.scrolling-links.scss
+@import "bl.anchor-links.scss";
+//tab-like element that scrolls down the page
+@import "bl.scrolling-links.scss";
+//content-level titles, expand paragraph boxes
+@import "bl.text-components.scss";
+//default table styling (excludes atlas grids)
+@import "bl.tables.scss";
+//global breadcrumbs that live in the content-level header
+@import "bl.breadcrumbs.scss";
+//tooltips
+@import "bl.tooltips.scss";
+
+//DEPRECATED GENERATION OF CONTENT EDITABLE.  DO NOT USE, USE bl.inline-edit.scss
+//@todo: remove this file
+@import "bl.editable-field.scss";
+
+//@todo: remove this file
+@import "bl.inline-edit.scss";
+
+
+/* COMPONENTS */
+/* These may make it into their own bundles */
+@import "bl.list-control.scss";
+
+
+//Need to override an atlas style at the .bl-- level? This is the place.
+@import "bl.atlas-overrides.scss";

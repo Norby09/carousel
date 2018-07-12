@@ -1,0 +1,19 @@
+/* BL-level Atlas overrides */
+//this file is used for states where blackline (.bl--) classes override a default atlas style.  We don't want any bl-- classes in atlas, so use this as a high-level shim to build on top of atlas.
+
+
+//VIEWPORT LAYOUT
+.bl--viewport-layout {
+
+	//in the context of viewport layout (full screen , no body scroll) we need to adjust the Atlas grid overlay.  This makes sure it truly sits above the ui, scrollbars, etc...
+	.atlasGrid--spinner { // sass-lint:disable-line class-name-format
+		position: fixed;
+		top: 0;
+		padding-bottom: 0;
+	}
+
+}
+
+.bl--layout-primary-col {
+	height: 100%;
+}

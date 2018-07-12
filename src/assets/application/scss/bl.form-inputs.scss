@@ -1,0 +1,932 @@
+/* BL FORM INPUTS, VARIANTS */
+
+
+//prevent user agent from hurting our precious
+input {
+	font: $font-standard-single; //webkit user agent uses font, so shall we
+	font-family: $font-standard;
+	font-size: $standard-font-size;
+}
+
+// Standard input.  This is the no-icon version of text inputs.   If you need an input without an icon, this is your input.
+.bl--text-input {
+	@include input-baseline;
+	font-size: $input-font-size;
+	background-color: $white;
+	padding: 7px 10px 8px;
+	margin: 0;
+
+	&:focus {
+		outline: none;
+		border-color: $blue-bright;
+
+		&:hover {
+			border-color: $blue-bright;
+		}
+
+	}
+
+	/* focus state */
+	&:hover {
+		border-color: $grey-medium;
+	}
+
+	/* disabled state */
+	&:disabled {
+		color: $grey-medium;
+	}
+}
+
+/* textarea specific */
+textarea {
+	resize: none;
+
+	&.bl--text-input {
+		line-height: $standard-line-height;
+		//Height is 2 lines of text with no scroller, based on current line-height
+		height: 50px;
+		overflow: auto;
+	}
+
+	//to emulate non-editable text, remove the side and top padding.  We need to make a text area look like a <p> farm, this is as close as we can get.
+	&.bl--edit-seamless {
+		padding: 0;
+		white-space: pre-wrap;
+		color: $black;
+		min-height: auto;
+		//this is only because the current implementation adds rows to allow the textarea to expand...
+		overflow: hidden;
+
+		&:focus {
+			color: $black;
+		}
+
+	}
+
+}
+
+//Fake textarea element that can be used with a rich text editor.  Should behave like a text area, but is a div.
+.bl--text-area {
+	@include input-baseline;
+	font-size: $input-font-size;
+	background-color: $white;
+	padding: 7px 30px 9px 10px;
+	min-height: 50px;
+	transition: max-height $standard-transition-duration ease-in-out;
+
+	//don't outline on focus
+	&:focus {
+		outline: none;
+		border-color: $blue-bright;
+	}
+
+	/* focus state */
+	&:hover {
+		border-color: $grey-medium;
+	}
+
+	&:focus {
+		outline: none;
+		border-color: $blue-bright;
+
+		&:hover {
+			border-color: $blue-bright;
+		}
+
+	}
+
+	// homemade placeholder for the fake textarea
+	&:empty {
+
+		&::before {
+			content: attr(data-placeholder);
+			font-size: $standard-font-size;
+			color: $grey-light;
+		}
+
+	}
+
+	//Currently appends a div for each line break, but hopefully it will be a <p> in the future.  Account for both direct children and treat them as <p>
+	> div,
+	> p {
+		//larger than usual line height is necessary because we need to truncate at 2 lines.  20px makes sure the space between lines matches the padding so it will look like a clean cut when collapsed
+		line-height: 20px;
+	}
+
+	//prevents content going beyound the text area
+	pre {
+		white-space: pre-wrap;
+	}
+
+	//collapsed state for element
+	&.bl--text-area-is-collapsed {
+		max-height: 44px;
+		overflow: hidden;
+	}
+
+}
+
+
+
+/* Custom checkboxes and radio buttons, and their common formatting (first) */
+/* custom checkboxes and radio input common formatting */
+.bl--checkbox,
+.bl--radio {
+	display: inline-block;
+	width: auto;
+	padding: 0;
+	margin: 0 $standard-spacing-small 0 0;
+	cursor: pointer;
+	position: relative;
+	z-index: $zindex-5;
+	opacity: 0;
+
+	&:focus {
+		outline: none;
+
+		& + .bl--text-label {
+
+			//change outer circle color on hover
+			&::before {
+				border-color: $blue-bright;
+			}
+
+			.bl--error & {
+
+				&::before {
+					border-color: $blue-bright !important;
+				}
+
+			}
+
+		}
+
+	}
+
+	&:hover {
+		cursor: pointer;
+
+		& + .bl--text-label {
+
+			&::before {
+				border-color: $grey-medium;
+			}
+
+		}
+
+	}
+
+	//custom checkboxes and radios add their fake ui to the adjacent input.  we MUST add the for attribute in html to associate the input with the label
+	& + .bl--text-label {
+		//per UX, all labels are 11px.  Always.  Except when they are the label for an individual checkbox or radio button.  In those cases, they are 12px;
+		font-size: $standard-font-size;
+		color: $grey-dark;
+
+		&::before,
+		&::after {
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		&::before {
+			content: '';
+			background-color: $white;
+			border: $standard-border;
+		}
+
+		&::after {
+			z-index: $zindex-lowest;
+		}
+
+		&:hover {
+			//change outer circle color on hover
+			&::before {
+				border-color: $grey-medium;
+			}
+
+		}
+
+	}
+
+	//disabled state
+	&[disabled] {
+
+		//update the label
+		& + .bl--text-label {
+			cursor: default !important;
+			color: $grey-light !important;
+
+			&::before {
+				cursor: default !important;
+				border-color: $grey-light !important;
+			}
+		}
+
+
+		&:hover {
+			cursor: default;
+
+			& + .bl--text-label {
+
+				&::before {
+					border-color: $grey-light;
+				}
+			}
+		}
+
+		&:checked {
+			& + .bl--text-label {
+				&::before {
+					background-color: $grey-light;
+				}
+			}
+		}
+	}
+
+}
+
+
+/* standard non-pill-shaped radio.  This is a radio button but custom so it's consistent across browsers */
+.bl--radio {
+	border-radius: 100%;
+	width: 12px;
+
+	//to match comps, we must put the label after (not around) the radio button.   This way, the radio button can affect the label's color when state changes
+	& + .bl--text-label {
+		position: relative;
+		display: inline-block;
+		line-height: 12px;
+		vertical-align: top;
+
+		//outer circle for the radio
+		&::before {
+			border-radius: 100%;
+			width: 12px;
+			height: 12px;
+			left: -17px;
+
+		}
+
+		//inner circle for the radio
+		&::after {
+			content: '';
+			width: 4px;
+			height: 4px;
+			top: 4px;
+			left: -13px;
+			background-color: $blue-primary;
+			border-radius: 100%;
+			opacity: 0;
+			transition: opacity 0.2s ease-out;
+		}
+
+	}
+
+	&:checked {
+
+		& + .bl--text-label {
+
+			&::before {
+				border-color: $grey-medium;
+			}
+
+			&::after {
+				display: block;
+				opacity: 1;
+				transition: opacity 0.2s ease-in;
+			}
+		}
+	}
+}
+
+/* standard checkbox */
+.bl--checkbox {
+	width: 10px;
+	height: 10px;
+	font-size: $micro-font-size;
+
+	//To match comps, we must put the label after (not around) the radio button.   This way, the checkbox can affect the label's color when state changes
+	& + .bl--text-label {
+
+		display: inline-block;
+		line-height: 12px;
+		vertical-align: top;
+
+		//outer box for the checkbox
+		&::before {
+			width: $input-width-height;
+			height: $input-width-height;
+			left: -15px;
+			top: 0;
+			border-radius: $standard-border-radius;
+		}
+
+		//checkmark
+		&::after {
+			width: 8px;
+			height: 8px;
+			top: -1px;
+			left: -13px;
+			opacity: 0;
+			font-size: $micro-font-size;
+			transition: opacity 0.2s ease-out;
+			color: $blue-primary;
+			content: '';
+		}
+
+	}
+
+	&:checked {
+
+		//label turns black when button is activated
+		& + .bl--text-label {
+			//include checkmark for :after
+			@include iconAfter('checkmark');
+
+			&::before {
+				border-color: $grey-medium;
+			}
+
+			&::after {
+				display: block;
+				opacity: 1;
+				transition: opacity 0.2s ease-in;
+			}
+
+		}
+
+   }
+
+	&:indeterminate {
+		& + .bl--text-label {
+			@include iconAfter('dash');
+
+			&::after {
+				opacity: 1;
+				transition: opacity 0.2s ease-out;
+				line-height: 13px;
+			}
+		}
+	}
+
+}
+
+/* Checkbox buttons */
+//visually a button, but a proxy element for a checkbox.
+.bl--checkbox-button {
+	position: absolute;
+	opacity: 0;
+	z-index: $zindex-1 + 2;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+
+	& + .bl--text-label {
+		display: inline-block;
+		line-height: 12px;
+		vertical-align: top;
+		position: absolute;
+		width: 20px;
+		height: 20px;
+		top: 0;
+		left: 0;
+		z-index: $zindex-1;
+
+		//outer circle for icon
+		&::before {
+			content: '';
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			left: 0;
+			top: 0;
+			border: $standard-border;
+			border-radius: 100%;
+			z-index: $zindex-1;
+			background-color: $white;
+		}
+
+		//checkmark / x
+		&::after {
+			position: absolute;
+			width: 8px;
+			height: 8px;
+			top: 0;
+			left: 0;
+			font-size: $medium-font-size;
+			transition: opacity 0.2s ease-out;
+			color: $grey-light;
+			border: 1px solid inherit;
+			z-index: $zindex-1 + 1;
+		}
+
+	}
+
+	&:hover {
+		& + .bl--text-label {
+			&::after {
+				color: $grey-medium;
+			}
+		}
+	}
+
+	&:checked {
+		+ .bl--text-label {
+			&::after {
+				color: $white;
+			}
+		}
+	}
+
+	//hidden button, only checked if the other 2 aren't
+	&.bl--choice-none {
+		display: none;
+	}
+
+	//green good button
+	&.bl--choice-pass {
+		& + .bl--text-label {
+			@include iconAfter('checkmark');
+
+			&:hover {
+				@include iconAfter('arrow');
+				color: $red;
+			}
+
+			&::after {
+				top: 4px;
+				left: 5px;
+			}
+		}
+
+		&:checked {
+
+			& + .bl--text-label {
+				&::before {
+					border-color: $green;
+					background-color: $green;
+				}
+			}
+
+		}
+
+	}
+
+	//red bad button
+	&.bl--choice-fail {
+		& + .bl--text-label {
+			@include iconAfter('close-x');
+
+			&::after {
+				top: 4px;
+				left: 5px;
+			}
+
+		}
+
+		&:checked {
+
+			& + .bl--text-label {
+				&::before {
+					border-color: $red;
+					background-color: $red;
+				}
+			}
+
+		}
+
+	}
+
+}
+
+/* FIELD LABELS */
+//.bl--text-label is used in all label cases, whether the suqsequent element in an input, filter pill, etc...  Always use this class on a label
+.bl--text-label {
+	position: relative;
+	font-family: $font-standard;
+	color: $grey-dark;
+	display: block;
+	margin-bottom: $standard-spacing;
+	font-size: $standard-font-size;
+	line-height: 1;
+	vertical-align: top;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	/**
+	 * .bl--text-label-is-inline
+	 * for use when there are no input fields inside the label container.
+	 */
+	&-is-inline {
+		display: inline-block;
+	}
+
+	/* checkbox or radio inside label */
+	.bl--checkbox,
+	.bl--radio {
+		vertical-align: top;
+		margin-right: 6px;
+		position: relative;
+		top: 1px;
+	}
+
+	// Any input element inside needs to be given proper spacing to separate it from the text inside the label.
+	// This list must be updated to include any elements that need 10px separation from the label text associated with the input type.
+	// standard inputs
+	.bl--text-input,
+	// Content editable "fake" inputs or textareas
+	.bl--editable-field,
+	// ui-select dropdowns
+	.ui-select-container,
+	// Atlas dropdowns
+	.atlas--ui-dropdown,
+	// Nested rows of checkboxes or radio buttons used in option grouping
+	.bl--input-group-row:first-of-type,
+	// If next sibling is a text area and the label isn't nested.
+	& + .bl--text-area  {
+		margin-top: $container-padding-smallest;
+	}
+
+	//Parent for the input and icon when we have autosave for inputs.
+	.bl--field-edit-status-wrapper {
+		position: relative;
+
+		.bl--text-input {
+			//inputs inside the div with the icon need to reserve space to the right of the input so text doesn't run uderneath it.  This is that.
+			padding-right: 40px;
+		}
+
+	}
+
+	// .bl--text-label-required
+	// denote required field with asterisk.
+	&-required::before {
+		content: '*';
+		margin-right: 4px;
+	}
+
+	// Div to force truncated text in the titles.  This allows wraps the text inside the label element and separates it from the input.  This separation allows truncation for the text without touching the input.
+	.bl--text-label-text {
+		position: relative;
+		@include truncateText;
+		display: inline-block;
+		// Allow tooltips to go 100%, but reserve space for an icon label.  This has to be in place all the time, regardless of the existence of the icon
+		max-width: calc(100% - 16px);
+
+		// Specify placement of the tooltip hover icon that will be a next sibling.
+		& + .bl--inline-tooltip-trigger {
+			position: relative;
+			//compensate for reserved space for underline and nudge
+			bottom: 0;
+			left: 2px;
+			vertical-align: baseline;
+		}
+
+		//Sub groups of radio buttons or checkboxes.  Used when checkboxes or radio buttons have a parent label (even though they have labels for each options as well).
+		//First row needs proper separation between top-level label text and the rows
+		& + .bl--input-group-row {
+			margin-top: $container-padding-smallest;
+		}
+
+	}
+
+	//Input group rows are separate rows of radio or checkboxes.  In the context of a label (the label would be the parent descriptor of the group of options), radios and checks are indented.
+	.bl--input-group-row {
+		padding: 0 0 0 $container-padding;
+	}
+
+
+	//EDIT STATUS STATES
+	//the <i> icon that receives the icon class
+	//When used with a standard input type="text", the input and icon will be inside the .bl--text-label.
+	.bl--status-icon,
+	//When used with contenteditable="true" simulated text area (.bl--text-area), the contenteditable element must be outside the label.  Strange case, but it's a contenteditable and we have to deal with it.
+	& + .bl--field-edit-status-wrapper .bl--status-icon {
+		@include input-status-icon;
+		//vertically 50% from the top, but compensate for the space used in the separation of the label text and the input itself
+		top: auto;
+		bottom: 6px;
+		transform: none;
+	}
+
+	& + .bl--field-edit-status-wrapper {
+		position: relative;
+
+		.bl--text-area {
+			/**
+			 * .bl--text-label + .bl--field-edit-status-wrapper .bl--text-area:hover
+			 * adds the pencil icon when the user hovers over an editable text area.
+			 */
+			&:hover {
+				& + .bl--status-icon {
+					opacity: 1;
+				}
+			}
+
+			/**
+			 * .bl--text-label + .bl--field-edit-status-wrapper .bl--text-area:focus
+			 * removes the pencil icon when the user starts editing.
+			 */
+			&:focus {
+				& + .bl--status-icon {
+					opacity: 0;
+				}
+			}
+		}
+	}
+
+	//Error status for inputs
+	&.bl--field-has-error {
+		@include field-edit-has-error;
+	}
+
+	&.bl--field-edit-is-busy {
+		@include field-edit-is-busy;
+	}
+
+	//save successful state
+	&.bl--field-save-successful {
+		@include field-edit-success;
+	}
+
+	//error changes the icon, but also the border
+	&.bl--field-has-error {
+		@include field-edit-has-error;
+	}
+
+	//Required state superscript styles
+	sup {
+		//Larger than normal text for legibility
+		font-size: $super-sub-script-font-size;
+		//Ensure the larger font size doesn't disturb the label's font size
+		line-height: $standard-font-size;
+	}
+
+}
+
+//@TODO: PLEASE.... this needs to be part of the atlas ui dropdown alternate theme, but it's outside the scope of form work.  Copy this to the Atlas dropdown asap.
+// This is broken into a duplicate selector so it can be removed easily later
+.bl--text-label {
+	.ui-select-container.bl-pmm--selectField-control, 
+	& + .ui-select-container.bl-pmm--selectField-control {
+		width: 100%;
+
+		// container hover rules go before input wrapper rules below so that focus state has precedence over hover state
+		&:hover {
+			.bl-pmm--selectField-control-input {
+				border-color: $grey-medium;
+			}
+		}
+
+		.bl-pmm--selectField-control-input {
+			border: $standard-border;
+			border-radius: $standard-border-radius;
+
+			&.focus,
+			&.selectize-focus {
+				border-color: $blue-bright;
+			}
+		}
+
+		& .ui-select-dropdown {
+			z-index: $zindex-dropdown;
+		}
+	}
+
+	.atlas--ui-dropdown {
+
+		//The bordered variant is the only type of select element that should be in the forms.  This class must be added manually in the config.  Once added, this will format correctly.
+		&.atlas--ui-dropdown-variant-bordered {
+			width: 100%;
+			border: none;
+
+			.atlas--ui-dropdown-toggle {
+				background-color: $white;
+				height: 32px;
+				border: $standard-border;
+				border-radius: $standard-border-radius;
+
+				&:focus {
+					border-color: $blue-bright;
+				}
+
+				&:hover {
+					background-color: $white;
+					border-color: $grey-medium;
+				}
+
+			}
+
+		}
+
+	}
+
+	//Force error styling on error dropdowns
+	&.bl--error {
+
+		//UI-select has a focus bug when it resides inside a <label>, so we have to make it a sibling of the label.  This covers nested and next siblings of a <label class="bl--error"></label>
+		.ui-select-container.bl-pmm--selectField-control .bl-pmm--selectField-control-input,
+		& + .ui-select-container.bl-pmm--selectField-control .bl-pmm--selectField-control-input {
+			border-color: $red;
+
+			&.focus,
+			&.selectize-focus {
+				border-color: $blue-bright;
+			}
+		}
+
+		.atlas--ui-dropdown {
+			.atlas--ui-dropdown-toggle {
+				border: 1px solid $red;
+
+				//Force color override when focusing error
+				&:focus {
+					border: 1px solid $blue-bright;
+				}
+			}
+		}
+	}
+}
+
+
+
+//span used for styling of the fake element
+.bl--toggle-ui {
+	display: inline-block;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 31px;
+	height: 18px;
+	background-color: $grey-light;
+	border-radius: 15px;
+	z-index: $zindex-1;
+	transition: $standard-transition;
+
+	&::after {
+		content: '';
+		display: block;
+		position: absolute;
+		z-index: $zindex-10;
+		opacity: 1;
+		width: 16px;
+		height: 16px;
+		border-radius: 100%;
+		background-color: $white;
+		left: 1px;
+		top: 1px;
+		transition: $standard-transition;
+	}
+
+}
+
+
+//span inside the label element to allow line-height based on the size of the previous toggle element
+.bl--toggle-text {
+	display: inline-block;
+	line-height: 18px;
+	//compensate for absolute positioned input
+	padding-left: 10px;
+
+	&.bl--toggle-text-left {
+		padding-left: 0;
+		padding-right: 10px;
+		float: left;
+	}
+}
+
+//An ios-like toggle for a checkbox
+.bl--checkbox-toggle {
+	position: relative;
+	@include clearfix;
+
+	> * {
+		vertical-align: top;
+	}
+
+	.bl--checkbox-toggle-radio {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		width: 31px;
+		height: 18px;
+		z-index: $zindex-50;
+		padding: 0;
+		margin: 0;
+		cursor: pointer;
+		vertical-align: top;
+
+
+		//standard size checked state
+		&:checked {
+
+			+ .bl--toggle-ui {
+				background-color: $blue-primary;
+
+				&::after {
+					transform: translateX(13px);
+				}
+
+				& + .bl-toggle-text {
+					color: $black;
+				}
+
+			}
+
+			&:disabled {
+
+				+ .bl--toggle-ui {
+					background-color: $blue-shade;
+
+				}
+
+			}
+		}
+
+
+		&.bl--toggle-small {
+			width: 21px;
+			height: 13px;
+
+			+ .bl--toggle-ui {
+				top: 1px;
+				width: 21px;
+				height: 13px;
+
+				&::after {
+					width: $input-width-height;
+					height: $input-width-height;
+				}
+
+				& + .bl--toggle-text {
+					line-height: 15px;
+				}
+
+			}
+
+			.bl--toggle-text {
+				display: inline-block;
+				//compensate for absolute position input
+			}
+
+			//small variant check state
+			&:checked {
+
+				+ .bl--toggle-ui {
+					&::after {
+						transform: translateX(8px);
+					}
+				}
+
+			}
+
+		}
+
+
+	}
+
+	/*
+		Adds disabled styles when parent component is disabled.
+	*/
+	&.atlas--ui-component-disabled,
+	.atlas--ui-component-disabled & {
+		.bl--toggle-ui {
+			background-color: $grey-light !important;
+		}
+	}
+}
+
+
+
+/* Custom input types for inputs like dates */
+// The outer wrapper for an input that has an icon overlaying its left side
+.bl--icon-input-row {
+	position: relative;
+
+	.bl--text-input {
+		padding-right: 37px;
+	}
+
+	.bl--icon-for-input {
+		display: block;
+		position: absolute;
+		top: 17px;
+		right: 11px;
+		width: 18px;
+		height: 18px;
+		font-size: 17px;
+		color: $grey-medium;
+		pointer-events: none;
+		text-align: center;
+		line-height: 18px;
+
+	}
+
+}

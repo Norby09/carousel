@@ -1,0 +1,308 @@
+//receptacle for the header (remove if unnecessary)
+.bl--global-header {
+	height: 65px;
+}
+
+//receptacle for the footer (remove if unnecessary)
+.bl--global-footer {
+	background-color: $grey-bright;
+}
+
+
+//Single column page
+.bl--layout-single-col {
+	padding: $container-padding;
+}
+
+
+//define global min-width, constrain entire applicatoin
+.bl--app-outer {
+	border: $standard-border;
+}
+
+
+//parent for all grid elements, including the grid header, filter console, visualizations, grid content and grid footer
+.bl--grid-container {
+	position: relative;
+	height: 100%;
+}
+
+// content wrapper (anything above the footer, below the header)
+.bl--page-content {
+	display: table; //using table to achieve 2 column equal heights.  replace if necessary
+	width: 100%;
+	//this prevents scrollbars when collapsing a sidebar.  restrict this to only be used on the viewport layout if it causes issues in non-viewort layouts
+	overflow: hidden;
+	//todo: remove this when the new header is available
+	border-top: $standard-border;
+
+	// single column width that is 100% allows for Atlas sidebar
+	&.bl--layout-single-column {
+		display: block;
+		overflow: visible;
+		border-top: none;
+	}
+
+	/**
+	* .bl--page-content .bl--layout-2-column-fixed
+	* layout for a left content column and fixed right column via atlas panelslider.
+	*/
+	&.bl--layout-2-column-fixed {
+		display: block;
+		padding-right: $standard-sidebar-width;
+
+		/**
+		* .bl--page-content .bl--layout-2-column-fixed .bl--header-is-docked
+		* -    limit the width of the docked header to 100% minus the sidebar width (340px).
+		*      when the header becomes sticky.
+		* -    set the z-index to 15 so it is behind the sidebar or else its box-shadow will
+		*      overlap the sidebar but higher than the pmm comments module textarea box or
+		*      atlas grid content so they go behind the header when scrollsing.
+		*/
+
+		.bl--header-is-docked {
+			width: calc(100% - #{$standard-sidebar-width});
+			z-index: 15;
+		}
+	}
+}
+
+
+//Primary content column, either the center of 3, the left/right of 2 or the only of 1
+.bl--layout-primary-col {
+	position: relative;
+	padding: $container-padding;
+	background-color: $white;
+}
+
+//when a column (usually the primary-col) has no padding, this sets that.  Also removes negative margin from headers that expect to live in a padded box.
+.bl--col-no-pad {
+	padding: 0;
+
+	.bl--content-header {
+		margin: 0;
+		border-bottom: 0;
+	}
+
+}
+
+/* 2 column layout elements */
+//2 columns, left column content, right column supplemental
+.bl--layout-2-columns-right {
+
+	//both columns
+	> div {
+		//prevent complete collapse when loading, serves as min-height
+		height: 300px;
+		//using table-cell to achieve 2 column equal heights.  replace if necessary
+		display: table-cell;
+		vertical-align: top;
+
+		&.bl--layout-sidebar {
+			width: $standard-sidebar-width;
+			border-left: $standard-border;
+		}
+
+	}
+
+}
+
+
+
+
+/* collapsible right sidebar, can be ported to allow a left sidebar  */
+.bl--layout-2-columns-collapsible {
+	@include clearfix;
+	display: block;
+	transition: 0.2s transform ease;
+	transform: translateZ(0);
+
+	> div {
+		// background-color: transparent;
+		position: relative;
+		display: block;
+
+		&.bl--layout-primary-col {
+			float: left;
+			width: 100%;
+		}
+
+		&.bl--layout-sidebar {
+			position: absolute;
+			right: -100%;
+			height: 100%;
+			border-left: $standard-border;
+		}
+
+	}
+
+	// @TODO: Add the panel slider class to the body when it is opened
+	// Add the body class in the panelslider, then do something like
+	//      body.atlas--panelSlider-is-open .bl--layout-2-columns-collapsible
+	//          {padding-right: 340px; transition: 0.25s padding-right ease-in-out;}
+	&.bl--sidebar-is-expanded {
+		position: relative;
+		// Add smooth transition for sidebar
+		transition: 0.25s  padding-right ease-in-out;
+		padding-right: $standard-sidebar-width;
+
+		> div {
+
+			&.bl--layout-sidebar {
+				width: $standard-sidebar-width;
+				right: 0;
+			}
+
+		}
+
+	}
+
+}
+
+
+
+
+/* 2 column layout alternate */
+//2 columns, left column supplemental, right column content
+.bl--layout-2-columns-left {
+
+	//both columns
+	> div {
+		//prevent complete collapse when loading, serves as min-height
+		height: 300px;
+		//using table-cell to achieve 2 column equal heights.  replace if necessary
+		display: table-cell;
+		vertical-align: top;
+
+		&.bl--layout-sidebar {
+			width: 200px;
+			border-right: $standard-border;
+		}
+
+	}
+
+}
+
+/* 3 column-layout */
+//DEPRECATED DO NOT USE
+//3 columns center flex-width content, sidebars with other things.  Only used for modals?
+.bl--layout-3-columns {
+	display: table;
+	width: 100%;
+	//asuming there is already a bottom border on the modal header, and a top border on the modal footer.  If not, remove these and no prob
+	border-top: none;
+	border-bottom: none;
+
+	> div {
+		display: table-cell;
+		vertical-align: top;
+
+		&.bl--layout-sidebar {
+			width: 260px;
+			padding: 0;
+
+			&:first-child {
+				border-right: $standard-border;
+			}
+
+			&:last-child {
+				border-left: $standard-border;
+			}
+
+		}
+
+		.bl--sidebar-title {
+			font-size: 15px;
+		}
+
+		.bl--page-title {
+			font-size: 15px;
+		}
+
+	}
+}
+
+/* FORMATTING FOR OUR LAYOUT TYPES, FULL BLEED AND STANDARD SCROLL: */
+
+//For full bleed grids
+//Use this with the _Layout-FullBleedGrid.cshtml layout
+//Applied to body
+.bl--viewport-layout {
+	//restrict scrolling past current viewport
+	height: 100%;
+
+	//restrict scrolling past current viewport
+	body {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	//make sure all children are 100% of viewport height
+	.bl--app-outer {
+		height: 100%;
+	}
+
+	.bl--page-content {
+		height: calc(100% - 64px);
+	}
+
+	//the grid header
+	.atlas-grid--header {
+		flex: 0 0 auto;
+	}
+
+
+	.atlas--ui-filter-console {
+		flex: 0 1 auto;
+	}
+
+	//parent for all grid elements, including the grid header, filter console, visualizations, grid content and grid footer.  Treated as the flex column for vertical alignment in viewport layout
+	.atlasGrid--wrapper { // sass-lint:disable-line class-name-format
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		height: 100%;
+	}
+
+	//Parent of the actual "grid" elements, specifically the grid header, footer and body (rows)
+	.atlasGrid--grid-elements { // sass-lint:disable-line class-name-format
+		flex: 1 1 100%;
+	}
+
+	//Parent of the .atlasGrid--wrapper, ensures 100% height for the direct child that is the flex column
+	.bl--grid-container {
+		height: 100%;
+	}
+
+	//@todo: replace this with flexbox for the grid header, content and footer, will require an inner wrapper for the table parts that can be a flex col (as a child of a flex item)
+	.atlasGrid--scroller { // sass-lint:disable-line class-name-format
+		height: calc(100% - 92px);
+	}
+
+	//Defaults for the charts in the context of viewport layout.
+	.atlascharts--chart-container {
+		border: none;
+		padding: $container-padding-smallest $container-padding;
+		border-top: $standard-border;
+		height: 100%;
+		display: none;
+
+		&.modules--reports-visualization-active {
+			display: block;
+		}
+
+		&.modules--reports-visualization-collapsed {
+			height: 30px;
+			min-height: 30px;
+			max-height: 30px;
+		}
+	}
+}
+
+//For tabbed layouts
+.bl--viewport-tabs {
+
+	.bl--header-container {
+		border-bottom: none;
+	}
+}

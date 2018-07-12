@@ -1,0 +1,30 @@
+//template that generates a mixin with placeholders for all icons.  The mixin allows you to add an icon that only exists in the context of scss.  use the classes in bl.icons.scss if you want to add an icon with a class applied to an <i> tag. 
+
+//when you want to add an icon to an element's after, use this.
+//specify the icon name like this: 
+//@include iconAfter('alerts'); on the parent element
+////use icon names as they are listed in bl.icons.scss
+/////use class name without the 'bl-icon-' prefix
+//so to add a div with an icon with this method:
+//.some-class {
+//      @include iconAfter('alerts');
+// }
+// which will include the icon .bl-icon-alerts as an ::after pseudo element
+//now you can style the size and position by adjusting the ::after properties of the element you extended the icon for.
+@mixin iconAfter($icon) {
+    @extend %bl-icon-#{$icon};
+
+    &::after {
+        font-family: "<%= fontName %>";
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+}
+
+
+<% _.each(glyphs, function(glyph) { %>%<%= className %>-<%= glyph.name %>::after { content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>";
+}
+<% }); %>

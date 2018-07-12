@@ -1,0 +1,284 @@
+/* manually load all text fonts */
+@include includeFont(
+	"arial-pro-medium",
+	"arial-pro-medium/ArialMTPro-Medium",
+	400
+);
+@include includeFont(
+	"arial-pro-light",
+	"arial-pro-light/ArialMTPro-Light",
+	400
+);
+
+html {
+	height: 100%;
+}
+
+// default body normalization
+body {
+	&.prime-2016 {
+		min-height: 100%;
+	}
+}
+
+//namespace things that might break with the new styles
+.prime-2016 {
+
+	font-family: $font-standard;
+	padding: 0;
+	margin: 0;
+	font-size: $standard-font-size;
+	line-height: $standard-line-height;
+	color: $black;
+	background: $grey-extra-light;
+	// this important is needed to override the legacy header's css
+	-webkit-font-smoothing: antialiased !important;
+	text-rendering: optimizeLegibility;
+
+	// BORDER BOX ALL THE THINGS
+	* {
+		box-sizing: border-box;
+	}
+
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	//icon color global
+	[class^="bl-icon"] {
+		color: $grey-light;
+	}
+
+}
+
+
+
+//page-level errors (back end errors likely)
+.bl--page-error {
+	background-color: $red;
+	text-align: center;
+	font-family: $font-bold;
+	letter-spacing: 0.1px;
+	line-height: 1;
+	padding: 15px 0;
+	color: $white;
+
+	[class^="bl-icon"] {
+		position: relative;
+		top: 2px;
+		font-size: 20px;
+		color: inherit;
+		margin-right: 5px;
+		vertical-align: middle;
+
+		&::after {
+			vertical-align: middle;
+			display: inline-block;
+			line-height: 13px;
+		}
+
+	}
+
+	&-text {
+		position: relative;
+		top: 2px;
+		line-height: 1;
+	}
+
+}
+
+//the base level for all overlays used going forward.  This should be the background of a modal or the background for any overlay-ish element that has a loading spinner.
+.bl--overlay {
+	@include overlay-style;
+
+	//this background color is #ddd, or $grey-bright, but the hex is converted to rgba so we can still use the opacity property to tween it into view.   Should be $ddd @ 60% opacity this way.  Update the rgb value if $grey-bright changes
+	//allows for a loading image with the -is-loading class below
+	background: rgba(218, 218, 218, 0.6) center center no-repeat;
+}
+
+
+//A spinning css-based loading animation.  Hidden by default so it can live in the DOM and be turned on as needed.
+.bl--loader {
+	@include loading-animation;
+	display: none;
+
+	//Make the loader visible, transitions in and out visually
+	&.bl--loader-is-small {
+		@include loading-animation-small;
+	}
+
+}
+
+
+.bl--blocking-overlay {
+	background-color: $white;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: opacity $standard-transition-duration ease;
+	z-index: $zindex-modal + 1;
+	pointer-events: none;
+
+	&.bl--blocking-overlay-is-visible {
+		height: 100%;
+		opacity: 1;
+
+		/**
+		 * .bl--blocking-overlay.bl--blocking-overlay-is-visible .bl--loader
+		 * displaying '.bl--loader' block when '.atlas--ui-blocking-overlay-is-visible' is active because
+		 * ie will cause the hyperlinks module scrollbar to flicker if '.atlas--ui-loader' is always displayed.
+		 */
+		& .bl--loader {
+			display: block;
+		}
+	}
+
+	//the loader itself
+	.bl--loader {
+		opacity: 1;
+		position: absolute;
+		//center loading icon
+		top: 50%;
+		left: 50%;
+		margin: -32px 0 0 -32px;
+		//VERY rare case. Don't ever use this in any other case. This ensures that the overlay is layered over the top of the modal and any dropdowns
+		z-index: $zindex-modal + 2;
+
+		&.bl--loader-is-small {
+			margin: -10px 0 0 -10px;
+		}
+
+	}
+}
+
+//global defaults for the atlas and bl versions of the loading animation
+@keyframes ripple-animation {
+	0% {
+		width: 0;
+		height: 0;
+		opacity: 0;
+		transform: translateX(-44%) translateY(-44%) translateZ(0);
+	}
+
+	33% {
+		width: 44%;
+		height: 44%;
+		transform: translateX(-50%) translateY(-50%) translateZ(0);
+		opacity: 1;
+	}
+
+	100% {
+		width: 88%;
+		height: 88%;
+		transform: translateX(-50%) translateY(-50%) translateZ(0);
+		opacity: 0;
+	}
+}
+
+//status "pill" element that can display different statuses
+.bl--status-element {
+	display: inline-block;
+	border: 1px solid $grey-dark;
+	color: $grey-dark;
+	padding: 0 $standard-spacing;
+	line-height: 14px;
+	border-radius: 10px;
+	font-size: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.1px;
+}
+
+//This is deprecated.  Use .bl--loader above.
+.bl-loader {
+	background: none;
+	position: relative;
+	width: 200px;
+	height: 200px;
+	opacity: 0;
+	transition: opacity $standard-transition-duration ease-in-out;
+	//force scale because the original creator built it this way :/
+	transform: scale(0.32);
+
+	//common to before and after, styles the circles that will spin
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: 0;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		border-radius: 50%;
+		border-width: 6px;
+		border-style: solid;
+		animation: atlas--ripple-animation 2s ease-out infinite;
+	}
+
+	&::before {
+		border-color: $black;
+	}
+
+	&::after {
+		border-color: $yellow;
+		animation-delay: 1s;
+	}
+
+	&.bl-loader-is-small {
+		//small is 20px x 20px
+		transform: scale(0.1);
+	}
+
+}
+
+
+/* Utility */
+//hiding classes, use important because they are most important
+
+.bl--is-transparent {
+	opacity: 0 !important;
+}
+
+.bl--is-hidden {
+	display: none !important;
+}
+
+/**
+ * .bl--body-no-scroll
+ * add to body class to prevent scrolling below the loading spinner overlay.
+ */
+.bl--body-no-scroll {
+	overflow: hidden;
+}
+
+/**
+ * .bl--body-no-scrollX
+ * add to body class to prevent scrolling when the sidebar is colapsible on !atlas pages
+ */
+.bl--body-no-scrollX { // sass-lint:disable class-name-format
+	overflow-x: hidden;
+}
+
+//Data attribute to use on angular directive parents that are tags, not divs. This data attribute is only meant for converting <some-tag> to use block-level formatting, rather than the default for tags that aren't specified, which is neither inline, block nor inline-block.
+[data-display-block="true"] {
+	display: block;
+}
+
+//Truncates when text is larger than this container with an ellipsis.  Requires a max-width on this or a parent selector to restrain.
+.bl--ellipsis-box {
+	@include truncateText;
+	line-height: normal;
+}
+
+//Truncates text without an ellipsis
+.bl--truncation-box {
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: clip;
+	white-space: nowrap;
+}
