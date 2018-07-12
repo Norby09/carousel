@@ -23,9 +23,10 @@ login-carousel-slide {
     box-sizing: border-box;
 }
 
-.bl--login-carousel-slides {
+ .bl--login-carousel-slides {
     position: absolute;
-}
+} 
+
 
 .bl--login-carousel-slide {
     opacity: 0;
@@ -140,4 +141,4 @@ login-carousel-slide {
 
 .bl--login-carousel-animation-slide .bl--login-carousel-slide {
     opacity: 1;
-}
+} 

@@ -36,6 +36,8 @@ export class ItemListComponent implements OnInit {
     this.setting = Settings.create();
   }
 
+  
+
   export(format: string = 'json'): string {
 
     for (let i = 0; i < this.languages.length; i++) {
@@ -51,6 +53,7 @@ export class ItemListComponent implements OnInit {
 
     switch ((format).toLowerCase()) {
       case 'json':
+          document.getElementById("iframe").nodeValue = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
           return JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
       default:
         console.warn(`Unknown export format'${format}'`);
