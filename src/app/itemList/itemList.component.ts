@@ -53,14 +53,23 @@ export class ItemListComponent implements OnInit {
 
     switch ((format).toLowerCase()) {
       case 'json':
-          const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj})
-          var doc = document.getElementById('previewIframe').contentWindow.document;
-          doc.open();
-          doc.write(`
+          const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
+          console.log(retVal);
+          var iframe = document.getElementById('previewIframe');
+          var iWindow = (<HTMLIFrameElement> iframe).contentWindow;
 
+          iWindow.document.open();
+          iWindow.document.write(`
 
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-          <login-carousel> </login-carousel>
+          <link rel="stylesheet" href="./assets/application/carousel/css/carousel.component.css">
+          <link rel="stylesheet" href="./assets/application/carousel/css/bl.styles.css">
+
+          <link rel="stylesheet" href="./assets/application/css/bl.login.css">
+          <link rel="stylesheet" href="./assets/application/css/bl.login.override.css">
+
+          <login-carousel ng-app="bl.login" animation='slide' cssns='bl--login-carousel'> </login-carousel>
 
           <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"> </script>
           <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"> </script>
@@ -74,14 +83,14 @@ export class ItemListComponent implements OnInit {
           
           <script type="text/javascript">
             (function() {
-                console.log('Function execued...');
+                console.log('Function executed...');
                 angular
                     .module('bl.login')
                     .value('bl.login.carousel.config', ${retVal});
                     ;
             }())
           </script>`);
-          doc.close();
+          iWindow.document.close();
           return retVal;
       default:
         console.warn(`Unknown export format'${format}'`);
