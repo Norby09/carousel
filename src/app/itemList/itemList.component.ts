@@ -37,7 +37,7 @@ export class ItemListComponent implements OnInit {
     this.setting = Settings.create();
   }
 
-  
+
 
   export(format: string = 'json'): string {
 
@@ -55,6 +55,7 @@ export class ItemListComponent implements OnInit {
     switch ((format).toLowerCase()) {
       case 'json':
           const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
+          window.localStorage.setItem('data', '1');
           this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
             res => {
               console.log(res);
@@ -66,11 +67,6 @@ export class ItemListComponent implements OnInit {
               console.log(err.status);
             }
           );
-
-
-          var iframe = document.getElementById('previewIframe');
-          var iWindow = (<HTMLIFrameElement> iframe).contentWindow;
-
           return retVal;
       default:
         console.warn(`Unknown export format'${format}'`);

@@ -20,7 +20,7 @@ app.use(function (req, res, next) {
 
 app.post('/save', function(req, res) {
 
-    fs.writeFile("../src/carousel-preview.json", req.body.data , function(err) {
+    fs.writeFile("../carousel-preview.json", req.body.data , function(err) {
         if(err) {
             return res.status(500).send('Could not save the file!');
         }
@@ -31,7 +31,7 @@ app.post('/save', function(req, res) {
 
 app.get('/read', function(req, res) {
 
-    fs.readFile("../src/carousel-preview.json", function(err, resp) {
+    fs.readFile("../carousel-preview.json", function(err, resp) {
         if(err) {
             return res.status(500).send('Could not read the file!');
         }

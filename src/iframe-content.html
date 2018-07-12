@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="./assets/application/css/bl.login.css">
         <link rel="stylesheet" href="./assets/application/css/bl.login.override.css">
     </head>
-    <body>
-        <login-carousel ng-app="bl.login" animation='slide' cssns='bl--login-carousel'> </login-carousel>
+    <body style="height:700px">
+        <login-carousel ng-app="bl.login" animation='slide' cssns='bl--login-carousel'></login-carousel>
 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"> </script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"> </script>
@@ -24,13 +24,13 @@
         <script src="./assets/application/bl.globalization.js"> </script>
         <script src="./assets/application/login.templates.js"> </script>
         <script src="./assets/application/preview-container/preview-container.component.js"> </script>
-        
+
         <script type="text/javascript">
             (function() {
                 console.log('Function executed...');
                 angular
                     .module('bl.login')
-                    .value('bl.login.carousel.configUrl','./carousel-preview.json');
+                    .value('bl.login.carousel.configUrl','http://localhost:3000/read');
                     ;
             }())
         </script>`
