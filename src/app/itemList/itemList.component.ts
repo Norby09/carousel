@@ -71,39 +71,6 @@ export class ItemListComponent implements OnInit {
           var iframe = document.getElementById('previewIframe');
           var iWindow = (<HTMLIFrameElement> iframe).contentWindow;
 
-          iWindow.document.open();
-          iWindow.document.write(`
-
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-          <link rel="stylesheet" href="./assets/application/carousel/css/carousel.component.css">
-          <link rel="stylesheet" href="./assets/application/carousel/css/bl.styles.css">
-
-          <link rel="stylesheet" href="./assets/application/css/bl.login.css">
-          <link rel="stylesheet" href="./assets/application/css/bl.login.override.css">
-
-          <login-carousel ng-app="bl.login" animation='slide' cssns='bl--login-carousel'> </login-carousel>
-
-          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"> </script>
-          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"> </script>
-          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.js"></script>
-          <script src="./assets/application/carousel/carousel.component.js"> </script>
-          <script src="./assets/application/carousel/carousel-slide.component.js"> </script>
-          <script src="./assets/application/carousel/carousel.service.js"> </script>
-          <script src="./assets/application/bl.globalization.js"> </script>
-          <script src="./assets/application/login.templates.js"> </script>
-          <script src="./assets/application/preview-container/preview-container.component.js"> </script>
-          
-          <script type="text/javascript">
-            (function() {
-                console.log('Function executed...');
-                angular
-                    .module('bl.login')
-                    .value('bl.login.carousel.config', ${retVal});
-                    ;
-            }())
-          </script>`);
-          iWindow.document.close();
           return retVal;
       default:
         console.warn(`Unknown export format'${format}'`);
