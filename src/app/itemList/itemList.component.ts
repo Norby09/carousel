@@ -8,6 +8,7 @@ import { Language } from '../../data/language';
 import { Resource } from '../../data/resource';
 import { stringOrDefault } from '../../utils/value-or-default';
 import { LanguagesService } from '../languages.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'bl-carousel-carousel-item-list',
@@ -23,7 +24,7 @@ export class ItemListComponent implements OnInit {
   languages: Language[] = [];
   languageObj: Object;
 
-  constructor(public languageService : LanguagesService) {
+  constructor(public languageService : LanguagesService, private http: HttpClient) {
     this.languages.push( Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))}) );
     this.items.push(new Item({id : 1}));
     this.languageService.myMethod(this.languages);
@@ -54,7 +55,19 @@ export class ItemListComponent implements OnInit {
     switch ((format).toLowerCase()) {
       case 'json':
           const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
-          console.log(retVal);
+          this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
+            res => {
+              console.log(res);
+            },
+            (err) => {
+              console.log(err.error);
+              console.log(err.name);
+              console.log(err.message);
+              console.log(err.status);
+            }
+          );
+
+
           var iframe = document.getElementById('previewIframe');
           var iWindow = (<HTMLIFrameElement> iframe).contentWindow;
 
