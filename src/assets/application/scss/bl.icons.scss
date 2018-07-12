@@ -1,11 +1,11 @@
-//generates an scss file with references to all existing icons.  this scss file also contains a list of classes that can be applied to elements as needed via html.   These same icons are available through the /base/icons template and can be used via css only. 
+//generates an scss file with references to all existing icons.  this scss file also contains a list of classes that can be applied to elements as needed via html.   These same icons are available through the /base/icons template and can be used via css only.
 
 @font-face {
   font-family: "blackline-icons";
-  src: url('../fonts/bl-global/blackline-icons.eot');
-  src: url('../fonts/bl-global/blackline-icons.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/bl-global/blackline-icons.ttf') format('truetype'),
-    url('../fonts/bl-global/blackline-icons.svg#blackline-icons') format('svg');
+  src: url('../carousel/fonts/bl-global/blackline-icons.eot');
+  src: url('../carousel/fonts/bl-global/blackline-icons.eot?#iefix') format('embedded-opentype'),
+    url('../carousel/fonts/bl-global/blackline-icons.ttf') format('truetype'),
+    url('../carousel/fonts/bl-global/blackline-icons.svg#blackline-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
