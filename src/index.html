@@ -8,12 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="./assets/application/carousel/css/carousel.component.css">
-  <link rel="stylesheet" href="./assets/application/carousel/css/bl.styles.css">
-
-  <link rel="stylesheet" href="./assets/application/css/bl.login.css">
-  <link rel="stylesheet" href="./assets/application/css/bl.login.override.css">
 </head>
 <body>
   <div class="row">
@@ -21,30 +15,7 @@
         <bl-carousel-configurator></bl-carousel-configurator>
     </div>
   <div class="col-lg-6">
-    <div ng-app="bl.login" style="height : 100vh">
-        <iframe id="iframe" height="1500px" width="1000px">
-          <login-carousel> </login-carousel>
-          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"> </script>
-          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"> </script>
-          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.js"></script>
-          <script src="./assets/application/carousel/carousel.component.js"> </script>
-          <script src="./assets/application/carousel/carousel-slide.component.js"> </script>
-          <script src="./assets/application/carousel/carousel.service.js"> </script>
-          <script src="./assets/application/bl.globalization.js"> </script>
-          <script src="./assets/application/login.templates.js"> </script>
-          <script src="./assets/application/preview-container/preview-container.component.js"> </script>
-          
-          <script type="text/javascript">
-            ( function() {
-                console.log('Function execued...');
-                angular
-                    .module('bl.login')
-                    .value('bl.login.carousel.configUrl', iframe.value);
-                    ;
-            }())
-          </script>
-        </iframe>
-    </div>
+    <iframe id="previewIframe" height="1500px" width="1000px"></iframe>    
   </div>
 </div>
 </body>

@@ -53,8 +53,36 @@ export class ItemListComponent implements OnInit {
 
     switch ((format).toLowerCase()) {
       case 'json':
-          document.getElementById("iframe").nodeValue = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
-          return JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
+          const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj})
+          var doc = document.getElementById('previewIframe').contentWindow.document;
+          doc.open();
+          doc.write(`
+
+
+
+          <login-carousel> </login-carousel>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"> </script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"> </script>
+          <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.js"></script>
+          <script src="./assets/application/carousel/carousel.component.js"> </script>
+          <script src="./assets/application/carousel/carousel-slide.component.js"> </script>
+          <script src="./assets/application/carousel/carousel.service.js"> </script>
+          <script src="./assets/application/bl.globalization.js"> </script>
+          <script src="./assets/application/login.templates.js"> </script>
+          <script src="./assets/application/preview-container/preview-container.component.js"> </script>
+          
+          <script type="text/javascript">
+            (function() {
+                console.log('Function execued...');
+                angular
+                    .module('bl.login')
+                    .value('bl.login.carousel.config', ${retVal});
+                    ;
+            }())
+          </script>`);
+          doc.close();
+          return retVal;
       default:
         console.warn(`Unknown export format'${format}'`);
         return `Unknown export format ${format}`;
