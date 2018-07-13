@@ -31,14 +31,11 @@ export class I18nComponent implements OnInit {
     language.resources.push( new Resource( { name : '', value : ''} ));
   }
   removeResource(element: Resource, array) {
-    console.log(element, array);
     array.splice(array.findIndex(i => i === element), 1);
-    console.log(element, array);
   }
 
   removeLanguage(language: Language) {
     const index = this.languages.indexOf(language);
-    console.log(this.languages);
     this.languages.splice(index,1);
   }
 

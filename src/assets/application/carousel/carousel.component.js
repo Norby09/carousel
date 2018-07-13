@@ -78,8 +78,6 @@
 				}
 			}
 			, _initCarousel = function(response) {
-				console.log(response);
-				console.log(carouselConfigUrl);
 				var DEFAULT_CONFIG = {
 						slideshow: {
 							autoPlay: false,

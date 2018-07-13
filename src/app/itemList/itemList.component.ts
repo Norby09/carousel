@@ -59,6 +59,8 @@ export class ItemListComponent implements OnInit {
           this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
             res => {
               console.log(res);
+              const frame = <HTMLIFrameElement> document.getElementById('previewIframe');
+              frame.src = frame.src;
             },
             (err) => {
               console.log(err.error);

@@ -21,10 +21,11 @@ app.use(function (req, res, next) {
 app.post('/save', function(req, res) {
 
     fs.writeFile("../carousel-preview.json", req.body.data , function(err) {
-        if(err) {
-            return res.status(500).send('Could not save the file!');
-        }
-        res.send('File successfully saved!');
+        if (err) {
+            res.status(500).send('Could not save the file!');
+        } else {
+            res.json({message : 'File successfully saved!'});
+        }   
     });
 
 });
@@ -32,10 +33,11 @@ app.post('/save', function(req, res) {
 app.get('/read', function(req, res) {
 
     fs.readFile("../carousel-preview.json", function(err, resp) {
-        if(err) {
-            return res.status(500).send('Could not read the file!');
+        if (err) {
+            res.status(500).send('Could not read the file!');
+        } else {
+            res.send(resp);
         }
-        res.send(resp);
     });
 
 });
