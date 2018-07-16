@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Item} from '../../data/item';
+import { Language } from 'data/language';
 
 @Component({
   selector: 'bl-carousel-item',
@@ -9,6 +10,7 @@ import {Item} from '../../data/item';
 export class ItemComponent implements OnInit {
   @Input() itm: Item = null;
   @Input() items: Item[];
+  @Input() languages : Language[];
 
   itemId = 1;
 

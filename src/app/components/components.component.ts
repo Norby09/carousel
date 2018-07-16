@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 import {Link} from '../../data/link';
 import {Comp} from '../../data/comp';
+import { Language } from 'data/language';
 
 
 @Component({
@@ -12,9 +13,10 @@ export class ComponentsComponent implements OnInit {
   @Input() comp: Comp = null;
   @Input() links: Link[] = null;
   @Output() save: EventEmitter<Comp> = new EventEmitter();
+  @Input() languages : Language[];
 
-
-  constructor() {}
+  constructor() {
+  }
 
   ngOnInit() {}
 

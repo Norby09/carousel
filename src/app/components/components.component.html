@@ -1,11 +1,11 @@
 <div>
   <form (submit)="onSubmitItems()">
-      <bl-carousel-title [title]="comp.title"></bl-carousel-title>
-      <bl-carousel-description [description]="comp.description" class="hr"></bl-carousel-description>
+      <bl-carousel-title [title]="comp.title" [languages]="languages"></bl-carousel-title>
+      <bl-carousel-description [description]="comp.description" [languages]="languages" class="hr"></bl-carousel-description>
       
       <h4> Links </h4>
       <div *ngFor="let link of comp.links">
-        <bl-carousel-link [link]="link" [links]="links"></bl-carousel-link>
+        <bl-carousel-link [link]="link" [links]="links" [languages]="languages" ></bl-carousel-link>
         <button class="btn btn-primary btn-sm btn-add-new positioned" (click)="comp.removeLink(link)">Remove link</button>
       </div>
       <button class="btn btn-primary btn-sm btn-add-new pull-left positioned component" (click)="comp.addLink()">Add link</button>

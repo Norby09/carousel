@@ -25,7 +25,6 @@ export class ItemListComponent implements OnInit {
   languageObj: Object;
 
   constructor(public languageService : LanguagesService, private http: HttpClient) {
-    this.languages.push( Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))}) );
     this.items.push(new Item({id : 1}));
     this.languageService.myMethod(this.languages);
   }

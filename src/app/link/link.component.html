@@ -13,11 +13,14 @@
   </div>
   <div class="row">
     <div class="col-lg-6" (mouseenter)="loadResources()">
-      <label class="col-lg-12 overwritePadding"> Text :
-        <select class="form-control" [(ngModel)]="link.text">
-          <option *ngFor="let resource of resources" [value]="resource">{{resource}}</option>
-        </select>
-      </label>
+        <label class="col-lg-4 overwritePadding" (mouseenter)="loadLanguages()"> Lang :
+            <select class="form-control" [(ngModel)]="selectedLanguage"> 
+              <option *ngFor="let language of defaultLanguages" [value]="language">{{language}}</option>
+            </select>
+        </label>
+        <label class="col-lg-6 overwritePadding" > Text :
+            <input type="text" class="form-control" placeholder="Enter resourece" [(ngModel)]="resourceValue" (blur)="saveResource(resourceValue)"/>
+        </label>
     </div>
     <div class="col-lg-6">
       <label class="col-lg-12 overwritePadding"> Tooltip :

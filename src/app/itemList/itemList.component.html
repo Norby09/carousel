@@ -1,8 +1,5 @@
 <div class="container">
 
-  <bl-carousel-i18n
-    [languages]="languages"></bl-carousel-i18n>
-
   <bl-carousel-slideshow [slideshow]="slideshow"></bl-carousel-slideshow>
 
   <bl-carousel-types [type]="type"></bl-carousel-types>
@@ -13,7 +10,7 @@
   <div class="container inner-container">
     <h3 class="hr"> Items </h3>
     <div *ngFor="let item of items">
-      <bl-carousel-item [itm]="item" [items]="items"></bl-carousel-item>
+      <bl-carousel-item [itm]="item" [items]="items" [languages]="languages" ></bl-carousel-item>
     </div>
   </div>
 </div>
