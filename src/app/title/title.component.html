@@ -12,14 +12,14 @@
        </label>
     </div>
     <div class="col-lg-4">
-        <label class="col-lg-4 overwritePadding" (mouseenter)="loadLanguages()"> Lang :
+        <label class="col-lg-12 overwritePadding" (mouseenter)="loadLanguages()"> Lang :
             <select class="form-control" [(ngModel)]="selectedLanguage"> 
-              <option *ngFor="let language of defaultLanguages" [value]="language">{{language}}</option>
+              <option *ngFor="let language of defaultLanguages" [value]="language.lang"><img src="language.img"/>{{language.lang}}</option>
             </select>
         </label>
-        <label class="col-lg-6 overwritePadding" > Text :
+        <!-- <label class="col-lg-6 overwritePadding" > Text :
             <input type="text" class="form-control" placeholder="Enter resourece" [(ngModel)]="resourceValue" (blur)="saveResource(resourceValue)"/>
-        </label>
+        </label> -->
     </div>
   </div>
 </div>

@@ -23,9 +23,6 @@ export class TitleComponent implements OnInit {
 
   ngOnInit() {}
 
-  loadResources() {
-    this.resources = this.languageService.getResources();
-  }
 
   loadLanguages() {
     this.defaultLanguages = this.languageService.getLanguages();
@@ -35,7 +32,7 @@ export class TitleComponent implements OnInit {
     let resourceName = "@description" + Math.floor(Math.random()*10+1);
     let languageExists = false;
     this.title.text = resourceName;
-    
+
     for(let language of this.languages) {
           if( language.name === this.selectedLanguage) {
               language.resources.push( new Resource({name : resourceName, value: resourceValue}));
