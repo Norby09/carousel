@@ -17,6 +17,7 @@ export class DescriptionComponent implements OnInit {
   defaultLanguages;
   selectedLanguage;
   resourceValue;
+  closeDropdown = false;
   
   constructor(private languageService: LanguagesService) {
   }
@@ -35,7 +36,7 @@ export class DescriptionComponent implements OnInit {
     let resourceName = "@title" + Math.floor(Math.random()*10+1);
     let languageExists = false;
     this.description.text = resourceName;
-    
+
     for(let language of this.languages) {
           if( language.name === this.selectedLanguage) {
               language.resources.push(new Resource({name : resourceName, value: resourceValue}));
@@ -46,6 +47,12 @@ export class DescriptionComponent implements OnInit {
     if( !languageExists ){
       this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
     }
+  }
+
+  onSelect(language) {
+    console.log('Clicked : ', language);
+    this.selectedLanguage = language.lang; 
+    this.closeDropdown = true;
   }
 
 }

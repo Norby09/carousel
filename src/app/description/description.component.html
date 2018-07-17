@@ -1,4 +1,4 @@
-<div class="td-container" class="hr">
+<div class="td-container">
   <h4 class="hr"> Description </h4>
   <div class="row">
     <div class="col-lg-4 ">
@@ -9,9 +9,16 @@
     </div> 
     <div class="col-lg-4"> 
         <label class="col-lg-4 overwritePadding" (mouseenter)="loadLanguages()"> Lang :
-            <select class="form-control" [(ngModel)]="selectedLanguage"> 
-              <option *ngFor="let language of defaultLanguages" [value]="language">{{language}}</option>
-            </select>
+          <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:50px">{{selectedLanguage}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" >
+                <li *ngFor="let language of defaultLanguages" (click)="onSelect(language)">
+                    <img src="../../assets/images/united_kingdom.png" class="iconStyle"/>{{language.lang}}
+                </li>
+              </ul>
+            </div>
         </label>
         <label class="col-lg-6 overwritePadding" > Text :
             <input type="text" class="form-control" placeholder="Enter resourece" [(ngModel)]="resourceValue" (blur)="saveResource(resourceValue)"/>

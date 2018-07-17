@@ -46,6 +46,8 @@ export class LanguagesService {
               { lang : 'tr' , img :  ''},
               { lang : 'cn' , img :  ''},
               { lang : 'tw' , img :  ''} ];
-            }
+            };
+    // return [  'en', 'cs', 'de', 'cz', 'es', 'fr', 'hu', 'it', 'jp', 'ja', 'ko', 'nl', 'pl', 'bg', 'pt', 'ru', 'tr', 'cn', 'tw' ];
+  }
 
 }
