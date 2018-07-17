@@ -30,8 +30,10 @@ export class LinkComponent{
   }
 
   saveResource(resourceValue) {
-    let resourceName = "@description" + Math.floor(Math.random()*10+1);
+    let resourceName = "@description" + Math.floor(Math.random()*1000+1);
     let languageExists = false;
+    this.link.text = resourceName;
+
     for(let language of this.languages) {
           if( language.name === this.selectedLanguage) {
               language.resources.push( new Resource({name : resourceName, value: resourceValue}));

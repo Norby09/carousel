@@ -34,6 +34,8 @@ export class TitleComponent implements OnInit {
   saveResource(resourceValue) {
     let resourceName = "@description" + Math.floor(Math.random()*10+1);
     let languageExists = false;
+    this.title.text = resourceName;
+    
     for(let language of this.languages) {
           if( language.name === this.selectedLanguage) {
               language.resources.push( new Resource({name : resourceName, value: resourceValue}));
