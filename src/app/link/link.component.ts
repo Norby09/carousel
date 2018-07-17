@@ -14,7 +14,6 @@ export class LinkComponent implements OnInit {
   @Input() links: Link[];
   @Input() languages : Language[];
 
-  resources;
   defaultLanguages;
   selectedLanguage;
   resourceValue;
@@ -24,10 +23,6 @@ export class LinkComponent implements OnInit {
 
   ngOnInit() {
     this.loadLanguages();
-  }
-
-  loadResources() {
-    this.resources = this.languageService.getResources();
   }
 
   loadLanguages() {
@@ -41,6 +36,7 @@ export class LinkComponent implements OnInit {
 
     for(let language of this.languages) {
           if( language.name === this.selectedLanguage) {
+              console.log('If entered :', this.selectedLanguage)
               language.resources.push( new Resource({name : resourceName, value: resourceValue}));
               languageExists = true;
           }

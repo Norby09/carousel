@@ -39,9 +39,4 @@ describe('TitleComponent', () => {
     fixture = TestBed.createComponent(TitleComponent);
     component = fixture.componentInstance;
   });
-
-  it('should return resources', () => {
-    component.loadResources();
-    expect(component.resources).toEqual([resource1.name, resource2.name,resource3.name,resource4.name]);
-  });
 });
