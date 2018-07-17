@@ -12,12 +12,20 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-6" (mouseenter)="loadResources()">
-        <label class="col-lg-4 overwritePadding" (mouseenter)="loadLanguages()"> Lang :
-            <select class="form-control" [(ngModel)]="selectedLanguage"> 
-              <option *ngFor="let language of defaultLanguages" [value]="language">{{language}}</option>
-            </select>
-        </label>
+    <div class="col-lg-6"> 
+        <div class="col-lg-4 overwritePadding"> 
+          <label class="noPadding"> Lang : </label>
+          <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" (click)="onClick()">{{selectedLanguage}}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" *ngIf="showDropdown">
+                  <li *ngFor="let language of defaultLanguages" (click)="onSelect(language)">
+                      <img [src]="language.img" class="iconStyle"/>{{language.lang}}
+                  </li>
+              </ul>
+            </div>
+        </div>
         <label class="col-lg-6 overwritePadding" > Text :
             <input type="text" class="form-control" placeholder="Enter resourece" [(ngModel)]="resourceValue" (blur)="saveResource(resourceValue)"/>
         </label>

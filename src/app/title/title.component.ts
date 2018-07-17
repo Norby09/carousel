@@ -17,11 +17,14 @@ export class TitleComponent implements OnInit {
   defaultLanguages;
   selectedLanguage;
   resourceValue;
+  showDropdown = true;
 
   constructor(private languageService : LanguagesService) { 
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadLanguages();
+  }
 
 
   loadLanguages() {
@@ -42,6 +45,15 @@ export class TitleComponent implements OnInit {
     if( !languageExists ){
       this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
     }
+  }
+
+  onClick() {
+    this.showDropdown = true;
+  }
+
+  onSelect(language) {
+    this.selectedLanguage = language.lang; 
+    this.showDropdown = !this.showDropdown;
   }
 
 }

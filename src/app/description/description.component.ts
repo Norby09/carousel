@@ -17,12 +17,13 @@ export class DescriptionComponent implements OnInit {
   defaultLanguages;
   selectedLanguage;
   resourceValue;
-  closeDropdown = false;
+  showDropdown = true;
   
-  constructor(private languageService: LanguagesService) {
-  }
+  constructor(private languageService: LanguagesService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadLanguages();
+  }
 
   loadResources() {
     this.resources = this.languageService.getResources();
@@ -49,10 +50,13 @@ export class DescriptionComponent implements OnInit {
     }
   }
 
+  onClick() {
+    this.showDropdown = true;
+  }
+
   onSelect(language) {
-    console.log('Clicked : ', language);
     this.selectedLanguage = language.lang; 
-    this.closeDropdown = true;
+    this.showDropdown = !this.showDropdown;
   }
 
 }

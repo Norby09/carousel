@@ -9,7 +9,7 @@ import { Resource } from 'data/resource';
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss', '../app.component.scss']
 })
-export class LinkComponent{
+export class LinkComponent implements OnInit { 
   @Input() link: Link = null;
   @Input() links: Link[];
   @Input() languages : Language[];
@@ -18,8 +18,13 @@ export class LinkComponent{
   defaultLanguages;
   selectedLanguage;
   resourceValue;
+  showDropdown = true;
   
   constructor(private languageService: LanguagesService) { }
+
+  ngOnInit() {
+    this.loadLanguages();
+  }
 
   loadResources() {
     this.resources = this.languageService.getResources();
@@ -43,5 +48,14 @@ export class LinkComponent{
     if( !languageExists ){
       this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
     }
+  }
+
+  onClick() {
+    this.showDropdown = true;
+  }
+
+  onSelect(language) {
+    this.selectedLanguage = language.lang; 
+    this.showDropdown = !this.showDropdown;
   }
 }
