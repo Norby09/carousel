@@ -19,8 +19,8 @@ export class TitleComponent implements OnInit {
   resourceValue;
   showDropdown = true;
   resourceName = "@description" + Math.floor(Math.random()*10+1);
-
-  constructor(private languageService : LanguagesService) { 
+  arrayOfSelectedLanguages = [];
+  constructor(private languageService : LanguagesService) {
   }
 
   ngOnInit() {
@@ -52,7 +52,11 @@ export class TitleComponent implements OnInit {
   }
 
   onSelect(language) {
-    this.selectedLanguage = language.lang; 
+    this.selectedLanguage = language.lang;
+    this.showDropdown = !this.showDropdown;
+  }
+  onSelectSpecialised(language) {
+    this.arrayOfSelectedLanguages.push(language.lang);
     this.showDropdown = !this.showDropdown;
   }
 

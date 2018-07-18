@@ -11,8 +11,8 @@
         <input type="text" class="form-control" placeholder="Enter Style" [(ngModel)]="title.style" />
        </label>
     </div>
-    <div class="col-lg-6"> 
-        <div class="col-lg-3 overwritePadding"> 
+    <div class="col-lg-6">
+        <div class="col-lg-3 overwritePadding">
           <label class="noPadding"> Lang : </label>
           <div class="dropdown">
               <button class="btn btn-default dropdown-toggle dropdownButton" type="button" data-toggle="dropdown" (click)="onClick()">{{selectedLanguage}}
@@ -31,15 +31,15 @@
         <button class="col-lg-2 btn btn-default addButton" (click)="addResource(resourceValue)"> <i class="fa fa-plus"></i> </button>
     </div>
 
-    <div class="col-lg-6" *ngFor="let lang of this.languages">
-        <div class="col-lg-3 overwritePadding"> 
+    <div class="col-lg-6" *ngFor="let lang of this.languages; let i = index" [attr.data-index]="i">
+        <div class="col-lg-3 overwritePadding">
             <label class="noPadding"> Lang : </label>
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle dropdownButton" type="button" data-toggle="dropdown" (click)="onClick()">{{selectedLanguage}}
+                <button class="btn btn-default dropdown-toggle dropdownButton" type="button" data-toggle="dropdown" (click)="onClick()">{{arrayOfSelectedLanguages[i]}}
                   <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" *ngIf="showDropdown">
-                    <li *ngFor="let language of defaultLanguages" (click)="onSelect(language)">
+                    <li *ngFor="let language of defaultLanguages" (click)="onSelectSpecialised(language)">
                         <img [src]="language.img" class="iconStyle"/>{{language.lang}}
                     </li>
                 </ul>
