@@ -24,7 +24,6 @@ describe('LinkComponent', () => {
     }
   }
 
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LinkComponent ],
@@ -42,28 +41,39 @@ describe('LinkComponent', () => {
     component = fixture.componentInstance;
   });
 
+  it('should load languages on init', () => {
+    component.ngOnInit();
+    expect(component.defaultLanguages).toEqual(languages);
+  });
+
   it('should return languages', () => {
     component.loadLanguages();
     expect(component.defaultLanguages).toEqual(languages);
+  });
+
+  it('should add the resource to the existent language', () => {
+    const language = new Language({ name : "en" , resource : [] });
+    language.resources.push( new Resource({ name : '@Resource1', value : 'Test resource'}));
+    component.languages = [];
+    component.languages.push(language);
+
+    component.link = new Link();
+    component.selectedLanguage = "en";
+    component.saveResource("Test resource 2");
+
+    const lang = component.languages.filter( l => l.name === component.selectedLanguage);
+    expect(lang[0].resources.length).toEqual(2);
   });
 
   it('should create the language with the resource if it does not exists', () => {
     component.link = new Link();
     component.languages = [];
     component.selectedLanguage = "fr";
-    component.saveResource("@testResource1");
+    component.saveResource("Test resource");
+
     expect(component.languages.length).toEqual(1);
-  });
-
-  it('should add the resource to the existent language', () => {
-    component.link = new Link();
-    component.languages = [];
-    component.languages.push( new Language({ name : "en" , resource : []}));
-    component.selectedLanguage = "en";
-    component.saveResource("@testResource1");
-
-    const lang = component.languages.filter( l => l.name === component.selectedLanguage);
-    expect(lang[0].resources.length).toEqual(1);
+    expect(component.languages[0].name).toEqual( component.selectedLanguage );
+    expect(component.languages[0].resources.length).toEqual(1);
   });
 
   it('should change showDropdown on click', () => {

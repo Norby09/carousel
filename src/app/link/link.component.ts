@@ -36,13 +36,12 @@ export class LinkComponent implements OnInit {
 
     for(let language of this.languages) {
           if( language.name === this.selectedLanguage) {
-              console.log('If entered :', this.selectedLanguage)
               language.resources.push( new Resource({name : resourceName, value: resourceValue}));
               languageExists = true;
           }
     }
     if( !languageExists ){
-      this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
+      this.languages.push( new Language({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
     }
   }
 
