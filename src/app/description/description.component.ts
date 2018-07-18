@@ -25,10 +25,6 @@ export class DescriptionComponent implements OnInit {
     this.loadLanguages();
   }
 
-  loadResources() {
-    this.resources = this.languageService.getResources();
-  }
-
   loadLanguages() {
     this.defaultLanguages = this.languageService.getLanguages();
   }

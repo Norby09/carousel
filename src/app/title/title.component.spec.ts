@@ -77,4 +77,16 @@ describe('TitleComponent', () => {
     expect(component.languages[0].name).toEqual( component.selectedLanguage );
     expect(component.languages[0].resources.length).toEqual(1);
   });
+
+  it('should create the language with the resource if it does not exists on default languages', () => {
+    component.title = new Title();
+    const language = new Language({ name : "en" , resource : [] });
+    language.resources.push( new Resource({ name : '@Resource1', value : 'Test resource'}));
+    component.languages = [];
+    component.languages.push(language);
+    component.selectedLanguage = "zz";
+    component.saveResource("Test resource");
+
+    expect(component.languages.length).toEqual(2);
+  });
 });

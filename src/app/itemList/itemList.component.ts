@@ -26,7 +26,6 @@ export class ItemListComponent implements OnInit {
 
   constructor(public languageService : LanguagesService, private http: HttpClient) {
     this.items.push(new Item({id : 1}));
-    this.languageService.myMethod(this.languages);
   }
 
   ngOnInit() {
@@ -35,8 +34,6 @@ export class ItemListComponent implements OnInit {
     this.type = Type.create();
     this.setting = Settings.create();
   }
-
-
 
   export(format: string = 'json'): string {
 
@@ -103,7 +100,6 @@ export class ItemListComponent implements OnInit {
             }
             this.languages.push(element);
         }
-        this.languageService.myMethod(this.languages);
         return true;
       default:
         return false;
