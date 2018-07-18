@@ -87,4 +87,18 @@ describe('LinkComponent', () => {
     expect(component.showDropdown).toEqual(true);
   });
 
+  it('should create the language with the resource if it does not exists on default languages', () => {
+    component.link = new Link();
+    const language = new Language({ name : "en" , resource : [] });
+    language.resources.push( new Resource({ name : '@Resource1', value : 'Test resource'}));
+    component.languages = [];
+    component.languages.push(language);
+    component.selectedLanguage = "zz";
+    component.saveResource("Test resource");
+
+    expect(component.languages.length).toEqual(1);
+    expect(component.languages[0].name).toEqual( component.selectedLanguage );
+    expect(component.languages[0].resources.length).toEqual(1);
+  });
+
 });

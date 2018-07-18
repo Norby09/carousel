@@ -51,7 +51,6 @@ export class ItemListComponent implements OnInit {
     switch ((format).toLowerCase()) {
       case 'json':
           const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
-          window.localStorage.setItem('data', '1');
           this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
             res => {
               console.log(res);
@@ -84,6 +83,9 @@ export class ItemListComponent implements OnInit {
         json = JSON.parse(config);
 
         this.items = json.items;
+
+        console.log(this.items);
+
         this.slideshow = json.slideshow;
         this.type = json.types;
         this.setting = json.settings;

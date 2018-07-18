@@ -18,6 +18,7 @@ export class TitleComponent implements OnInit {
   selectedLanguage;
   resourceValue;
   showDropdown = true;
+  resourceName = "@description" + Math.floor(Math.random()*10+1);
 
   constructor(private languageService : LanguagesService) { 
   }
@@ -32,18 +33,17 @@ export class TitleComponent implements OnInit {
   }
 
   saveResource(resourceValue) {
-    let resourceName = "@description" + Math.floor(Math.random()*10+1);
     let languageExists = false;
-    this.title.text = resourceName;
+    this.title.text = this.resourceName;
 
     for(let language of this.languages) {
           if( language.name === this.selectedLanguage) {
-              language.resources.push( new Resource({name : resourceName, value: resourceValue}));
+              language.resources.push( new Resource({name : this.resourceName, value: resourceValue}));
               languageExists = true;
           }
     }
     if( !languageExists ){
-      this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
+      this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
     }
   }
 
@@ -54,6 +54,11 @@ export class TitleComponent implements OnInit {
   onSelect(language) {
     this.selectedLanguage = language.lang; 
     this.showDropdown = !this.showDropdown;
+  }
+
+  addResource(resourceValue) {
+    const element = Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : resourceValue}))});
+    this.languages.push(element);
   }
 
 }
