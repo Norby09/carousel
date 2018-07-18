@@ -18,7 +18,7 @@ export class DescriptionComponent implements OnInit {
   selectedLanguage;
   resourceValue;
   showDropdown = true;
-  
+
   constructor(private languageService: LanguagesService) {}
 
   ngOnInit() {
@@ -35,7 +35,7 @@ export class DescriptionComponent implements OnInit {
     this.description.text = resourceName;
 
     for(let language of this.languages) {
-          if( language.name === this.selectedLanguage) {
+          if ( language.name === this.selectedLanguage) {
               language.resources.push(new Resource({name : resourceName, value: resourceValue}));
               languageExists = true;
           }
@@ -51,7 +51,7 @@ export class DescriptionComponent implements OnInit {
   }
 
   onSelect(language) {
-    this.selectedLanguage = language.lang; 
+    this.selectedLanguage = language.lang;
     this.showDropdown = !this.showDropdown;
   }
 
