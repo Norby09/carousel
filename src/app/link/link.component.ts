@@ -18,30 +18,19 @@ export class LinkComponent implements OnInit {
   selectedLanguage;
   resourceValue;
   showDropdown = true;
+  resourceName = "@link" + Math.floor(Math.random()*10000+1);
+  languageAndResources = [];
   
   constructor(private languageService: LanguagesService) { }
 
   ngOnInit() {
-    this.loadLanguages();
-  }
-
-  loadLanguages() {
-    this.defaultLanguages = this.languageService.getLanguages();
-  }
-
-  saveResource(resourceValue) {
-    let resourceName = "@description" + Math.floor(Math.random()*1000+1);
-    let languageExists = false;
-    this.link.text = resourceName;
-
-    for(let language of this.languages) {
-          if( language.name === this.selectedLanguage) {
-              language.resources.push( new Resource({name : resourceName, value: resourceValue}));
-              languageExists = true;
-          }
-    }
-    if( !languageExists ){
-      this.languages.push( new Language({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
+    if( this.link.text ) {
+      this.resourceName = this.link.text.toString();
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.link.text}))}) );
+    } else {
+      this.defaultLanguages = this.languageService.getLanguages();
+      this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+      this.link.text = this.resourceName;
     }
   }
 
@@ -49,8 +38,28 @@ export class LinkComponent implements OnInit {
     this.showDropdown = true;
   }
 
-  onSelect(language) {
-    this.selectedLanguage = language.lang; 
+  onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;
+    this.languageAndResources.pop();
+    this.languageAndResources.push(Language.create({
+      name: language.lang,
+      resources: new Array<Resource>(new Resource({name: this.resourceName, value: ""}))
+    }));
+    for (let i = 0; i < this.defaultLanguages.length; i++) {
+      if (this.defaultLanguages[i].lang === language.lang) {
+        this.defaultLanguages.splice(i, 1);
+      }
+    }
+  }
+
+  onInputResource(resourceValue) {
+    const lang = this.languageAndResources.pop();
+    this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
+    this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
+  }
+
+  addLanguage() {
+    this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+    this.languageService.getLanguagesAndResources();
   }
 }
