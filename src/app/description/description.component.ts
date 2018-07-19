@@ -10,7 +10,7 @@ import { Resource } from 'data/resource';
   styleUrls: ['./description.component.scss', '../app.component.scss']
 })
 export class DescriptionComponent implements OnInit {
-  @Input() description: Description = null;
+  @Input() description: Description ;
   @Input() languages : Language[];
 
   resources;
@@ -24,7 +24,8 @@ export class DescriptionComponent implements OnInit {
   constructor(private languageService: LanguagesService) {}
 
   ngOnInit() {
-    if( this.description.text ) {
+    console.log(this.description);
+    if( this.description.text !== "") {
       this.resourceName = this.description.text.toString();
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.description.text}))}) );
     } else {
