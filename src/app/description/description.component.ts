@@ -30,7 +30,6 @@ export class DescriptionComponent implements OnInit {
     } else {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-      this.description.text = this.resourceName;
     }
   }
 
@@ -55,6 +54,8 @@ export class DescriptionComponent implements OnInit {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
     this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
+    this.description.text = this.resourceName;
+
   }
 
   addLanguage() {

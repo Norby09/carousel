@@ -30,7 +30,6 @@ export class LinkComponent implements OnInit {
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.link.text}))}) );
     } else {
       this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-      this.link.text = this.resourceName;
     }
   }
 
@@ -52,6 +51,7 @@ export class LinkComponent implements OnInit {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
     this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
+    this.link.text = this.resourceName;
   }
 
   addLanguage() {

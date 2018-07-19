@@ -32,7 +32,6 @@ export class TitleComponent implements OnInit {
     } else {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-      this.title.text = this.resourceName;
     }
   }
 
@@ -57,11 +56,12 @@ export class TitleComponent implements OnInit {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
     this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
+    this.title.text = this.resourceName;
+
   }
 
   addLanguage() {
     this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-    this.languageService.getLanguagesAndResources();
   }
 
 }
