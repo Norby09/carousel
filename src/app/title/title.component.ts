@@ -18,7 +18,7 @@ export class TitleComponent implements OnInit {
   selectedLanguage;
   resourceValue;
   showDropdown = true;
-  resourceName = "@description" + Math.floor(Math.random()*10000+1);
+  resourceName = "@title" + Math.floor(Math.random()*10000+1);
   selectedLanguages = [];
 
   languageAndResources = [];
@@ -37,17 +37,20 @@ export class TitleComponent implements OnInit {
 
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;
-    console.log('Selected language : ', language);
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : language.lang , resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-    console.log('Languages: ', this.languageAndResources);
+    
+    for(let i=0; i< this.defaultLanguages.length; i++ ) {
+        if ( this.defaultLanguages[i].lang === language.lang ) {
+            this.defaultLanguages.splice(i,1);
+        }
+    }
   }
 
   onInputResource(resourceValue){
 
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
-    console.log('Languages: ', this.languageAndResources);
     this.languageService.saveLanguageAndResource(lang.name,this.resourceName, resourceValue);
   }
 
