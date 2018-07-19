@@ -18,51 +18,42 @@ export class TitleComponent implements OnInit {
   selectedLanguage;
   resourceValue;
   showDropdown = true;
-  resourceName = "@description" + Math.floor(Math.random()*10+1);
-  arrayOfSelectedLanguages = [];
+  resourceName = "@description" + Math.floor(Math.random()*10000+1);
+  selectedLanguages = [];
+
+  languageAndResources = [];
+
   constructor(private languageService : LanguagesService) {
   }
 
   ngOnInit() {
-    this.loadLanguages();
-  }
-
-
-  loadLanguages() {
     this.defaultLanguages = this.languageService.getLanguages();
-  }
-
-  saveResource(resourceValue) {
-    let languageExists = false;
-    this.title.text = this.resourceName;
-
-    for(let language of this.languages) {
-          if( language.name === this.selectedLanguage) {
-              language.resources.push( new Resource({name : this.resourceName, value: resourceValue}));
-              languageExists = true;
-          }
-    }
-    if( !languageExists ){
-      this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
-    }
+    this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
   }
 
   onClick() {
     this.showDropdown = true;
   }
 
-  onSelect(language) {
-    this.selectedLanguage = language.lang;
+  onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;
-  }
-  onSelectSpecialised(language) {
-    this.arrayOfSelectedLanguages.push(language.lang);
-    this.showDropdown = !this.showDropdown;
+    console.log('Selected language : ', language);
+    const lang = this.languageAndResources.pop();
+    this.languageAndResources.push( Language.create({ name  : language.lang , resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+    console.log('Languages: ', this.languageAndResources);
   }
 
-  addResource(resourceValue) {
-    const element = Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : resourceValue}))});
-    this.languages.push(element);
+  onInputResource(resourceValue){
+
+    const lang = this.languageAndResources.pop();
+    this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
+    console.log('Languages: ', this.languageAndResources);
+    this.languageService.saveLanguageAndResource(lang.name,this.resourceName, resourceValue);
+  }
+
+  addLanguage() {
+    this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+    this.languageService.getLanguagesAndResources();
   }
 
 }

@@ -37,6 +37,10 @@ export class ItemListComponent implements OnInit {
 
   export(format: string = 'json'): string {
 
+    this.languages = this.languageService.getLanguagesAndResources();
+
+    console.log('Languages on export : ', this.languages);
+
     for (let i = 0; i < this.languages.length; i++) {
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};
