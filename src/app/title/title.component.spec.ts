@@ -8,6 +8,7 @@ import { Language } from 'data/language';
 import { FormsModule } from '@angular/forms';
 import { Title } from 'data/title';
 import {Description} from '../../data/description';
+import {Input} from '@angular/core';
 
 describe('TitleComponent', () => {
   let component: TitleComponent;
@@ -93,6 +94,7 @@ describe('TitleComponent', () => {
     expect(component.defaultLanguages).toEqual([{ lang : 'en' , img: '' }, { lang: 'fr', img: ''}]);
   });
   it('tests onInputResource method', () => {
+    component.title = new Title();
     component.languageAndResources = [{name: 'en', resources: [{name: component.resourceName, value: 'default'}]}]
     component.onInputResource('default');
     expect(component.languageAndResources.length).toEqual(1);

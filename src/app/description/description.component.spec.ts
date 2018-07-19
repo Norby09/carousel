@@ -91,7 +91,8 @@ describe('DescriptionComponent', () => {
     expect(component.defaultLanguages).toEqual([{ lang : 'en' , img: '' }, { lang: 'fr', img: ''}]);
   });
   it('tests onInputResource method', () => {
-    component.languageAndResources = [{name: 'en', resources: [{name: component.resourceName, value: 'default'}]}]
+    component.languageAndResources = [{name: 'en', resources: [{name: component.resourceName, value: 'default'}]}];
+    component.description = new Description();
     component.onInputResource('default');
     expect(component.languageAndResources.length).toEqual(1);
   });
