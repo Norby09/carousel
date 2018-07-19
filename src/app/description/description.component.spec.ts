@@ -42,48 +42,13 @@ describe('DescriptionComponent', () => {
     fixture = TestBed.createComponent(DescriptionComponent);
     component = fixture.componentInstance;
   });
-  it('should add the resource to the existent language', () => {
-    const language = new Language({ name : "en" , resource : [] });
-    language.resources.push( new Resource({ name : '@Resource1', value : 'Test resource'}));
-    component.languages = [];
-    component.languages.push(language);
 
-    component.description = new Description();
-    component.selectedLanguage = "en";
-    component.saveResource("Test resource 2");
-
-    const lang = component.languages.filter( l => l.name === component.selectedLanguage);
-    expect(lang[0].resources.length).toEqual(2);
-  });
-  it('should add a new language to languages array', () => {
-    component.description = new Description();
-    component.languages = [];
-    component.selectedLanguage = "fr";
-    component.saveResource("Test resource");
-
-    expect(component.languages.length).toEqual(1);
-    expect(component.languages[0].name).toEqual( component.selectedLanguage );
-    expect(component.languages[0].resources.length).toEqual(1);
-  });
   it('should change showDropdown to true', () => {
     component.onClick();
     expect(component.showDropdown).toEqual(true);
   });
-  it('should select a specific language', () => {
-    component.onSelect('fr');
-    expect(component.showDropdown).toEqual(false);
-  });
-  it('should create the language with the resource if it does not exists on default languages', () => {
-    component.description = new Description();
-    const language = new Language({ name : "en" , resource : [] });
-    language.resources.push( new Resource({ name : '@Resource1', value : 'Test resource'}));
-    component.languages = [];
-    component.languages.push(language);
-    component.selectedLanguage = "zz";
-    component.saveResource("Test resource");
-    console.log(component.languages);
-    expect(component.languages.length).toEqual(2);
-    expect(component.languages[1].name).toEqual( component.selectedLanguage );
-    expect(component.languages[1].resources.length).toEqual(1);
-  });
+  // it('should select a specific language', () => {
+  //   component.onSelect('fr');
+  //   expect(component.showDropdown).toEqual(false);
+  // });
 });
