@@ -1,11 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-
 import { TypesComponent } from './types.component';
 import { FormsModule } from '@angular/forms';
 import { Type } from '../../data/type';
-
-
 
 describe('TypesComponent', () => {
   let component: TypesComponent;

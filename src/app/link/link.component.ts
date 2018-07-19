@@ -24,18 +24,14 @@ export class LinkComponent implements OnInit {
   constructor(private languageService: LanguagesService) { }
 
   ngOnInit() {
+    this.defaultLanguages = this.languageService.getLanguages();
     if( this.link.text ) {
       this.resourceName = this.link.text.toString();
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.link.text}))}) );
     } else {
-      this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
       this.link.text = this.resourceName;
     }
-  }
-
-  onClick() {
-    this.showDropdown = true;
   }
 
   onSelectLanguage(language) {
@@ -60,6 +56,5 @@ export class LinkComponent implements OnInit {
 
   addLanguage() {
     this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-    this.languageService.getLanguagesAndResources();
   }
 }
