@@ -18,41 +18,49 @@ export class DescriptionComponent implements OnInit {
   selectedLanguage;
   resourceValue;
   showDropdown = true;
+  resourceName = "@description" + Math.floor(Math.random()*10000+1);
+  languageAndResources = [];
 
   constructor(private languageService: LanguagesService) {}
 
   ngOnInit() {
-    this.loadLanguages();
-  }
-
-  loadLanguages() {
-    this.defaultLanguages = this.languageService.getLanguages();
-  }
-
-  saveResource(resourceValue) {
-    let resourceName = "@title" + Math.floor(Math.random()*10+1);
-    let languageExists = false;
-    this.description.text = resourceName;
-
-    for(let language of this.languages) {
-          if ( language.name === this.selectedLanguage) {
-              language.resources.push(new Resource({name : resourceName, value: resourceValue}));
-              languageExists = true;
-          }
-    }
-
-    if( !languageExists ){
-      this.languages.push( Language.create({ name  : this.selectedLanguage, resources : new Array<Resource>(new Resource({name : resourceName , value : resourceValue}))}) );
+    // this.loadLanguages();
+    if( this.description.text ) {
+      this.resourceName = this.description.text.toString();
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.description.text}))}) );
+    } else {
+      this.defaultLanguages = this.languageService.getLanguages();
+      this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+      this.description.text = this.resourceName;
     }
   }
 
+  onSelectLanguage(language) {
+    this.showDropdown = !this.showDropdown;
+    this.languageAndResources.pop();
+    this.languageAndResources.push(Language.create({
+      name: language.lang,
+      resources: new Array<Resource>(new Resource({name: this.resourceName, value: ""}))
+    }));
+    for (let i = 0; i < this.defaultLanguages.length; i++) {
+      if (this.defaultLanguages[i].lang === language.lang) {
+        this.defaultLanguages.splice(i, 1);
+      }
+    }
+  }
   onClick() {
     this.showDropdown = true;
   }
 
-  onSelect(language) {
-    this.selectedLanguage = language.lang;
-    this.showDropdown = !this.showDropdown;
+  onInputResource(resourceValue) {
+    const lang = this.languageAndResources.pop();
+    this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
+    this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
+  }
+
+  addLanguage() {
+    this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+    this.languageService.getLanguagesAndResources();
   }
 
 }

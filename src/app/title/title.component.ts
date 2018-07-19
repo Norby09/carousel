@@ -30,7 +30,7 @@ export class TitleComponent implements OnInit {
     if( this.title.text ) {
       this.resourceName = this.title.text.toString();
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.title.text}))}) );
-    } else { 
+    } else {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
       this.title.text = this.resourceName;
@@ -44,19 +44,20 @@ export class TitleComponent implements OnInit {
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;
     this.languageAndResources.pop();
-    this.languageAndResources.push( Language.create({ name  : language.lang , resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-    
-    for(let i=0; i< this.defaultLanguages.length; i++ ) {
-        if ( this.defaultLanguages[i].lang === language.lang ) {
-            this.defaultLanguages.splice(i,1);
-        }
+    this.languageAndResources.push(Language.create({
+      name: language.lang,
+      resources: new Array<Resource>(new Resource({name: this.resourceName, value: ""}))
+    }));
+    for (let i = 0; i < this.defaultLanguages.length; i++) {
+      if (this.defaultLanguages[i].lang === language.lang) {
+        this.defaultLanguages.splice(i, 1);
+      }
     }
   }
-
-  onInputResource(resourceValue){
+  onInputResource(resourceValue) {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
-    this.languageService.saveLanguageAndResource(lang.name,this.resourceName, resourceValue);
+    this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
   }
 
   addLanguage() {
