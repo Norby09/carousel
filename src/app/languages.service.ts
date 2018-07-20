@@ -31,7 +31,7 @@ export class LanguagesService {
 
   saveLanguageAndResource(languageName, resourceName, resourceValue) {
       let languageExists = false;
-  
+
       for(let language of this.languages) {
             if( language.name === languageName) {
                 language.resources.push( new Resource({name : resourceName, value: resourceValue}));
@@ -44,6 +44,7 @@ export class LanguagesService {
   }
 
   getLanguagesAndResources() {
+    console.log(this.languages);
     return this.languages;
   }
 }

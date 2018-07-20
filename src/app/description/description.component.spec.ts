@@ -100,5 +100,6 @@ describe('DescriptionComponent', () => {
     component.resourceName = '@description'
     component.languageAndResources = [{name: 'en', resources: [{name: '@description', value: ''}]}];
     component.addLanguage();
+    expect(component.languageAndResources.length).toEqual(2);
   })
 });
