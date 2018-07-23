@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 import { Link } from 'data/link';
 import { Item } from '../../data/item';
 import { Slideshow } from '../../data/slideshow';
@@ -19,16 +19,20 @@ import { Inject } from '@angular/core';
   styleUrls: ['./itemList.component.scss', '../app.component.scss']
 })
 
-export class ItemListComponent implements OnInit {
+export class ItemListComponent implements OnInit, AfterContentInit{
   items: Item[] = [];
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Settings = null;
   languages: Language[] = [];
   languageObj: Object;
-
-  constructor(public languageService : LanguagesService, private http: HttpClient, @Inject(DOCUMENT) public doc: any) {
+  @Input() doc;
+  constructor(public languageService : LanguagesService, private http: HttpClient) {
     this.items.push(new Item({id : 1}));
+    console.log('This is doc',this.doc);
+  }
+  ngAfterContentInit() {
+    console.log(this.doc);
   }
 
   ngOnInit() {
@@ -60,10 +64,10 @@ export class ItemListComponent implements OnInit {
           const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
           this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
             res => {
-              const frame = self.doc.getElementById('previewIframe');
+              const frame = this.doc.getElementById('previewIframe');
               frame.src = frame.src;
             },
-            err=> {
+            err => {
               console.error(err.error, err.message);
             }
           );

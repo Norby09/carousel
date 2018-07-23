@@ -11,6 +11,7 @@ export class ItemComponent implements OnInit {
   @Input() itm: Item = null;
   @Input() items: Item[];
   @Input() languages : Language[];
+  @Input() doc;
 
   itemId = 1;
 
