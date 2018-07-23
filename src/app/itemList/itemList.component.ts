@@ -18,21 +18,16 @@ import { Inject } from '@angular/core';
   templateUrl: './itemList.component.html',
   styleUrls: ['./itemList.component.scss', '../app.component.scss']
 })
-
-export class ItemListComponent implements OnInit, AfterContentInit{
+export class ItemListComponent implements OnInit{
   items: Item[] = [];
   slideshow: Slideshow = null;
   type: Type = null;
   setting: Settings = null;
   languages: Language[] = [];
   languageObj: Object;
-  @Input() doc;
-  constructor(public languageService : LanguagesService, private http: HttpClient) {
+
+  constructor(public languageService : LanguagesService, private http: HttpClient, @Inject(DOCUMENT) public doc: any) {
     this.items.push(new Item({id : 1}));
-    console.log('This is doc',this.doc);
-  }
-  ngAfterContentInit() {
-    console.log(this.doc);
   }
 
   ngOnInit() {
@@ -58,13 +53,14 @@ export class ItemListComponent implements OnInit, AfterContentInit{
     }
     format = format.toLowerCase();
     const self = this;
+
+    console.log(this.doc);
     switch (format) {
       case 'json':
-          console.log(this.languageObj);
           const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
           this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
             res => {
-              const frame = this.doc.getElementById('previewIframe');
+              const frame = self.doc.getElementById('previewIframe');
               frame.src = frame.src;
             },
             err => {

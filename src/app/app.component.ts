@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { LanguagesService } from '../app/languages.service';
-import { DOCUMENT } from '@angular/common';
+
 @Component({
   selector: 'bl-carousel-configurator',
   templateUrl: './app.component.html',
@@ -9,9 +9,4 @@ import { DOCUMENT } from '@angular/common';
 
 })
 export class AppComponent {
-  doc;
-  constructor(@Inject(DOCUMENT) public document: any) {
-    console.log(document);
-    this.doc = document;
-  }
 }
