@@ -62,8 +62,6 @@ export class ItemListComponent implements OnInit{
             res => {
               const frame = self.doc.getElementById('previewIframe');
               frame.contentWindow.location.reload();
-              
-              //window location.reload -> 
             },
             err => {
               console.error(err.error, err.message);
