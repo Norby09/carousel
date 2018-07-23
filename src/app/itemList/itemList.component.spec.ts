@@ -27,6 +27,8 @@ describe('ItemListComponent', () => {
   let component: ItemListComponent;
   let fixture: ComponentFixture<ItemListComponent>;
 
+  const serverUrl = 'http://localhost:3000/save';
+
   const langServ = {
     languages : [Language.create({name: 'en', resources: new Array<Resource>(new Resource({name : '@title1' , value : 'asd'}))})],
     getLanguagesAndResources: () => {
@@ -55,18 +57,26 @@ describe('ItemListComponent', () => {
     }
   };
 
-  const DOC = { 
+  const docMock = { 
       getElementById( elementId ) {
-        console.log("i was called");
-        return {};
+        return {
+            contentWindow : {
+                location : {
+                    reload() {
+                      return true;
+                    }
+                }
+            }
+        }
       }
-  }
+  };
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpClientTestingModule ],
       providers: [ {provide: LanguagesService,
-                    useValue: langServ}],
+                    useValue: langServ},
+                ],
       declarations: [ ItemListComponent,
         SettingsComponent,
         TypesComponent,
@@ -104,25 +114,48 @@ describe('ItemListComponent', () => {
         .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
     });
 
-    it('should export data in js format', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+    it('should export data in json format', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
       
       component.languageObj = {en: {title1: 'sdas', title2: 'aaaa'}};
-      component.doc = DOC;
+      component.doc = docMock;
 
       expect(component.export('json'))
         .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
       
-      const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
+      const wrapper = connections.expectOne({url: serverUrl, method: 'POST'});
       wrapper.flush({message : 'File successfully saved!'});
     })));
 
     it('should call the getElementById method', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
-        component.doc = DOC;
-        const spy = spyOn(DOC, 'getElementById'); 
+        component.doc = docMock;
+        const spy = spyOn(docMock, 'getElementById').and.callThrough(); 
         component.export('json');
-        const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
+
+        const wrapper = connections.expectOne({url: serverUrl, method: 'POST'});
         wrapper.flush({message : 'File successfully saved!'});
+
         expect(spy).toHaveBeenCalled();
     })));
+
+    it('should call the reload method', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+      const x = docMock.getElementById('');
+      debugger;
+      const spy = spyOn(x.contentWindow.location, 'reload'); 
+      component.export('json');
+
+      const wrapper = connections.expectOne({url: serverUrl, method: 'POST'});
+      wrapper.flush({message : 'File successfully saved!'});
+
+      expect(spy).toHaveBeenCalled();
+  })));
+
+    // it('should get an error', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+
+    //   expect(component.export('json'))
+    //     .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+      
+    //   const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
+    //   wrapper.error(new ErrorEvent('Could not save the file!'));
+    // })));
   });
 });
