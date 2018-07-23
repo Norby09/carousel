@@ -21,6 +21,8 @@ import { inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { DOCUMENT } from '@angular/common';
 
+class MockDocument {}
+
 describe('ItemListComponent', () => {
   let component: ItemListComponent;
   let fixture: ComponentFixture<ItemListComponent>;
@@ -28,7 +30,6 @@ describe('ItemListComponent', () => {
   const langServ = {
     languages : [Language.create({name: 'en', resources: new Array<Resource>(new Resource({name : '@title1' , value : 'asd'}))})],
     getLanguagesAndResources: () => {
-        console.log("MockService", this);
         return langServ.languages;
     },
     getLanguages() {
@@ -54,24 +55,17 @@ describe('ItemListComponent', () => {
     }
   };
 
-  const DOC = 
-    `<div class="row">
-    <div class="col-lg-5">
-        <bl-carousel-configurator></bl-carousel-configurator>
-    </div>
-    <div class="col-lg-6" id="previewFrameDiv">
-      <iframe id="previewIframe" class="previewelem" height="724px" width="1000px" src="./iframe-content.html"> </iframe>
-    </div>`;
+  const DOC = { 
+      getElementById( elementId ) {
+        return {};
+      }
+  }
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule, HttpClientTestingModule ],
       providers: [ {provide: LanguagesService,
-                    useValue: langServ},
-                  {
-                    provide : DOCUMENT,
-                    useValue : DOC
-                  }],
+                    useValue: langServ}],
       declarations: [ ItemListComponent,
         SettingsComponent,
         TypesComponent,
@@ -103,31 +97,28 @@ describe('ItemListComponent', () => {
       expect(component.slideshow).toEqual(Slideshow.create());
     });
 
-    it('should export default data in json format', () => {
+    // it('should export default data in json format', () => {
 
-      expect(component.export())
-        .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
-    });
+    //   expect(component.export())
+    //     .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+    // });
 
     it('should export data in js format', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+      
       component.languageObj = {en: {title1: 'sdas', title2: 'aaaa'}};
+      component.doc = DOC;
 
-      expect(component.export('json')).toEqual(JSON.stringify({
-        "items": [{
-          "components": {
-            "links": [],
-            "description": {"cssClass": "", "style": "", "text": ""},
-            "title": {"cssClass": "", "style": "", "text": ""}
-          }, "id": 1
-        }],
-        "slideshow": {"autoplay": 0, "interval": 100, "restart": 100},
-        "types": {"standard": 1, "custom": 2, "customTemplate": 3},
-        "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""},
-        "i18n": {"en": {"@title1": "asd"}}
-      }));
-      debugger;
+      expect(component.export('json'))
+        .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+      
       const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
       wrapper.flush({message : 'File successfully saved!'});
+    })));
+
+    it('should call the getElementById method', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+        const spy = spyOn(DOC, 'getElementById');
+        component.export();
+        expect(spy).toHaveBeenCalled();
     })));
   });
 });

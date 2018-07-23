@@ -61,7 +61,10 @@ export class ItemListComponent implements OnInit{
           this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
             res => {
               const frame = self.doc.getElementById('previewIframe');
+              //frame.contentWindow.location.reload();
               frame.src = frame.src;
+              //spy pe getElement
+              //window location.reload -> 
             },
             err => {
               console.error(err.error, err.message);
