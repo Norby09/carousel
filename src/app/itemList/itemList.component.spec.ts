@@ -81,34 +81,26 @@ describe('ItemListComponent', () => {
     fixture = TestBed.createComponent(ItemListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
   });
 
   describe('Export test', () => {
-    it('shoudl init ngOnInit', () => {
+
+    it('should init ngOnInit', () => {
       component.ngOnInit();
-      console.log(component.languageObj);
-    })
+      expect(component.setting).toEqual(Settings.create());
+      expect(component.type).toEqual(Type.create());
+      expect(component.slideshow).toEqual(Slideshow.create());
+    });
+
     it('should export default data in json format', () => {
 
       expect(component.export())
-        .toEqual(JSON.stringify({
-          "items": [{
-            "components": {
-              "links": [],
-              "description": {"cssClass": "", "style": "", "text": ""},
-              "title": {"cssClass": "", "style": "", "text": ""}
-            }, "id": 1
-          }],
-          "slideshow": {"interval": 100, "restart": 100, "autoplay": 0},
-          "types": {"standard": 1, "custom": 2, "customTemplate": 3},
-          "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""},
-          "i18n": {"en": {"@title1": "asd"}}
-        }));
+        .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
     });
+
     it('should export data in js format', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
       component.languageObj = {en: {title1: 'sdas', title2: 'aaaa'}};
-      expect(component.export('jSon')).toEqual(JSON.stringify({
+      expect(component.export('json')).toEqual(JSON.stringify({
         "items": [{
           "components": {
             "links": [],
@@ -116,7 +108,7 @@ describe('ItemListComponent', () => {
             "title": {"cssClass": "", "style": "", "text": ""}
           }, "id": 1
         }],
-        "slideshow": {"interval": 100, "restart": 100, "autoplay": 0},
+        "slideshow": {"autoplay": 0, "interval": 100, "restart": 100},
         "types": {"standard": 1, "custom": 2, "customTemplate": 3},
         "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""},
         "i18n": {"en": {"@title1": "asd"}}
