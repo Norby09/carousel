@@ -57,15 +57,17 @@ describe('ItemListComponent', () => {
     }
   };
 
+  const locationMock = {
+    reload() { 
+      return true;
+    }
+  };
+
   const docMock = { 
       getElementById( elementId ) {
         return {
             contentWindow : {
-                location : {
-                    reload() {
-                      return true;
-                    }
-                }
+                location : locationMock
             }
         }
       }
@@ -138,24 +140,31 @@ describe('ItemListComponent', () => {
     })));
 
     it('should call the reload method', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
-      const x = docMock.getElementById('');
-      debugger;
-      const spy = spyOn(x.contentWindow.location, 'reload'); 
+      component.doc = docMock;
+      const spy = spyOn(locationMock, 'reload').and.callThrough();
       component.export('json');
 
       const wrapper = connections.expectOne({url: serverUrl, method: 'POST'});
       wrapper.flush({message : 'File successfully saved!'});
 
       expect(spy).toHaveBeenCalled();
-  })));
+    })));
 
-    // it('should get an error', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+    it('should get an error', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
 
-    //   expect(component.export('json'))
-    //     .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+      component.items = null;
+      expect(component.export('json'))
+        .toEqual(JSON.stringify({ "items": null, "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
       
-    //   const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
-    //   wrapper.error(new ErrorEvent('Could not save the file!'));
-    // })));
+      const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
+      wrapper.error(new ErrorEvent('Could not save the file!'));
+    })));
+
+    it('should get an error on undefined type', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+
+      expect(component.export('text'))
+        .toEqual('Unknown export format text');
+      
+    })));
   });
 });
