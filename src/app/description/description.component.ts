@@ -24,7 +24,6 @@ export class DescriptionComponent implements OnInit {
   constructor(private languageService: LanguagesService) {}
 
   ngOnInit() {
-    console.log(this.description);
     if( this.description.text !== "") {
       this.resourceName = this.description.text.toString();
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.description.text}))}) );

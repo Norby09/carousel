@@ -57,6 +57,7 @@ describe('ItemListComponent', () => {
 
   const DOC = { 
       getElementById( elementId ) {
+        console.log("i was called");
         return {};
       }
   }
@@ -97,11 +98,11 @@ describe('ItemListComponent', () => {
       expect(component.slideshow).toEqual(Slideshow.create());
     });
 
-    // it('should export default data in json format', () => {
+    it('should export default data in json format', () => {
 
-    //   expect(component.export())
-    //     .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
-    // });
+      expect(component.export())
+        .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+    });
 
     it('should export data in js format', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
       
@@ -116,8 +117,11 @@ describe('ItemListComponent', () => {
     })));
 
     it('should call the getElementById method', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
-        const spy = spyOn(DOC, 'getElementById');
-        component.export();
+        component.doc = DOC;
+        const spy = spyOn(DOC, 'getElementById'); 
+        component.export('json');
+        const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
+        wrapper.flush({message : 'File successfully saved!'});
         expect(spy).toHaveBeenCalled();
     })));
   });

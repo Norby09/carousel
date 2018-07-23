@@ -108,7 +108,6 @@ describe('LinkComponent', () => {
     component.onInputResource(resValue);
 
     const updatedLang = component.languageAndResources.pop();
-    console.log(updatedLang);
     expect(updatedLang.resources[0].value).toEqual(resValue);
   });
 

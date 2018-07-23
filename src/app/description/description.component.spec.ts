@@ -27,7 +27,6 @@ describe('DescriptionComponent', () => {
       let languageExists = false;
       const languages = [];
       languages.push(Language.create({name: '', resources : []}));
-      console.log(languages);
       for(let language of languages) {
         if( language.name === languageName) {
           language.resources.push( new Resource({name : resourceName, value: resourceValue}));

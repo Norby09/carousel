@@ -61,9 +61,8 @@ export class ItemListComponent implements OnInit{
           this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
             res => {
               const frame = self.doc.getElementById('previewIframe');
-              //frame.contentWindow.location.reload();
-              frame.src = frame.src;
-              //spy pe getElement
+              frame.contentWindow.location.reload();
+              
               //window location.reload -> 
             },
             err => {
@@ -89,8 +88,6 @@ export class ItemListComponent implements OnInit{
         json = JSON.parse(config);
 
         this.items = json.items;
-
-        console.log(this.items);
 
         this.slideshow = json.slideshow;
         this.type = json.types;

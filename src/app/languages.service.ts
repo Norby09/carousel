@@ -44,7 +44,6 @@ export class LanguagesService {
   }
 
   getLanguagesAndResources() {
-    console.log(this.languages);
     return this.languages;
   }
 }
