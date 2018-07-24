@@ -1,0 +1,47 @@
+@mixin includeFont($fontFamilyName, $fileName, $weight: normal, $style: normal) {
+	@font-face {
+
+		font-family: $fontFamilyName;
+		font-weight: $weight;
+		font-style: $style;
+		//IE9 Compatibility Mode
+		src: url('../fonts/bl-global/#{$fileName}.eot');
+		src: url('../fonts/bl-global/#{$fileName}.woff') format('woff');
+	}
+}
+
+/* font var usage: font-family: $font-standard;*/
+/* DO NOT use font-weight: bold, font-weight: 100;, etc... Use font family and one of these */
+
+//leaving font-medium in place for legacy reasons, but we no longer have a medium weight, just regular bold and light
+
+
+//experience with these fonts shows that the medium variant used below has an awkward line height.  To vertically center, it typically requires and extra 2px, so height: 20px; line-height: 22px; would most closely mirror arial's height: 20px; line-height: 20px;
+$font-medium:'arial-pro-medium'
+	, 'Arial'
+	, 'Helvetica'
+	, sans-serif
+;
+$font-bold: 'arial-pro-medium'
+	, 'Arial'
+	, 'Helvetica'
+	, sans-serif
+;
+$font-light: 'arial-pro-light'
+	, "Arial"
+	, 'Helvetica'
+	, sans-serif
+;
+$font-standard: 'Arial'
+	, 'Helvetica'
+	, sans-serif
+;
+
+$font-console: 'monaco'
+	, 'Consolas'
+	, 'Lucida Console'
+	, monospace
+;
+
+//We use font family, but for inputs need to override just the font as a single thing.
+$font-standard-single: 'Arial';

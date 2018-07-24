@@ -1,7 +1,6 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import {Link} from '../../data/link';
-import {Comp} from '../../data/comp';
-
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Link } from '../../data/link';
+import { Comp } from '../../data/comp';
 
 @Component({
   selector: 'bl-carousel-components',
@@ -12,7 +11,6 @@ export class ComponentsComponent implements OnInit {
   @Input() comp: Comp = null;
   @Input() links: Link[] = null;
   @Output() save: EventEmitter<Comp> = new EventEmitter();
-
 
   constructor() {}
 

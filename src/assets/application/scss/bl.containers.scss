@@ -1,0 +1,416 @@
+/* Boxes that contain content on the page.  These are considered to be boundaries for the content of a component, and since they are modular, they can be stacked in any order */
+$content-max-height: 580px;
+$content-large-max-height: 810px;
+
+// sass-lint:disable class-name-format
+
+.bl--component-box {
+	border: $standard-border;
+	background-color: $white;
+	border-radius: $standard-border-radius;
+	margin-bottom: 30px;
+
+	.bl--full-width {
+		clear: both;
+		width: 100%;
+	}
+
+	.bl--component-left {
+		float: left;
+	}
+
+	.bl--component-right {
+		float: right;
+	}
+
+	/* Deprecate these when all older implementations have been removed, replaced with bl.header-containers.scss */
+	.bl--component-header {
+		position: relative;
+		padding: $container-padding $container-padding-small;
+		@include clearfix;
+
+		//titles, icons, pills
+		* {
+			display: inline-block;
+			vertical-align: top;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+		}
+
+		//we have pills and icons in the box aside from actions and titles.  normalize them.
+		.bl--pill-inline,
+		i {
+			vertical-align: top;
+			margin-right: $standard-spacing;
+		}
+
+	}
+
+
+	//Override the title size of Atlas grids in component boxes.  It should match the standard component title when in the context of a component box.
+	.atlas-grid--header {
+
+		//There are MANY MANY variations of the implementation of the title for grids
+		&[data-region="title"],
+		[data-region="title"] {
+
+			.atlasGrid--title { // sass-lint:disable-line class-name-format
+				font-size: 18px;
+				margin-top: 4px;
+				padding-left: 0;
+				margin-left: 0;
+			}
+
+		}
+
+		//Component boxes that contain grids have the smaller title too.  We have to adjust the pill to compensate.  This pushes it up from the bottom of the text.
+		.atlas--ui-counter {
+			margin: 7px 10px;
+		}
+
+	}
+
+	//Overrides for the global header element in the context of component boxes
+	.bl--header-container {
+		margin: 0;
+		border: none;
+		//Designs show non-border-box sizing, so it's 60px WITH the borders
+		height: 58px;
+
+		& + .bl--component-content {
+			&.bl--no-pad {
+				border-top: $standard-border;
+			}
+		}
+
+		//Since component titles are smaller than the general standard, adjust button to allow proper placement
+		.bl--toggle-close-button {
+			height: 18px;
+		}
+
+		//Single chevron toggles are used on shallower header elements, so decrease their height
+		.bl--toggle-close-button-single {
+			height: 14px;
+		}
+
+		//Adjustments to the title's siblings since they have a smaller font size since they're in component boxes
+		.bl--header-container-title {
+			//necessary to normalize placement of pill within component header title, handles the line-height, dimension and font-size discrepencies
+			.bl--pill-inline {
+				position: relative;
+				top: 1px;
+			}
+		}
+
+		//Since we have a smaller font size on component headers inside component boxes, we need to adjust the spacing.
+		.bl--header-container-left {
+			margin-top: -10px;
+
+			//ALL headers are 22px (modals, page-level headers) but this is 18 per UX
+			.bl--header-container-title-text {
+				position: relative;
+				font-size: 18px;
+			}
+		}
+	}
+
+	.bl--component-actions {
+		position: absolute;
+		right: $container-padding;
+		top: $standard-spacing + 3;
+		max-width: 50%;
+		vertical-align: top;
+
+		//can be buttons, dropdowns, etc... try to handle them all
+		* {
+			margin-left: $container-padding-small;
+			float: left;
+			width: auto;
+			vertical-align: top;
+		}
+
+		//if the child is a list of filters
+		.bl--pill-list {
+			padding-top: 4px;
+		}
+
+		//if actions are in place, we need to restrict the next sibling, usually a title or contenteditable
+		& + div {
+			max-width: 50%;
+			display: inline-block;
+		}
+
+	}
+
+	//primary title box for component boxes
+	.bl--component-title {
+		margin: 0;
+		// max-width: 50%;
+
+		//icons inside component title
+		i {
+
+			&[class^="bl-icon"] {
+				display: inline-block;
+				position: relative;
+				top: 2px;
+				margin-left: 5px;
+			}
+
+		}
+	}
+
+	//Content container, this is where everything that's not the header goes
+	.bl--component-content,
+	.atlas--ui-filter-console,
+	.atlasGrid--grid-elements {
+		transition: max-height 0.3s ease-in-out, padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+	}
+
+	// Embedded grids allow up to `$content-large-max-height` worth of space, out of which `$content-max-height`
+	// go to the grid content, with the rest going toward the filter console, if available
+	.atlas--ui-filter-console {
+		max-height: $content-large-max-height - $content-max-height;
+	}
+
+	.atlasGrid--grid-elements {
+		max-height: $content-max-height;
+	}
+
+	.bl--component-content {
+		position: relative;
+		padding: $container-padding;
+		border-top: $standard-border;
+		//we can't tween non-declared heights, so this allows us to sort of animate the container being closed
+		max-height: $content-max-height;
+		overflow-x: initial;
+		overflow-y: auto;
+
+		//For component content that goes edge-to-edge without side/top/bottom padding
+		&.bl--no-pad {
+			padding: 0;
+			border-top: none;
+		}
+
+		&.bl--component-content-large {
+			max-height: $content-large-max-height;
+		}
+
+		//this is specific to overlays in the context of Components, not page-level loaders.
+		.atlas--ui-blocking-overlay {
+			//This overlay was implemented incorrectly elsewhere and these attr are needed here to make it on the component level.
+			&.atlas--ui-blocking-overlay-is-visible {
+				position: absolute;
+				margin-top: 0;
+			}
+		}
+
+	}
+
+	//Parent for the table, provides padding
+	.bl--component-table-wrapper {
+		padding: 18px $container-padding 6px;
+	}
+
+	//A container for adding a new 'whatever' to the list of the component's items
+	//Can have multiple
+	.bl--component-add-item {
+		display: flex;
+		background-color: $grey-ultra-light;
+		overflow: hidden;
+		max-height: 0;
+		transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+		&-is-visible {
+			opacity: 1;
+			max-height: $content-large-max-height;
+		}
+
+
+		//.bl--component-add-item-wrapper
+		//Necessary only for the bottom border to separate this from the sibling elements.
+		&-wrapper {
+			padding: 0 20px;
+			border-bottom: $standard-border;
+			flex: 1 1 auto;
+		}
+
+	}
+
+	//Empty component message
+	.bl--component-empty-message {
+		padding: 22px 0 23px;
+		color:  $grey-medium;
+	}
+
+	/* Component box states */
+	//CLOSED: when the component box is toggled closed...
+	&.bl--toggle-is-closed {
+
+		.bl--component-content,
+		.atlas--ui-filter-console,
+		.atlasGrid--grid-elements,
+		.bl--no-pad {
+			padding-top: 0;
+			padding-bottom: 0;
+			min-height: 0;
+			max-height: 0;
+			overflow: hidden;
+			//Using important to override some special cases with more specific selectors that are cumbersome to override
+			border-top: 1px solid transparent !important;
+		}
+
+	}
+
+	//Nested .bl--component box
+	//Add this class to make a single-chevron, shallower and smaller titled component box
+	&.bl--component-box-secondary {
+		//Zero out the margin
+		margin-bottom: 0;
+		border: none;
+
+		//Customize the .bl--component-box
+		.bl--header-container {
+			height: 42px;
+
+			.bl--header-container-left,
+			.bl--header-container-right {
+				margin-top: -8px;
+			}
+
+			.bl--header-container-title-text {
+				font-size: 15px;
+			}
+
+		}
+
+	}
+}
+
+//Tables for displaying attachments, etc... always in the context of a component box
+.bl--component-table {
+	// table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	color: $grey-dark;
+
+	* {
+		vertical-align: top;
+	}
+
+	//Takes the place of <th>
+	.bl--component-table-header {
+		color: $grey-medium;
+		letter-spacing: 0.5px;
+		text-align: left;
+
+		//Row within the table
+		.bl--component-table-row {
+			border: none;
+		}
+
+		.bl--component-table-column {
+			text-transform: uppercase;
+			font-size: $smaller-font-size;
+			border-bottom: $standard-border;
+			padding: 0 0 5px $container-padding;
+			font-weight: normal;
+			text-align: left;
+
+			&.bl--component-table-actions-column {
+				text-align: right;
+			}
+		}
+
+	}
+
+	//Takes the place of <tr>
+	.bl--component-table-row {
+		border-bottom: $standard-border;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		.bl--component-table-column {
+
+			//.bl--component-table-column-is-hidden
+			&-is-hidden {
+				display: none;
+			}
+
+		}
+
+		//.bl--component-table-row-edit 
+		&-edit {
+
+			//Adjusting padding for columns in edit mode
+			.bl--component-table-column {
+				padding-top: $container-padding;
+				padding-bottom: $container-padding;
+			}
+
+			//In edit mode, we have buttons for row-level actions.  Push them down.
+			.bl--component-table-actions-column {
+				padding-top: 41px;
+				padding-bottom: 0;
+			}
+
+		}
+
+	}
+
+	//Takes the place of a <td>
+	.bl--component-table-column {
+		padding: 24px 0 $container-padding $container-padding;
+		vertical-align: top;
+
+		&:first-child {
+			padding-left: 0;
+		}
+
+		&:last-child {
+			padding-right: 0;
+		}
+	}
+
+	//Actions cell, doesn't scale
+	.bl--component-table-actions-column {
+		//inline-block fix
+		font-size: 0;
+		white-space: nowrap;
+		text-align: right;
+		padding-left: $container-padding-smallest;
+
+		//Actions elements
+		button,
+		a {
+			&:first-child {
+				margin-left: 0;
+			}
+
+			//Removes focus/active outline
+			&:focus {
+				outline: none;
+			}
+
+			//Buttons by default have separation margin, but in some cases we don't want any margin (single buttons).  Apply this to make a single button with no margin to separate from siblings.
+			&.bl--cta-no-margin {
+				margin-left: 0;
+			}
+
+			//Margin will always be on the left of an element that appears AFTER the same button.  We want to prevent the first element from having a left border, but each subsequent
+			& + button,
+			& + a {
+				margin-left: $container-padding-smallest;
+			}
+
+		}
+
+	}
+
+}

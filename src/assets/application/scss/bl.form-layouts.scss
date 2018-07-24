@@ -1,0 +1,213 @@
+/* DEPRECATED */
+/* Form skeleton and scaffolding */
+//These are styles for the columns and subcolumns within forms.  Provides basic fluid column layouts for forms used in the body, as well as modals
+
+$half-padding: $container-padding / 2;
+$quarter-padding: $container-padding / 4;
+$double-padding: $container-padding * 2;
+
+
+//Parent elements for form.  Provides context for nested selectors.
+.bl--form {
+
+	* {
+		vertical-align: top;
+	}
+
+}
+
+//The "rows of groups of fields" of a form, usually to divide sections into logical chunks of columns and subcolumns
+.bl--form-section {
+	margin-bottom: $container-padding;
+	@include clearfix;
+}
+
+//Higher level form titles, typically the title for an entire form page
+.bl--form-section-title {
+	padding: 0 0 $container-padding 0;
+	font-size: 16px;
+	color: $black;
+	@include truncateText;
+}
+
+//Subsection titles, typically only one for a .bl--form-section, unless using 1, 2/3 or 2/3, 1 layout, which can have a unique section title per column
+.bl--form-section-subtitle {
+	padding: 0 0 $standard-spacing-large 0;
+	font-size: 13px;
+	color: $black;
+	@include truncateText;
+}
+
+/* TOP-LEVEL columns for a form */
+// These columns can be sub-divided further, but require sub-column classes below these
+// Full width column
+// THERE CAN BE ONLY 1
+.bl--form-column-full-width {
+	vertical-align: top;
+}
+
+
+// Split 50% primary column.  THERE CAN BE NO MORE THAN 2
+.bl--form-col-half {
+	float: left;
+	width: 50%;
+
+	&:nth-child(1) {
+		padding-right: $half-padding;
+	}
+
+	&:nth-child(2) {
+		padding-left: $half-padding;
+	}
+
+
+}
+
+// Split 33.3 width primary columns.  THERE CAN BE NO MORE THAN 3
+.bl--form-col-third {
+	width: 33.3%;
+	float: left;
+
+	&:nth-child(1) {
+		padding-right: $container-padding;
+	}
+
+	// Because 1/3 can be the first of 3 columns, or the first of a 1/3 / 2/3 combo.  Strange, but necessary so we don't have to have a unique 1/3 column.
+	&:nth-child(2) {
+		padding-right: $half-padding;
+	}
+
+	&:nth-child(3) {
+		padding-left: $half-padding;
+	}
+
+}
+
+//2/3 primary column width
+.bl--form-col-two-thirds {
+	width: 66.7%;
+	float: left;
+
+	// 66%/33% layout
+	&:nth-child(1) {
+		padding-right: $container-padding;
+
+		// The 1/3 of a 2/3 and 1/3 column
+		& + .bl--form-col-third {
+			padding-left: $container-padding;
+		}
+
+	}
+
+	// 33%/66% layout
+	&:nth-child(2) {
+		padding-left: $container-padding;
+	}
+
+}
+
+/* SUB-COLUMN widths for INSIDE a form column */
+//Use the above classes to create the primary columns, then use these classes to split internal columns
+
+//sub-column 100% width
+.bl--form-sub-col-full {
+	width: 100%;
+}
+
+// sub-column 1/2 width
+.bl--form-sub-col-half {
+	float: left;
+	width: 50%;
+	padding-right: $quarter-padding;
+	padding-left: $quarter-padding;
+
+	&:first-child {
+		padding-right: $quarter-padding;
+		padding-left: 0;
+	}
+
+	&:last-child {
+		padding-left: $quarter-padding;
+		padding-right: 0;
+	}
+
+}
+
+// sub-column 1/3 width  ONLY use with sibling .bl--form-sub-col-third cols. 
+.bl--form-sub-col-third {
+	float: left;
+	width: 33.3%;
+
+	&:nth-child(1) {
+		padding-right: $quarter-padding;
+	}
+
+	&:nth-child(2) {
+		width: 33.4%;
+		padding-left: $quarter-padding;
+		padding-right: $quarter-padding;
+	}
+
+	&:nth-child(3) {
+		padding-left: $quarter-padding;
+	}
+
+}
+
+// sub-column 1/4 width
+.bl--form-sub-col-fourth {
+	float: left;
+	width: 25%;
+	padding-left: $quarter-padding;
+	padding-right: $quarter-padding;
+
+	&:first-child {
+		padding-right: $quarter-padding;
+		padding-left: 0;
+	}
+
+	&:last-child {
+		padding-left: $quarter-padding;
+		padding-right: 0;
+	}	
+
+}
+
+// Individual rows for forms.  These are within the context of the structure of columns, and are the visual "rows" of fields.  Last child doesn't have bottom margin so the parent container collapses to the bottom of that last row.
+.bl--form-row {
+	position: relative;
+	margin-bottom: $container-padding;
+	@include clearfix;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+
+//Spacing for subgrouping within form rows.  This creates individual "rows" of sub-grouped options (choose one of these options)
+.bl--input-group-row {
+	//This selector may be nested in a label, so in that case it will be a <span>. Preserve block level.
+	display: block;
+	vertical-align: top;
+	margin-bottom: $standard-spacing-small;
+	line-height: 1;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+}
+
+//Similar to the group row, this is the direct parent of radios or checkboxes that have multiple options in a single row
+.bl--input-group-inline-column {
+	display: inline-block;
+	font-size: 0; //inline-block fix
+	vertical-align: top;
+	margin-right: 12px;
+
+	&:last-child {
+		margin-right: 0;
+	}
+
+}

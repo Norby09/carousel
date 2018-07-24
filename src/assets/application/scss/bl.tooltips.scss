@@ -1,0 +1,45 @@
+//question mark circle element that acts as a hover/focus trigger for the associated tooltip
+//<span class="bl--tooltip-trigger" data-tooltip-text="Tool tips and things"></span>
+.bl--tooltip-trigger {
+	display: inline-block;
+	position: relative;
+	width: 18px;
+	height: 18px;
+	@include iconAfter('tooltip');
+	text-align: center;
+	margin-left: 5px;
+	vertical-align: bottom;
+	cursor: help;
+
+	//the ? icon
+	&::after {
+		font-size: $xl-font-size;
+		line-height: 16px;
+		color: $grey-light;
+	}
+
+}
+
+
+//add data-tooltip-text="Whatever" to any element.  This formats the resulting tooltip
+[data-tooltip-text] {
+
+	//the tooltip element itself
+	&::before {
+		content: attr(data-tooltip-text);
+		@include tooltip(absolute);
+		bottom: 100%;
+		left: 100%;
+		display: none;
+	}
+
+
+	//shows next sibling tooltip element
+	&:hover {
+		&::before {
+			display: block;
+		}
+	}
+
+}
+

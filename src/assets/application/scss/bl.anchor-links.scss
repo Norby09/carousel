@@ -1,0 +1,95 @@
+/* tab-like header-level elements that scroll down the page */
+
+// assumes the class is on a <ul>
+.bl--anchor-links {
+	@include clearfix;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	//left floating horizontal
+	li {
+		float: left;
+		padding: 0;
+		margin: 0 26px 0 0;
+
+
+		&:last-child {
+			margin-right: 0;
+
+			//if last child isn't ellipsis, refactor the following, it assumes the last <li> contains the ellipsis.
+			.bl--anchor-link {
+				font-size: 19px;
+				padding-top: 3px;
+			}
+
+		}
+
+
+	}
+
+	.bl--anchor-link {
+		position: relative;
+		display: block;
+		height: 32px;
+		border-bottom: 3px solid transparent;
+		color: $grey-medium;
+		font-size: 13px;
+
+		&:hover {
+			color: $blue-primary;
+		}
+
+		&.bl--is-selected {
+			border-color: $blue-primary;
+			color: $blue-primary;
+		}
+
+	}
+
+	//for vertical/sidebar mode
+	&.bl--is-vertical {
+
+		li {
+			float: none;
+			margin-right: 0;
+			margin-bottom: 5px;
+
+			&:last-child {
+				margin-right: 0;
+
+				.bl--anchor-link {
+					font-size: 13px;
+					padding-top: 3px;
+				}
+
+			}
+
+		}
+
+		//link itself
+		.bl--anchor-link {
+			height: auto;
+			line-height: 23px;
+		}
+
+		//vertical selected link
+		.bl--is-selected {
+			border: none;
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -16px;
+				width: 3px;
+				height: 100%;
+				background-color: $blue-primary;
+
+			}
+
+		}
+
+	}
+
+}

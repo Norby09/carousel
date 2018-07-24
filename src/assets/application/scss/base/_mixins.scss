@@ -1,0 +1,129 @@
+//Useful mixins.  Use with @include
+
+@mixin screen-large {
+  @media only screen and (max-width: 1920px) {
+    @content;
+  }
+}
+
+@mixin screen-small {
+  @media only screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+/*
+    Usage:
+
+    .sidebar {
+        width: 60%;
+        float: left;
+        margin: 0 2% 0 0;
+        @include screen-small {
+            width: 100%;
+            float: none;
+            margin: 0;
+        }
+    }
+*/
+
+
+//@todo: replace this with a newer clearfix that doesn't require zoom or the ::before
+@mixin clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/*
+    Usage:
+
+    .float-wrapper {
+        @include clearfix;
+    }
+
+*/
+
+
+
+
+@mixin truncateText() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*
+    Usage:
+
+    .overflow-text {
+        width: 100px;
+        @include truncateText;
+    }
+    
+*/
+
+@mixin hyphenateText() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  hyphens: auto;
+}
+
+/*
+    Usage:
+
+    .hyphenate-text {
+        width: 200px;
+        @include hyphenateText;
+    }
+
+*/
+
+
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/*
+    Usage:
+
+    .vertalign-me {
+        width: 100px;
+        height: 100px;
+        @include vertical-align;
+    }
+    
+*/
+
+@mixin screen-desktop-landscape {
+  @media all and (min-width: $height-desktop-min + 1) and (max-width: $width-desktop-min) {
+    @content;
+  }
+}
+
+@mixin screen-desktop-portrait {
+  @media all and (min-width: $width-mobile-min + 1) and (max-width: $height-desktop-min) {
+    @content;
+  }
+}
+
+@mixin screen-mobile-landscape {
+  @media all and (min-width: $height-mobile-min + 1) and (max-width: $width-mobile-min) {
+    @content;
+  }
+}
+
+@mixin screen-mobile-portrait {
+  @media all and (max-width: $height-mobile-min) {
+    @content;
+  }
+}

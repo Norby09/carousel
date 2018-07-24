@@ -1,0 +1,10 @@
+//Manifest file for constants used throughout the site.
+
+@import "_colors";  //listing of color vars
+@import "_mixins";  //helpful mixins
+@import "_dimensions";  //globally defined margins, padding, etc..
+@import "_fonts";  //declare ALL global fonts and provide vars for usage
+@import "_functions";  //declare scss functions
+@import "_icons";  //declare ALL global icons and provide mixin to allow their inclusion css-only
+@import "_reusable-formatting";  //mixins and placeholders for globally reusable styles common to multiple elements
+@import "_atlas-icons";  //declare ALL ATLAS icons and provide mixin to allow their inclusion css-only, @todo: move this to atlas-only context when extracting atlas from repo

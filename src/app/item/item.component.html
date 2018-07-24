@@ -38,7 +38,7 @@
       </label>
     </div>
   </div>
-  <bl-carousel-components [comp]="itm.components" ></bl-carousel-components>
+  <bl-carousel-components [comp]="itm.components"></bl-carousel-components>
   <button class="btn btn-primary btn-add-new pull-right addItem-btn" (click)="addItem()">Add item</button>
   <button *ngIf="itm.id > 1" class="btn btn-primary btn-add-new pull-right addItem-btn" (click)="removeItem(itm)">Remove item</button>
 </div>

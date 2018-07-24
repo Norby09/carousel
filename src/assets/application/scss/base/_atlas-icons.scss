@@ -1,0 +1,81 @@
+//template that generates a mixin with placeholders for all icons.  The mixin allows you to add an icon that only exists in the context of scss.  use the classes in atlas.icons.scss if you want to add an icon with a class applied to an <i> tag. 
+
+//when you want to add an icon to an element's after, use this.
+//specify the icon name like this: 
+//@include atlasIconAfter('alerts'); on the parent element
+//use icon names as they are listed in atlas.ui.icons.scss
+//use class name without the 'atlas--ui-icon-' prefix
+//so to add a div with an icon with this method:
+//.some-class {
+//      @include atlasIconAfter('checkmark');
+// }
+// which will include the icon .atlas--ui-icon-checkmark as an ::after pseudo element
+//now you can style the size and position by adjusting the ::after properties of the element you extended the icon for.
+@mixin atlasIconAfter($icon) {
+    @extend %atlas--ui-icon-#{$icon};
+
+    &::after {
+        font-family: "atlas-icons";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-style: normal;
+        font-variant: normal;
+        font-weight: normal;
+        text-decoration: none;
+        text-transform: none;
+    }
+}
+
+
+%atlas--ui-icon-arrow-left::after { content: "\EA01";
+}
+%atlas--ui-icon-arrow-right::after { content: "\EA02";
+}
+%atlas--ui-icon-arrow-solid-left::after { content: "\EA03";
+}
+%atlas--ui-icon-arrow-solid-right::after { content: "\EA04";
+}
+%atlas--ui-icon-arrow-solid-up::after { content: "\EA05";
+}
+%atlas--ui-icon-arrow-solid::after { content: "\EA06";
+}
+%atlas--ui-icon-arrow-up::after { content: "\EA07";
+}
+%atlas--ui-icon-arrow::after { content: "\EA08";
+}
+%atlas--ui-icon-calendar::after { content: "\EA09";
+}
+%atlas--ui-icon-checkmark::after { content: "\EA0A";
+}
+%atlas--ui-icon-children-indicator::after { content: "\EA0B";
+}
+%atlas--ui-icon-close-x::after { content: "\EA0C";
+}
+%atlas--ui-icon-dash::after { content: "\EA0D";
+}
+%atlas--ui-icon-double-arrow::after { content: "\EA0E";
+}
+%atlas--ui-icon-edit::after { content: "\EA0F";
+}
+%atlas--ui-icon-error::after { content: "\EA10";
+}
+%atlas--ui-icon-filter::after { content: "\EA11";
+}
+%atlas--ui-icon-fullscreen-max::after { content: "\EA12";
+}
+%atlas--ui-icon-fullscreen-min::after { content: "\EA13";
+}
+%atlas--ui-icon-multi-doc-upload::after { content: "\EA14";
+}
+%atlas--ui-icon-plus::after { content: "\EA15";
+}
+%atlas--ui-icon-save::after { content: "\EA16";
+}
+%atlas--ui-icon-search::after { content: "\EA17";
+}
+%atlas--ui-icon-sort-arrow::after { content: "\EA18";
+}
+%atlas--ui-icon-success::after { content: "\EA19";
+}
+%atlas--ui-icon-tooltip::after { content: "\EA1A";
+}

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TypesComponent } from './types.component';
+import { FormsModule } from '@angular/forms';
+import { Type } from '../../data/type';
 
 describe('TypesComponent', () => {
   let component: TypesComponent;
@@ -8,7 +9,8 @@ describe('TypesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TypesComponent ]
+      declarations: [ TypesComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));
@@ -19,7 +21,12 @@ describe('TypesComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create a new type object on init', () => {
+    component.ngOnInit();
+    expect(component.type).toEqual(jasmine.any(Type));
+    expect(component.type.standard).toEqual(1);
+    expect(component.type.custom).toEqual(2);
+    expect(component.type.customTemplate).toEqual(3);
+
+  });
 });

@@ -7,27 +7,24 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+  <link rel="stylesheet" href="index.style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/application/bl.styles.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
 </head>
 <body>
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-5">
         <bl-carousel-configurator></bl-carousel-configurator>
     </div>
-  <div class="col-lg-6">
-    <div ng-app="bl.login"> 
-        <login-carousel></login-carousel>
+    <div class="col-lg-6" id="previewFrameDiv">
+      <iframe id="previewIframe" class="previewelem" height="724px" width="1000px" src="./iframe-content.html"> </iframe>
     </div>
   </div>
-</div>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"> </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"> </script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.js"></script>
-  <script src="./assets/application/carousel/carousel.component.js"> </script>
-  <script src="./assets/application/carousel/carousel-slide.component.js"> </script>
-  <script src="./assets/application/carousel/carousel.service.js"> </script>
-  <script src="./assets/application/bl.globalization.js"> </script>
-  <script src="./assets/application/login.templates.js"> </script>
 </body>
 </html>
 

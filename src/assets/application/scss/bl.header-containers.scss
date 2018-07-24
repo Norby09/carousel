@@ -1,0 +1,364 @@
+//updated version of content headers for use in pages
+
+//Parent container for the page-level title and utilities
+.bl--header-container {
+	@include clearfix;
+	border-bottom: $standard-border;
+	background-color: $white;
+	padding: 0 $container-padding;
+	//since we have side padding on elements, we need to visually override the padding.  Global headers will always go edge to edge.  Always.
+	//also, more space below the content header than other places.  We have to assume it will render at the top of the content column
+	margin: $container-padding-negative $container-padding-negative $container-padding-large $container-padding-negative;
+	height: 58px;
+	transition: box-shadow 0.3s ease-in-out;
+
+	//when header is sticky, this adds a dropshadow
+	&.bl--header-is-docked {
+		box-shadow: $standard-shadow;
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+		margin: 0;
+		z-index: $zindex-modal - 1;
+	}
+
+	//don't pull the margins back on pages without padding, already works
+	.bl--layout-standard & {
+		margin: 0 0 $container-padding-large 0;
+	}
+
+	//clearfix box for the columns, as there is often non-floated content underneath them
+	&-cols {
+		@include clearfix;
+		position: relative;
+		top: 50%;
+	}
+
+
+	/* left column contains title and breadcrumbs */
+	// left column tries to expand to 100% but is only allowed to go to 50% of the total width.  The contenxt and page titles are truncated within this context.
+	&-left {
+		width: 100%; //try to be full width
+		max-width: 55%; //don't let it be full width, allow space for actions with a 5% buffer
+		margin-top: -14px; //Can't use transform centering without z-index mess, so this is half of the height of the text-based column
+		float: left;
+		white-space: nowrap;
+
+		div {
+			vertical-align: top;
+		}
+
+	}
+
+	//the outer part of the title, can hold many configurations of children including:
+	//editable field
+	//record count
+	//dropdowns
+	//context, divider
+	//static page title
+	//.bl--header-container-title
+	&-title {
+		font-size: 0; //inline block extra space
+		display: flex;
+		align-items: bottom;
+
+		//if there is a close button, compensate for it while still allowing text truncation
+		.bl--toggle-close-button,
+		.bl--toggle-close-button-single {
+			position: relative;
+			//Make sure the height of the button is the height of the text
+			height: 22px;
+			padding: 0 8px 0 0;
+			flex: 0 0 auto;
+		}
+
+		/* Page titles are also breadcrumbs, these are common between the title and the context (crumb) */
+		&-context,
+		&-text {
+			//Font size for header components in general is 22px, but it will be overridden in the context of component boxes.  This is the default everywhere else.
+			font-size: 22px;
+			font-family: $font-standard;
+			min-width: 0;
+		}
+
+		//if there's a dropdown, there may be a pill.  create some space
+		.bl--pill-inline {
+			margin-left: 10px;
+			position: relative;
+			top: 5px;
+		}
+
+		//an unclassed div can be the target of a dropdown, doesn't need title children
+		.atlas--ui-dropdown {
+
+			//dropdown in the title?  Make it look headerish
+			.atlas--ui-dropdown-toggle {
+				max-width: none;
+				border: none;
+				padding-right: 25px;
+				color: $black;
+
+				//text inside the dropdown toggle
+				.atlas--ui-dropdown-title {
+					color: $black;
+					font-size: 22px;
+					line-height: normal;
+					letter-spacing: -0.5px;
+					font-family: $font-standard;
+
+				}
+
+				&:hover {
+					color: $black;
+				}
+
+				&::after {
+					font-size: 12px;
+				}
+			}
+
+		}
+
+
+		// the first part of the breadcrumbs: ->context / title
+		&-context {
+			position: relative;
+			color: $blue-primary;
+			margin-right: 10px;
+			flex: 0 0 auto;
+			max-width: 40%;
+		}
+
+		// simple container to hold the "/" that separates the context from the title
+		// can't be a pseudo element because of the overflow hidden/truncation of the title components
+
+		&-divider {
+			color: $grey-bright;
+			font-size: 22px;
+			line-height: normal;
+			vertical-align: top;
+			margin-right: 10px;
+			font-family: $font-standard;
+			flex: 0 0 auto;
+
+			//we want the title text to contract, but only when it has a divider and context as a sibling.  This is an override to the specific styling.
+			& + .bl--header-container-title-text {
+				flex-grow: 2;
+				flex-shrink: 2;
+				flex-basis: 0%;
+			}
+
+		}
+
+		//the actual title text itself, can be TEXT or an input if title is editable
+		&-text {
+			max-width: 100%;
+			color: $black;
+			margin-bottom: 0;
+			flex: 0 1 auto;
+
+
+			.bl--pill-inline {
+				vertical-align: middle; //center relative to the text
+				letter-spacing: initial;
+			}
+
+
+			.bl--inline-editable {
+				width: calc(100% - -1px); //fix for YUI compile issue with + positive number
+				position: relative;
+				margin-top: -8px;
+
+				.bl--editable-field {
+					left: 0;
+				}
+
+
+				//since we use a standard input, prevent the default formatting and allow the header to override it
+				.bl--text-input {
+					@include truncateText;
+					padding: 8px 30px 6px 10px; //title and title font have alignment issue, remove extra space below.  also, reserve space in the input for the status icon
+					font-size: inherit;
+					line-height: inherit;
+					color: inherit;
+
+					//cross browser support for placeholder with focus variant
+					&::-webkit-input-placeholder {
+						@include placeholder-common;
+						font-size: inherit;
+						line-height: inherit;
+					}
+
+					&::-moz-placeholder {
+						@include placeholder-common;
+						font-size: inherit;
+						line-height: inherit;
+					}
+
+					&:-ms-input-placeholder {
+						color: $grey-light;
+						font-size: inherit;
+						line-height: inherit;
+					}
+
+					&:focus {
+						@include truncateText;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	[data-region="title"] {
+		font-size: 0; //inline block extra space
+		display: flex;
+		align-items: center;
+
+		.bl--toggle-close-button {
+			padding: 0 8px 0 0;
+			flex: 0 0 auto;
+		}
+
+		.bl--toggle-close-button + .atlasGrid--title {
+			flex: 0 0 auto;
+		}
+	}
+
+
+	//the entire parent for the right side contents
+	.bl--header-container-right {
+		margin-top: -16px; //Can't use transform centering without z-index mess, so this assumes there will be a button in the right side, and this is half of its height
+		float: right;
+		width: 40%;
+	}
+
+
+	//page-level actions, displays to the right of the page-level title
+	.bl--header-container-actions {
+		font-size: 0; //since we have inline block children, fix the spacing issues.  Requires that children declare their own font size (which they should anyway)
+		text-align: right;
+		@include clearfix;
+		height: 32px; //try to prevent wrapping
+		white-space: nowrap;
+
+		//direct child of .bl--page-actions, provides inline-block context and spacing for individual elements in .bl--page-actions.
+		//WRAP EACH ELEMENT IN .bl--page-actions-item.  buttons or other divs as children of .bl--page-actions will eventually not render as expected
+		//@todo: eventually deprecate button and div and require a column
+		> button,
+		> div,
+		.bl--header-container-actions-item {
+			display: inline-block;
+			margin-left: 10px;
+			vertical-align: top;
+			white-space: normal;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			//per UX, the fullscreen button has lesser spacing
+			&.bl--fullscreen-button {
+				margin-left: 10px;
+			}
+
+			.atlas--ui-dropdown {
+				margin-right: 10px;
+			}
+
+			.bl--dropdown-toggle-button {
+				line-height: 30px;
+				height: 32px;
+			}
+
+		}
+
+		//individual columns, of actions.  this should be a wrapper for each element inside .bl--page-actions.
+		.bl--header-container-actions-item {
+
+			> div,
+			> button {
+				width: auto;
+			}
+
+		}
+
+		//alternate button height for headers
+		//this is a one off and it's only styled via tag because there are many class variants with no common classes
+		button,
+		.atlas--ui-dropdown-toggle {
+			position: relative;
+			line-height: 30px;
+			height: 32px;
+		}
+
+	}
+
+	//an area to the right of the header, under actions that holds page information and basic tools for interaction with page data
+	&-page-info {
+		margin-top: 12px;
+		text-align: right;
+		height: 16px;
+
+		//this is some small text that's used in these columns per audit and compliance.  I have no better place for it so this is it.  move if necessary
+		&-text {
+			text-transform: uppercase;
+			font-size: $small-font-size;
+			color: $grey-light;
+		}
+
+	}
+
+	//use this as a direct child of .bl--page-info, it wraps the element for inline block column behavior.  handles spacing.
+	&-page-info-item {
+		vertical-align: middle;
+		display: inline-block;
+		margin-left: 20px;
+		white-space: nowrap;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+	/* Add this as an extra class when building a header that uses the tab-like animated anchors  */
+	&.bl--header-container-contains-anchors {
+		padding: 0 $container-padding 0;
+		//taller height to compensate for links
+		height: 93px;
+		padding-top: 20px;
+
+		.bl--header-container-actions-item {
+			position: relative;
+			top: -6px;
+		}
+
+		//reset top alignment to compensate for the tabstrip
+		.bl--header-container-cols {
+			top: auto;
+			margin-top: 0;
+		}
+
+		.bl--header-container-left {
+			margin-top: 0;
+		}
+
+		.bl--header-container-right {
+			margin-top: 0;
+		}
+
+		//pushes tabstrip down to expected position
+		.bl--header-container-title-context,
+		.bl--header-container-title-divider {
+			margin-bottom: 20px;
+		}
+
+
+	}
+
+
+}

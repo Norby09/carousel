@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Item} from '../../data/item';
+import { Component, Input, OnInit } from '@angular/core';
+import { Item } from '../../data/item';
+
+let itemId = 1;
 
 @Component({
   selector: 'bl-carousel-item',
@@ -10,15 +12,14 @@ export class ItemComponent implements OnInit {
   @Input() itm: Item = null;
   @Input() items: Item[];
 
-  itemId = 1;
+  constructor() {
+  }
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   addItem() {
-    ++this.itemId;
-    this.items.push(new Item({id : this.itemId}));
+    this.items.push(new Item({id : ++itemId}));
   };
 
   removeItem(item : Item) {

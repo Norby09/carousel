@@ -1,0 +1,14 @@
+.masterPages_ParentMaster_header {
+	width: auto;
+	min-width: 0;
+}
+
+.masterPages_PublicMaster_NoMenu {
+	margin: 0;
+
+	.masterPages_ParentMaster_ContentContainer {
+		padding-top: 0;
+		min-height: 0;
+	}
+}
+

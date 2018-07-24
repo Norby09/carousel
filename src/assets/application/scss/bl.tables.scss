@@ -1,0 +1,78 @@
+.bl--table {
+	border: $standard-border;
+	border-collapse: collapse;
+	text-align: left;
+	table-layout: fixed;
+	width: 100%;
+	max-width: 100%;
+
+	&.bl--table-static {
+		//todo: make this official
+		background-color: $grey-light;
+		border-right: 0;
+
+		td {
+			text-align: right;
+			background-color: $grey-extra-light;
+
+			&:first-child {
+				border-right: none;
+			}
+		}
+
+		& + .bl--grid-scroll-x {
+			position: relative;
+			margin-left: 75px;
+		}
+
+	}
+
+	th,
+	td {
+		&.bl--is-left-aligned {
+			text-align: left;
+		}
+
+		&.bl--is-right-aligned {
+			text-align: right;
+		}
+	}
+
+	thead {
+		th {
+			border-width: 1px 1px 0 1px;
+			border-style: solid;
+			border-color: $grey-light;
+			background-color: $grey-extra-light;
+			padding: 10px;
+			min-height: 25px;
+			vertical-align: middle;
+
+			&:last-child {
+				border-right: none;
+			}
+
+		}
+	}
+
+
+	tr {
+
+		&:hover {
+			td {
+				background-color: $grey-extra-light;
+			}
+		}
+
+	}
+
+	td {
+		border: $standard-border;
+		padding: 0 10px;
+		height: 25px;
+		color: $black;
+		vertical-align: middle;
+
+	}
+
+}

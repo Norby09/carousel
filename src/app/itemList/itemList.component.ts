@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 import { Link } from 'data/link';
 import { Item } from '../../data/item';
 import { Slideshow } from '../../data/slideshow';
@@ -8,14 +9,16 @@ import { Language } from '../../data/language';
 import { Resource } from '../../data/resource';
 import { stringOrDefault } from '../../utils/value-or-default';
 import { LanguagesService } from '../languages.service';
+import { HttpClient } from '@angular/common/http';
+import { Inject } from '@angular/core';
+
 
 @Component({
   selector: 'bl-carousel-carousel-item-list',
   templateUrl: './itemList.component.html',
   styleUrls: ['./itemList.component.scss', '../app.component.scss']
 })
-
-export class ItemListComponent implements OnInit {
+export class ItemListComponent implements OnInit{
   items: Item[] = [];
   slideshow: Slideshow = null;
   type: Type = null;
@@ -23,10 +26,8 @@ export class ItemListComponent implements OnInit {
   languages: Language[] = [];
   languageObj: Object;
 
-  constructor(public languageService : LanguagesService) {
-    this.languages.push( Language.create({ name  : '', resources : new Array<Resource>(new Resource({name : '', value : ''}))}) );
+  constructor(public languageService : LanguagesService, private http: HttpClient, @Inject(DOCUMENT) public doc: any) {
     this.items.push(new Item({id : 1}));
-    this.languageService.myMethod(this.languages);
   }
 
   ngOnInit() {
@@ -38,6 +39,8 @@ export class ItemListComponent implements OnInit {
 
   export(format: string = 'json'): string {
 
+    this.languages = this.languageService.getLanguagesAndResources();
+
     for (let i = 0; i < this.languages.length; i++) {
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};
@@ -48,10 +51,22 @@ export class ItemListComponent implements OnInit {
         language[ stringOrDefault( resource.name) ] = resource.value;
       }
     }
+    format = format.toLowerCase();
+    const self = this;
 
-    switch ((format).toLowerCase()) {
+    switch (format) {
       case 'json':
-          return JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
+          const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
+          this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
+            res => {
+              const frame = self.doc.getElementById('previewIframe');
+              frame.contentWindow.location.reload();
+            },
+            err => {
+              console.error(err.error, err.message);
+            }
+          );
+          return retVal;
       default:
         console.warn(`Unknown export format'${format}'`);
         return `Unknown export format ${format}`;
@@ -69,7 +84,6 @@ export class ItemListComponent implements OnInit {
         }
         json = JSON.parse(config);
 
-        this.items = json.items;
         this.slideshow = json.slideshow;
         this.type = json.types;
         this.setting = json.settings;
@@ -86,7 +100,8 @@ export class ItemListComponent implements OnInit {
             }
             this.languages.push(element);
         }
-        this.languageService.myMethod(this.languages);
+        
+        this.items = json.items;
         return true;
       default:
         return false;

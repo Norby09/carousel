@@ -1,0 +1,298 @@
+/*
+	This is a file with common formatting that can be shared between different components, regardless of their location.
+	Anything that can be reused in multiple places can go here.
+*/
+
+
+/* INPUT COMMON FORMATTING */
+//use this for any placeholder's formatting.
+
+//placeholder common styling
+@mixin placeholder-common {
+	font-size: $input-font-size;
+	color: $grey-light;
+}
+
+//basic formatting that covers inputs and some contenteditable shared properties
+@mixin input-baseline {
+	font-family: $font-standard;
+	color: $black;
+	width: 100%;
+	box-sizing: border-box;
+	border: $standard-border;
+	border-radius: $standard-border-radius;
+	//pft
+	letter-spacing: 0.4px;
+
+	//cross browser support for placeholder with focus variant
+	&::-webkit-input-placeholder {
+		@include placeholder-common;
+	}
+
+	&::-moz-placeholder {
+		@include placeholder-common;
+	}
+
+	&:-ms-input-placeholder {
+		@include placeholder-common;
+	}
+
+	&:focus {
+		&::-webkit-input-placeholder {
+			color: $grey-extra-light;
+		}
+
+		&::-moz-placeholder {
+			color: $grey-extra-light;
+		}
+
+		&:-ms-input-placeholder {
+			color: $grey-extra-light;
+		}
+	}
+}
+
+//mixin for actual common tooltip styles for use in CSS-based tooltips as well as advanced JS-based tooltips
+@mixin tooltip ($position) {
+	//Left padding is 10px for 'default' styles. Padding will be changed when adding theme classes, but this is the standard.
+	padding: $standard-spacing;
+	box-shadow: $modal-shadow;
+	background-color: $white;
+	border: $standard-border;
+	//orient to upper right
+	//will need .js if we are auto orienting
+	position: $position;
+	font-family: $font-standard;
+	text-align: left;
+	font-size: $normal-font-size;
+	color: $black;
+	//Make sure valdiation errors appear under the dropdown they report on
+	z-index: $zindex-dropdown - 1;
+	letter-spacing: $standard-letter-spacing;
+	line-height: 15px;
+}
+
+// global list style. Used for vertically-oriented lists of data, to be used in dropdowns, sidebar lists or any place
+// where row-based single line formatting is required. Use this for consistency
+@mixin list-style() {
+	//assume the direct child (<li>,<div>) etc... and handle its margin
+	> li,
+	> div {
+		height: 20px;
+		line-height: 20px;
+		margin-bottom: 4px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+//global reusable styles for overlays. These can be modal overlays (darkened semi-transparent overlay behind modal) or an obscuring overlay that covers the ui.
+//can be made a 'loading' overlay with the inclusion of the subsequent 'loading-overlay-style'
+@mixin overlay-style() {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	background: rgba(218, 218, 218, 0.6) center center no-repeat;
+}
+
+/*
+This mixin handles visually disabling at a component level.
+This also disables any pointer related events to prevent interactions on the disabled elements.
+*/
+@mixin disabled-formatting {
+	color: $grey-light !important;
+	border-color: $grey-light !important;
+	pointer-events: none !important;
+	cursor: not-allowed !important;
+}
+
+//loading animation with growing and fading circles
+@mixin loading-animation {
+	background: none;
+	position: relative;
+	width: 64px;
+	height: 64px;
+	transition: opacity $standard-transition-duration ease-in-out;
+	display: block;
+	opacity: 1;
+	transform-origin: center;
+
+	//common to before and after, styles the circles that will spin
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: 0;
+		width: 0;
+		height: 0;
+		opacity: 0;
+		border-radius: 50%;
+		border-width: 3px;
+		border-style: solid;
+		animation: ripple-animation 2s ease-out infinite;
+		transform-origin: center;
+	}
+
+	&::before {
+		border-color: $black;
+	}
+
+	&::after {
+		border-color: $yellow;
+		animation-delay: 1s;
+	}
+}
+
+// A smaller variant of the loading animation. Can be added to anything to get a 20px square box with a loading element.
+// Mainly intended for inline edits or inputs
+@mixin loading-animation-small {
+	@include loading-animation;
+	width: 20px;
+	height: 20px;
+
+	&::before,
+	&::after {
+		border-width: 1px;
+		top: 50%;
+		left: 50%;
+	}
+}
+
+//Default styling for the container that receives the status icon.
+@mixin input-status-icon {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%); //allow fluid vertical centering
+	opacity: 0;
+	@include iconAfter('edit'); //default icon that's overridden later
+	backface-visibility: hidden;
+	transform-style: preserve-3d;
+
+	&::after {
+		display: block;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 15px;
+		text-align: center; //horicenter
+		line-height: 20px; //verticenter
+		color: $grey-light;
+	}
+}
+
+//State for an inline editable-like thing that has a save success
+@mixin field-edit-success {
+	//handle children inputs and fake inputs
+	.bl--text-input,
+	& + .bl--field-edit-status-wrapper .bl--text-area {
+		border-color: $blue-bright;
+		background-color: $white;
+
+		//apply icon and color
+		& + .bl--status-icon {
+			@include iconAfter('checkmark');
+			opacity: 1;
+
+			&::after {
+				color: $green;
+			}
+		}
+	}
+}
+
+//State for an inline editable-like thing that has an error
+@mixin field-edit-has-error {
+	color: $red;
+
+	//handle children inputs and fake inputs
+	.bl--text-input,
+	& + .bl--field-edit-status-wrapper .bl--text-area {
+		background-color: $white;
+		border: $standard-border;
+		border-color: $red;
+
+		& + .bl--status-icon {
+			@include iconAfter('error');
+			opacity: 1;
+			bottom: 5px;
+
+			&::after {
+				font-size: 17px;
+				line-height: 1;
+				color: $red;
+			}
+		}
+
+		//prevent any default stuff from happening
+		&:hover,
+		&:focus {
+			border-color: $red !important;
+		}
+	}
+}
+
+//State for an inline editable-like thing that is currently busy
+@mixin field-edit-is-busy {
+	//handle children inputs and fake inputs
+	.bl--text-input,
+	& + .bl--field-edit-status-wrapper .bl--text-area {
+		border-color: $blue-bright;
+		background-color: $white;
+
+		//no icon for working state, use gif bg
+		& + .bl--status-icon {
+			@include loading-animation-small;
+			position: absolute;
+			opacity: 1;
+		}
+
+		&:hover,
+		&:focus {
+			border-color: $blue-bright;
+
+			& + .bl--status-icon {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+//Reusable formatting for collapsible containers
+//This mixin leverages max-height so a px-based value isn't required.  Classes to make collapsible containers open are included as a separete mixin below
+
+//Apply to the default state of the container.  This includes transitions that will be shown on the 'open' or 'expanded' state
+@mixin collapsible-element-closed {
+	transition: max-height 0.3s ease-in-out;
+	overflow: hidden;
+	max-height: 0;
+}
+
+//Usage:
+//	@include collapsible-element-closed;
+
+
+//Apply to the modified/open/expanded state.  Defaults for max-height and overflow type can be specified or can use defaults.
+@mixin collapsible-element-open($max-height: 100vh, $overflow-type: visible) {
+	max-height: $max-height;
+	overflow: $overflow-type;
+}
+
+//Usage:
+//Specify a unique transition property: 
+//	@include collapsible-element-open(100px,auto);
+
+//Use default max-height and overflow type: 
+//	@include collapsible-element-open;

@@ -1,0 +1,73 @@
+//contains a bar and a percentage
+//can have 2 additional states, "with issues" and "without issues"
+.bl--progress-display {
+	min-height: 15px;
+	text-align: right;
+	width: auto;
+	display: flex;
+
+	> * {
+		display: inline-block;
+		line-height: 15px;
+		vertical-align: top;
+	}
+
+	//assumes the progress value is on the left
+	.bl--progress-value {
+		position: relative;
+		color: $grey-dark;
+		font-family: $font-bold;
+		font-size: 12px;
+		text-align: right;
+		width: 45px;
+		padding: 0 4px 0 0;
+		flex: 0 0 auto;
+		line-height: 15px;
+	}
+
+	.bl--progress-bar-outer {
+		width: 251px;
+		line-height: 0;
+		height: 5px;
+		border-radius: 15px;
+		position: relative;
+		top: 4px;
+		overflow: hidden;
+		background-color: $grey-bright;
+		flex: 1 1 auto;
+
+		.bl--progress-bar-inner {
+			height: 100%;
+			background-color: $blue-pale;
+			border-radius: 15px;
+
+			// Set the initial width to 0, so any delayed width changes will properly transition from 0 to their new value.
+			width: 0;
+			transition: width .5s ease;
+		}
+
+		//typically the progress value is on the left, but IN CASE it is right, reorient it properly
+		& + .bl--progress-value {
+			padding: 0 0 0 4px;
+		}
+
+	}
+
+	&.bl--progress-max {
+
+		.bl--progress-value {
+			@include iconAfter('checkmark');
+
+			&::after {
+				position: absolute;
+				top: 0;
+				right: 9px;
+				font-size: 10px;
+				color: $green;
+			}
+
+		}
+
+	}
+
+}

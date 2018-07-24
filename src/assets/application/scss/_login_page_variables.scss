@@ -1,0 +1,42 @@
+/* Import base mixins, vars etc... */
+@import 'base';
+
+/* login setup*/
+$login-namespace: "bl--login";
+$carousel-namespace: #{"." + $login-namespace}-carousel;
+$login-panel-width: 400px;
+$logo-space-top: 108px;
+$logo-space-top-mobile-portrait: 58px;
+$logo-space-bottom: 30px;
+$logo-height: 40px;
+$logo-image: url("../../../Images/Images/PL/BlackLine/bkl-logo.png");
+
+$background-image: url("../../../Images/Images/loginCarouselBg.jpg");
+
+// sass-lint:disable no-color-hex
+$background-color: #111516;
+$background-color-button: #117CBF;
+$background-color-button-hover: #00A7EA;
+$color-carousel-description: #BABABA;
+// sass-lint:enable no-color-hex
+
+$input-font-size: $xl-font-size;
+$input-padding: 20px;
+$input-padding-top: 14px;
+$input-height: 56px;
+$input-radius: 3px;
+$input-max-space: calc(100% - #{2 * $input-padding});
+$label-padding-left: 2 * $input-padding;
+$login-button-margin-bottom: 30px;
+
+$letter-spacing: 0.6px;
+
+$info-font-size: $large-font-size - 1;
+
+$error-font-size: $large-font-size - 1;
+$error-color: $red;
+
+$link-color: $grey-medium;
+$link-font-size: $small-font-size;
+
+$zindex-panel: $zindex-lowest;

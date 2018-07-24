@@ -1,0 +1,952 @@
+/* buttons!  not only <button>, but a clickable call to action of any type */
+
+// common cta button styling, handles general states and contents of buttons.  Doesn't include color formatting, that is done per class
+@mixin button-common {
+	position: relative;
+	font-family: $font-standard;
+	text-align: center;
+	padding: 0 $container-padding;
+	min-width: 74px;
+	display: inline-block;
+	height: 40px;
+	line-height: 38px;
+	font-size: 13px;
+	cursor: pointer;
+	border-radius: $standard-border-radius;
+	border: 1px solid transparent;
+	text-decoration: none;
+	width: auto;
+
+	//contents have icon? make it inline.
+	i {
+		width: auto;
+		height: auto;
+		display: inline-block;
+		position: relative;
+		margin-right: 10px;
+		vertical-align: middle;
+		line-height: 1;
+
+		&::after {
+			color: $white;
+		}
+	}
+
+	//allow full width
+	&.bl--full-width {
+		width: 100%;
+	}
+
+}
+
+//when applied to an after pseudo element, this does its best to center the icon
+@mixin full-size-icon-after {
+	display: block;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	//allow expected icon rotation point
+	transform-origin: center center;
+}
+
+//variant used exclusively in the sidebar(s)
+//deprecate this, this is the default height now
+@mixin button-large {
+	height: 40px;
+	line-height: 38px;
+}
+
+//variant with no text, just a 30px squared icon-based button
+//built to sit along side the grid or page-level controls
+@mixin button-textless {
+	width: auto;
+	height: 30px;
+	border: $standard-border;
+	padding: 0 16px; //don't rely on width because it can be used in many places, size it with padding
+	background: none transparent;
+}
+
+//variant with no border, just a 30px squared icon-based button
+//built to sit along side the grid or page-level controls
+@mixin button-borderless {
+	width: auto;
+	height: 30px;
+	padding: 0 16px; //don't rely on width because it can be used in many places, size it with padding
+	background: none transparent;
+	border: 1px solid transparent; //fake border to make sure it behaves with actual button siblings
+}
+
+
+//color styles common to all form factors of primary buttons
+@mixin primary-button-common {
+	background-color: $blue-primary;
+	color: $white;
+
+	//if the element in an anchor
+	&:link,
+	&:visited,
+	&:active {
+		color: $white;
+		text-decoration: none;
+	}
+
+	&:hover {
+		background-color: $blue-primary-hover;
+		color: $white !important; //important is necessary because of the .prime-2016 class that was necessary for overriding old prime styles.  I hate this and it's only necessary until we sort out the global body class
+	}
+
+	//states for button and icon children when hovering
+	&.bl--disabled,
+	&:disabled {
+		cursor: default;
+
+		&:hover {
+			color: $white;
+
+			//icons in disabled buttons
+			[class*="atlas--ui-icon"] {
+				color: $grey-light;
+			}
+		}
+
+		//non-visibly focusable disabled buttons
+		&:focus {
+			outline: none;
+		}
+
+	}
+
+	&.bl--disabled,
+	&:disabled {
+		background-color: $grey-light;
+
+		&:hover {
+			background-color: $grey-light;
+		}
+
+	}
+
+}
+
+//color styles common to all form factors of secondary buttons
+@mixin secondary-button-common {
+	background-color: $white;
+	color: $blue-primary;
+	border-color: $grey-bright;
+	line-height: 38px;
+
+	//if the element is an anchor
+	&:link,
+	&:visited,
+	&:active {
+		color: $blue-primary;
+	}
+
+	&:hover,
+	&:active {
+		color: $blue-primary-hover;
+		border-color: $grey-medium;
+
+		//if there is an icon
+		i {
+
+			&::after {
+				color: $blue-primary-hover;
+			}
+
+		}
+
+	}
+
+	//if there is an icon
+	i {
+
+		&::after {
+			color: $blue-primary;
+		}
+
+	}
+
+	&.bl--disabled,
+	&:disabled {
+		cursor: default;
+		border-color: $grey-bright;
+		color: $grey-light;
+		background-color: $white;
+
+		&:focus {
+			outline: none;
+		}
+
+		&:hover,
+		&:active {
+			border-color: $grey-bright;
+			color: $grey-light;
+		}
+
+		[class^="bl-icon"]::after {
+			color: $grey-light;
+		}
+
+	}
+
+}
+
+//Common formatting for all transparent inline action buttons.  Use this for all small floating buttons.
+@mixin icon-action-button {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-image: none;
+	background-color: transparent;
+	margin: 0;
+	padding: 0;
+	border: none;
+	font-size: 14px;
+	text-align: center;
+	overflow: visible;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover {
+		&::after {
+			color: $grey-light;
+		}
+	}
+
+	//Standard formatting for all icons
+	&::after {
+		color: $grey-medium;
+		line-height: 14px;
+	}
+}
+
+//Rotating chevron button for use in collapsible elements
+@mixin chevron-toggle-button {
+	font-size: 7px;
+	padding: 0;
+	height: 12px;
+	display: inline-block;
+	outline: none;
+	transform-style: preserve-3d;
+
+	&::after {
+		display: block;
+		transform: rotate(180deg);
+		transform-origin: center center;
+	}
+
+	.bl--toggle-is-closed & {
+		height: 9px;
+
+		&::after {
+			transform: rotate(90deg);
+			//Nudge it up since it's not square and when rotated, it appears to be off-center
+			position: relative;
+			top: 1px;
+		}
+	}
+}
+
+//GLobal baseline.  
+button {
+	cursor: pointer;
+
+	&:disabled {
+		cursor: default;
+	}
+
+}
+
+/* standard action button, comparable to a submit button */
+.bl--cta-button {
+	@include button-common;
+	@include primary-button-common;
+}
+
+//32 px high variant of the standard cta
+.bl--cta-button-small {
+	@include button-common;
+	@include primary-button-common;
+	height: 32px;
+	line-height: 30px;
+}
+
+/* secondary cta button, usually used as a supplement to cta-button */
+.bl--cta-button-secondary {
+	@include button-common;
+	@include secondary-button-common;
+
+
+	//if there is an icon
+	i {
+		font-size: 12px; //a default.  if we need different sizes, extend this class and create a specific button class for your variant
+
+		&::after {
+			color: $blue-primary;
+		}
+
+	}
+
+}
+
+//32px high variant of the secondary cta
+.bl--cta-button-secondary-small {
+	@extend .bl--cta-button-secondary;
+	height: 32px;
+	line-height: 32px;
+}
+
+//variant of the standard cta that contains ONLY an icon (left, right direction buttons, etc...)
+.bl--cta-button-icon-only {
+	@include button-common;
+	@include secondary-button-common;
+	padding: 0;
+	min-width: 40px;
+	width: 40px;
+
+	//icon inside (perhaps replace with iconafter mixin?)
+	i {
+		margin: 0;
+		position: relative;
+		top: -1px;
+
+		&::after {
+			@include full-size-icon-after;
+		}
+	}
+}
+
+//short variant of the standard cta that contains ONLY an icon
+.bl--cta-button-icon-only-short {
+	@include button-common;
+	@include secondary-button-common;
+	padding: 0;
+	min-width: 40px;
+	width: 40px;
+	height: 28px;
+	line-height: 26px;
+
+	//icon inside (perhaps replace with iconafter mixin?)
+	i {
+		margin: 0;
+		position: relative;
+		top: -1px;
+
+		&::after {
+			@include full-size-icon-after;
+		}
+	}
+}
+
+/* icon only buttons, add to this list as they are created */
+.bl--arrow-left-icon-button {
+	@extend .bl--cta-button-icon-only;
+	font-size: 15px;
+
+	i {
+		top: -1px;
+
+		&::after {
+			transform: rotate(90deg);
+		}
+
+	}
+}
+
+.bl--arrow-right-icon-button {
+	@extend .bl--cta-button-icon-only;
+	font-size: 15px;
+
+	i {
+		top: -1px;
+
+		&::after {
+			transform: rotate(-90deg);
+		}
+
+	}
+}
+
+.bl--save-icon-button {
+	@extend .bl--cta-button-icon-only;
+	font-size: 16px;
+
+}
+
+.bl--schedule-icon-button {
+	@extend .bl--cta-button-icon-only;
+	font-size: 16px;
+}
+
+
+/* utility elements for buttons */
+
+//groups 2 buttons together side by side.  Usually used after the primary CTA
+.bl--button-group {
+	@include clearfix;
+	margin-bottom: $standard-margin;
+	padding-top: $container-padding-tiny;
+
+	&.bl--dual-col {
+
+		> .bl--button,
+		> .bl--button-strip,
+		> button {
+			width: calc(50% - 5px);
+
+			&:first-child {
+				float: left;
+			}
+
+			&:last-child {
+				float: right;
+			}
+		}
+
+	}
+
+}
+
+
+//button strip is x number of number "cells" with rounded corners out the extreme left and right edges of the parent of the button strip itself.
+//expands to fill 100% of the parent container, but can be made inline block with the .bl--button-strip-inline parent.
+.bl--button-strip {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+
+	.bl--button-strip-row {
+		display: table-row;
+	}
+
+	.bl--button,
+	button {
+		display: table-cell;
+		width: 50%;
+		text-align: center;
+
+		&:first-child {
+			border-radius: $standard-border-radius 0 0 $standard-border-radius;
+		}
+
+		&:last-child {
+			border-radius: 0 $standard-border-radius $standard-border-radius 0;
+		}
+
+		& + .bl--button,
+		& + button {
+			//we would have adjacent borders without this.
+			position: relative;
+			left: -1px;
+		}
+
+	}
+
+}
+
+//single line button lockup that places the primary CTA on the left and icon-based buttons to its right
+.bl--action-button-strip {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-content: stretch;
+	align-items: flex-start;
+	width: 100%; //force all subsections to 100% width better method?
+	height: 100%; //assumes 100% sidebar height, enforce the expected scrolling within directly
+
+	//common formatting for all button kids
+	button {
+		flex: 0 0 auto;
+		align-self: auto;
+		margin-right: 10px;
+		vertical-align: top;
+
+		//primary cta gets the most space
+		&.bl--cta-button {
+			flex: 1 1 auto;
+			margin-right: 20px;
+			max-width: 100%;
+			@include truncateText;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+	}
+
+}
+
+/* non-standard buttons like round add, remove etc... */
+.bl--action-button {
+
+	//transparent button with grey X
+	&.bl--remove-item {
+		padding: 0;
+		position: relative;
+		background-image: none;
+		background-color: transparent;
+		border: none;
+		width: 14px;
+		height: 14px;
+		cursor: pointer;
+
+		i {
+			pointer-events: none;
+
+			&::after {
+				position: absolute;
+				top: 0;
+				left: 0;
+				color: $grey-light;
+			}
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+		&:hover {
+
+			i {
+
+				&::after {
+					color: $grey-medium;
+				}
+
+			}
+
+		}
+
+	}
+}
+
+
+/**
+ * .bl--cta-dropdown-outer.bl--is-disabled .bl--cta-dropdown
+ * .bl--cta-dropdown-outer.bl--is-disabled .bl--cta-dropdown-text,
+ * disables cta button and their dropdown icon
+ * pointer event prevents any click events from occuring.
+ */
+.bl--cta-dropdown-outer.bl--is-disabled .bl--cta-dropdown,
+.bl--cta-dropdown-outer.bl--is-disabled .bl--cta-dropdown-text {
+	background-color: $grey-light;
+	pointer-events: none;
+}
+
+
+//CTA variant used for css-only dropdowns
+//outer container for css-only dropdowns
+.bl--cta-dropdown-outer {
+	position: relative;
+	display: inline-block; //forced shrink wrap
+
+	//variant for taking up 100% of available
+	&.bl--full-width {
+		width: 100%;
+	}
+
+
+	//text for the "button"
+	.bl--cta-dropdown-text {
+		@include button-common;
+		@include primary-button-common;
+		padding-right: 70px; //50px for the fake dropdown pseudo element and 20 for the right button padding
+		border: none;
+		line-height: 40px;
+		display: block;
+	}
+
+	//disabled state for the button parent
+	&.bl--is-disabled {
+		background-color: $grey-light;
+		cursor: default;
+
+		//visually disable the text
+		.bl--cta-dropdown-text {
+			background-color: $grey-light;
+		}
+
+	}
+
+	//the dropdown element itself, in the context of the dropdown parent
+	.bl--cta-dropdown {
+		@include button-common;
+		@include iconAfter('arrow');
+		display: block;
+		position: absolute;
+		right: 0;
+		top: 0;
+		white-space: nowrap;
+		border-width: 0;
+		padding: 0;
+		min-width: 0;
+		width: 50px;
+		border-left: 1px solid rgba(255, 255, 255, 0.2);
+		height: 100%;
+		font-size: $medium-font-size;
+		background-color: $blue-primary;
+
+		//style the icon
+		&::after {
+			color: $white;
+		}
+
+		//hover for the individual "button" which is the trigger
+		&:hover {
+			background-color: $blue-primary-hover;
+		}
+
+		//show on button click/focus
+		&:focus {
+			outline: none;
+
+			& + .bl--cta-dropdown-content {
+				display: block;
+			}
+		}
+
+		//disabled state for the actual button
+		&:disabled {
+			background-color: $grey-light;
+
+			&::after {
+				border-left-color: $white;
+			}
+		}
+
+	}
+
+	//dropdown content itself, this a <UL>
+	.bl--cta-dropdown-content {
+		//format children with global list style
+		@include list-style;
+		padding: $container-padding;
+		margin: 0;
+		list-style: none;
+		background-color: $white;
+		border: $standard-border;
+		width: 100%;
+		z-index: $zindex-dropdown;
+		position: absolute;
+		right: 0;
+		top: 43px;
+		display: none; //hidden by default
+		font-size: $standard-font-size;
+
+	}
+
+}
+
+
+//North, Northeast oriented chevron button
+.bl--toggle-close-button {
+	@include button-borderless;
+	@include iconAfter('chevron-vertical');
+	@include chevron-toggle-button;
+
+	.bl--toggle-is-closed & {
+		height: 9px;
+
+		&::after {
+			transform: rotate(90deg);
+			//Nudge it up since it's not square and when rotated, it appears to be off-center
+			position: relative;
+			top: 1px;
+		}
+	}
+}
+
+//North, Northeast oriented single chevron button, used for component boxes in component boxes
+.bl--toggle-close-button-single {
+	@include button-borderless;
+	@include iconAfter('arrow-up');
+	@include chevron-toggle-button;
+}
+
+//textless button for fullscreen on grids
+.bl--fullscreen-button {
+	position: relative;
+	@include button-textless;
+	@include iconAfter('fullscreen-max');
+	padding: 0 11px;
+	border: none;
+	margin: 0;
+
+	&:focus {
+		outline: none;
+	}
+
+	//the icon
+	&::after {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin: -7px 0 0 -7px;
+		width: 14px;
+		height: 14px;
+		color: $blue-primary;
+		line-height: 14px;
+		font-size: 14px;
+	}
+
+	//when fullscreen, this shows the minimize icon
+	&.bl--is-fullscreen {
+		@include iconAfter('fullscreen-min');
+	}
+
+	//the icon hover
+	&:hover {
+		&::after {
+			color: $blue-primary-hover;
+		}
+	}
+}
+
+
+/* text buttons */
+//blue text with a plus next to it.
+.bl--text-add-button {
+	position: relative;
+	@include iconAfter('plus');
+	color: $blue-primary;
+	padding-left: 20px;
+	display: inline-block;
+	line-height: 1;
+
+	&::after {
+		position: absolute;
+		bottom: 1px;
+		left: 0;
+		font-size: $smaller-font-size;
+
+	}
+
+}
+
+//A text only button, looks like an anchor but isn't an anchor I guess.
+.bl--button-text-style {
+	display: inline-block;
+	border: none;
+	padding: 0;
+	margin: 0;
+	background-image: none;
+	background-color: transparent;
+	color: $blue-primary;
+	font-size: inherit;
+	cursor: pointer;
+	text-transform: uppercase;
+
+	&:hover {
+		color: $blue-link-hover;
+	}
+
+	&:focus {
+		outline: none;
+	}
+}
+
+
+//Document link button (can be a <button> or <a>) serves as a link to external files.  Looks like an anchor, has a document view icon tacked on to the end.
+.bl--document-link {
+	position: relative;
+	display: inline-block;
+	text-transform: uppercase;
+	color: $blue-primary;
+	@include iconAfter("document-link");
+	padding-top: $standard-spacing;
+	font-size: $smaller-font-size;
+	//Reserve space for abs pos icon, and vertically separate from siblings
+	padding: 10px 16px 0 0;
+	cursor: pointer;
+	border: none;
+	margin: 0;
+	background-image: none;
+	background-color: transparent;
+
+	//non-visibly focusable disabled buttons
+	&:focus {
+		outline: none;
+	}
+
+	//Icon 
+	&::after {
+		position: absolute;
+		bottom: 1px;
+		right: 0;
+		color: $blue-primary;
+	}	
+
+	//Hover
+	&:hover {
+		color: $blue-dark;
+
+		//Hover icon change
+		&::after {
+			color: $blue-primary;
+		}
+	}
+
+
+}
+
+//Visualization toggle button.  Adds a way to toggle gantt charts on and off.  Bordered in idle and borderless in active state.
+.bl--visualization-toggle {
+	position: relative;
+	display: block;
+	width: 23px;
+	height: 23px;
+	background-image: none;
+	padding: 0;
+	margin: 0;
+	border: $standard-border;
+	color: $blue-primary;
+	background-color: $white;
+	border-radius: $standard-border-radius;
+	@include iconAfter("visualize-toggle");
+
+	//icon
+	&::after {
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		font-size: 16px;
+		line-height: 20px;
+		width: 100%;
+		text-align: center;
+	}
+
+	&:hover,
+	&.bl--visualization-toggle-is-active {
+		color: $white;
+		background-color: $blue-primary;
+		border-color: $blue-primary;
+	}
+
+	//non-visibly focusable disabled buttons
+	&:focus {
+		outline: none;
+	}
+
+
+}
+
+//Icon and link text buttons.  Will contain an icon and text that resembles an anchor
+.bl--text-icon-button {
+	position: relative;
+	color: $blue-primary;
+	border: none;
+	background-color: transparent;
+	background-image: none;
+	font-family: $font-standard;
+	font-size: $normal-font-size;
+	cursor: pointer;
+	padding: 0 0 0 $container-padding;
+	line-height: 14px;
+
+	&:hover {
+		color: $blue-link-hover;
+	}
+
+
+	&:focus {
+		outline: none;
+	}
+
+	//Actually contains an <i> inside for the icon
+	i {
+		position: relative;
+
+		//Namespace the classes to the <i> only when there is a class associated with icons
+		&[class^="bl-icon"] {
+			position: absolute;
+			top: 0;
+			left: 0;
+
+			&::before,
+			&::after {
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+
+
+			//Add a bordered circle before the <i> element
+			&::before {
+				content: '';
+				display: block;
+				border-radius: 100%;
+				width: 14px;
+				height: 14px;
+				background-color: $blue-primary;
+			}
+
+			//Tweak the icon
+			&::after {
+				color: $white;
+				z-index: $zindex-lowest;
+				font-size: 8px;
+				width: 14px;
+				height: 14px;
+				line-height: 14px;
+				text-align: center;
+			}
+
+		}
+
+	}
+
+}
+
+//Inline action buttons, no background, only icon.  Used in action areas for list items, whether in tables or list items
+
+//Delete button - trashcan//Inline action buttons, no background, only icon.  Used in component tables
+.bl--action-button-delete {
+	@include icon-action-button;
+	@include iconAfter('trashcan');
+}
+
+.bl--action-button-edit {
+	@include icon-action-button;
+	@include iconAfter('edit');
+	
+}
+
+//Reply button - talk bubble with arrow
+.bl--action-button-reply {
+	@include icon-action-button;
+	@include iconAfter('reply');
+
+	//When toggled on, the reply area 
+	&.bl--action-button-reply-is-active {
+
+		//Toggled on = blue color
+		&::after {
+			color: $blue-primary;
+		}
+
+	}
+
+}
+
+//Comments button - talk button with ... hollow
+.bl--action-button-comments {
+	@include icon-action-button;
+	@include iconAfter('comment-none');
+
+	//Comments button active - solid
+	&.bl--button-has-comments {
+		@include iconAfter('comment-some');
+
+		&::after {
+			color: $purple-primary;
+		}
+
+	}
+
+}

@@ -2,11 +2,14 @@ import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or
 import {Title} from './title';
 import {Link} from './link';
 import {Description} from './description';
+import { LanguagesService } from '../app/languages.service';
 
 export class Comp {
   title: Title;
   description: Description;
   links: Link[];
+
+  private languageService : LanguagesService;
 
   static create(config?: any): Comp {
     if (!config) {
@@ -35,6 +38,8 @@ export class Comp {
     this.links = arrayOrDefault(config.links).map(Link.create);
     this.description = Description.create(config.description);
     this.title = Title.create(config.title);
+
+    
   }
 
 }
