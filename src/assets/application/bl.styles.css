@@ -83,16 +83,16 @@
     font-family: "arial-pro-medium";
     font-weight: 400;
     font-style: normal;
-    src: url("../fonts/bl-global/arial-pro-medium/ArialMTPro-Medium.eot");
-    src: url("../fonts/bl-global/arial-pro-medium/ArialMTPro-Medium.woff") format("woff");
+    src: url("ArialMTPro-Medium.eot");
+    src: url("ArialMTPro-Medium.woff") format("woff");
 }
 
 @font-face {
     font-family: "arial-pro-light";
     font-weight: 400;
     font-style: normal;
-    src: url("../fonts/bl-global/arial-pro-light/ArialMTPro-Light.eot");
-    src: url("../fonts/bl-global/arial-pro-light/ArialMTPro-Light.woff") format("woff");
+    src: url("ArialMTPro-Light.eot");
+    src: url("ArialMTPro-Light.woff") format("woff");
 }
 
 html {
@@ -519,8 +519,8 @@ sub {
 
 @font-face {
     font-family: "blackline-icons";
-    src: url("../fonts/bl-global/blackline-icons.eot");
-    src: url("../fonts/bl-global/blackline-icons.eot?#iefix") format("embedded-opentype"), url("../fonts/bl-global/blackline-icons.ttf") format("truetype"), url("../fonts/bl-global/blackline-icons.svg#blackline-icons") format("svg");
+    src: url("blackline-icons.eot");
+    src: url("blackline-icons.eot?#iefix") format("embedded-opentype"), url("blackline-icons.ttf") format("truetype"), url("blackline-icons.svg#blackline-icons") format("svg");
     font-weight: normal;
     font-style: normal;
 }

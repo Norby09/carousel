@@ -1,24 +1,26 @@
-<div class="container inner-container">
-  <h3 class="hr">SlideShow</h3>
-  <div class="row">
-      <div class="col-md-4">
-        <label class="col-lg-12 overwritePadding">Autoplay :
-          <select  class="form-control" [(ngModel)]="slideshow.autoplay" >
-            <option value="0" ng-selected="slideshow.autoplay == 0"> false </option>
-            <option value="1" > true </option>
-          </select>
-        </label>
-      </div>
-      <div class="col-md-4">
-        <label class="col-lg-12 overwritePadding">Interval :
-          <input type="number" step="100" min="0" class="form-control "[(ngModel)]="slideshow.interval" />
-        </label>
-      </div>
-      <div class="col-md-4">
-        <label class="col-lg-12 overwritePadding">Restart :
-          <input type="number" step="100" min="0" class="form-control " [(ngModel)]="slideshow.restart" />
-        </label>
-      </div>
-  </div>
+<div class="bl--form-region">
+  <div class="bl--form-col-1-1">
+    <h3 class="hr">SlideShow</h3>
+    <div class="bl--form-row">
+			<div class="bl--form-subcol-1-3">
+				<input type="checkbox" class="bl--checkbox" id="checkboxa1"  [(ngModel)]="slideshow.autoplay"/>
+				<label class="bl--text-label" for="checkboxa1">
+				  Autoplay
+				</label>
+			</div>
+      <div class="bl--form-subcol-1-3">
+			  <label class="bl--text-label">
+				<div class="bl--text-label-text"> Interval : </div>
+				<input type="number" step="100" min="0" class="bl--text-input" [(ngModel)]="slideshow.interval" />
+			  </label>
+			</div>
+			<div class="bl--form-subcol-1-3">
+			  <label class="bl--text-label">
+				<div class="bl--text-label-text"> Restart : </div>
+				<input type="number" step="100" min="0" class="bl--text-input" [(ngModel)]="slideshow.restart" />
+			  </label>
+			</div>
+		</div>
+	</div>
 </div>
 
