@@ -46,4 +46,17 @@ export class LanguagesService {
   getLanguagesAndResources() {
     return this.languages;
   }
+
+  findResourcesValue( resourceName ) {
+    console.log('Languages : ',  this.languages);
+
+    for( let lang of this.languages ) {
+      for( let res of lang.resources ) {
+          if( res.name === resourceName ) {
+            return res.value;
+          }
+      }
+    }
+    return null;
+  }
 }
