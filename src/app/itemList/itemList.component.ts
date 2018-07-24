@@ -54,7 +54,6 @@ export class ItemListComponent implements OnInit{
     format = format.toLowerCase();
     const self = this;
 
-    console.log(this.doc);
     switch (format) {
       case 'json':
           const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
@@ -85,8 +84,6 @@ export class ItemListComponent implements OnInit{
         }
         json = JSON.parse(config);
 
-        this.items = json.items;
-
         this.slideshow = json.slideshow;
         this.type = json.types;
         this.setting = json.settings;
@@ -103,6 +100,10 @@ export class ItemListComponent implements OnInit{
             }
             this.languages.push(element);
         }
+        
+        this.items = json.items;
+        
+        console.log('Import in item list : ', this.languages);
         return true;
       default:
         return false;

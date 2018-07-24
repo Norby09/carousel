@@ -23,12 +23,15 @@ export class TitleComponent implements OnInit {
   languageAndResources = [];
 
   constructor(private languageService : LanguagesService) {
+    console.log('Languages in title ',this.languages);
   }
 
   ngOnInit() {
     if( this.title.text ) {
+      const resourceValue = this.languageService.findResourcesValue(this.title.text);
+      console.log(this.title.text,resourceValue);
       this.resourceName = this.title.text.toString();
-      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.title.text}))}) );
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : resourceValue}))}) );
     } else {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
@@ -52,12 +55,12 @@ export class TitleComponent implements OnInit {
       }
     }
   }
+
   onInputResource(resourceValue) {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
     this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
     this.title.text = this.resourceName;
-
   }
 
   addLanguage() {

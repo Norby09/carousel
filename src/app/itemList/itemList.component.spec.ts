@@ -162,6 +162,13 @@ describe('ItemListComponent', () => {
       expect(component.export('text'))
         .toEqual('Unknown export format text');
     })));
+
+    it('should return false on undefined type', () => {
+
+      expect(component.import('','text'))
+        .toEqual(false);
+      
+    });
   });
 
     it('should return false on undefined type', () => {
