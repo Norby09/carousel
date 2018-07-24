@@ -19,13 +19,15 @@ app.use(function (req, res, next) {
 });
 
 app.post('/save', function(req, res) {
-        fs.writeFile("../carousel-preview.json", req.body.data , function(err) {
-            if (err) {
-                res.status(500).send('Could not save the file!');
-            } else {
-                res.json({message : 'File successfully saved!'});
-            }
-        });
+    fs.writeFile("../carousel-preview.json", req.body.data , function(err) {
+        if (err) {
+            res.status(500).send('Could not save the file!');
+        } else {
+            res.json({message : 'File successfully saved!'});
+        }
+    });
+
+
 });
 
 app.get('/read', function(req, res) {

@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Item} from '../../data/item';
 import { Language } from 'data/language';
 
+let itemId = 1;
+
 @Component({
   selector: 'bl-carousel-item',
   templateUrl: './item.component.html',
@@ -13,15 +15,14 @@ export class ItemComponent implements OnInit {
   @Input() languages : Language[];
   @Input() doc;
 
-  itemId = 1;
+  constructor() {
+  }
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   addItem() {
-    ++this.itemId;
-    this.items.push(new Item({id : this.itemId}));
+    this.items.push(new Item({id : ++itemId}));
   };
 
   removeItem(item : Item) {
