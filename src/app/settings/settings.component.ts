@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Settings } from '../../data/settings';
 
 @Component({
@@ -6,10 +6,6 @@ import { Settings } from '../../data/settings';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss', '../app.component.scss']
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent {
   @Input() setting: Settings = null;
-
-  ngOnInit(){
-    this.setting = Settings.create();
-  }
 }
