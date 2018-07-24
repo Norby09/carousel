@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Settings} from '../../data/settings';
+import { Settings } from '../../data/settings';
+
 @Component({
   selector: 'bl-carousel-settings',
   templateUrl: './settings.component.html',

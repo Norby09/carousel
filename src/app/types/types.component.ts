@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Type} from '../../data/type';
+import { Type } from '../../data/type';
+
 @Component({
   selector: 'bl-carousel-types',
   templateUrl: './types.component.html',
@@ -7,7 +8,8 @@ import {Type} from '../../data/type';
 })
 export class TypesComponent implements OnInit {
   @Input() type: Type = null;
-  constructor() { }
+  
+  constructor() {}
 
   ngOnInit() {
      this.type = Type.create();

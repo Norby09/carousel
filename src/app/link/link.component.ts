@@ -1,6 +1,6 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Link} from '../../data/link';
-import {LanguagesService} from '../languages.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { Link } from '../../data/link';
+import { LanguagesService } from '../languages.service';
 import { Language } from 'data/language';
 import { Resource } from 'data/resource';
 
@@ -12,7 +12,6 @@ import { Resource } from 'data/resource';
 export class LinkComponent implements OnInit { 
   @Input() link: Link = null;
   @Input() links: Link[];
-  @Input() languages : Language[];
 
   defaultLanguages;
   selectedLanguage;

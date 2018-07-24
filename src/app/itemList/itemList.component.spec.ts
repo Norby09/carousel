@@ -19,9 +19,6 @@ import { DescriptionComponent } from '../description/description.component';
 import { LanguagesService } from '../languages.service';
 import { inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { DOCUMENT } from '@angular/common';
-
-class MockDocument {}
 
 describe('ItemListComponent', () => {
   let component: ItemListComponent;

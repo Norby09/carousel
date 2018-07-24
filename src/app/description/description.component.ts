@@ -10,8 +10,7 @@ import { Resource } from 'data/resource';
   styleUrls: ['./description.component.scss', '../app.component.scss']
 })
 export class DescriptionComponent implements OnInit {
-  @Input() description: Description ;
-  @Input() languages : Language[];
+  @Input() description: Description;
 
   resources;
   defaultLanguages;

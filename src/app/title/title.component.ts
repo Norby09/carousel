@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import {Title} from '../../data/title';
+import { Title } from '../../data/title';
 import { LanguagesService } from '../languages.service';
 import { Language } from 'data/language';
 import { Resource } from 'data/resource';
@@ -11,7 +11,6 @@ import { Resource } from 'data/resource';
 })
 export class TitleComponent implements OnInit {
   @Input() title: Title = null;
-  @Input() languages : Language[];
 
   resources;
   defaultLanguages;
