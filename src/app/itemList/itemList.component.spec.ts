@@ -114,14 +114,14 @@ describe('ItemListComponent', () => {
     it('should export default data in json format', () => {
 
       expect(component.export())
-        .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+        .toEqual(JSON.stringify({ "items": [{ "type" : 1, "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1}], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100 }, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
     });
     it('should export data in json format', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
       component.languageObj = {en: {title1: 'sdas', title2: 'aaaa'}};
       component.doc = docMock;
 
       expect(component.export('json'))
-        .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+        .toEqual(JSON.stringify({ "items": [{ "type" : 1, "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
 
 
       const wrapper = connections.expectOne({url: serverUrl, method: 'POST'});
@@ -132,7 +132,6 @@ describe('ItemListComponent', () => {
     it('should call the getElementById method', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
       component.doc = docMock;
       const spy = spyOn(docMock, 'getElementById').and.callThrough();
-      console.log(spy);
       component.export('json');
 
       const wrapper = connections.expectOne({url: serverUrl, method: 'POST'});
