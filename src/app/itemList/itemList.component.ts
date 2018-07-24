@@ -102,8 +102,6 @@ export class ItemListComponent implements OnInit{
         }
         
         this.items = json.items;
-        
-        console.log('Import in item list : ', this.languages);
         return true;
       default:
         return false;
