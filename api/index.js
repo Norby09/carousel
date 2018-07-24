@@ -19,19 +19,13 @@ app.use(function (req, res, next) {
 });
 
 app.post('/save', function(req, res) {
-
-    if ( !req.body.data.items || !req.body.data.slideshow || !req.body.data.type || !req.body.data.setting || !req.body.data.languageObj  ) {
-        res.status(500).send('Could not save the file!');
-    } else {
         fs.writeFile("../carousel-preview.json", req.body.data , function(err) {
             if (err) {
                 res.status(500).send('Could not save the file!');
             } else {
                 res.json({message : 'File successfully saved!'});
-            }   
+            }
         });
-    }
-
 });
 
 app.get('/read', function(req, res) {

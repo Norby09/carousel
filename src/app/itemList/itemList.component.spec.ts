@@ -57,21 +57,22 @@ describe('ItemListComponent', () => {
     }
   };
 
+
+  const locationMock = {
+    reload() {
+      return true;
+    }
+  };
+
   const docMock = {
-    getElementById( elementId ) {
-      return {
-        contentWindow : {
-          location : {
-            reload() {
-              return true;
+      getElementById( elementId ) {
+        return {
+            contentWindow : {
+                location : locationMock
             }
           }
         }
       }
-    }
-  };
-
-
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -144,23 +145,37 @@ describe('ItemListComponent', () => {
       component.doc = docMock;
       const x = docMock.getElementById('');
       debugger;
-      const spy = spyOn(x.contentWindow.location, 'reload').and.callThrough();
-      console.log(spy);
+      const spy = spyOn(locationMock, 'reload').and.callThrough();
       component.export('json');
-
       const wrapper = connections.expectOne({url: serverUrl, method: 'POST'});
       wrapper.flush({message : 'File successfully saved!'});
-
       expect(spy).toHaveBeenCalled();
     })));
-
-    // it('should get an error', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
-
-    //   expect(component.export('json'))
-    //     .toEqual(JSON.stringify({ "items": [{ "components": { "links": [], "description": {"cssClass": "", "style": "", "text": ""}, "title": {"cssClass": "", "style": "", "text": ""} }, "id": 1 }], "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
-
-    //   const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
-    //   wrapper.error(new ErrorEvent('Could not save the file!'));
-    // })));
+    it('should get an error', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+      component.items = null;
+      expect(component.export('json'))
+        .toEqual(JSON.stringify({ "items": null, "slideshow": {"autoplay": 0, "interval": 100, "restart": 100}, "types": {"standard": 1, "custom": 2, "customTemplate": 3}, "settings": {"animation": "slide", "defaultTemplateUrl": "", "templateStyle": ""}, "i18n": {"en": {"@title1": "asd"}} }));
+      const wrapper = connections.expectOne({url: 'http://localhost:3000/save', method: 'POST'});
+      wrapper.error(new ErrorEvent('Could not save the file!'));
+    })));
+    it('should get an error on undefined type', async(inject([HttpTestingController], ( connections: HttpTestingController) => {
+      expect(component.export('text'))
+        .toEqual('Unknown export format text');
+    })));
   });
+
+    it('should return false on undefined type', () => {
+      expect(component.import('','text'))
+        .toEqual(false);
+    });
+    it('should fill values from json', () => {
+      expect(component.import('{"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"autoplay":0,"interval":100,"restart":100},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"animation":"slide","defaultTemplateUrl":"","templateStyle":""},"i18n":{}}')).toEqual(true);
+    });
+    it('should check error on test', () => {
+      expect(component.import('{"items":[{"components"ription":{"cssClass":"","style":"","text":""},"title":{"cssClass":"","style":"","text":""}},"id":1}],"slideshow":{"autoplay":0,"interval":100,"restart":100},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"animation":"slide","defaultTemplateUrl":"","templateStyle":""},"i18n":{}}')).toEqual(false);
+    });
+    it('should add new languages to i18n', () => {
+      expect(component.import('{"items":[{"components":{"links":[],"description":{"cssClass":"","style":"","text":"@description4724"},"title":{"cssClass":"","style":"","text":"@title5933"}},"id":1}],"slideshow":{"autoplay":0,"interval":100,"restart":100},"types":{"standard":1,"custom":2,"customTemplate":3},"settings":{"animation":"slide","defaultTemplateUrl":"","templateStyle":""},"i18n":{"en":{"@title5933":"asda"},"cs":{"@description4724":"asdsad"}}}')).toEqual(true);
+    })
 });
+
