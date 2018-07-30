@@ -25,6 +25,8 @@ export class ItemListComponent implements OnInit{
   setting: Settings = null;
   languages: Language[] = [];
   languageObj: Object;
+  additionalLanguages;
+
 
   constructor(public languageService : LanguagesService, private http: HttpClient, @Inject(DOCUMENT) public doc: any) {
     this.items.push(new Item({id : 1}));
@@ -36,10 +38,40 @@ export class ItemListComponent implements OnInit{
     this.type = Type.create();
     this.setting = Settings.create();
   }
-
   export(format: string = 'json'): string {
+  debugger;
+    console.log(this.languages);
+    this.additionalLanguages = this.languageService.getLanguagesAndResources();
+    for (let i = 0; i < this.additionalLanguages.length; i++) {
+      // current additional language
+      let currentLang = this.additionalLanguages[i]
+        // corresponding language that was prior to updates
+        , beforeLang = this.languages.find(language => language.name === currentLang.name)
+        // resource key names for newly inserted i18n strings
+        , currentLangKeys = currentLang && currentLang.resources.map(element => element.name)
+        // resource key names for existing i18n strings
+        , beforeLangKeys = beforeLang && beforeLang.resources.map(element => element.name)
+      ;
 
-    this.languages = this.languageService.getLanguagesAndResources();
+      if (!beforeLang) {
+        this.languages.push(currentLang);
+      }
+      for (let j = 0 ; j < currentLangKeys.length ; j++ ) {
+        if (beforeLang !== undefined) {
+          if (beforeLangKeys.indexOf(currentLangKeys[i]) > -1) {
+            let resource = beforeLang.resources.find(res => res.name === currentLangKeys[i]);
+            let resourceAditional = currentLang.resources.find(res => res.name === currentLangKeys[i]);
+            resource.value = resourceAditional.value;
+          } else {
+            let newResource = this.additionalLanguages[i].resources.find(element => element.name !== beforeLangKeys);
+            let languageName = this.additionalLanguages[i].name;
+            let foundElement = this.languages.find(element => element.name === languageName)
+            foundElement.resources.push(newResource);
+            // this.languages.find(element => element.name !== currentLangKeys[i])
+          }
+        }
+      }
+    }
 
     for (let i = 0; i < this.languages.length; i++) {
       const name = this.languages[i].name;
