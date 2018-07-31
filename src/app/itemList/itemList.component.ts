@@ -28,7 +28,7 @@ export class ItemListComponent implements OnInit{
   additionalLanguages;
 
 
-  constructor(public languageService : LanguagesService, private http: HttpClient, @Inject(DOCUMENT) public doc: any) {
+  constructor(public languageService: LanguagesService, private http: HttpClient, @Inject(DOCUMENT) public doc: any) {
     this.items.push(new Item({id : 1}));
   }
 
@@ -44,7 +44,7 @@ export class ItemListComponent implements OnInit{
     this.additionalLanguages = this.languageService.getLanguagesAndResources();
     for (let i = 0; i < this.additionalLanguages.length; i++) {
       // current additional language
-      let currentLang = this.additionalLanguages[i]
+      const currentLang = this.additionalLanguages[i]
         // corresponding language that was prior to updates
         , beforeLang = this.languages.find(language => language.name === currentLang.name)
         // resource key names for newly inserted i18n strings
@@ -122,11 +122,10 @@ export class ItemListComponent implements OnInit{
         this.languageObj = json.i18n;
 
         this.languages = [];
-
+        console.log(this.languageObj);
         for (const language in this.languageObj) {
             const element = Language.create({name : language});
             const resources = this.languageObj[language];
-
             for (const resourceName in resources ) {
               element.resources.push(new Resource({name : resourceName, value : resources[resourceName] }));
             }
@@ -134,6 +133,18 @@ export class ItemListComponent implements OnInit{
         }
         
         this.items = json.items;
+        this.languageService.loadI18n(this.languages);
+        const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
+        const self = this;
+        this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(
+          res => {
+            const frame = self.doc.getElementById('previewIframe');
+            frame.contentWindow.location.reload();
+          },
+          err => {
+            console.error(err.error, err.message);
+          }
+        );
         return true;
       default:
         return false;
