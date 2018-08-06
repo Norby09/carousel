@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Title } from '../../data/title';
 import { LanguagesService } from '../languages.service';
 import { Language } from 'data/language';
@@ -27,7 +27,8 @@ export class TitleComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if ( this.title.text ) {
-      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.inputValue}))}) );
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
+      this.resourceName = this.title.text.toString();
     } else {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
@@ -36,6 +37,7 @@ export class TitleComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.inputValue = this.languageService.getResourceValue(this.title.text.toString());
   }
+
   onClick() {
     this.showDropdown = true;
   }

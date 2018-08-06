@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Link } from 'data/link';
 import { Item } from '../../data/item';
 import { Slideshow } from '../../data/slideshow';
@@ -39,8 +39,6 @@ export class ItemListComponent implements OnInit{
     this.setting = Settings.create();
   }
   export(format: string = 'json'): string {
-  debugger;
-    console.log(this.languages);
     this.additionalLanguages = this.languageService.getLanguagesAndResources();
     for (let i = 0; i < this.additionalLanguages.length; i++) {
       // current additional language
@@ -57,7 +55,7 @@ export class ItemListComponent implements OnInit{
         this.languages.push(currentLang);
       }
       for (let j = 0 ; j < currentLangKeys.length ; j++ ) {
-        if (beforeLang !== undefined) {
+        if (beforeLang) {
           if (beforeLangKeys.indexOf(currentLangKeys[i]) > -1) {
             let resource = beforeLang.resources.find(res => res.name === currentLangKeys[i]);
             let resourceAditional = currentLang.resources.find(res => res.name === currentLangKeys[i]);
@@ -72,7 +70,6 @@ export class ItemListComponent implements OnInit{
         }
       }
     }
-
     for (let i = 0; i < this.languages.length; i++) {
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};
@@ -122,7 +119,7 @@ export class ItemListComponent implements OnInit{
         this.languageObj = json.i18n;
 
         this.languages = [];
-        console.log(this.languageObj);
+
         for (const language in this.languageObj) {
             const element = Language.create({name : language});
             const resources = this.languageObj[language];
