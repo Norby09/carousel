@@ -25,10 +25,10 @@ export class TitleComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.defaultLanguages = this.languageService.getLanguages();
     if( this.title.text ) {
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.title.text}))}) );
     } else {
-      this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
     }
   }
