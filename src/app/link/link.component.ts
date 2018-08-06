@@ -46,6 +46,7 @@ export class LinkComponent implements OnInit, OnChanges {
         this.defaultLanguages.splice(i, 1);
       }
     }
+
   }
 
   onInputResource(resourceValue) {

@@ -9,7 +9,7 @@ import { Resource } from 'data/resource';
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss', '../app.component.scss']
 })
-export class DescriptionComponent implements OnInit, OnChanges {
+export class DescriptionComponent implements OnInit {
   @Input() description: Description;
 
   resources;
@@ -25,16 +25,18 @@ export class DescriptionComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     if (this.description.text !== "") {
-      this.resourceName = this.description.text.toString();
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.inputValue}))}) );
+      this.resourceName = this.description.text.toString();
     } else {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
     console.log(this.languageAndResources);
   }
-  ngOnChanges() {
-    this.inputValue = this.languageService.getResourceValue(this.description.text.toString());
+  detectChange(event,key) {
+    this.resourceName = "@description" + Math.floor(Math.random() * 10000 + 1);
+    this.languageService.setResourceValue(key, event.target.value);
+    this.languageAndResources[0].resources[0].name = this.resourceName;
   }
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;

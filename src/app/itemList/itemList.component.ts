@@ -72,7 +72,7 @@ export class ItemListComponent implements OnInit{
         }
       }
     }
-
+    console.log(this.items);
     for (let i = 0; i < this.languages.length; i++) {
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};
@@ -122,7 +122,7 @@ export class ItemListComponent implements OnInit{
         this.languageObj = json.i18n;
 
         this.languages = [];
-        console.log(this.languageObj);
+
         for (const language in this.languageObj) {
             const element = Language.create({name : language});
             const resources = this.languageObj[language];

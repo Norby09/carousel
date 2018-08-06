@@ -10,6 +10,7 @@ export class LanguagesService {
 
   loadI18n(i18nObj: any) {
     this.i18n = i18nObj;
+    console.log(this.i18n);
   }
 
   getLanguages() {
@@ -74,7 +75,10 @@ export class LanguagesService {
     }
   }
 
-  setResourceValue(resourceKey: string, resourceValue: string, lang: string) {
-
+  setResourceValue(resourceKey: string, resourceValue: string, lang?: string) {
+    if (!lang) {
+      const current_element = this.i18n[0].resources.find(elem => elem.name === resourceKey);
+      current_element.value = resourceValue;
+    }
   }
 }
