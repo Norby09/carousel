@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Item } from '../../data/item';
+import { TypesService } from '../types.service';
 
 let itemId = 1;
 
@@ -12,7 +13,10 @@ export class ItemComponent implements OnInit {
   @Input() itm: Item = null;
   @Input() items: Item[];
 
-  constructor() {
+  types = [];
+
+  constructor(public typeService: TypesService ) {
+    this.types = typeService.getTypes();
   }
 
   ngOnInit() {
