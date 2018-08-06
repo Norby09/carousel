@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Link } from '../../data/link';
 import { LanguagesService } from '../languages.service';
 import { Language } from 'data/language';
@@ -13,13 +13,12 @@ export class LinkComponent implements OnInit, OnChanges {
   @Input() link: Link = null;
   @Input() links: Link[];
 
-  defaultLanguages;
-  selectedLanguage;
-  resourceValue;
-  showDropdown = true;
-  resourceName = "@link" + Math.floor(Math.random() * 10000 + 1);
-  languageAndResources = [];
-  inputValue = '';
+  public defaultLanguages;
+  public resourceValue;
+  public showDropdown = true;
+  public resourceName = "@link" + Math.floor(Math.random() * 10000 + 1);
+  public languageAndResources = [];
+  public inputValue = '';
   constructor(private languageService: LanguagesService) { }
 
   ngOnInit() {

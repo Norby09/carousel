@@ -70,7 +70,6 @@ export class ItemListComponent implements OnInit{
         }
       }
     }
-    console.log(this.items);
     for (let i = 0; i < this.languages.length; i++) {
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};

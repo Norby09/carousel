@@ -74,18 +74,14 @@ export class LanguagesService {
 
   setResourceValue(resourceKey: string, resourceValue: string, lang?: string) {
     if (!lang) {
-      const current_element = this.i18n[0].resources.find(elem => elem.name === resourceKey);
-      if (current_element) {
-        current_element.value = resourceValue;
-      }
+      const currentElement = this.i18n[0].resources.find(elem => elem.name === resourceKey);
+      currentElement && (currentElement.value = resourceValue);
     }
   }
   setResourceName(resourceKey: string, name: string) {
     if (resourceKey) {
-      const current_element = this.i18n[0].resources.find(elem => elem.name === resourceKey);
-      if (current_element) {
-        current_element.name = name;
-      }
+      const currentElement = this.i18n[0].resources.find(elem => elem.name === resourceKey);
+      currentElement && (currentElement.name = name);
     }
   }
 }

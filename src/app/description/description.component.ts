@@ -12,18 +12,17 @@ import { Resource } from 'data/resource';
 export class DescriptionComponent implements OnInit, OnChanges {
   @Input() description: Description;
 
-  public defaultLanguages;
-  public selectedLanguage;
-  public resourceValue;
-  public showDropdown = true;
-  public resourceName = "@description" + Math.floor(Math.random() * 10000 + 1);
+  public defaultLanguages = [];
+  public resourceValue: string;
+  public showDropdown: boolean = true;
+  public resourceName: string = "@description" + Math.floor(Math.random() * 10000 + 1);
   public languageAndResources = [];
   public inputValue: string;
 
   constructor(private languageService: LanguagesService) {}
 
-  ngOnInit() {
-    if (this.description.text !== "") {
+  public ngOnInit(): void {
+    if (this.description.text) {
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.inputValue}))}) );
       this.resourceName = this.description.text.toString();
     } else {

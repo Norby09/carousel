@@ -34,7 +34,7 @@ export class TitleComponent implements OnInit, OnChanges {
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
   }
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     this.inputValue = this.languageService.getResourceValue(this.title.text.toString());
   }
 
