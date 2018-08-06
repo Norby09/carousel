@@ -10,7 +10,7 @@ let itemId = 1;
   styleUrls: ['./item.component.scss', '../app.component.scss']
 })
 export class ItemComponent implements OnInit {
-  @Input() itm: Item = null;
+  @Input() item: Item = null;
   @Input() items: Item[];
 
   types = [];
