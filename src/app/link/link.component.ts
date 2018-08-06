@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges} from '@angular/core';
 import { Link } from '../../data/link';
 import { LanguagesService } from '../languages.service';
 import { Language } from 'data/language';
@@ -9,7 +9,7 @@ import { Resource } from 'data/resource';
   templateUrl: './link.component.html',
   styleUrls: ['./link.component.scss', '../app.component.scss']
 })
-export class LinkComponent implements OnInit { 
+export class LinkComponent implements OnInit, OnChanges {
   @Input() link: Link = null;
   @Input() links: Link[];
 
@@ -17,21 +17,23 @@ export class LinkComponent implements OnInit {
   selectedLanguage;
   resourceValue;
   showDropdown = true;
-  resourceName = "@link" + Math.floor(Math.random()*10000+1);
+  resourceName = "@link" + Math.floor(Math.random() * 10000 + 1);
   languageAndResources = [];
-  
+  inputValue = '';
   constructor(private languageService: LanguagesService) { }
 
   ngOnInit() {
     this.defaultLanguages = this.languageService.getLanguages();
     if( this.link.text ) {
       this.resourceName = this.link.text.toString();
-      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.link.text}))}) );
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.inputValue}))}) );
     } else {
       this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
     }
   }
-
+  ngOnChanges() {
+    this.inputValue = this.languageService.getResourceValue(this.link.text.toString());
+  }
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;
     this.languageAndResources.pop();
