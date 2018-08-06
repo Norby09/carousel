@@ -9,17 +9,16 @@ import { Resource } from 'data/resource';
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss', '../app.component.scss']
 })
-export class DescriptionComponent implements OnInit {
+export class DescriptionComponent implements OnInit, OnChanges {
   @Input() description: Description;
 
-  resources;
-  defaultLanguages;
-  selectedLanguage;
-  resourceValue;
-  showDropdown = true;
-  resourceName = "@description" + Math.floor(Math.random() * 10000 + 1);
-  languageAndResources = [];
-  inputValue = '';
+  public defaultLanguages;
+  public selectedLanguage;
+  public resourceValue;
+  public showDropdown = true;
+  public resourceName = "@description" + Math.floor(Math.random() * 10000 + 1);
+  public languageAndResources = [];
+  public inputValue: string;
 
   constructor(private languageService: LanguagesService) {}
 
@@ -31,12 +30,13 @@ export class DescriptionComponent implements OnInit {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
-    console.log(this.languageAndResources);
   }
-  detectChange(event,key) {
-    this.resourceName = "@description" + Math.floor(Math.random() * 10000 + 1);
+  ngOnChanges() {
+    this.inputValue = this.languageService.getResourceValue(this.description.text.toString());
+  }
+  detectChange(event, key) {
     this.languageService.setResourceValue(key, event.target.value);
-    this.languageAndResources[0].resources[0].name = this.resourceName;
+    this.languageService.setResourceName(key, this.resourceName);
   }
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;

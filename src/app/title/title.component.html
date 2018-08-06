@@ -27,7 +27,7 @@
                 </div>
             </div>
             <label class="col-lg-6 overwritePadding" > Text :
-                <input type="text" class="form-control" placeholder="Enter resource" [(ngModel)]="lang.resources[0].value" (change)="detectChange($event,lang.resources[0].name)" (blur)="onInputResource(lang.resources[0].value)"/>
+                <input type="text" class="form-control" placeholder="Enter resource" [(ngModel)]="lang.resources[0].value" (blur)="onInputResource(lang.resources[0].value)"/>
             </label>
             <button class="col-lg-2 btn btn-default addButton" (click)="addLanguage()"> <i class="fa fa-plus"></i> </button>
     </div>

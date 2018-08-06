@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Title } from '../../data/title';
 import { LanguagesService } from '../languages.service';
 import { Language } from 'data/language';
@@ -9,7 +9,7 @@ import { Resource } from 'data/resource';
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.scss', '../app.component.scss']
 })
-export class TitleComponent implements OnInit {
+export class TitleComponent implements OnInit, OnChanges {
   @Input() title: Title = null;
 
   resources;
@@ -27,21 +27,15 @@ export class TitleComponent implements OnInit {
 
   ngOnInit() {
     if ( this.title.text ) {
-      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.inputValue}))}) );
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
       this.resourceName = this.title.text.toString();
     } else {
       this.defaultLanguages = this.languageService.getLanguages();
-      this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.inputValue}))}) );
+      this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
   }
-  // ngOnChanges(changes: SimpleChanges) {
-  //   this.inputValue = this.languageService.getResourceValue(this.title.text.toString());
-  // }
-  detectChange = (event, key) => {
-    // this.languageAndResources[0].resources[0].value = event.target.value;
-    this.resourceName = "@title" + Math.floor(Math.random() * 10000 + 1);
-    this.languageService.setResourceValue(key, event.target.value);
-    this.languageAndResources[0].resources[0].name = this.resourceName;
+  ngOnChanges(changes: SimpleChanges) {
+    this.inputValue = this.languageService.getResourceValue(this.title.text.toString());
   }
 
   onClick() {

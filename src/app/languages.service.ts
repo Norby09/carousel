@@ -10,7 +10,6 @@ export class LanguagesService {
 
   loadI18n(i18nObj: any) {
     this.i18n = i18nObj;
-    console.log(this.i18n);
   }
 
   getLanguages() {
@@ -61,15 +60,13 @@ export class LanguagesService {
   // "This is my title";
 
   getResourceValue(resourceKey: string, lang?: string): string {
-    const resourceValue = {};
+    let resourceValue = {};
     let langObj = '';
-    console.log(this.i18n);
     if (!lang && this.i18n) {
-      this.i18n.map(languageObj => {
+      this.i18n.forEach(languageObj => {
         const resource = languageObj.resources.find(res => res.name === resourceKey);
         langObj = languageObj.name;
         resource && (resourceValue[languageObj.name] = resource.value);
-        console.log(resourceValue);
       });
       return resourceValue[langObj];
     }
@@ -78,7 +75,17 @@ export class LanguagesService {
   setResourceValue(resourceKey: string, resourceValue: string, lang?: string) {
     if (!lang) {
       const current_element = this.i18n[0].resources.find(elem => elem.name === resourceKey);
-      current_element.value = resourceValue;
+      if (current_element) {
+        current_element.value = resourceValue;
+      }
+    }
+  }
+  setResourceName(resourceKey: string, name: string) {
+    if (resourceKey) {
+      const current_element = this.i18n[0].resources.find(elem => elem.name === resourceKey);
+      if (current_element) {
+        current_element.name = name;
+      }
     }
   }
 }
