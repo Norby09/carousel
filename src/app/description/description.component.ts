@@ -22,11 +22,11 @@ export class DescriptionComponent implements OnInit, OnChanges {
   constructor(private languageService: LanguagesService) {}
 
   public ngOnInit(): void {
+    this.defaultLanguages = this.languageService.getLanguages();
     if (this.description.text) {
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.inputValue}))}) );
       this.resourceName = this.description.text.toString();
     } else {
-      this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
   }
