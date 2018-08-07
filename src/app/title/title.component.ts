@@ -23,7 +23,7 @@ export class TitleComponent implements OnInit, OnChanges {
 
   constructor(private languageService: LanguagesService) {
   }
-
+  
   public ngOnInit() : void {
     this.defaultLanguages = this.languageService.getLanguages();
     if( this.title.text ) {

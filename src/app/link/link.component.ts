@@ -19,6 +19,7 @@ export class LinkComponent implements OnInit, OnChanges {
   public resourceName = "@link" + Math.floor(Math.random() * 10000 + 1);
   public languageAndResources = [];
   public inputValue = '';
+  
   constructor(private languageService: LanguagesService) { }
 
   ngOnInit() {
@@ -27,7 +28,7 @@ export class LinkComponent implements OnInit, OnChanges {
       this.resourceName = this.link.text.toString();
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.inputValue}))}) );
     } else {
-      this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+      this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
   }
   ngOnChanges() {
@@ -47,14 +48,15 @@ export class LinkComponent implements OnInit, OnChanges {
     }
 
   }
-
+  onClick() {
+    this.showDropdown = true;
+  }
   onInputResource(resourceValue) {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
     this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
     this.link.text = this.resourceName;
   }
-
   addLanguage() {
     this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
   }

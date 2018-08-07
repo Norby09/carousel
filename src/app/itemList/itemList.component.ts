@@ -128,8 +128,12 @@ export class ItemListComponent implements OnInit{
             }
             this.languages.push(element);
         }
-        
-        this.items = json.items;
+
+        this.items = [];
+        for(let i=0; i<json.items.length; i++) {
+          this.items.push( new Item(json.items[i]) );
+        }
+
         this.languageService.loadI18n(this.languages);
         const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
         const self = this;
