@@ -59,6 +59,5 @@ export class LinkComponent implements OnInit {
   }
   addLanguage() {
     this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
-    //this.languageService.getLanguagesAndResources();
   }
 }
