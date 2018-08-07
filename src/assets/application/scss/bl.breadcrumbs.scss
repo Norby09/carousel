@@ -1,0 +1,49 @@
+// global breadrcrumbs, usually the first element at 0,0
+
+//this will be deprecated
+
+.bl--breadcrumbs {
+	margin-bottom: 3px;
+
+	//a crumb
+	.bl--breadcrumb {
+		position: relative;
+		font-size: 11px;
+		color: $grey-medium;
+		margin-right: 10px;
+		padding-left: 15px;
+		@include iconAfter('arrow');
+
+		//we have to include the icon-default because we are extending the class above.  This provides basic font formatting from the icon font.
+		&::after {
+			position: absolute;
+			right: -18px;
+			top: -2px;
+			display: block;
+			transform: rotate(270deg);
+			font-size: 7px;
+		}
+
+		//align to the exact left
+		&:first-child {
+			padding-left: 0;
+		}
+
+		//no margin on last child
+		&:last-child {
+			margin-right: 0;
+
+			//no karat on last child
+			&::after {
+				content: '';
+				display: none;
+			}
+
+		}
+	}
+
+	& + .bl--page-title {
+		top: 0;
+	}
+
+}

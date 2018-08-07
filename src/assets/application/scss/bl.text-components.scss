@@ -1,0 +1,38 @@
+
+//a collapse box that has a 'show more' link at the bottom and can be expanded/collapsed.
+.bl--inline-description {
+	position: relative;
+	text-overflow: ellipsis;
+	margin-bottom: 50px;
+
+	//collapsed state (minimized)
+	&.bl--is-collapsed {
+
+		//we need to do overflow hidden, but still need to see the show more link, so this is the element that's actually overflow hidden
+		.bl--collapse-inner {
+			height: 47px;
+			overflow: hidden;
+
+			//since we have overflow hidden, position the edit icon so it can be seen
+			&::after {
+				right: 0;
+			}
+		}
+
+	}
+
+	.bl--show-toggle {
+		text-transform: uppercase;
+		background-color: transparent;
+		color: $grey-medium;
+		cursor: pointer;
+		margin: 0;
+		padding: 0;
+		border: none;
+		font-size: 10px;
+		position: absolute;
+		bottom: -30px;
+		left: 0;
+	}
+
+}

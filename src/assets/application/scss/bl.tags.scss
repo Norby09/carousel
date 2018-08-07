@@ -1,0 +1,142 @@
+//defaults for pill
+%tag-common {
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	border-radius: 12px;
+	height: 25px;
+	line-height: 27px; //bad font = inconsistent numbers
+	background-color: $grey-extra-light;
+	font-family: $font-bold;
+	padding: 0 $container-padding;
+	border: none;
+}
+
+//multiple states of the parent element for tags
+.bl--tag-inline {
+	@extend %tag-common;
+	position: relative;
+	min-width: 60px;
+	max-width: 175px; //just made this up.  do we have a REAL number?
+	font-size: $standard-font-size;
+
+	//editable mode?
+	&-active {
+		color: $blue-dark;
+		background-color: $blue-light;
+	}
+
+	&:hover {
+
+		.bl--tag-inline-remove-button {
+			display: block;
+		}
+
+	}
+
+
+	//.bl--tag-create-dropdown
+	&-create-dropdown {
+		border: $standard-border;
+		margin: 0;
+		list-style: none;
+		font-family: $font-standard;
+		position: absolute;
+		width: 175px;
+		top: 100%;
+		z-index: $zindex-dropdown;
+		background-color: $white;
+		text-align: left;
+		padding: $container-padding-smallest;
+
+		//.bl--tag-create-dropdown-item
+		&-item {
+			padding: 0;
+			margin: 0;
+			line-height: 1;
+			margin-bottom: 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+	}
+
+	//internal wrapper for text
+	//.bl--tag-text
+	&-text {
+		@include truncateText;
+		max-width: 100px; //just made this up.  do we have a REAL number?
+	}
+
+
+	//an input with no borders or formatting, resembles a content editable element, but is just an invisible input
+	//.bl--tag-create-mode
+	&-create-mode {
+		padding: 0;
+		border-radius: 0;
+		background-color: transparent;
+
+		//the actual input inside
+		//.bl--tag-create-mode-input
+		&-input {
+			@include input-baseline;
+			@include truncateText;
+			border: none;
+			background-color: transparent;
+			height: 25px;
+			line-height: 28px; //this font sux
+			width: 100%;
+
+		}
+
+	}
+
+	//button element that's clickable.
+	//.bl--tag-remove-button
+	&-remove-button {
+		position: absolute;
+		top: 7px;
+		right: 7px;
+		padding: 0;
+		margin: 0;
+		border: none;
+		background: none transparent;
+		cursor: pointer;
+		display: none;
+
+		&:focus {
+			outline: none;
+		}
+
+		&::after {
+			color: $blue-primary;
+		}
+
+		&:hover {
+			color: $blue-primary;
+
+			&::after {
+				color: $blue-dark;
+			}
+
+		}
+
+	}
+
+	//the outer container for a list of tags.  use it in a sidebar or wherever.  things will wrap as expected.
+	//.bl--tag-list
+	&-list {
+		font-size: 0;
+
+		.bl--tag-inline {
+			margin: 0 $container-padding-tiny $container-padding-tiny 0;
+		}
+
+	}
+
+}
+
+
+

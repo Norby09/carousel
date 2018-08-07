@@ -1,0 +1,160 @@
+/* This is the 2.0 form scaffolding for use in forms with dynamic column requirements. Use this going from 6-1-2018 onward. */
+
+//Note that many of these classes require a specific placement in the dom to work.  Angular directive tags may result in markup that doesn't properly conform to these styles.  Use the samples provided in the pattern library for reference or static forms, but be prepared to selectively apply these classes to angular directives to achieve a similar layout with dynamic form contents.
+
+//Parent elements for form.  Provides context for nested selectors.
+.bl--form-layout {
+
+	//Vertalign elements since some form elements have unique default positioning
+	* {
+		vertical-align: top;
+	}
+
+	// Individual rows for forms.  These are within the context of the structure of columns, and are the visual "rows" of fields.  Last child doesn't have bottom margin so the parent container collapses to the bottom of that last row.
+	.bl--form-row {
+		display: flex;
+		flex-direction: row;
+		position: relative;
+		margin-bottom: $container-padding;
+	}
+
+	//Spacing for subgrouping within form rows.  This creates individual "rows" of sub-grouped options (choose one of these options)
+	.bl--input-group-row {
+		//This selector may be nested in a label, so in that case it will be a <span>. Preserve block level.
+		display: block;
+		vertical-align: top;
+		margin-bottom: $standard-spacing-small;
+		line-height: 1;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+	}	
+
+}
+
+//The "rows of groups of fields" of a form, usually to divide sections into logical chunks of columns and subcolumns
+.bl--form-region {
+	margin: 0 0 $container-padding $container-padding-negative;
+	display: flex;
+}
+
+//Higher level form titles, typically the title for an entire form page
+.bl--form-region-title {
+	padding: 0 0 $container-padding 0;
+	font-size: 16px;
+	color: $black;
+	@include truncateText;
+}
+
+//Subsection titles, typically only one for a .bl--form-section, unless using 1, 2/3 or 2/3, 1 layout, which can have a unique section title per column
+.bl--form-region-title-secondary {
+	padding: 0 0 $standard-spacing-large 0;
+	font-size: 13px;
+	color: $black;
+	@include truncateText;
+}
+
+/* TOP-LEVEL columns for a form */
+// These columns can be sub-divided further, but require sub-column classes below these
+// Full width column
+// THERE CAN BE ONLY 1
+.bl--form-col-1-1 {
+	min-width: 100%;
+	max-width: 100%;
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $container-padding solid transparent;
+
+	.bl--form-row {
+		display: flex;
+		margin-left: (-$standard-margin);
+	}
+
+}
+
+
+// Split 50% primary column.  THERE CAN BE NO MORE THAN 2
+.bl--form-col-1-2 {
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $container-padding solid transparent;
+	max-width: 50%;
+	min-width: 50%;
+
+	.bl--form-row {
+		display: flex;
+		margin-left: (-$standard-margin);
+	}
+
+}
+
+// Split 33.3 width primary columns.  THERE CAN BE NO MORE THAN 3
+.bl--form-col-1-3 {
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $container-padding solid transparent;
+	min-width: 33.33%;
+	max-width: 33.33%;
+
+	.bl--form-row {
+		display: flex;
+		margin-left: (-$standard-margin);
+	}
+}
+
+//2/3 primary column width
+.bl--form-col-2-3 {
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $container-padding solid transparent;
+	max-width: 66.66%;
+	min-width: 66.66%;
+
+	.bl--form-row {
+		display: flex;
+		margin-left: $container-padding-negative;
+	}
+
+}
+
+/* SUB-COLUMN widths for INSIDE a form column */
+//Use the above classes to create the primary columns, then use these classes to split internal columns
+
+//sub-column 100% width
+.bl--form-subcol-1-1 {
+	max-width: 100%;
+	min-width: 100%;
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $standard-margin transparent solid;
+}
+
+// sub-column 1/2 width
+.bl--form-subcol-1-2 {
+	max-widtH: 50%;
+	min-width: 50%;
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $standard-margin transparent solid;
+}
+
+// sub-column 1/3 width  ONLY use with sibling .bl--form-sub-col-third cols. 
+.bl--form-subcol-1-3 {
+	min-width: 33.33%;
+	max-width: 33.33%;
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $standard-margin transparent solid;
+}
+
+// sub-column 1/3 width  ONLY use with sibling .bl--form-sub-col-third cols. 
+.bl--form-subcol-2-3 {
+	min-width: 66.66%;
+	max-width: 66.66%;
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $standard-margin transparent solid;
+}
+
+
+// sub-column 1/4 width
+.bl--form-subcol-1-4 {
+	min-width: 25%;
+	max-width: 25%;
+	//Transparent border to replace padding or margin because it won't add to column
+	border-left: $standard-margin transparent solid;
+}

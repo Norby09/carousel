@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Iframe</title>
+        <base href="/">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="./assets/application/carousel/css/carousel.component.css">
+        <link rel="stylesheet" href="./assets/application/carousel/css/bl.styles.css">
+
+        <link rel="stylesheet" href="./assets/application/css/bl.login.css">
+        <link rel="stylesheet" href="./assets/application/css/bl.login.override.css">
+    </head>
+    <body style="height:700px">
+        <login-carousel ng-app="bl.login" animation='slide' cssns='bl--login-carousel'></login-carousel>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"> </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"> </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.js"></script>
+        <script src="./assets/application/carousel/carousel.component.js"> </script>
+        <script src="./assets/application/carousel/carousel-slide.component.js"> </script>
+        <script src="./assets/application/carousel/carousel.service.js"> </script>
+        <script src="./assets/application/bl.globalization.js"> </script>
+        <script src="./assets/application/login.templates.js"> </script>
+        <script src="./assets/application/preview-container/preview-container.component.js"> </script>
+
+        <script type="text/javascript">
+            (function() {
+                angular
+                    .module('bl.login')
+                    .value('bl.login.carousel.configUrl','http://localhost:3000/read');
+                    ;
+            }())
+        </script>`
+    </body>
+</html>

@@ -1,0 +1,92 @@
+//this is the final version of the former "content-editable" styles, now called "inline-edit".  This is a complete rebuild of the original, and contains states for idle, hover, editable status, saving status, save complete status and error states (with tooltop for error text)
+//
+//This inline edit parent element and its children can be inserted into any tag and the input's text will borrow the look and feel of the tag it's in, but upon hover it becomes an input so you can change things.
+
+.bl--inline-editable {
+	display: block;
+	position: relative;
+	margin: -10px 0 0 -10px;//move left and up to compensate for the placement of the hover/focus border when adjusted for top/left padding and border width
+	line-height: inherit;
+	transform-style: preserve-3d;
+
+	//when a child of a label, make it block so nothing overlaps
+	.bl--text-label & {
+		display: block;
+
+		//also make this block
+		.bl--text-input {
+			display: block;
+		}
+
+	}
+
+	//the actual input inside the editable field element.
+
+	.bl--text-input {
+		position: relative;
+		border: 1px solid transparent;
+		background-color: transparent;
+		font-family: inherit;
+		color: inherit; //assume the styling of the parent tag that is implied editable
+		padding: 8px 30px 8px 10px;
+		font-size: inherit;
+		line-height: calc(1em - -1px); //bizarre phantom padding bug for some browsers' interpretation of input
+
+		&::-ms-clear {
+			display: none;
+		}
+
+		&:hover,
+		&:focus {
+			background-color: $white;
+			border-color: $blue-bright;
+
+			//show the icon on hover
+			& + .bl--status-icon {
+				opacity: 1; //show on hover
+			}
+		}
+
+		&:hover {
+			border-color: $grey-medium;
+		}
+
+		//hide on focus for default edit state
+		&:focus {
+
+			//show the icon on hover
+			& + .bl--status-icon {
+				opacity: 0; //show on hover
+			}
+
+			&:hover {
+				border-color: $blue-bright;
+			}
+		}
+	}
+
+	//the <i> icon that receives the icon class
+	.bl--status-icon {
+		@include input-status-icon;
+	}
+
+	//states of the component
+	//all styling happens at the top level via class, then cascades down to style children (like the icon and input)
+	&.bl--inline-editable-is-busy {
+		@include field-edit-is-busy;
+
+	}
+
+	//save successful state
+	&.bl--inline-editable-save-successful {
+		@include field-edit-success;
+
+	}
+
+	//error changes the icon, but also the border
+	&.bl--inline-editable-has-error {
+		@include field-edit-has-error;
+
+	}
+
+}

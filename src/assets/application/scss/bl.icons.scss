@@ -1,0 +1,209 @@
+//generates an scss file with references to all existing icons.  this scss file also contains a list of classes that can be applied to elements as needed via html.   These same icons are available through the /base/icons template and can be used via css only.
+
+@font-face {
+  font-family: "blackline-icons";
+  src: url('../carousel/fonts/bl-global/blackline-icons.eot');
+  src: url('../carousel/fonts/bl-global/blackline-icons.eot?#iefix') format('embedded-opentype'),
+    url('../carousel/fonts/bl-global/blackline-icons.ttf') format('truetype'),
+    url('../carousel/fonts/bl-global/blackline-icons.svg#blackline-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="bl-icon"]::after {
+    font-family: "blackline-icons";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+}
+
+.bl-icon-alerts::after { content: "\EA01";
+}
+.bl-icon-arrow-indent::after { content: "\EA02";
+}
+.bl-icon-arrow-left::after { content: "\EA03";
+}
+.bl-icon-arrow-right::after { content: "\EA04";
+}
+.bl-icon-arrow-solid-left::after { content: "\EA05";
+}
+.bl-icon-arrow-solid-right::after { content: "\EA06";
+}
+.bl-icon-arrow-solid-up::after { content: "\EA07";
+}
+.bl-icon-arrow-solid::after { content: "\EA08";
+}
+.bl-icon-arrow-up::after { content: "\EA09";
+}
+.bl-icon-arrow::after { content: "\EA0A";
+}
+.bl-icon-assignee::after { content: "\EA0B";
+}
+.bl-icon-bold::after { content: "\EA0C";
+}
+.bl-icon-border-1::after { content: "\EA0D";
+}
+.bl-icon-border-2::after { content: "\EA0E";
+}
+.bl-icon-border-3::after { content: "\EA0F";
+}
+.bl-icon-border-4::after { content: "\EA10";
+}
+.bl-icon-border-5::after { content: "\EA11";
+}
+.bl-icon-border-6::after { content: "\EA12";
+}
+.bl-icon-border-7::after { content: "\EA13";
+}
+.bl-icon-border-8::after { content: "\EA14";
+}
+.bl-icon-border-9::after { content: "\EA15";
+}
+.bl-icon-border::after { content: "\EA16";
+}
+.bl-icon-calendar::after { content: "\EA17";
+}
+.bl-icon-center-align::after { content: "\EA18";
+}
+.bl-icon-checkmark::after { content: "\EA19";
+}
+.bl-icon-chevron-vertical::after { content: "\EA1A";
+}
+.bl-icon-close-x::after { content: "\EA1B";
+}
+.bl-icon-comma::after { content: "\EA1C";
+}
+.bl-icon-comment-none::after { content: "\EA1D";
+}
+.bl-icon-comment-some::after { content: "\EA1E";
+}
+.bl-icon-community::after { content: "\EA1F";
+}
+.bl-icon-copy::after { content: "\EA20";
+}
+.bl-icon-dash::after { content: "\EA21";
+}
+.bl-icon-decrease-decimal::after { content: "\EA22";
+}
+.bl-icon-document-link::after { content: "\EA23";
+}
+.bl-icon-download::after { content: "\EA24";
+}
+.bl-icon-edit::after { content: "\EA25";
+}
+.bl-icon-ellipsis::after { content: "\EA26";
+}
+.bl-icon-error::after { content: "\EA27";
+}
+.bl-icon-fill::after { content: "\EA28";
+}
+.bl-icon-filter::after { content: "\EA29";
+}
+.bl-icon-font-a::after { content: "\EA2A";
+}
+.bl-icon-fullscreen-max::after { content: "\EA2B";
+}
+.bl-icon-fullscreen-min::after { content: "\EA2C";
+}
+.bl-icon-gear::after { content: "\EA2D";
+}
+.bl-icon-help::after { content: "\EA2E";
+}
+.bl-icon-history::after { content: "\EA2F";
+}
+.bl-icon-horizontal-bar::after { content: "\EA30";
+}
+.bl-icon-implementation-assistant::after { content: "\EA31";
+}
+.bl-icon-increase-decimal::after { content: "\EA32";
+}
+.bl-icon-information::after { content: "\EA33";
+}
+.bl-icon-italic::after { content: "\EA34";
+}
+.bl-icon-left-align::after { content: "\EA35";
+}
+.bl-icon-line::after { content: "\EA36";
+}
+.bl-icon-lock::after { content: "\EA37";
+}
+.bl-icon-merge-and-center::after { content: "\EA38";
+}
+.bl-icon-onlinehelp::after { content: "\EA39";
+}
+.bl-icon-paste::after { content: "\EA3A";
+}
+.bl-icon-percent::after { content: "\EA3B";
+}
+.bl-icon-plus-circle::after { content: "\EA3C";
+}
+.bl-icon-plus::after { content: "\EA3D";
+}
+.bl-icon-reply::after { content: "\EA3E";
+}
+.bl-icon-reset-password::after { content: "\EA3F";
+}
+.bl-icon-right-align::after { content: "\EA40";
+}
+.bl-icon-rotate-left::after { content: "\EA41";
+}
+.bl-icon-rotate-right::after { content: "\EA42";
+}
+.bl-icon-save-disk::after { content: "\EA43";
+}
+.bl-icon-save::after { content: "\EA44";
+}
+.bl-icon-scissors::after { content: "\EA45";
+}
+.bl-icon-search::after { content: "\EA46";
+}
+.bl-icon-sort-filter-rev::after { content: "\EA47";
+}
+.bl-icon-sort-filter::after { content: "\EA48";
+}
+.bl-icon-strikethrough::after { content: "\EA49";
+}
+.bl-icon-sun-burst::after { content: "\EA4A";
+}
+.bl-icon-time::after { content: "\EA4B";
+}
+.bl-icon-todo::after { content: "\EA4C";
+}
+.bl-icon-tooltip::after { content: "\EA4D";
+}
+.bl-icon-training::after { content: "\EA4E";
+}
+.bl-icon-trashcan::after { content: "\EA4F";
+}
+.bl-icon-tree::after { content: "\EA50";
+}
+.bl-icon-trust::after { content: "\EA51";
+}
+.bl-icon-underline::after { content: "\EA52";
+}
+.bl-icon-unerline::after { content: "\EA53";
+}
+.bl-icon-vertical-align::after { content: "\EA54";
+}
+.bl-icon-vertical-bar::after { content: "\EA55";
+}
+.bl-icon-visualize-toggle::after { content: "\EA56";
+}
+.bl-icon-wrap-text::after { content: "\EA57";
+}
+.bl-icon-x-circle-filled::after { content: "\EA58";
+}
+.bl-icon-x-circle-hollow::after { content: "\EA59";
+}
+.bl-icon-zoom-in::after { content: "\EA5A";
+}
+.bl-icon-zoom-out::after { content: "\EA5B";
+}
+.bl-icon-zu-blackline-u::after { content: "\EA5C";
+}
+.bl-icon-zu-product-documentation::after { content: "\EA5D";
+}

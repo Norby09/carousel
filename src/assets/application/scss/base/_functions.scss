@@ -1,0 +1,15 @@
+//Useful functions
+
+/*
+    Usage:
+
+    .sidebar {
+        transition: getStandardTransition(padding-right);
+    }
+    .content {
+		transition: getStandardTransition(width, 3s);
+    }
+*/
+@function getStandardTransition($property, $transition: $standard-transition-duration, $timing: ease) {
+	@return  #{$property} #{$transition} #{$timing};
+}

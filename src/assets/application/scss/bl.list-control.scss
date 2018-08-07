@@ -1,0 +1,239 @@
+//used for adding to and removing from lists...?
+.bl--list-control {
+	color: $black;
+
+	//custom content padding
+	.bl--list {
+		padding: 0 32px 0;
+	}
+
+	//the collapsible element that is tweened to 0 height
+	.bl--component-expand {
+		overflow: hidden;
+		transition: $standard-transition;
+		max-height: 10000px;
+	}
+
+}
+
+//parent for all list items
+.bl--list {
+
+	//individual expand/collapse elements
+	.bl--list-item {
+
+		&:first-child {
+
+			.bl--component-expand-bar {
+				border-top: none;
+			}
+
+		}
+
+	}
+
+}
+
+
+/* Expandable title */
+.bl--component-expand-bar {
+	position: relative;
+	@include clearfix;
+	cursor: pointer;
+	//this element is edge to edge :( this is the fix
+	margin: 0 -32px;
+	padding: 13px 30px;
+	border-top: $standard-border;
+
+	> div {
+		float: left;
+		margin-right: 20px;
+		line-height: 16px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+
+	.bl--component-expand-toggle {
+		position: absolute;
+		@include iconAfter('arrow');
+		font-size: 9px;
+		top: 15px;
+		left: 15px;
+		float: none;
+		margin: 0;
+		width: 10px;
+		height: 10px;
+		padding: 0;
+		cursor: pointer;
+		background-image: none;
+		background-color: transparent;
+		border: none;
+		color: $grey-medium;
+
+		&::after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			transform: $standard-transition;
+		}
+
+		&:focus {
+			outline: none;
+		}
+
+	}
+
+	.bl--dropdown-toggle {
+		font-size: 20px;
+
+		i {
+			vertical-align: bottom;
+			position: relative;
+			bottom: -2px;
+		}
+
+		&:hover {
+			i {
+				color: $black;
+			}
+		}
+
+	}
+
+	.bl--progress-display {
+		float: right;
+	}
+
+	.bl--component-count {
+		color: $grey-medium;
+	}
+
+	.bl--component-expand-title {
+		//largest shown in psd
+		@include truncateText;
+		max-width: 280px;
+		font-size: 14px;
+		line-height: 15px;
+		letter-spacing: 0.3px;
+	}
+
+	//when the title is collapsed
+	&.bl--is-collapsed {
+
+		.bl--component-expand-toggle {
+
+			&::after {
+				transform: rotate(-90deg);
+			}
+		}
+
+		& + .bl--component-expand {
+			max-height: 0;
+		}
+
+	}
+
+}
+
+
+//the list inside a collapsible element
+//UL
+.bl--list-component-list {
+	list-style: none;
+	padding: 4px 0 45px 0;
+	margin: 0;
+
+	.bl--list-component-list-item {
+		@include clearfix;
+		padding: 10px 0;
+		margin: 0;
+		border-bottom: $standard-border;
+		min-height: 40px;
+
+		> * {
+			vertical-align: top;
+			float: left;
+		}
+
+		.bl--text-add-button {
+			position: relative;
+			top: 4px;
+		}
+
+		.bl--list-item-actions {
+			float: right;
+			text-align: right;
+			max-width: 150px;
+			display: none;
+
+			.bl--remove-item {
+				position: relative;
+				margin-left: 35px;
+				top: 4px;
+			}
+		}
+
+		.bl--checkbox-single {
+			height: 12px;
+			position: relative;
+			top: 6px;
+			left: 0;
+			margin-right:  $standard-spacing;
+		}
+
+		//holds 2 checkbox-ish things
+		.bl--checkbox-group {
+			margin-right:  $standard-spacing-large;
+		}
+
+		.bl--list-component-text {
+			max-width: 72%;
+			padding-top: 3px;
+
+
+			p {
+				margin: 0;
+			}
+
+		}
+
+		//hover bar, show tools
+		&:hover {
+
+			.bl--list-item-actions {
+				display: block;
+			}
+
+		}
+
+		//completed state is strikethrough on text
+		&.bl--is-completed {
+
+			.bl--list-component-text {
+				color: $grey-medium;
+				text-decoration: line-through;
+			}
+
+		}
+
+		//has an error
+		&.bl--with-issue {
+
+			.bl--list-component-text {
+				color: $red;
+			}
+
+		}
+
+	}
+
+}
+
+
+/* misc. */
+//wrapper for no content
+.bl--no-list {
+	padding: 13px 0;
+}

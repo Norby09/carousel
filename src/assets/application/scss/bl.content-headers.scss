@@ -1,0 +1,95 @@
+//Parent container for the page-level title and utilities
+//THIS FILE IS DEPRECATED DO NOT USE IT
+//@todo: remove file
+.bl--content-header {
+	position: relative;
+	@include clearfix;
+	border-width: 1px 0;
+	border-style: solid;
+	border-color: $standard-border-color;
+	background-color: $white;
+	padding: $container-padding;
+	//since we have side padding on elements, we need to visually override the padding.  Global headers will always go edge to edge.  Always.
+	//also, more space below the content header than other places.  We have to assume it will render at the top of the content column
+	margin: $container-padding-negative $container-padding-negative $container-padding-large $container-padding-negative;
+
+	//don't pull the margins back on pages without padding, already works
+	.bl--layout-standard & {
+		margin: 0 0 $container-padding-large 0;
+	}
+
+	//clearfix box for the columns, as there is often non-floated content underneath them
+	.bl--content-header-cols {
+		@include clearfix;
+	}
+
+	/* left column contains title and breadcrumbs */
+	.bl--content-header-left {
+		float: left;
+	}
+
+	/* Contrary to designs, centering actions contents vertically.  There are reasons too long to mention here.   */
+	.bl--content-header-right {
+		float: right;
+	}
+
+	.bl--page-title {
+		margin-bottom: 0;
+		display: inline-block;
+		font-size: 22px;
+		font-family: $font-bold;
+		color: $black;
+		line-height: 1;
+		letter-spacing: 0.1px;
+
+		& + .bl--pill-inline {
+			position: relative;
+			top: 9px;
+		}
+
+	}
+
+	//page-level actions, displays to the right of the page-level title
+	.bl--page-actions {
+		@include clearfix;
+
+		* {
+			display: inline-block;
+			margin-left: 15px;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+		}
+
+		//temporary fix for the button sizing in global headers.  This should probably be a unique button but so far, this is the only usage of it.
+		//@todo: add a custom button if this is used elsewhere
+		.bl--cta-button,
+		.bl--cta-button-secondary {
+			line-height: 30px;
+			height: 36px;
+		}
+
+		//buttons have a different height than the title to their left, so this is an adjustment only for them
+		button {
+			position: relative;
+			width: auto;
+		}
+
+	}
+
+	/* Add this as an extra class when building a header that uses the tab-like animated anchors  */
+	&.bl--contains-anchors {
+		padding: $container-padding $container-padding 0 $container-padding;
+
+		//odd number but this is aligned
+		.bl--page-title {
+			margin-bottom: 22px;
+		}
+
+
+	}
+
+
+}

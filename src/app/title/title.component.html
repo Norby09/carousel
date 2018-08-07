@@ -1,22 +1,35 @@
-<div class="td-container hr">
+<div class="td-container">
   <h4 class="hr">Title</h4>
   <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <label class="col-lg-12 overwritePadding"> Css class :
         <input type="text" class="form-control" placeholder="Enter Css class" [(ngModel)]="title.cssClass" />
        </label>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
       <label class="col-lg-12 overwritePadding"> Style :
         <input type="text" class="form-control" placeholder="Enter Style" [(ngModel)]="title.style" />
        </label>
     </div>
-    <div class="col-lg-4">
-        <label class="col-lg-12 overwritePadding" (mouseenter)="loadResources()"> Text :
-        <select class="form-control" [(ngModel)]="title.text"> 
-          <option *ngFor="let resource of resources" [value]="resource">{{resource}}</option>
-        </select>
-        </label>
+
+    <div class="col-lg-6" *ngFor="let lang of this.languageAndResources">
+        <div class="col-lg-3 overwritePadding">
+            <label class="noPadding"> Lang : </label>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle dropdownButton" type="button" data-toggle="dropdown" (click)="onClick()">{{lang.name}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" *ngIf="showDropdown">
+                    <li *ngFor="let language of defaultLanguages" (click)="onSelectLanguage(language)">
+                        <img [src]="language.img" class="iconStyle"/>{{language.lang}}
+                    </li>
+                </ul>
+                </div>
+            </div>
+            <label class="col-lg-6 overwritePadding" > Text :
+                <input type="text" class="form-control" placeholder="Enter resource" [(ngModel)]="lang.resources[0].value" (blur)="onInputResource(lang.resources[0].value)"/>
+            </label>
+            <button class="col-lg-2 btn btn-default addButton" (click)="addLanguage()"> <i class="fa fa-plus"></i> </button>
     </div>
   </div>
 </div>

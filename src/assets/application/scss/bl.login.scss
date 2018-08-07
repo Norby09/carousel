@@ -1,0 +1,256 @@
+/* Import base mixins, vars etc... */
+@import './_login_page_variables';
+
+//	@selector 		.bl--login
+//	@description 	Container containing the login screen section.
+.#{$login-namespace} {
+	position: absolute;
+	z-index: $zindex-panel;
+	clear: both;
+	display: block;
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	background-color: $white;
+	top: 0;
+}
+
+//	@selector 		.bl--login-login::after
+//	@description 	Clear-fix for login screen section.
+.#{$login-namespace}-login::after {
+	display: block;
+	clear: both;
+}
+
+
+//	@selector 		.bl--login-left
+//	@description 	The left side of the screen that will contain the carousel.
+.#{$login-namespace}-left {
+	display: block;
+	float: left;
+	width: calc(100% - #{$login-panel-width});
+	height: 100%;
+
+	background: no-repeat left center $background-color;
+	background-size: cover;
+
+	@include screen-desktop-portrait {
+		float: right;
+		clear: left;
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+}
+
+//	@selector 		.bl--login-right
+//	@description 	The right side of the screen that will contain the input form.
+.#{$login-namespace}-right {
+	text-align: center;
+	width: $login-panel-width;
+	display: block;
+	float: right;
+	height: 100%;
+	background-color: $white;
+	border: 1px solid $white;
+	box-sizing: border-box;
+
+
+	//	@selector 		.bl--login-right .bl--login-logo
+	//	@description 	The logo that appear in the right side of the login screen.
+	.#{$login-namespace}-logo {
+		margin: $logo-space-top-mobile-portrait auto 0 auto;
+		background: $logo-image center center no-repeat;
+		width: 100%;
+		height: $logo-height;
+		display: block;
+
+		// @media all and (min-width: 769px) and (max-width: 1024px)
+		@include screen-desktop-landscape {
+			margin: $logo-space-top auto $logo-space-bottom auto;
+		}
+
+		// @media all and (min-width: $height-mobile-min + 1) and (max-width: $width-mobile-min)
+		@include screen-mobile-landscape {
+			margin: $container-padding-small auto $container-padding-tiny auto;
+		}
+	}
+}
+
+//	@media all and (min-width: 481px) and (max-width: 768px)
+@include screen-desktop-portrait {
+	//	@selector 		 .bl--login-left
+	.#{$login-namespace}-left {
+		width: 100%;
+		height: 100vh;
+		float: none;
+		clear: both;
+	}
+
+	//	@selector 		.bl--login-right
+	.#{$login-namespace}-right {
+		width: 100%;
+		float: none;
+		height: auto;
+		clear: right;
+		padding-bottom: $container-padding-large;
+	}
+}
+
+// @media all and (min-width: 321px) and (max-width: 480px)
+@include screen-mobile-landscape {
+	//	@selector 		 .bl--login-left
+	.#{$login-namespace}-left {
+		display: none !important;
+	}
+
+	//	@selector 		 .bl--login-right
+	.#{$login-namespace}-right {
+		margin: 0 auto;
+		float: none;
+		clear: both;
+		text-align: center;
+		width: 100%;
+	}
+}
+
+// @media all and (max-width: 320px)
+@include screen-mobile-portrait {
+	//	@selector 		 .bl--login-left
+	.#{$login-namespace}-left {
+		display: none !important;
+	}
+
+	//	@selector 		 .bl--login-right
+	.#{$login-namespace}-right {
+		margin: 0 auto;
+		float: none;
+		clear: both;
+		text-align: center;
+		width: 100%;
+	}
+}
+
+$ns : $login-namespace;
+
+//	@selector 		.bl--login-input-field
+//	@description 	The form input field container.
+.#{$ns}-input-field {
+	position: relative;
+
+	// @selector		.bl--login-input-field-password
+	// @description		Matches the password input field container
+	&-password {
+		// make sure the inputs' borders overlap, so we don't have double borders, for a `border-collapse` effect
+		margin-top: -1px;
+	}
+
+	//	@selector 		.bl--login-input-field-invalid
+	//	@description 	Marker class name for form input field container when input field is invalid.
+	&-invalid {
+		// Input borders are overlapped, so make sure invalid inputs' borders appear on top
+		z-index: $zindex-lowest;
+	}
+
+	//	@selector 		.bl--login-input-field .bl--login-validator
+	.#{$ns}-validator {
+		position: absolute;
+		left: 0;
+	}
+
+	//	@selector 		.bl--login-input-field .bl--login-label
+	//	@description 	The input label.
+	.#{$ns}-label {
+		position: absolute;
+		line-height: $input-height;
+		height: $input-height;
+
+		font-family: $font-standard;
+		font-size: $input-font-size;
+		// @todo	`font-weight` required to override default from `common.css`, remove when dependency is obliterated
+		font-weight: normal;
+		letter-spacing: $letter-spacing;
+
+		transform: translate(0, -100%) scale(1, 1);
+		transition: transform 0.2s ease-in-out;
+
+		left: $label-padding-left;
+		color: $grey-medium;
+		margin-top: 2px;
+	}
+
+	//	@selector 		.bl--login-input-field .bl--login-input
+	//	@description 	The input.
+	.#{$ns}-input {
+		margin: 0 $input-padding;
+		height: $input-height;
+		width: $input-max-space;
+		display: block;
+		background: $white;
+		border-radius: 0;
+		border: $standard-border;
+
+		font-family: $font-bold;
+		font-size: $input-font-size;
+		letter-spacing: $letter-spacing;
+
+		padding: $input-padding-top $input-padding 0 $input-padding;
+		box-sizing: border-box;
+		// To prevent Firefox from adding unnecessary red borders for 'required' fields
+		box-shadow: none;
+		border-collapse: collapse;
+
+		//	@selector 		.bl--login-input-field .bl--login-input:focus
+		&:focus {
+			outline: none;
+			outline-offset: 0;
+		}
+
+		//	@selector 		.bl--login-input-field .bl--login-input::-ms-clear
+		&::-ms-clear {
+			display: none;
+		}
+
+		//	@selector 		.bl--login-input-field .bl--login-input.bl--login-first
+		//	@description 	The first input in the form.
+		&.#{$ns}-first {
+			border-top-left-radius: $input-radius;
+			border-top-right-radius: $input-radius;
+		}
+
+		//	@selector 		.bl--login-input-field .bl--login-input.bl--login-last
+		//	@description 	The last input in the form.
+		&.#{$ns}-last {
+			border-bottom-left-radius: $input-radius;
+			border-bottom-right-radius: $input-radius;
+		}
+
+		//	@selector 		.bl--login-input-field .bl--login-input.bl--login-error, .bl--login-input-field .bl--login-input.ng-empty.ng-dirty
+		//	@description 	The input error.
+		&.#{$ns}-error,
+		&.ng-empty.ng-dirty {
+			border-color: $error-color;
+		}
+
+		//	@selector 		.bl--login-input-field .bl--login-input:focus + .bl--login-label, .bl--login-input-field .bl--login-input.bl--login-active + .bl--login-label
+		//	@description 	The label when you focus on the input.
+		&:focus + .#{$ns}-label,
+		&.#{$ns}-active + .#{$ns}-label {
+			// shift text upward and scale it down to an equivalent of 11px font size, i.e. 68.75% of the normal 16px
+			transform: translate(-15%, -130%) scale(0.6875, 0.6875);
+		}
+
+		//	@selector 		.bl--login-input-field .bl--login-input:-webkit-autofill + .bl--login-label
+		//	@description 	The label for chrome when autocomplete is active. This needs to be separated, otherwise some browser will ignore the whole bundle.
+		&:-webkit-autofill + .#{$ns}-label {
+			// shift text upward and scale it down to an equivalent of 11px font size, i.e. 68.75% of the normal 16px
+			transform: translate(-15%, -130%) scale(0.6875, 0.6875);
+		}
+	}
+}
+
+.#{$ns}-form-submitted {
+	.#{$ns}-input.ng-invalid {
+		border-color: $error-color;
+	}
+}
