@@ -53,15 +53,27 @@ export class LanguagesService {
   }
 
   getResourceValue(resourceKey: string, lang?: string): string {
-    const resourceValue = {};
+    let resourceValue = {};
     let langObj = '';
     if (!lang && this.i18n) {
-      this.i18n.map(languageObj => {
+      this.i18n.forEach(languageObj => {
         const resource = languageObj.resources.find(res => res.name === resourceKey);
         langObj = languageObj.name;
         resource && (resourceValue[languageObj.name] = resource.value);
       });
       return resourceValue[langObj];
+    }
+  }
+  setResourceValue(resourceKey: string, resourceValue: string, lang?: string) {
+    if (!lang) {
+      const currentElement = this.i18n[0].resources.find(elem => elem.name === resourceKey);
+      currentElement && (currentElement.value = resourceValue);
+    }
+  }
+  setResourceName(resourceKey: string, name: string) {
+    if (resourceKey) {
+      const currentElement = this.i18n[0].resources.find(elem => elem.name === resourceKey);
+      currentElement && (currentElement.name = name);
     }
   }
 }
