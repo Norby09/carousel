@@ -37,8 +37,7 @@ export class DescriptionComponent implements OnInit, OnChanges {
     this.languageService.setResourceValue(key, event.target.value);
     this.languageService.setResourceName(key, this.resourceName);
   }
-<<<<<<< HEAD
-=======
+
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;
     this.languageAndResources.pop();
@@ -66,5 +65,4 @@ export class DescriptionComponent implements OnInit, OnChanges {
     this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
     this.languageService.getLanguagesAndResources();
   }
->>>>>>> 5884257906cdf0ca6d787b770577282d3ca9c927
 }
