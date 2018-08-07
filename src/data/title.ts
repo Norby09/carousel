@@ -1,9 +1,9 @@
 import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
 
 export class Title {
-  cssClass: String;
-  style: String;
-  text: String;
+  cssClass: string;
+  style: string;
+  text: string;
 
   static create(config: any): Title {
     if (!config) {

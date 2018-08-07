@@ -1,11 +1,11 @@
 import { stringOrDefault, objectOrDefault } from 'utils/value-or-default';
 
 export class Link {
-  cssClass: String;
-  style: String;
-  text: String;
-  tooltip: String;
-  url: String;
+  cssClass: string;
+  style: string;
+  text: string;
+  tooltip: string;
+  url: string;
   static create(config?: any): Link {
     if (!config) {
       return new Link();

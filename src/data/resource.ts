@@ -1,8 +1,8 @@
 import {objectOrDefault, stringOrDefault} from '../utils/value-or-default';
 
 export class Resource {
-  name: String;
-  value: String;
+  name: string;
+  value: string;
 
   static create(config?: any): Resource {
     if (!config) {

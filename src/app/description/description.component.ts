@@ -24,7 +24,7 @@ export class DescriptionComponent implements OnInit, OnChanges {
   public ngOnInit(): void {
     if (this.description.text) {
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.inputValue}))}) );
-      this.resourceName = this.description.text.toString();
+      this.resourceName = this.description.text;
     } else {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
@@ -34,8 +34,10 @@ export class DescriptionComponent implements OnInit, OnChanges {
     this.inputValue = this.languageService.getResourceValue(this.description.text.toString());
   }
   detectChange(event, key) {
-    this.languageService.setResourceValue(key, event.target.value);
-    this.languageService.setResourceName(key, this.resourceName);
+    if (key !== this.resourceName) {
+      this.languageService.setResourceValue(key, event.target.value);
+      this.languageService.setResourceName(key, this.resourceName);
+    }
   }
 
   onSelectLanguage(language) {

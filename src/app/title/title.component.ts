@@ -18,7 +18,7 @@ export class TitleComponent implements OnInit, OnChanges {
   resourceValue;
   showDropdown = true;
   resourceName = "@title" + Math.floor(Math.random() * 10000 + 1);
-  inputValue: String = '';
+  inputValue: string = '';
 
   languageAndResources = [];
 

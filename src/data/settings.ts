@@ -1,9 +1,9 @@
 import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or-default';
 
 export class Settings {
-  defaultTemplateUrl: String;
-  templateStyle: String;
-  animation: String = "slide" ;
+  defaultTemplateUrl: string;
+  templateStyle: string;
+  animation: string = "slide" ;
 
   static create(config?: any) {
     if (!config) {
