@@ -9,9 +9,12 @@ export class Item {
   components: Comp;
 
   constructor(config?: any) {
-    this.components = new Comp();
-    this.id = config.id;
+    this.backgroundColor = config.backgroundColor;
+    this.backgroundUrl = config.backgroundUrl; 
+    this.name = config.name;
     this.type = config.type ? config.type : 1;
+    this.id = config.id;
+    this.components = config.components ? new Comp(config.components) : new Comp();
   }
 }
 

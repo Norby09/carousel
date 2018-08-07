@@ -31,7 +31,6 @@ export class DescriptionComponent implements OnInit, OnChanges {
       this.defaultLanguages = this.languageService.getLanguages();
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
-    console.log(this.languageAndResources);
   }
   ngOnChanges() {
     this.inputValue = this.languageService.getResourceValue(this.description.text.toString());

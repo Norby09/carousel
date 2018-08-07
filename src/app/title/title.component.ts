@@ -26,6 +26,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.inputValue = this.languageService.getResourceValue(this.title.text.toString());
     if ( this.title.text ) {
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.inputValue}))}) );
     } else {

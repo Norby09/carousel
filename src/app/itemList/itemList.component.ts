@@ -39,8 +39,6 @@ export class ItemListComponent implements OnInit{
     this.setting = Settings.create();
   }
   export(format: string = 'json'): string {
-  debugger;
-    console.log(this.languages);
     this.additionalLanguages = this.languageService.getLanguagesAndResources();
     for (let i = 0; i < this.additionalLanguages.length; i++) {
       // current additional language
@@ -72,7 +70,7 @@ export class ItemListComponent implements OnInit{
         }
       }
     }
-
+    debugger;
     for (let i = 0; i < this.languages.length; i++) {
       const name = this.languages[i].name;
       const language = this.languageObj[name] = {};
@@ -122,7 +120,6 @@ export class ItemListComponent implements OnInit{
         this.languageObj = json.i18n;
 
         this.languages = [];
-        console.log(this.languageObj);
         for (const language in this.languageObj) {
             const element = Language.create({name : language});
             const resources = this.languageObj[language];
@@ -131,8 +128,12 @@ export class ItemListComponent implements OnInit{
             }
             this.languages.push(element);
         }
-        
-        this.items = json.items;
+
+        this.items = [];
+        for(let i=0; i<json.items.length; i++) {
+          this.items.push( new Item(json.items[i]) );
+        }
+
         this.languageService.loadI18n(this.languages);
         const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
         const self = this;

@@ -19,6 +19,7 @@ export class LinkComponent implements OnInit {
   showDropdown = true;
   resourceName = "@link" + Math.floor(Math.random()*10000+1);
   languageAndResources = [];
+  inputValue = '';
   
   constructor(private languageService: LanguagesService) { }
 
@@ -26,12 +27,14 @@ export class LinkComponent implements OnInit {
     this.defaultLanguages = this.languageService.getLanguages();
     if( this.link.text ) {
       this.resourceName = this.link.text.toString();
-      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.link.text}))}) );
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.link.text , value : this.inputValue}))}) );
     } else {
-      this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+      this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
   }
-
+  ngOnChanges() {
+    this.inputValue = this.languageService.getResourceValue(this.link.text.toString());
+  }
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;
     this.languageAndResources.pop();
@@ -45,15 +48,17 @@ export class LinkComponent implements OnInit {
       }
     }
   }
-
+  onClick() {
+    this.showDropdown = true;
+  }
   onInputResource(resourceValue) {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
     this.languageService.saveLanguageAndResource(lang.name, this.resourceName, resourceValue);
     this.link.text = this.resourceName;
   }
-
   addLanguage() {
     this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+    this.languageService.getLanguagesAndResources();
   }
 }

@@ -12,9 +12,11 @@ export class ComponentsComponent implements OnInit {
   @Input() links: Link[] = null;
   @Output() save: EventEmitter<Comp> = new EventEmitter();
 
-  constructor() {}
+  constructor() {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   onSubmitItems() {
     this.save.emit(this.comp);

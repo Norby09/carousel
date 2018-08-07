@@ -62,13 +62,11 @@ export class LanguagesService {
   getResourceValue(resourceKey: string, lang?: string): string {
     const resourceValue = {};
     let langObj = '';
-    console.log(this.i18n);
     if (!lang && this.i18n) {
       this.i18n.map(languageObj => {
         const resource = languageObj.resources.find(res => res.name === resourceKey);
         langObj = languageObj.name;
         resource && (resourceValue[languageObj.name] = resource.value);
-        console.log(resourceValue);
       });
       return resourceValue[langObj];
     }
