@@ -18,5 +18,4 @@ export class DescriptionComponent implements OnInit {
   loadResources() {
     this.resources = this.languageService.getResources();
   }
-
 }
