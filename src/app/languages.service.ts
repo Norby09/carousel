@@ -52,13 +52,6 @@ export class LanguagesService {
     return this.languages;
   }
 
-  // resourceKey = '@title1', lang = 'en' || undefined
-  // this should return an object like this:
-  // getResourceValue('@title1');
-  // { "en": "This is my title", "ru": "сука блядь"}
-  // getResourceValue('@title1', 'en');
-  // "This is my title";
-
   getResourceValue(resourceKey: string, lang?: string): string {
     const resourceValue = {};
     let langObj = '';
@@ -70,9 +63,5 @@ export class LanguagesService {
       });
       return resourceValue[langObj];
     }
-  }
-
-  setResourceValue(resourceKey: string, resourceValue: string, lang: string) {
-
   }
 }
