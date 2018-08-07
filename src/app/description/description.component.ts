@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges} from '@angular/core';
 import { Description } from '../../data/description';
 import { LanguagesService } from '../languages.service';
 import { Language } from '../../data/language';
@@ -9,27 +9,33 @@ import { Resource } from 'data/resource';
   templateUrl: './description.component.html',
   styleUrls: ['./description.component.scss', '../app.component.scss']
 })
-export class DescriptionComponent implements OnInit {
+export class DescriptionComponent implements OnInit, OnChanges {
   @Input() description: Description;
 
-  resources;
-  defaultLanguages;
-  selectedLanguage;
-  resourceValue;
-  showDropdown = true;
-  resourceName = "@description" + Math.floor(Math.random()*10000+1);
-  languageAndResources = [];
+  public defaultLanguages = [];
+  public resourceValue: string;
+  public showDropdown: boolean = true;
+  public resourceName: string = "@description" + Math.floor(Math.random() * 10000 + 1);
+  public languageAndResources = [];
+  public inputValue: string;
 
   constructor(private languageService: LanguagesService) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.defaultLanguages = this.languageService.getLanguages();
-    if( this.description.text !== "") {
+    if (this.description.text) {
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.inputValue}))}) );
       this.resourceName = this.description.text.toString();
-      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.description.text , value : this.description.text}))}) );
     } else {
-      this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
+      this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : this.inputValue}))}) );
     }
+  }
+  ngOnChanges() {
+    this.inputValue = this.languageService.getResourceValue(this.description.text.toString());
+  }
+  detectChange(event, key) {
+    this.languageService.setResourceValue(key, event.target.value);
+    this.languageService.setResourceName(key, this.resourceName);
   }
 
   onSelectLanguage(language) {
@@ -48,7 +54,6 @@ export class DescriptionComponent implements OnInit {
   onClick() {
     this.showDropdown = true;
   }
-
   onInputResource(resourceValue) {
     const lang = this.languageAndResources.pop();
     this.languageAndResources.push( Language.create({ name  : lang.name , resources : new Array<Resource>(new Resource({name : this.resourceName , value : resourceValue}))}) );
@@ -56,10 +61,8 @@ export class DescriptionComponent implements OnInit {
     this.description.text = this.resourceName;
 
   }
-
   addLanguage() {
     this.languageAndResources.push( Language.create({ name  : "", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
     this.languageService.getLanguagesAndResources();
   }
-
 }
