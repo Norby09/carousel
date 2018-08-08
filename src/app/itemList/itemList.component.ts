@@ -11,6 +11,7 @@ import { stringOrDefault } from '../../utils/value-or-default';
 import { LanguagesService } from '../languages.service';
 import { HttpClient } from '@angular/common/http';
 import { Inject } from '@angular/core';
+import { TypesService } from '../types.service';
 
 
 @Component({
@@ -97,12 +98,13 @@ export class ItemListComponent implements OnInit{
           );
           return retVal;
       default:
-        console.warn(`Unknown export format'${format}'`);
+        console.warn(`Unknown export format: ${format}`);
         return `Unknown export format ${format}`;
     }
   }
 
   import(config: string, format: string = 'json'): boolean {
+    console.log(format);
     switch (format.toLowerCase()) {
       case 'json':
         let json;
@@ -134,7 +136,7 @@ export class ItemListComponent implements OnInit{
           this.items.push( new Item(json.items[i]) );
         }
 
-        this.languageService.loadI18n(this.languages);
+        this.languageService.setI18n(this.languages);
         const retVal = JSON.stringify({items: this.items, slideshow: this.slideshow, types: this.type, settings: this.setting, i18n: this.languageObj});
         const self = this;
         this.http.post('http://localhost:3000/save', {data : retVal}).subscribe(

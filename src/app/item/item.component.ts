@@ -15,7 +15,7 @@ export class ItemComponent implements OnInit {
 
   types = [];
 
-  constructor(public typeService: TypesService ) {
+  constructor(public typeService: TypesService) {
     this.types = typeService.getTypes();
   }
 

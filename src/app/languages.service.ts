@@ -8,7 +8,7 @@ export class LanguagesService {
   languages: Language[] = [];
   i18n: any = [];
 
-  loadI18n(i18nObj: any) {
+  setI18n(i18nObj: any) {
     this.i18n = i18nObj;
   }
 

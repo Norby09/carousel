@@ -8,6 +8,7 @@ import { DescriptionComponent } from '../description/description.component';
 import { LinkComponent } from '../link/link.component';
 import { LanguagesService } from '../languages.service';
 import { Item } from '../../data/item';
+import { TypesService } from '../types.service';
 
 describe('ItemComponent', () => {
   let component: ItemComponent;
@@ -16,7 +17,7 @@ describe('ItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ FormsModule ],
-      providers: [ LanguagesService ],
+      providers: [ LanguagesService, TypesService ],
       declarations: [ ItemComponent, ComponentsComponent, TitleComponent, DescriptionComponent, LinkComponent ]
     })
     .compileComponents();
@@ -29,6 +30,7 @@ describe('ItemComponent', () => {
 
   it('should add an item', () => {
     component.items = [];
+    component.items.push(new Item({backgroundColor: "black", backgroundUrl: "", type: 2, id: 1, components: [] }));
     const length = component.items.length;
     component.addItem();
     expect(component.items.length).toEqual(length+1);

@@ -20,9 +20,4 @@ describe('SettingsComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create a new setting object on init', () => {
-    component.ngOnInit();
-    expect(component.setting.animation).toEqual("slide");
-  });
 });

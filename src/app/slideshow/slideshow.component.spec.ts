@@ -20,10 +20,4 @@ describe('SlideshowComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create a new slideshow object on init', () => {
-    component.ngOnInit();
-    expect(component.slideshow.interval).toEqual(100);
-    expect(component.slideshow.restart).toEqual(100);
-  });
 });
