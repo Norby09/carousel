@@ -95,7 +95,7 @@ export class LanguagesService {
   * @method   getLanguagesAndResources
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Language[]}  
+  * @returns    {Language[]}  An array of languages, where every resource has a language. A language can appear multiple times.
   * @example    <caption>Basic Usage</caption>
   * this.getLanguagesAndResources();
   */
@@ -108,7 +108,7 @@ export class LanguagesService {
   * @method   getResourceValue
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {object}  
+  * @returns    {object}  An object which contains the corresponding resource values and languages : { "en" : "resVal1" , "fr" : "resVal2"} 
   * @example    <caption>Basic Usage</caption>
   * this.getResourceValue();
   */
