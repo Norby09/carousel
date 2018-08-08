@@ -24,7 +24,7 @@ export class TitleComponent implements OnInit, OnChanges {
   constructor(private languageService: LanguagesService) {
   }
   
-  public ngOnInit() : void {
+   public ngOnInit(): void {
     this.defaultLanguages = this.languageService.getLanguages();
     if( this.title.text ) {
       this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.inputValue}))}) );
@@ -38,7 +38,7 @@ export class TitleComponent implements OnInit, OnChanges {
     this.inputValue = resourceValues["en"];
   }
 
-  public onClick() : void {
+  public onClick(): void {
     this.showDropdown = true;
   }
 
