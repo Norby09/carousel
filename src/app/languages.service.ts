@@ -52,16 +52,16 @@ export class LanguagesService {
     return this.languages;
   }
 
-  getResourceValue(resourceKey: string, lang?: string): string {
+  getResourceValue(resourceKey: string, lang?: string): object {
     let resourceValue = {};
     let langObj = '';
     if (!lang && this.i18n) {
       this.i18n.forEach(languageObj => {
         const resource = languageObj.resources.find(res => res.name === resourceKey);
-        langObj = languageObj.name;
-        resource && (resourceValue[languageObj.name] = resource.value);
+        langObj = languageObj.name; // language
+        resource && ( resourceValue[langObj] = resource.value);
       });
-      return resourceValue[langObj];
+      return resourceValue;
     }
   }
   setResourceValue(resourceKey: string, resourceValue: string, lang?: string) {

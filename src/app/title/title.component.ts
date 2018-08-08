@@ -27,14 +27,15 @@ export class TitleComponent implements OnInit, OnChanges {
   public ngOnInit() : void {
     this.defaultLanguages = this.languageService.getLanguages();
     if( this.title.text ) {
-      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.title.text}))}) );
+      this.languageAndResources.push( Language.create({ name  : "en", resources : new Array<Resource>(new Resource({name : this.title.text , value : this.inputValue}))}) );
       this.resourceName = this.title.text.toString();
     } else {
       this.languageAndResources.push( Language.create({ name  : " ", resources : new Array<Resource>(new Resource({name : this.resourceName , value : ""}))}) );
     }
   }
   public ngOnChanges() : void {
-    this.inputValue = this.languageService.getResourceValue(this.title.text.toString());
+    const resourceValues = this.languageService.getResourceValue(this.title.text.toString());
+    this.inputValue = resourceValues["en"];
   }
 
   public onClick() : void {

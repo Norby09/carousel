@@ -31,7 +31,8 @@ export class DescriptionComponent implements OnInit, OnChanges {
     }
   }
   ngOnChanges() {
-    this.inputValue = this.languageService.getResourceValue(this.description.text.toString());
+    const resourceValues = this.languageService.getResourceValue(this.description.text.toString());
+    this.inputValue = resourceValues["en"];
   }
   detectChange(event, key) {
     if (key !== this.resourceName) {

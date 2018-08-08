@@ -32,7 +32,8 @@ export class LinkComponent implements OnInit, OnChanges {
     }
   }
   ngOnChanges() {
-    this.inputValue = this.languageService.getResourceValue(this.link.text.toString());
+    const resourceValues = this.languageService.getResourceValue(this.link.text.toString());
+    this.inputValue = resourceValues["en"];
   }
   onSelectLanguage(language) {
     this.showDropdown = !this.showDropdown;

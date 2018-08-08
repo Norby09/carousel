@@ -104,7 +104,6 @@ export class ItemListComponent implements OnInit{
   }
 
   import(config: string, format: string = 'json'): boolean {
-    console.log(format);
     switch (format.toLowerCase()) {
       case 'json':
         let json;
