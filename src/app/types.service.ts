@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Language } from 'data/language';
-import { Resource } from 'data/resource';
 
 @Injectable()
 export class TypesService {
 
-    types = [{ id : 1, name : 'standard'}, { id : 2, name : 'custom'}, { id : 3, name : 'custom template'}];
+    /**
+    * Configuration object for the type area
+    * @name    types
+    * @type    {object[]}
+    * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
+    * @added    2018-08-08
+    */
+    private types = [{ id : 1, name : 'standard'}, { id : 2, name : 'custom'}, { id : 3, name : 'custom template'}];
 
-    getTypes() {
+    /**
+    * Returns the configuration object for the type field
+    * @method   getTypes
+    * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
+    * @added    2018-08-08
+    * @returns    {object[]}  
+    * @example    <caption>Basic Usage</caption>
+    * this.getTypes();
+    */
+    public getTypes() : object[] {
         return this.types;
     }
 
