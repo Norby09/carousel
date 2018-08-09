@@ -34,7 +34,7 @@ export class Description {
   * @constructor Description
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added  2018-08-08
-  * @memberOf fileNameWithoutExtension()
+  * @memberOf TM_FILENAME_BASE
   * @example  <caption>Basic Usage</caption>
   */
   public constructor(config?: any) {

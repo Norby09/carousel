@@ -61,7 +61,7 @@ export class Item {
   * @constructor Item
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added  2018-08-08
-  * @memberOf fileNameWithoutExtension()
+  * @memberOf TM_FILENAME_BASE
   * @example  <caption>Basic Usage</caption>
   */
   constructor(config?: any) {

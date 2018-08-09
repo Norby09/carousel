@@ -74,6 +74,9 @@ export class LanguagesService {
   * @added    2018-08-08
   * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
+  * @param {string} languageName
+  * @param {string} resourceName
+  * @param {string} resourceValue
   * this.saveLanguageAndResource();
   */
   public saveLanguageAndResource(languageName, resourceName, resourceValue) : void {
@@ -110,6 +113,8 @@ export class LanguagesService {
   * @added    2018-08-08
   * @returns    {object}  An object which contains the corresponding resource values and languages : { "en" : "resVal1" , "fr" : "resVal2"} 
   * @example    <caption>Basic Usage</caption>
+  * @param    {string} resourceKey
+  * @param    {string} lang
   * this.getResourceValue();
   */
   public getResourceValue(resourceKey: string, lang?: string): object {
@@ -132,6 +137,9 @@ export class LanguagesService {
   * @added    2018-08-08
   * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
+  * @param {string} resourceKey
+  * @param {string} resourceValue
+  * @param {string} lang
   * this.setResourceValue();
   */
   public setResourceValue(resourceKey: string, resourceValue: string, lang?: string) : void {
@@ -148,6 +156,8 @@ export class LanguagesService {
   * @added    2018-08-08
   * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
+  * @param    resourceKey
+  * @param    name
   * this.setResourceName();
   */
   public setResourceName(resourceKey: string, name: string) : void {
