@@ -8,7 +8,7 @@ import { Type } from '../../data/type';
 })
 export class TypesComponent implements OnInit {
   /**
-  * This property of type Type is sent from a superior level through Input
+  * Holds an instance of Type to be managed by the component
   * @name    type
   * @type    {Type}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -17,7 +17,7 @@ export class TypesComponent implements OnInit {
   @Input() type: Type = null;
 
   /**
-  * No data processing done here
+  * Constructor method for types component
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
   * @added		8/8/2018
   * @memberOf	types.component

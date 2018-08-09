@@ -34,7 +34,7 @@ export class ItemListComponent implements OnInit {
   */
   slideshow: Slideshow = null;
   /**
-  * Property of type Type
+  * Instance of Type to be managed by the component
   * @name    type
   * @type    {Type}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -42,7 +42,7 @@ export class ItemListComponent implements OnInit {
   */
   type: Type = null;
   /**
-  * Property/object of type Settings
+  * Instance of Settings to be managed by the component
   * @name    setting
   * @type    {Settings}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -75,7 +75,7 @@ export class ItemListComponent implements OnInit {
   additionalLanguages;
 
   /**
-  * Constructor of the itemList component that initializes the languageService, HttpClient and doc
+  * Constructor method of the itemList component that initializes the languageService, HttpClient and doc
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
   * @added		8/8/2018
   * @memberOf	itemList.component
@@ -86,7 +86,8 @@ export class ItemListComponent implements OnInit {
   }
 
   /**
-   * Public method used to initiate the component, instantiating the properties that are types of predefined objects
+   * Angular component lifecycle hook used to initiate the component, instantiating the properties that are types
+   * of predefined objects
    * @method   ngOnInit
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -102,9 +103,7 @@ export class ItemListComponent implements OnInit {
   }
 
   /**
-   * This public method is responsible with generating a valid json based on specific inputs and also with processing data such as
-   * creating and modifying the internationalization object. There's also a http call that writes the json to a config file that is
-   * later taken by the carousel and then generating slides
+   * This method generates a valid json to be used later in the carousel
    * @method   export
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -176,9 +175,7 @@ export class ItemListComponent implements OnInit {
   }
 
   /**
-   * This public method is responsible with taking in a valid json and processing it. If the json is valid, the json will be propagated through
-   * the app and based on the input several components will be created, each type of object from the json corresponding to a type of object in the app.
-   * There's also an http call that, just as export writes in a config file from which the carousel takes the information and generates slides
+   * This method takes the json, creates the necessary instances specified by the json and writes into the carousel-preview.json
    * @method   import
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018

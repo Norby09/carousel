@@ -8,7 +8,7 @@ import { Settings } from '../../data/settings';
 })
 export class SettingsComponent {
   /**
-  * This property holds an object of type Settings sent through Input
+  * Holds an instance of Settings to be managed by the component
   * @name    setting
   * @type    {Settings}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>

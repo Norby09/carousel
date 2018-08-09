@@ -11,7 +11,7 @@ import { Resource } from 'data/resource';
 })
 export class LinkComponent implements OnInit, OnChanges {
   /**
-  * This property is of type Link sent from a superior level through Input
+  * Holds an instance of Link to be managed by the component
   * @name    link
   * @type    {Link}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -43,7 +43,7 @@ export class LinkComponent implements OnInit, OnChanges {
   */
   public resourceValue;
   /**
-  * This public property holds boolean values for whether the dropdown is open or closed
+  * Holds the state of the dropdown
   * @name    showDropdown
   * @type    {boolean}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -51,7 +51,7 @@ export class LinkComponent implements OnInit, OnChanges {
   */
   public showDropdown = true;
   /**
-  * This property holds the resource name for a specific resource object, this value is generated randomly
+  * Holds the resource name for a specific resource object, this value is generated randomly
   * @name    resourceName
   * @type    {string}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -76,7 +76,7 @@ export class LinkComponent implements OnInit, OnChanges {
   public inputValue = '';
 
   /**
-  * This constructor is used to initialize the component with the languageService that holds all the languages
+  * This constructor method is used to initialize the component with the languageService that holds all the languages
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
   * @added		8/8/2018
   * @memberOf	link.component
@@ -85,8 +85,7 @@ export class LinkComponent implements OnInit, OnChanges {
   constructor(private languageService: LanguagesService) { }
 
   /**
-   * This lifecycle hook is used to initialize different elements in the app. Also here we get the languages from the languageService.
-   * If there's already a value for text inside the link object then we push it in the languageAndResource array
+   * This lifecycle hook is used to initialize the array of languages and resources based on the inputs
    * @method    ngOnInit
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -144,7 +143,7 @@ export class LinkComponent implements OnInit, OnChanges {
   }
 
   /**
-   * This public method is used to set the showDropdown property to true thus displaying the dropdown open
+   * This method is used to set the showDropdown property to true thus displaying the dropdown open
    * @method   onClick
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -157,7 +156,7 @@ export class LinkComponent implements OnInit, OnChanges {
   }
 
   /**
-   * This public method is used to update the language array, more specifically the resource value to the one in the textfield
+   * This method is used to update the language array, more specifically the resource value to the one in the textfield
    * @method   onInputResource
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018

@@ -11,7 +11,7 @@ import { Resource } from 'data/resource';
 })
 export class DescriptionComponent implements OnInit, OnChanges {
   /**
-  * Instantiation of a description object comming from a superior level as Input
+  * It holds a description object to be managed by the component
   * @name    description
   * @type    {Description}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -27,7 +27,7 @@ export class DescriptionComponent implements OnInit, OnChanges {
   */
   public defaultLanguages = [];
   /**
-  * The corresponding resource value for a specific resource object
+  * Holds the value for a resource
   * @name    resourceValue
   * @type    {  string  }
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -43,7 +43,7 @@ export class DescriptionComponent implements OnInit, OnChanges {
   */
   public showDropdown: boolean = true;
   /**
-  * The corresponding resource name for a resource object generated randomly
+  * A randomly generated resource name corresponding to a resource object in the language array
   * @name    resourceName
   * @type    {  string  }
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -53,13 +53,13 @@ export class DescriptionComponent implements OnInit, OnChanges {
   /**
   * Array with objects that contain both the language and the associated resources for each language
   * @name    languageAndResources
-  * @type    { lang && resources[]}
+  * @type    { Language[] }
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
   * @added    8/8/2018
   */
   public languageAndResources = [];
   /**
-  * Used to apply changes detected in inputs for resource values
+  * Contains the value of the language resource, and will update on user input
   * @name    inputValue
   * @type    {  string  }
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -67,7 +67,7 @@ export class DescriptionComponent implements OnInit, OnChanges {
   */
   public inputValue: string;
   /**
-  * Initializes the component with the LanguageService
+  * Component constructor method
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
   * @added		8/8/2018
   * @memberOf	description.component
@@ -76,7 +76,7 @@ export class DescriptionComponent implements OnInit, OnChanges {
   constructor(private languageService: LanguagesService) {}
 
   /**
-   * Initializes the component and processes data if that data already exists
+   * Angular component lifecycle hook that initializes the component and processes data if that data already exists
    * @method   ngOnInit
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -120,12 +120,12 @@ export class DescriptionComponent implements OnInit, OnChanges {
   detectChange(event, key) {
     if (key !== this.resourceName) {
       this.languageService.setResourceValue(key, event.target.value);
-      this.languageService.setResourceName(key, this.resourceName);
     }
+    this.languageService.setResourceName(key, this.resourceName);
   }
 
   /**
-   * This method is responsible for handling the selection of a language from a dropdown and also with the elimination of the
+   * This method is responsible for handling the selection of a language from a dropdown and also with the deletion of the
    * selected language from the dropdown
    * @method   onSelectLanguage
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -149,7 +149,7 @@ export class DescriptionComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method that sets the display of the dropdown to true and displays the default languages available
+   * Click handler that opens the dropdown
    * @method   onClick
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018

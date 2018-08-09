@@ -3,7 +3,7 @@ import { Item } from '../../data/item';
 import { TypesService } from '../types.service';
 
 /**
-* Property responsible with storing unique item id for each new item created
+* Item identifier
 * @name    itemId
 * @type    {  number  }
 * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -43,7 +43,7 @@ export class ItemComponent implements OnInit {
   */
   types = [];
   /**
-  * Constructor used to initiate the item component with the typeService and store the types in a property
+  * Constructor component method
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
   * @added		8/8/2018
   * @memberOf	item.component
@@ -54,7 +54,7 @@ export class ItemComponent implements OnInit {
   }
 
   /**
-   * No neccessary processing to be done here
+   * Angular component lifecycle hook
    * @method   ngOnInit
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -66,7 +66,7 @@ export class ItemComponent implements OnInit {
   }
 
   /**
-   * Adds a new item to the items array, each item with a unique Id
+   * Adds a new slider item to the items array
    * @method   addItem
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018

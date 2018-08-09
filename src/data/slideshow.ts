@@ -41,6 +41,7 @@ export class Slideshow {
     }
     return new Slideshow(config);
   }
+
   /**
   * This constructor is used to process the config elements in the config objects if it exists
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
@@ -48,7 +49,6 @@ export class Slideshow {
   * @memberOf	slideshow
   * @example		<caption>Basic Usage</caption>
   */
-
   constructor(config?: any) {
     this.autoplay = config.autoplay ? numberOrDefault(config.autoplay) : 0;
     this.interval = config.interval ? numberOrDefault(config.interval) : 100;

@@ -9,7 +9,7 @@ import { Comp } from '../../data/comp';
 })
 export class ComponentsComponent implements OnInit {
   /**
-  * Instantiation of a Comp Class sent from a superior level through Input
+  * Instance of Comp used to be managed by the component
   * @name    comp
   * @type    {Comp}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -17,7 +17,7 @@ export class ComponentsComponent implements OnInit {
   */
   @Input() comp: Comp = null;
   /**
-  * Array of link objects sent from parent through Input
+  * Array of link objects
   * @name    links
   * @type    {link[]}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -25,7 +25,7 @@ export class ComponentsComponent implements OnInit {
   */
   @Input() links: Link[] = null;
   /**
-  * Event Emitter to send data back to the parent through Output
+  * Event Emitter to send the Comp object back to parent
   * @name    save
   * @type    {EventEmitter<Comp>}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -34,7 +34,7 @@ export class ComponentsComponent implements OnInit {
   @Output() save: EventEmitter<Comp> = new EventEmitter();
 
   /**
-  * Basic constructor, no operations done here
+  * Constructor method
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
   * @added		8/8/2018
   * @memberOf	components.component
@@ -44,7 +44,7 @@ export class ComponentsComponent implements OnInit {
   }
 
   /**
-   * No operations or data processing necessary here
+   * Angular component lifecycle hook used for initialization
    * @method   ngOnInit
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -56,7 +56,7 @@ export class ComponentsComponent implements OnInit {
   }
 
   /**
-   * Public method responsible with emitting(sending) data back to the parent
+   * Method responsible with emitting(sending) data back to the parent
    * @method   onSubmitItems
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018

@@ -43,7 +43,7 @@ export class Type {
   }
 
   /**
-  * Constructor, no necessary implementation done here
+  * Constructor method for type component
   * @author		Norbert Layis <Norbert.Layis@blackline.com>
   * @added		8/8/2018
   * @memberOf	type

@@ -2,7 +2,7 @@ import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or
 
 export class Title {
   /**
-  * One of the properties of a Title instance and of type string
+  * Property of Title instance
   * @name    cssClass
   * @type    {string}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -10,7 +10,7 @@ export class Title {
   */
   cssClass: string;
   /**
-  * Another property of a Title instance and of type string
+  * Another property of a Title instance
   * @name    style
   * @type    {string}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -18,7 +18,7 @@ export class Title {
   */
   style: string;
   /**
-  * Field from a Title instance of type string
+  * Property of Title instance
   * @name    text
   * @type    {string}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>

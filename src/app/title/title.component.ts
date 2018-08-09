@@ -13,7 +13,7 @@ import {processProjectedNode} from '@angular/core/src/render3/node_manipulation'
 })
 export class TitleComponent implements OnInit, OnChanges {
   /**
-  * The title object created at a superior level
+  * Title of the carousel slider item
   * @name    title
   * @type    {Title}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -90,7 +90,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method used to initialize the component and make different operations
+   * Angular component lifecycle hook used to initialize the component and make different operations
    * @method    ngOnInit
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -109,7 +109,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Public method used to detect changes on input and modify specific values with the ones in the inputs
+   * Angular component lifecycle hook used to detect changes on input and modify specific values with the ones in the inputs
    * @method   ngOnChanges
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -117,13 +117,13 @@ export class TitleComponent implements OnInit, OnChanges {
    * @example    <caption>Basic Usage</caption>
    * this.ngOnChanges();
    */
-  public ngOnChanges() : void {
+  public ngOnChanges(): void {
     const resourceValues = this.languageService.getResourceValue(this.title.text.toString());
     this.inputValue = resourceValues["en"];
   }
 
   /**
-   * OnClick method that changes the showDropdown property to true if clicked on a button
+   * Click handler that changes the state of the dropdown
    * @method   onClick
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -136,7 +136,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Public method that triggers when a language is selected from the dropdown and we take out that language afterwards from the dropdown
+   * Method that triggers when a language is selected from the dropdown and we take out that language afterwards from the dropdown
    * @method   onSelectLanguage
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -159,7 +159,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Public method that adds a specific resource to the correct language in the languageService service
+   * Method that adds a specific resource to the correct language in the languageService service
    * @method   onInputResource
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -175,7 +175,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Public method that adds the selected language to the array of languages that the app will process
+   * Method that adds the selected language to the array of languages that the app will process
    * @method   addLanguage
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
