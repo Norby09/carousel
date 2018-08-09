@@ -2,7 +2,7 @@ import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or
 
 export class Title {
   /**
-  * Property of Title instance
+  * The css class to be applied to the title of a slide
   * @name    cssClass
   * @type    {string}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -10,7 +10,7 @@ export class Title {
   */
   cssClass: string;
   /**
-  * Another property of a Title instance
+  * Style to be applied to the title of a slide
   * @name    style
   * @type    {string}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>
@@ -18,7 +18,7 @@ export class Title {
   */
   style: string;
   /**
-  * Property of Title instance
+  * The text to be used for the title of a slide
   * @name    text
   * @type    {string}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>

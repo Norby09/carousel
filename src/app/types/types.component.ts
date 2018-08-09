@@ -8,7 +8,7 @@ import { Type } from '../../data/type';
 })
 export class TypesComponent implements OnInit {
   /**
-  * Holds an instance of Type to be managed by the component
+  * Holds an instance that is used to specify what type of slides the application supports
   * @name    type
   * @type    {Type}
   * @author    Norbert Layis <Norbert.Layis@blackline.com>

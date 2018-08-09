@@ -136,7 +136,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method that triggers when a language is selected from the dropdown and we take out that language afterwards from the dropdown
+   * Selects a language from the dropdown, and hides it from the dropdown list
    * @method   onSelectLanguage
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
@@ -175,7 +175,7 @@ export class TitleComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Method that adds the selected language to the array of languages that the app will process
+   * Adds the selected language to the array of languages
    * @method   addLanguage
    * @author    Norbert Layis <Norbert.Layis@blackline.com>
    * @added    8/8/2018
