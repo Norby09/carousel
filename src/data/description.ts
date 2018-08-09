@@ -49,7 +49,7 @@ export class Description {
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Description}  A Description object with the specicied configuration. It contains default values if no configuration is given.
+  * @returns    {Description}  A Description object with the specified configuration. It contains default values if no configuration is given.
   * @example    <caption>Basic Usage</caption>
   * @param    {any} config
   * this.create();
