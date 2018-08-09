@@ -41,9 +41,9 @@ In order to have a valid slide show at the export json the user has to fill the 
     * `restart` : if the user clicks on a specific slide, this option's value will be added to the interval value
 
 2. The Settings component contains different settings that can be set up for the carousel : 
-    * defaultTemplateUrl: a CDN URL to the custom template HTML.
-    * templateStyle: a set of CSS rules, under which reusable styling can be defined, so as to avoid redundancy at component level.
-    * animation: the desired animation to apply when transitioning between slides. Currently, the only supported value is "slide".
+    * `defaultTemplateUrl`: a CDN URL to the custom template HTML.
+    * `templateStyle`: a set of CSS rules, under which reusable styling can be defined, so as to avoid redundancy at component level.
+    * `animation`: the desired animation to apply when transitioning between slides. Currently, the only supported value is "slide".
     
 3. The Item component contains `Title`, `Description` and `Link` elements which are components for each individual slide. To create a new Item the user has to click on the `Add item` button from the end of the form. An Item can be removed with the `Remove item` button. 
 For a standard carousel item the user has to provide the following information:
