@@ -6,7 +6,7 @@ import {Description} from './description';
 export class Comp {
 
   /**
-  * Instantiation of a Title class.
+  * The title property of the Comp class. An object which includes cssClass, text and style fields.
   * @name    title
   * @type    {Title}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -15,7 +15,7 @@ export class Comp {
   public title: Title;
 
   /**
-  * Instantiation of a Decription class.
+  * The description property of the Comp class. An object which includes cssClass, text and style fields.
   * @name    description
   * @type    {Description}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -24,7 +24,8 @@ export class Comp {
   public description: Description;
 
   /**
-  * Array of Link objects.
+  * Array of Link objects known by the configurator. The object includes cssClass, text, tooltip, style and url
+  * which defines the redirection link.
   * @name    links
   * @type    {Link[]}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -53,8 +54,9 @@ export class Comp {
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Comp}  
+  * @returns    {Comp}  A Component object defined by the configuration object. It contains default values if no config is given.
   * @example    <caption>Basic Usage</caption>
+  * @param    {any} config
   * this.create();
   */
   public static create(config?: any): Comp {
@@ -65,11 +67,11 @@ export class Comp {
   }
 
   /**
-  * Creates a new Link object which is added to the links array of the .
+  * Creates a new Link object with default values, which is added to the links array of the component .
   * @method   addLink
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {void}  
+  * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
   * this.addLink();
   */
@@ -82,8 +84,9 @@ export class Comp {
   * @method   removeLink
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {void}  
+  * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
+  * @param    {Link} link
   * this.removeLink();
   */
   public removeLink(link : Link) : void{
@@ -96,8 +99,9 @@ export class Comp {
   * @method   saveLink
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {void}  
+  * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
+  * @param    {Link} link
   * this.saveLink();
   */
   public saveLink(link: Link) : void {

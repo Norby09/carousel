@@ -6,7 +6,7 @@ import { Resource } from 'data/resource';
 export class LanguagesService {
 
   /**
-  * Array of Language objects known by the configurator. The objects include key-value pairs for any resources defined in the respective language
+  * Array of Language objects known by the configurator. The objects include key-value pairs for any resources defined in the respective language.
   * @name    languages
   * @type    {Languages[]}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -15,7 +15,7 @@ export class LanguagesService {
   private languages: Language[] = [];
 
   /**
-  * Configuration object of languages and resources for the export json
+  * Configuration object of languages and resources for the export json.
   * @name    i18n
   * @type    {array}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -24,7 +24,7 @@ export class LanguagesService {
   private i18n: any = [];
 
   /**
-  * Sets the i18n object which will be processed in the appication
+  * Sets the i18n object which will be processed in the appication.
   * @method   setI18n
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
