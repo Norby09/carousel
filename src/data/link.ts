@@ -52,7 +52,7 @@ export class Link {
   * @constructor Link
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added  2018-08-08
-  * @memberOf TM_FILENAME_BASE
+  * @memberOf link
   * @example  <caption>Basic Usage</caption>
   */
   public constructor(config?: any) {

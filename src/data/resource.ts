@@ -25,7 +25,7 @@ export class Resource {
   * @constructor Link
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added  2018-08-08
-  * @memberOf TM_FILENAME_BASE
+  * @memberOf resource
   * @example  <caption>Basic Usage</caption>
   */
   constructor(config?: any) {

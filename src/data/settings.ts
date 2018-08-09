@@ -34,7 +34,7 @@ export class Settings {
   * @constructor Language
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added  2018-08-08
-  * @memberOf TM_FILENAME_BASE
+  * @memberOf settings
   * @example  <caption>Basic Usage</caption>
   */
   constructor(config?: any) {

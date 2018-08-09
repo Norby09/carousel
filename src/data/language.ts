@@ -27,7 +27,7 @@ export class Language {
   * @constructor Language
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added  2018-08-08
-  * @memberOf TM_FILENAME_BASE
+  * @memberOf language
   * @example  <caption>Basic Usage</caption>
   */
   public constructor(config?: any) {
