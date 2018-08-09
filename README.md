@@ -48,5 +48,6 @@ In order to have a valid slide show at the export json the user has to fill the 
 3. The Item component contains all the elements which are going to appear on the slides. 
 
 ## Import 
-
+Import is one of the main features of this application. It assumes that the user has a valid json that it will enter it in the specific input. After pressing the `import button` the application will populate all the fields with the corresponding values from the json and the user will be able to apply his modifications or add any new elements if needed. If the json is not valid then pressing of the `import button` will result in throwing an error. 
 ## Export
+The export is the second main feature of this application. For it to function properly it requires most of the inputs to be populated with appropriate and correct values. After the inputs have been filled with data the `export button` can be pressed. If everything works then on the right side the carousel with the appropiate slides and the other elements will be generated. If nothing was generated it means there was an error with the data processing, or the server side is not working properly. 
