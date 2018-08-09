@@ -2,7 +2,7 @@ import { stringOrDefault, objectOrDefault } from 'utils/value-or-default';
 
 export class Link {
   /**
-  * Property which defines the css class of a Link object.
+  * Defines the css class of a Link object.
   * @name    cssClass
   * @type    {string}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -11,7 +11,7 @@ export class Link {
   public cssClass: string;
 
   /**
-  * Property which defines the style of a Link object.
+  * Defines the style of a Link object.
   * @name    style
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -20,7 +20,7 @@ export class Link {
   public style: string;
   
   /**
-  * Property which defines the text of a Link object.
+  * Defines the text of a Link object.
   * @name    text
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -29,8 +29,8 @@ export class Link {
   public text: string;
 
   /**
-  * Property which defines the tooltip of a Link object.
-  * @name    text
+  * Defines the tooltip of a Link object.
+  * @name    tooltip
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
@@ -38,8 +38,8 @@ export class Link {
   public tooltip: string;
 
   /**
-  * Property which defines the url of a Link object.
-  * @name    text
+  * Defines the url of a Link object.
+  * @name    url
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
@@ -65,12 +65,13 @@ export class Link {
   }
 
   /**
-  * The create method is used to create a new Link object.
+  * Instantiates a Link object with the specified configuration, if any.
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Link}  
+  * @returns    {Link} A Liink object with the specicied configuration. It contains default values if no configuration is given. 
   * @example    <caption>Basic Usage</caption>
+  * @param    {any} config
   * this.create();
   */
   public static create(config?: any): Link {

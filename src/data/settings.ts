@@ -2,7 +2,7 @@ import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or
 
 export class Settings {
   /**
-  * Property which defines the default template url of a Settings object.
+  * Defines the default template url of a Settings object.
   * @name    defaultTemplateUrl
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -11,7 +11,7 @@ export class Settings {
   defaultTemplateUrl: string;
 
   /**
-  * Property which defines the template style of a Settings object.
+  * Defines the template style of a Settings object.
   * @name    templateStyle
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -20,7 +20,7 @@ export class Settings {
   templateStyle: string;
 
   /**
-  * Property which defines the animation of a Settings object, with "slide" as default value.
+  * Defines the animation of a Settings object, with "slide" as default value.
   * @name    animation
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -44,12 +44,13 @@ export class Settings {
   }
 
   /**
-  * The create method is used to create a new Settings object.
+  * Instantiates a Settings object with the specified configuration, if any.
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Settings}  
+  * @returns    {Settings} A Settings object with the specified configuration. It contains default values if no configuration is given.
   * @example    <caption>Basic Usage</caption>
+  * @param    {any} config
   * this.create();
   */
   static create(config?: any) : Settings {

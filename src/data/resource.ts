@@ -2,7 +2,7 @@ import {objectOrDefault, stringOrDefault} from '../utils/value-or-default';
 
 export class Resource {
   /**
-  * Property which defines the name of a Resource object.
+  * Defines the name of a Resource object.
   * @name    name
   * @type    {string}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -11,7 +11,7 @@ export class Resource {
   name: string;
 
   /**
-  * Property which defines the value of a Resource object.
+  * Defines the value of a Resource object.
   * @name    value
   * @type    {string}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -35,12 +35,13 @@ export class Resource {
   }
 
    /**
-  * The create method is used to create a new Resource object.
+  * Instantiates a Resource object with the specified configuration, if any.
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Resource}  
+  * @returns    {Resource} A Resource object with the specified configuration. It contains default values if no configuration is given. 
   * @example    <caption>Basic Usage</caption>
+  * @param    {any} config
   * this.create();
   */
   static create(config?: any): Resource {

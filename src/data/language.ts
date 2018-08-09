@@ -4,7 +4,7 @@ import {Resource} from './resource';
 export class Language {
 
   /**
-  * Property which defines the text of a Language object.
+  * Defines the text of a Language object.
   * @name    name
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -13,7 +13,7 @@ export class Language {
   public name: string;
 
   /**
-  * An array of resources defined for a language.
+  * An array of resources defined for a language. Each resource object includes the resource name and the coresponding value. 
   * @name    resource
   * @type    {Resource[]}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -37,12 +37,13 @@ export class Language {
   }
 
   /**
-  * The create method is used to create a new Language object.
+  * Instantiates a Language object with the specified configuration, if any.
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Language}  
+  * @returns    {Language}  A Language object with the specicied configuration. It contains default values if no configuration is given.
   * @example    <caption>Basic Usage</caption>
+  * @param    {any} config
   * this.create();
   */
   public static create(config?: any): Language {

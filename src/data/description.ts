@@ -2,7 +2,7 @@ import { stringOrDefault, objectOrDefault, arrayOrDefault } from 'utils/value-or
 
 export class Description {
   /**
-  * Property which defines the css class of a Description object.
+  * Defines the css class of a Description object.
   * @name    cssClass
   * @type    {string}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -11,7 +11,7 @@ export class Description {
   public cssClass: string;
 
   /**
-  * Property which defines the style of a Description object.
+  * Defines the style of a Description object.
   * @name    style
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -20,7 +20,7 @@ export class Description {
   public style: string;
 
   /**
-  * Property which defines the text of a Description object.
+  * Defines the text of a Description object.
   * @name    text
   * @type    {string}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -45,12 +45,13 @@ export class Description {
   }
 
   /**
-  * The create method is used to create a new Description object.
+  * Instantiates a Description object with the specified configuration, if any.
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Description}  
+  * @returns    {Description}  A Description object with the specicied configuration. It contains default values if no configuration is given.
   * @example    <caption>Basic Usage</caption>
+  * @param    {any} config
   * this.create();
   */
   public static create(config?: any): Description {

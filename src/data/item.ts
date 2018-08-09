@@ -3,7 +3,7 @@ import {Comp} from './comp';
 export class Item {
 
   /**
-  * Property which defines the background color of an Item object.
+  * Defines the background color of an Item object.
   * @name    backgroundColor
   * @type    {string}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -12,7 +12,7 @@ export class Item {
   public backgroundColor: string;
 
   /**
-  * Property which defines the background url of an Item object.
+  * Defines the background url of an Item object.
   * @name    backgroundUrl
   * @type    {string}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -21,7 +21,7 @@ export class Item {
   public backgroundUrl: string;
 
   /**
-  * Property which defines the name of an Item object.
+  * Defines the name of an Item object.
   * @name    name
   * @type    {string}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -30,7 +30,7 @@ export class Item {
   public name: string;
 
   /**
-  * Property which defines the type of an Item object, having 1 as default value.
+  * Defines the type of an Item object, having 1 as default value.
   * @name    type
   * @type    {number}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -39,8 +39,8 @@ export class Item {
   public type = 1;
 
   /**
-  * Property which defines the id of an Item object.
-  * @name    type
+  * Defines the id of an Item object.
+  * @name    id
   * @type    {number}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added   2018-08-08
@@ -48,16 +48,16 @@ export class Item {
   public id: number;
 
   /**
-  * Instantiation of a Component object.
-  * @name    type
-  * @type    {number}
+  * Instance of a Component object known by the carousel configurator. It contains title, description and link fields, which are going to appear on a slide.
+  * @name    components
+  * @type    {Comp}
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added   2018-08-08
   */
   public components: Comp;
 
   /**
-  * The Item class manages the initialization of the properties with the values from the config object.
+  * Instantiates an Item object with the specified configuration, if any.
   * @constructor Item
   * @author  Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added  2018-08-08

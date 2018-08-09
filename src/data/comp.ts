@@ -50,11 +50,11 @@ export class Comp {
   }
 
   /**
-  * The Create method is used to create new Comp objects.
+  * Instantiates a Comp object with the specified configuration, if any.
   * @method   create
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {Comp}  A Component object defined by the configuration object. It contains default values if no config is given.
+  * @returns    {Comp}  A Component object with the specicied configuration. It contains default values if no configuration is given.
   * @example    <caption>Basic Usage</caption>
   * @param    {any} config
   * this.create();
