@@ -6,7 +6,7 @@ import { Resource } from 'data/resource';
 export class LanguagesService {
 
   /**
-  * Configuration bject containing language and resource pairs
+  * Array of Language objects known by the configurator. The objects include key-value pairs for any resources defined in the respective language
   * @name    languages
   * @type    {Languages[]}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
@@ -17,7 +17,7 @@ export class LanguagesService {
   /**
   * Configuration object of languages and resources for the export json
   * @name    i18n
-  * @type    {}
+  * @type    {array}
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
   */
@@ -28,7 +28,7 @@ export class LanguagesService {
   * @method   setI18n
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {void}  
+  * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
   * this.setI18n();
   */
@@ -37,11 +37,11 @@ export class LanguagesService {
   }
 
   /**
-  * Returns the languages which can be selected on the text input dropdown
+  * Returns the languages which can be selected on the text input dropdown along with an associated image representing the flag of the language.
   * @method   getLanguages
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {object[]}  
+  * @returns    {object[]}  An array of key-value pairs containing the languages and the associated images.
   * @example    <caption>Basic Usage</caption>
   * this.getLanguages();
   */
@@ -68,11 +68,11 @@ export class LanguagesService {
   }
 
   /**
-  * Saves the new language and the coresponding resource introduced by the user.
+  * Updates a resource value in a specified language. If the language does not exist, it will be saved with the specified resource.
   * @method   saveLanguageAndResource
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {void}  
+  * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
   * this.saveLanguageAndResource();
   */
@@ -130,7 +130,7 @@ export class LanguagesService {
   * @method   setResourceValue
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {void}  
+  * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
   * this.setResourceValue();
   */
@@ -146,7 +146,7 @@ export class LanguagesService {
   * @method   setResourceName
   * @author   Orsolya Racz <Orsolya.Racz@blackline.com>
   * @added    2018-08-08
-  * @returns    {void}  
+  * @returns    {void} No return value  
   * @example    <caption>Basic Usage</caption>
   * this.setResourceName();
   */
