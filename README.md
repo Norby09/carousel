@@ -45,7 +45,30 @@ In order to have a valid slide show at the export json the user has to fill the 
     * templateStyle: a set of CSS rules, under which reusable styling can be defined, so as to avoid redundancy at component level.
     * animation: the desired animation to apply when transitioning between slides. Currently, the only supported value is "slide".
     
-3. The Item component contains all the elements which are going to appear on the slides. 
+3. The Item component contains `Title`, `Description` and `Link` elements which are components for each individual slide. To create a new Item the user has to click on the `Add item` button from the end of the form. An Item can be removed with the `Remove item` button. 
+For a standard carousel item the user has to provide the following information:
+    * `name`:  this will be the name of the item
+    * `backgroundColor`: Hex code for example #ccc
+    * `backgroundUrl`: URL to the background image or null
+    * `type`: defines the carousel template type. It can have 3 values : standard, custom and custom template
+    
+
+   * `Title` : for the Title component the user has to provide 3 more fields
+      * `cssClass`: the name of the CSS class to apply on the element
+      * `style`: CSS style applied on the element
+      * `text`: The user has to select the preferred language from the dropdown and then has to insert text in the input field. This text is going to appear on the slide as the title. By clicking the plus button, more resources can be added by selecting the new language and providing the corresponding translation. 
+
+	* `Description` : for the Description component the user has to provide 3 fields
+	  * `cssClass`: the name of the CSS class to apply on the element
+      * `style`: CSS style applied on the element
+      * `text`: The user has to select the preferred language from the dropdown and then has to insert text in the input field. This text is going to appear on the slide as the title. By clicking the plus button, more resources can be added by selecting the new language and providing the corresponding translation. 
+
+	* `Link` : an Item can have multiple links. A Link can be added by clicking the `add link` button. A Link can be removed with the `remove link` button. For a Link component the user has to provide 5 fields
+		* `cssClass`: the name of the CSS class to apply on the element
+		* `style`: CSS style applied on the link
+		* `text`: The user has to select the preferred language from the dropdown and then has to insert text in the input field. This text is going to appear on the slide as the title. By clicking the plus button, more resources can be added by selecting the new language and providing the corresponding translation. 
+		* `tooltip`: the text to be displayed as a tooltip when the user hovers over the link
+		* `url`: the URL where the link will navigate to
 
 ## Import 
 Import is one of the main features of this application. It assumes that the user has a valid json that it will enter it in the specific input. After pressing the `import button` the application will populate all the fields with the corresponding values from the json and the user will be able to apply his modifications or add any new elements if needed. If the json is not valid then pressing of the `import button` will result in throwing an error. 
