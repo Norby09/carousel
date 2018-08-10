@@ -64,10 +64,6 @@ describe('DescriptionComponent', () => {
     component.onClick();
     expect(component.showDropdown).toEqual(true);
   });
-  // it('should select a specific language', () => {
-  //   component.onSelect('fr');
-  //   expect(component.showDropdown).toEqual(false);
-  // });
   it('should test for a non existing description object', () => {
     component.description = new Description();
     component.description.text = "";
